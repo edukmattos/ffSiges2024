@@ -100,7 +100,7 @@ class _CpInputTexMultilineWidgetState extends State<CpInputTexMultilineWidget> {
         ),
         filled: true,
         fillColor: FlutterFlowTheme.of(context).primaryBackground,
-        contentPadding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 12.0),
+        contentPadding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 12.0),
       ),
       style: FlutterFlowTheme.of(context).bodyLarge,
       maxLines: 10,

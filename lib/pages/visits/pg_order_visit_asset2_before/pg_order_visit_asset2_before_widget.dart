@@ -259,41 +259,139 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                         FlutterFlowTheme.of(context).titleLarge,
                                   ),
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
-                                      child: Container(
-                                        height: 300.0,
-                                        constraints: const BoxConstraints(
-                                          maxWidth: 360.0,
-                                        ),
-                                        decoration: const BoxDecoration(),
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: SizedBox(
-                                          width: 360.0,
-                                          height: 300.0,
-                                          child: Stack(
-                                            children: [
-                                              InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      child:
-                                                          FlutterFlowExpandedImageView(
-                                                        image: Image.network(
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, -1.0),
+                                          child: Container(
+                                            height: 300.0,
+                                            constraints: const BoxConstraints(
+                                              maxWidth: 360.0,
+                                            ),
+                                            decoration: const BoxDecoration(),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: SizedBox(
+                                              width: 360.0,
+                                              height: 300.0,
+                                              child: Stack(
+                                                children: [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        PageTransition(
+                                                          type:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          child:
+                                                              FlutterFlowExpandedImageView(
+                                                            image:
+                                                                Image.network(
+                                                              () {
+                                                                if ((widget.operation ==
+                                                                        'before') &&
+                                                                    (containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
+                                                                            null &&
+                                                                        containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
+                                                                            '')) {
+                                                                  return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                                } else if ((widget
+                                                                            .operation ==
+                                                                        'after') &&
+                                                                    (containerVOrdersVisitsAssetsRow?.afterImgFileName !=
+                                                                            null &&
+                                                                        containerVOrdersVisitsAssetsRow?.afterImgFileName !=
+                                                                            '')) {
+                                                                  return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                                } else {
+                                                                  return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                                }
+                                                              }(),
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                              alignment:
+                                                                  const Alignment(
+                                                                      0.0, 0.0),
+                                                            ),
+                                                            allowRotation:
+                                                                false,
+                                                            tag: () {
+                                                              if ((widget.operation ==
+                                                                      'before') &&
+                                                                  (containerVOrdersVisitsAssetsRow
+                                                                              ?.beforeImgFileName !=
+                                                                          null &&
+                                                                      containerVOrdersVisitsAssetsRow
+                                                                              ?.beforeImgFileName !=
+                                                                          '')) {
+                                                                return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                              } else if ((widget
+                                                                          .operation ==
+                                                                      'after') &&
+                                                                  (containerVOrdersVisitsAssetsRow
+                                                                              ?.afterImgFileName !=
+                                                                          null &&
+                                                                      containerVOrdersVisitsAssetsRow
+                                                                              ?.afterImgFileName !=
+                                                                          '')) {
+                                                                return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                              } else {
+                                                                return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                              }
+                                                            }(),
+                                                            useHeroAnimation:
+                                                                true,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Hero(
+                                                      tag: () {
+                                                        if ((widget.operation ==
+                                                                'before') &&
+                                                            (containerVOrdersVisitsAssetsRow
+                                                                        ?.beforeImgFileName !=
+                                                                    null &&
+                                                                containerVOrdersVisitsAssetsRow
+                                                                        ?.beforeImgFileName !=
+                                                                    '')) {
+                                                          return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                        } else if ((widget
+                                                                    .operation ==
+                                                                'after') &&
+                                                            (containerVOrdersVisitsAssetsRow
+                                                                        ?.afterImgFileName !=
+                                                                    null &&
+                                                                containerVOrdersVisitsAssetsRow
+                                                                        ?.afterImgFileName !=
+                                                                    '')) {
+                                                          return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                        } else {
+                                                          return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                        }
+                                                      }(),
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                        child: Image.network(
                                                           () {
                                                             if ((widget.operation ==
                                                                     'before') &&
@@ -318,42 +416,24 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                               return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
                                                             }
                                                           }(),
-                                                          fit: BoxFit.contain,
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .height *
+                                                                  1.0,
+                                                          fit: BoxFit.cover,
                                                           alignment: const Alignment(
                                                               0.0, 0.0),
                                                         ),
-                                                        allowRotation: false,
-                                                        tag: () {
-                                                          if ((widget.operation ==
-                                                                  'before') &&
-                                                              (containerVOrdersVisitsAssetsRow
-                                                                          ?.beforeImgFileName !=
-                                                                      null &&
-                                                                  containerVOrdersVisitsAssetsRow
-                                                                          ?.beforeImgFileName !=
-                                                                      '')) {
-                                                            return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
-                                                          } else if ((widget
-                                                                      .operation ==
-                                                                  'after') &&
-                                                              (containerVOrdersVisitsAssetsRow
-                                                                          ?.afterImgFileName !=
-                                                                      null &&
-                                                                  containerVOrdersVisitsAssetsRow
-                                                                          ?.afterImgFileName !=
-                                                                      '')) {
-                                                            return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
-                                                          } else {
-                                                            return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
-                                                          }
-                                                        }(),
-                                                        useHeroAnimation: true,
                                                       ),
                                                     ),
-                                                  );
-                                                },
-                                                child: Hero(
-                                                  tag: () {
+                                                  ),
+                                                  if (() {
                                                     if ((widget.operation ==
                                                             'before') &&
                                                         (containerVOrdersVisitsAssetsRow
@@ -362,7 +442,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                             containerVOrdersVisitsAssetsRow
                                                                     ?.beforeImgFileName !=
                                                                 '')) {
-                                                      return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                      return true;
                                                     } else if ((widget
                                                                 .operation ==
                                                             'after') &&
@@ -372,270 +452,509 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                             containerVOrdersVisitsAssetsRow
                                                                     ?.afterImgFileName !=
                                                                 '')) {
-                                                      return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                      return true;
                                                     } else {
-                                                      return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                      return false;
                                                     }
-                                                  }(),
-                                                  transitionOnUserGestures:
-                                                      true,
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0),
-                                                    child: Image.network(
-                                                      () {
-                                                        if ((widget.operation ==
-                                                                'before') &&
-                                                            (containerVOrdersVisitsAssetsRow
-                                                                        ?.beforeImgFileName !=
-                                                                    null &&
-                                                                containerVOrdersVisitsAssetsRow
-                                                                        ?.beforeImgFileName !=
-                                                                    '')) {
-                                                          return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
-                                                        } else if ((widget
-                                                                    .operation ==
-                                                                'after') &&
-                                                            (containerVOrdersVisitsAssetsRow
-                                                                        ?.afterImgFileName !=
-                                                                    null &&
-                                                                containerVOrdersVisitsAssetsRow
-                                                                        ?.afterImgFileName !=
-                                                                    '')) {
-                                                          return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
-                                                        } else {
-                                                          return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
-                                                        }
-                                                      }(),
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          1.0,
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          1.0,
-                                                      fit: BoxFit.cover,
+                                                  }())
+                                                    Align(
                                                       alignment:
-                                                          const Alignment(0.0, 0.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              if (() {
-                                                if ((widget.operation ==
-                                                        'before') &&
-                                                    (containerVOrdersVisitsAssetsRow
-                                                                ?.beforeImgFileName !=
-                                                            null &&
-                                                        containerVOrdersVisitsAssetsRow
-                                                                ?.beforeImgFileName !=
-                                                            '')) {
-                                                  return true;
-                                                } else if ((widget.operation ==
-                                                        'after') &&
-                                                    (containerVOrdersVisitsAssetsRow
-                                                                ?.afterImgFileName !=
-                                                            null &&
-                                                        containerVOrdersVisitsAssetsRow
-                                                                ?.afterImgFileName !=
-                                                            '')) {
-                                                  return true;
-                                                } else {
-                                                  return false;
-                                                }
-                                              }())
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, -1.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(12.0),
-                                                    child:
-                                                        FlutterFlowIconButton(
-                                                      borderRadius: 25.0,
-                                                      buttonSize: 50.0,
-                                                      fillColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      icon: Icon(
-                                                        Icons.close,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                          const AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(
+                                                            12.0),
+                                                        child:
+                                                            FlutterFlowIconButton(
+                                                          borderRadius: 25.0,
+                                                          buttonSize: 50.0,
+                                                          fillColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .error,
+                                                          icon: Icon(
+                                                            Icons.close,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .primaryBtnText,
-                                                        size: 32.0,
+                                                            size: 32.0,
+                                                          ),
+                                                          showLoadingIndicator:
+                                                              true,
+                                                          onPressed: () async {
+                                                            var shouldSetState =
+                                                                false;
+                                                            _model.resOrderVisitAssetSelected3 =
+                                                                await ApiOrdersVisitsAssetsGroup
+                                                                    .orderVisitAssetByIdCall
+                                                                    .call(
+                                                              orderVisitAssetId:
+                                                                  containerVOrdersVisitsAssetsRow
+                                                                      ?.id,
+                                                            );
+                                                            shouldSetState =
+                                                                true;
+                                                            if ((_model
+                                                                    .resOrderVisitAssetSelected3
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              if (widget
+                                                                      .operation ==
+                                                                  'before') {
+                                                                if (FFAppState()
+                                                                            .stOrderVisitAssetSelected
+                                                                            .beforeImgFileName !=
+                                                                        '') {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: const Text('Ops ...'),
+                                                                                content: const Text('Não será possivel recuperar a imagem após a exclusão.'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: const Text('Cancelar'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: const Text('Confirmar'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    await ApiStorageGroup
+                                                                        .deleteFileCall
+                                                                        .call(
+                                                                      fileUrl:
+                                                                          '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFilePath(
+                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
+                                                                            ''),
+                                                                      )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFileName(
+                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
+                                                                            ''),
+                                                                      )}',
+                                                                    );
+                                                                    await OrdersVisitsAssetsTable()
+                                                                        .update(
+                                                                      data: {
+                                                                        'beforeImgFilePath':
+                                                                            null,
+                                                                        'beforeImgFileName':
+                                                                            null,
+                                                                      },
+                                                                      matchingRows:
+                                                                          (rows) =>
+                                                                              rows.eq(
+                                                                        'id',
+                                                                        FFAppState()
+                                                                            .stOrderVisitAssetSelected
+                                                                            .id,
+                                                                      ),
+                                                                    );
+                                                                  }
+                                                                } else {
+                                                                  if (shouldSetState) {
+                                                                    setState(
+                                                                        () {});
+                                                                  }
+                                                                  return;
+                                                                }
+                                                              } else {
+                                                                if (FFAppState()
+                                                                            .stOrderVisitAssetSelected
+                                                                            .afterImgFileName !=
+                                                                        '') {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: const Text('Ops ...'),
+                                                                                content: const Text('Não será possivel recuperar a imagem após a excleusão.'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: const Text('Cancelar'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: const Text('Confirmar'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    await ApiStorageGroup
+                                                                        .deleteFileCall
+                                                                        .call(
+                                                                      fileUrl:
+                                                                          '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFilePath(
+                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
+                                                                            ''),
+                                                                      )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFileName(
+                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
+                                                                            ''),
+                                                                      )}',
+                                                                    );
+                                                                    await OrdersVisitsAssetsTable()
+                                                                        .update(
+                                                                      data: {
+                                                                        'afterImgFilePath':
+                                                                            null,
+                                                                        'afterImgFileName':
+                                                                            null,
+                                                                      },
+                                                                      matchingRows:
+                                                                          (rows) =>
+                                                                              rows.eq(
+                                                                        'id',
+                                                                        FFAppState()
+                                                                            .stOrderVisitAssetSelected
+                                                                            .id,
+                                                                      ),
+                                                                    );
+                                                                  }
+                                                                } else {
+                                                                  if (shouldSetState) {
+                                                                    setState(
+                                                                        () {});
+                                                                  }
+                                                                  return;
+                                                                }
+                                                              }
+
+                                                              setState(() =>
+                                                                  _model.requestCompleter =
+                                                                      null);
+                                                              await _model
+                                                                  .waitForRequestCompleted();
+                                                              await action_blocks
+                                                                  .abOrderVisitAssetSelected(
+                                                                context,
+                                                                abOrderVisitAssetId:
+                                                                    FFAppState()
+                                                                        .stOrderVisitAssetSelected
+                                                                        .id,
+                                                              );
+                                                            } else {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: const Text(
+                                                                        '222'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: const Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Ops .. Erro ao identificar a imagem a ser excluida.',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryBtnText,
+                                                                    ),
+                                                                  ),
+                                                                  duration: const Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                ),
+                                                              );
+                                                              if (shouldSetState) {
+                                                                setState(() {});
+                                                              }
+                                                              return;
+                                                            }
+
+                                                            if (shouldSetState) {
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                        ),
                                                       ),
-                                                      showLoadingIndicator:
-                                                          true,
-                                                      onPressed: () async {
-                                                        var shouldSetState =
-                                                            false;
-                                                        _model.resOrderVisitAssetSelected3 =
-                                                            await ApiOrdersVisitsAssetsGroup
-                                                                .orderVisitAssetByIdCall
-                                                                .call(
-                                                          orderVisitAssetId:
-                                                              containerVOrdersVisitsAssetsRow
-                                                                  ?.id,
-                                                        );
-                                                        shouldSetState = true;
-                                                        if ((_model
-                                                                .resOrderVisitAssetSelected3
-                                                                ?.succeeded ??
-                                                            true)) {
+                                                    ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            -1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(12.0),
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 25.0,
+                                                        buttonSize: 50.0,
+                                                        fillColor:
+                                                            const Color(0xFF9E9E9E),
+                                                        icon: Icon(
+                                                          Icons
+                                                              .linked_camera_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 32.0,
+                                                        ),
+                                                        showLoadingIndicator:
+                                                            true,
+                                                        onPressed: () async {
+                                                          setState(() {
+                                                            _model.lpsvFilePath =
+                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}';
+                                                          });
                                                           if (widget
                                                                   .operation ==
                                                               'before') {
                                                             if (FFAppState()
                                                                         .stOrderVisitAssetSelected
-                                                                        .beforeImgFileName !=
+                                                                        .beforeImgFileName ==
                                                                     '') {
-                                                              var confirmDialogResponse =
-                                                                  await showDialog<
-                                                                          bool>(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                const Text('Ops ...'),
-                                                                            content:
-                                                                                const Text('Não será possivel recuperar a imagem após a exclusão.'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: const Text('Cancelar'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: const Text('Confirmar'),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        },
-                                                                      ) ??
-                                                                      false;
-                                                              if (confirmDialogResponse) {
-                                                                await ApiStorageGroup
-                                                                    .deleteFileCall
-                                                                    .call(
-                                                                  fileUrl:
-                                                                      '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFilePath(
-                                                                    (_model.resOrderVisitAssetSelected3
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFileName(
-                                                                    (_model.resOrderVisitAssetSelected3
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )}',
-                                                                );
-                                                                await OrdersVisitsAssetsTable()
-                                                                    .update(
-                                                                  data: {
-                                                                    'beforeImgFilePath':
-                                                                        null,
-                                                                    'beforeImgFileName':
-                                                                        null,
-                                                                  },
-                                                                  matchingRows:
-                                                                      (rows) =>
-                                                                          rows.eq(
-                                                                    'id',
-                                                                    FFAppState()
-                                                                        .stOrderVisitAssetSelected
-                                                                        .id,
-                                                                  ),
-                                                                );
-                                                              }
+                                                              // Dont Exist
+                                                              setState(() {
+                                                                _model.lpsvIsThereFileName =
+                                                                    false;
+                                                              });
                                                             } else {
-                                                              if (shouldSetState) {
-                                                                setState(() {});
-                                                              }
-                                                              return;
+                                                              // Exist
+                                                              setState(() {
+                                                                _model.lpsvIsThereFileName =
+                                                                    true;
+                                                                _model.lpsvFileNameToDelete =
+                                                                    containerVOrdersVisitsAssetsRow!
+                                                                        .beforeImgFileName!;
+                                                              });
                                                             }
                                                           } else {
                                                             if (FFAppState()
                                                                         .stOrderVisitAssetSelected
-                                                                        .afterImgFileName !=
+                                                                        .afterImgFileName ==
                                                                     '') {
-                                                              var confirmDialogResponse =
-                                                                  await showDialog<
-                                                                          bool>(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                const Text('Ops ...'),
-                                                                            content:
-                                                                                const Text('Não será possivel recuperar a imagem após a excleusão.'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: const Text('Cancelar'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: const Text('Confirmar'),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        },
-                                                                      ) ??
-                                                                      false;
-                                                              if (confirmDialogResponse) {
-                                                                await ApiStorageGroup
-                                                                    .deleteFileCall
-                                                                    .call(
-                                                                  fileUrl:
-                                                                      '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFilePath(
-                                                                    (_model.resOrderVisitAssetSelected3
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFileName(
-                                                                    (_model.resOrderVisitAssetSelected3
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )}',
-                                                                );
-                                                                await OrdersVisitsAssetsTable()
-                                                                    .update(
-                                                                  data: {
-                                                                    'afterImgFilePath':
-                                                                        null,
-                                                                    'afterImgFileName':
-                                                                        null,
-                                                                  },
-                                                                  matchingRows:
-                                                                      (rows) =>
-                                                                          rows.eq(
-                                                                    'id',
-                                                                    FFAppState()
-                                                                        .stOrderVisitAssetSelected
-                                                                        .id,
-                                                                  ),
-                                                                );
-                                                              }
+                                                              // Dont Exist
+                                                              setState(() {
+                                                                _model.lpsvIsThereFileName =
+                                                                    false;
+                                                              });
                                                             } else {
-                                                              if (shouldSetState) {
-                                                                setState(() {});
-                                                              }
+                                                              // Exist
+                                                              setState(() {
+                                                                _model.lpsvIsThereFileName =
+                                                                    true;
+                                                                _model.lpsvFileNameToDelete =
+                                                                    containerVOrdersVisitsAssetsRow!
+                                                                        .afterImgFileName!;
+                                                              });
+                                                            }
+                                                          }
+
+                                                          if (_model
+                                                              .lpsvIsThereFileName) {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Ops ...'),
+                                                                          content:
+                                                                              const Text('Deseja alterar imagem ? Caso confirme, não será possivel recuperar imagem.'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: const Text('Cancelar'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: const Text('Confirmar'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              await ApiStorageGroup
+                                                                  .deleteFileCall
+                                                                  .call(
+                                                                fileUrl:
+                                                                    'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSelected.id.toString()}/${_model.lpsvFileNameToDelete}',
+                                                              );
+                                                            } else {
+                                                              return;
+                                                            }
+                                                          }
+                                                          final selectedMedia =
+                                                              await selectMediaWithSourceBottomSheet(
+                                                            context: context,
+                                                            storageFolderPath:
+                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}',
+                                                            maxWidth: 500.00,
+                                                            maxHeight: 500.00,
+                                                            imageQuality: 100,
+                                                            allowPhoto: true,
+                                                          );
+                                                          if (selectedMedia !=
+                                                                  null &&
+                                                              selectedMedia.every((m) =>
+                                                                  validateFileFormat(
+                                                                      m.storagePath,
+                                                                      context))) {
+                                                            setState(() => _model
+                                                                    .isDataUploading =
+                                                                true);
+                                                            var selectedUploadedFiles =
+                                                                <FFUploadedFile>[];
+
+                                                            var downloadUrls =
+                                                                <String>[];
+                                                            try {
+                                                              showUploadMessage(
+                                                                context,
+                                                                'Uploading file...',
+                                                                showLoading:
+                                                                    true,
+                                                              );
+                                                              selectedUploadedFiles =
+                                                                  selectedMedia
+                                                                      .map((m) =>
+                                                                          FFUploadedFile(
+                                                                            name:
+                                                                                m.storagePath.split('/').last,
+                                                                            bytes:
+                                                                                m.bytes,
+                                                                            height:
+                                                                                m.dimensions?.height,
+                                                                            width:
+                                                                                m.dimensions?.width,
+                                                                            blurHash:
+                                                                                m.blurHash,
+                                                                          ))
+                                                                      .toList();
+
+                                                              downloadUrls =
+                                                                  await uploadSupabaseStorageFiles(
+                                                                bucketName:
+                                                                    FFAppConstants
+                                                                        .appStorageBucket,
+                                                                selectedFiles:
+                                                                    selectedMedia,
+                                                              );
+                                                            } finally {
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .hideCurrentSnackBar();
+                                                              _model.isDataUploading =
+                                                                  false;
+                                                            }
+                                                            if (selectedUploadedFiles
+                                                                        .length ==
+                                                                    selectedMedia
+                                                                        .length &&
+                                                                downloadUrls
+                                                                        .length ==
+                                                                    selectedMedia
+                                                                        .length) {
+                                                              setState(() {
+                                                                _model.uploadedLocalFile =
+                                                                    selectedUploadedFiles
+                                                                        .first;
+                                                                _model.uploadedFileUrl =
+                                                                    downloadUrls
+                                                                        .first;
+                                                              });
+                                                              showUploadMessage(
+                                                                  context,
+                                                                  'Success!');
+                                                            } else {
+                                                              setState(() {});
+                                                              showUploadMessage(
+                                                                  context,
+                                                                  'Failed to upload data');
                                                               return;
                                                             }
                                                           }
 
-                                                          setState(() => _model
-                                                                  .requestCompleter =
-                                                              null);
-                                                          await _model
-                                                              .waitForRequestCompleted();
+                                                          if (widget
+                                                                  .operation ==
+                                                              'before') {
+                                                            await OrdersVisitsAssetsTable()
+                                                                .update(
+                                                              data: {
+                                                                'beforeImgFilePath':
+                                                                    '${_model.lpsvFilePath}/',
+                                                                'beforeImgFileName':
+                                                                    functions.cfGetFileNameFromFileUrlUploaded(
+                                                                        _model
+                                                                            .uploadedFileUrl,
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
+                                                              },
+                                                              matchingRows:
+                                                                  (rows) =>
+                                                                      rows.eq(
+                                                                'id',
+                                                                FFAppState()
+                                                                    .stOrderVisitAssetSelected
+                                                                    .id,
+                                                              ),
+                                                            );
+                                                          } else {
+                                                            await OrdersVisitsAssetsTable()
+                                                                .update(
+                                                              data: {
+                                                                'afterImgFilePath':
+                                                                    '${_model.lpsvFilePath}/',
+                                                                'afterImgFileName':
+                                                                    functions.cfGetFileNameFromFileUrlUploaded(
+                                                                        _model
+                                                                            .uploadedFileUrl,
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
+                                                              },
+                                                              matchingRows:
+                                                                  (rows) =>
+                                                                      rows.eq(
+                                                                'id',
+                                                                FFAppState()
+                                                                    .stOrderVisitAssetSelected
+                                                                    .id,
+                                                              ),
+                                                            );
+                                                          }
+
                                                           await action_blocks
                                                               .abOrderVisitAssetSelected(
                                                             context,
@@ -644,458 +963,160 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                     .stOrderVisitAssetSelected
                                                                     .id,
                                                           );
-                                                        } else {
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title:
-                                                                    const Text('222'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: const Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          );
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Ops .. Erro ao identificar a imagem a ser excluida.',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBtnText,
-                                                                ),
-                                                              ),
-                                                              duration: const Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error,
-                                                            ),
-                                                          );
-                                                          if (shouldSetState) {
-                                                            setState(() {});
-                                                          }
-                                                          return;
-                                                        }
-
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                      },
+                                                          setState(() => _model
+                                                                  .requestCompleter =
+                                                              null);
+                                                          await _model
+                                                              .waitForRequestCompleted();
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'stackOnPageLoadAnimation']!),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: Icon(
+                                                    Icons.timer_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 24.0,
+                                                  ),
                                                 ),
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, -1.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(12.0),
-                                                  child: FlutterFlowIconButton(
-                                                    borderColor:
-                                                        Colors.transparent,
-                                                    borderRadius: 25.0,
-                                                    buttonSize: 50.0,
-                                                    fillColor:
-                                                        const Color(0xFF9E9E9E),
-                                                    icon: Icon(
-                                                      Icons
-                                                          .linked_camera_outlined,
-                                                      color:
+                                                Flexible(
+                                                  flex: 2,
+                                                  child:
+                                                      SwitchListTile.adaptive(
+                                                    value: _model
+                                                            .switchListTileValue ??=
+                                                        _model.lpsvIsRecorder,
+                                                    onChanged:
+                                                        (newValue) async {
+                                                      setState(() => _model
+                                                              .switchListTileValue =
+                                                          newValue);
+                                                      if (newValue) {
+                                                        setState(() {
+                                                          _model.lpsvIsRecorder =
+                                                              true;
+                                                        });
+                                                      } else {
+                                                        setState(() {
+                                                          _model.lpsvIsRecorder =
+                                                              false;
+                                                        });
+                                                        setState(() {
+                                                          _model.lpsvBeforeRecorder =
+                                                              0;
+                                                        });
+                                                      }
+                                                    },
+                                                    title: Text(
+                                                      'Registrador',
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primaryText,
-                                                      size: 32.0,
+                                                              .bodyLarge,
                                                     ),
-                                                    showLoadingIndicator: true,
-                                                    onPressed: () async {
-                                                      setState(() {
-                                                        _model.lpsvFilePath =
-                                                            'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}';
-                                                      });
-                                                      if (widget.operation ==
-                                                          'before') {
-                                                        if (FFAppState()
-                                                                    .stOrderVisitAssetSelected
-                                                                    .beforeImgFileName ==
-                                                                '') {
-                                                          // Dont Exist
-                                                          setState(() {
-                                                            _model.lpsvIsThereFileName =
-                                                                false;
-                                                          });
-                                                        } else {
-                                                          // Exist
-                                                          setState(() {
-                                                            _model.lpsvIsThereFileName =
-                                                                true;
-                                                            _model.lpsvFileNameToDelete =
-                                                                containerVOrdersVisitsAssetsRow!
-                                                                    .beforeImgFileName!;
-                                                          });
-                                                        }
-                                                      } else {
-                                                        if (FFAppState()
-                                                                    .stOrderVisitAssetSelected
-                                                                    .afterImgFileName ==
-                                                                '') {
-                                                          // Dont Exist
-                                                          setState(() {
-                                                            _model.lpsvIsThereFileName =
-                                                                false;
-                                                          });
-                                                        } else {
-                                                          // Exist
-                                                          setState(() {
-                                                            _model.lpsvIsThereFileName =
-                                                                true;
-                                                            _model.lpsvFileNameToDelete =
-                                                                containerVOrdersVisitsAssetsRow!
-                                                                    .afterImgFileName!;
-                                                          });
-                                                        }
-                                                      }
-
-                                                      if (_model
-                                                          .lpsvIsThereFileName) {
-                                                        var confirmDialogResponse =
-                                                            await showDialog<
-                                                                    bool>(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: const Text(
-                                                                          'Ops ...'),
-                                                                      content: const Text(
-                                                                          'Deseja alterar imagem ? Caso confirme, não será possivel recuperar imagem.'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              const Text('Cancelar'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              const Text('Confirmar'),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                ) ??
-                                                                false;
-                                                        if (confirmDialogResponse) {
-                                                          await ApiStorageGroup
-                                                              .deleteFileCall
-                                                              .call(
-                                                            fileUrl:
-                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSelected.id.toString()}/${_model.lpsvFileNameToDelete}',
-                                                          );
-                                                        } else {
-                                                          return;
-                                                        }
-                                                      }
-                                                      final selectedMedia =
-                                                          await selectMediaWithSourceBottomSheet(
-                                                        context: context,
-                                                        storageFolderPath:
-                                                            'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}',
-                                                        maxWidth: 500.00,
-                                                        maxHeight: 500.00,
-                                                        imageQuality: 100,
-                                                        allowPhoto: true,
-                                                      );
-                                                      if (selectedMedia !=
-                                                              null &&
-                                                          selectedMedia.every((m) =>
-                                                              validateFileFormat(
-                                                                  m.storagePath,
-                                                                  context))) {
-                                                        setState(() => _model
-                                                                .isDataUploading =
-                                                            true);
-                                                        var selectedUploadedFiles =
-                                                            <FFUploadedFile>[];
-
-                                                        var downloadUrls =
-                                                            <String>[];
-                                                        try {
-                                                          showUploadMessage(
-                                                            context,
-                                                            'Uploading file...',
-                                                            showLoading: true,
-                                                          );
-                                                          selectedUploadedFiles =
-                                                              selectedMedia
-                                                                  .map((m) =>
-                                                                      FFUploadedFile(
-                                                                        name: m
-                                                                            .storagePath
-                                                                            .split('/')
-                                                                            .last,
-                                                                        bytes: m
-                                                                            .bytes,
-                                                                        height: m
-                                                                            .dimensions
-                                                                            ?.height,
-                                                                        width: m
-                                                                            .dimensions
-                                                                            ?.width,
-                                                                        blurHash:
-                                                                            m.blurHash,
-                                                                      ))
-                                                                  .toList();
-
-                                                          downloadUrls =
-                                                              await uploadSupabaseStorageFiles(
-                                                            bucketName:
-                                                                FFAppConstants
-                                                                    .appStorageBucket,
-                                                            selectedFiles:
-                                                                selectedMedia,
-                                                          );
-                                                        } finally {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .hideCurrentSnackBar();
-                                                          _model.isDataUploading =
-                                                              false;
-                                                        }
-                                                        if (selectedUploadedFiles
-                                                                    .length ==
-                                                                selectedMedia
-                                                                    .length &&
-                                                            downloadUrls
-                                                                    .length ==
-                                                                selectedMedia
-                                                                    .length) {
-                                                          setState(() {
-                                                            _model.uploadedLocalFile =
-                                                                selectedUploadedFiles
-                                                                    .first;
-                                                            _model.uploadedFileUrl =
-                                                                downloadUrls
-                                                                    .first;
-                                                          });
-                                                          showUploadMessage(
-                                                              context,
-                                                              'Success!');
-                                                        } else {
-                                                          setState(() {});
-                                                          showUploadMessage(
-                                                              context,
-                                                              'Failed to upload data');
-                                                          return;
-                                                        }
-                                                      }
-
-                                                      if (widget.operation ==
-                                                          'before') {
-                                                        await OrdersVisitsAssetsTable()
-                                                            .update(
-                                                          data: {
-                                                            'beforeImgFilePath':
-                                                                '${_model.lpsvFilePath}/',
-                                                            'beforeImgFileName':
-                                                                functions.cfGetFileNameFromFileUrlUploaded(
-                                                                    _model
-                                                                        .uploadedFileUrl,
-                                                                    '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
-                                                          },
-                                                          matchingRows:
-                                                              (rows) => rows.eq(
-                                                            'id',
-                                                            FFAppState()
-                                                                .stOrderVisitAssetSelected
-                                                                .id,
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        await OrdersVisitsAssetsTable()
-                                                            .update(
-                                                          data: {
-                                                            'afterImgFilePath':
-                                                                '${_model.lpsvFilePath}/',
-                                                            'afterImgFileName':
-                                                                functions.cfGetFileNameFromFileUrlUploaded(
-                                                                    _model
-                                                                        .uploadedFileUrl,
-                                                                    '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
-                                                          },
-                                                          matchingRows:
-                                                              (rows) => rows.eq(
-                                                            'id',
-                                                            FFAppState()
-                                                                .stOrderVisitAssetSelected
-                                                                .id,
-                                                          ),
-                                                        );
-                                                      }
-
-                                                      await action_blocks
-                                                          .abOrderVisitAssetSelected(
-                                                        context,
-                                                        abOrderVisitAssetId:
-                                                            FFAppState()
-                                                                .stOrderVisitAssetSelected
-                                                                .id,
-                                                      );
-                                                      setState(() => _model
-                                                              .requestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForRequestCompleted();
-                                                    },
+                                                    activeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    activeTrackColor:
+                                                        const Color(0x3439D2C0),
+                                                    dense: false,
+                                                    controlAffinity:
+                                                        ListTileControlAffinity
+                                                            .trailing,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                4.0, 0.0),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                                Expanded(
+                                                  child: wrapWithModel(
+                                                    model: _model
+                                                        .cpInputIntegerModel,
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child: CpInputIntegerWidget(
+                                                      initialValue: _model
+                                                          .lpsvBeforeRecorder,
+                                                      isReadOnly: _model
+                                                              .lpsvIsRecorder ==
+                                                          false,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ].divide(const SizedBox(width: 8.0)),
+                                            ),
                                           ),
                                         ).animateOnPageLoad(animationsMap[
-                                            'stackOnPageLoadAnimation']!),
-                                      ),
+                                            'containerOnPageLoadAnimation']!),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: wrapWithModel(
+                                            model:
+                                                _model.cpInputTexMultilineModel,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: CpInputTexMultilineWidget(
+                                              initialValue: widget.operation ==
+                                                      'before'
+                                                  ? containerVOrdersVisitsAssetsRow
+                                                      ?.beforeComments
+                                                  : containerVOrdersVisitsAssetsRow
+                                                      ?.afterComments,
+                                              labelText: 'Condição do Ativo',
+                                              readOnly: false,
+                                              hintText: widget.operation ==
+                                                      'before'
+                                                  ? 'Informe as condições encontradas '
+                                                  : 'Informe a condição final.',
+                                            ),
+                                          ),
+                                        ),
+                                      ]
+                                          .divide(const SizedBox(height: 12.0))
+                                          .addToEnd(const SizedBox(height: 60.0)),
                                     ),
-                                    Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
-                                              child: Icon(
-                                                Icons.timer_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
-                                              ),
-                                            ),
-                                            Flexible(
-                                              flex: 2,
-                                              child: SwitchListTile.adaptive(
-                                                value: _model
-                                                        .switchListTileValue ??=
-                                                    _model.lpsvIsRecorder,
-                                                onChanged: (newValue) async {
-                                                  setState(() => _model
-                                                          .switchListTileValue =
-                                                      newValue);
-                                                  if (newValue) {
-                                                    setState(() {
-                                                      _model.lpsvIsRecorder =
-                                                          true;
-                                                    });
-                                                  } else {
-                                                    setState(() {
-                                                      _model.lpsvIsRecorder =
-                                                          false;
-                                                    });
-                                                    setState(() {
-                                                      _model.lpsvBeforeRecorder =
-                                                          0;
-                                                    });
-                                                  }
-                                                },
-                                                title: Text(
-                                                  'Registrador',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge,
-                                                ),
-                                                activeColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                activeTrackColor:
-                                                    const Color(0x3439D2C0),
-                                                dense: false,
-                                                controlAffinity:
-                                                    ListTileControlAffinity
-                                                        .trailing,
-                                                contentPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(12.0, 0.0,
-                                                            4.0, 0.0),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: wrapWithModel(
-                                                model:
-                                                    _model.cpInputIntegerModel,
-                                                updateCallback: () =>
-                                                    setState(() {}),
-                                                child: CpInputIntegerWidget(
-                                                  initialValue:
-                                                      _model.lpsvBeforeRecorder,
-                                                  isReadOnly:
-                                                      _model.lpsvIsRecorder ==
-                                                          false,
-                                                ),
-                                              ),
-                                            ),
-                                          ].divide(const SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation']!),
-                                    Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: wrapWithModel(
-                                        model: _model.cpInputTexMultilineModel,
-                                        updateCallback: () => setState(() {}),
-                                        child: CpInputTexMultilineWidget(
-                                          initialValue: widget.operation ==
-                                                  'before'
-                                              ? containerVOrdersVisitsAssetsRow
-                                                  ?.beforeComments
-                                              : containerVOrdersVisitsAssetsRow
-                                                  ?.afterComments,
-                                          labelText: 'Condição do Ativo',
-                                          readOnly: false,
-                                          hintText: widget.operation == 'before'
-                                              ? 'Informe as condições encontradas '
-                                              : 'Informe a condição final.',
-                                        ),
-                                      ),
-                                    ),
-                                  ].divide(const SizedBox(height: 12.0)),
+                                  ),
                                 ),
-                              ].divide(const SizedBox(height: 12.0)),
+                              ]
+                                  .divide(const SizedBox(height: 12.0))
+                                  .addToEnd(const SizedBox(height: 60.0)),
                             ),
                           ),
                           Container(
