@@ -791,302 +791,328 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                           );
                         },
                       ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Builder(
-                            builder: (context) {
-                              if (_model.lpsvOrdersVisitsProcessing ==
-                                  'draft') {
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FutureBuilder<List<VOrdersVisitsOpenRow>>(
-                                        future:
-                                            VOrdersVisitsOpenTable().queryRows(
-                                          queryFn: (q) => q
-                                              .eq(
-                                                'orderId',
-                                                widget.orderId,
-                                              )
-                                              .eq(
-                                                'processingId',
-                                                1,
-                                              )
-                                              .order('dateStart',
-                                                  ascending: true),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Builder(
+                                builder: (context) {
+                                  if (_model.lpsvOrdersVisitsProcessing ==
+                                      'draft') {
+                                    return SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FutureBuilder<
+                                              List<VOrdersVisitsOpenRow>>(
+                                            future: VOrdersVisitsOpenTable()
+                                                .queryRows(
+                                              queryFn: (q) => q
+                                                  .eq(
+                                                    'orderId',
+                                                    widget.orderId,
+                                                  )
+                                                  .eq(
+                                                    'processingId',
+                                                    1,
+                                                  )
+                                                  .order('dateStart',
+                                                      ascending: true),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<VOrdersVisitsOpenRow>
-                                              listViewVOrdersVisitsOpenRowList =
-                                              snapshot.data!;
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewVOrdersVisitsOpenRowList
-                                                    .length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 12.0),
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewVOrdersVisitsOpenRow =
-                                                  listViewVOrdersVisitsOpenRowList[
-                                                      listViewIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'pgOrderVisitShow',
-                                                    queryParameters: {
-                                                      'visitId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .visitId,
-                                                        ParamType.int,
-                                                      ),
-                                                      'orderId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .orderId,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
+                                                );
+                                              }
+                                              List<VOrdersVisitsOpenRow>
+                                                  listViewVOrdersVisitsOpenRowList =
+                                                  snapshot.data!;
+                                              return ListView.separated(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    listViewVOrdersVisitsOpenRowList
+                                                        .length,
+                                                separatorBuilder: (_, __) =>
+                                                    const SizedBox(height: 12.0),
+                                                itemBuilder:
+                                                    (context, listViewIndex) {
+                                                  final listViewVOrdersVisitsOpenRow =
+                                                      listViewVOrdersVisitsOpenRowList[
+                                                          listViewIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pgOrderVisitShow',
+                                                        queryParameters: {
+                                                          'visitId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .visitId,
+                                                            ParamType.int,
+                                                          ),
+                                                          'orderId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .orderId,
+                                                            ParamType.int,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child:
+                                                        CpOrderVisitCard2ShowWidget(
+                                                      key: Key(
+                                                          'Keyci2_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
+                                                      visitId:
+                                                          listViewVOrdersVisitsOpenRow
+                                                              .orderId!,
+                                                    ),
                                                   );
                                                 },
-                                                child:
-                                                    CpOrderVisitCard2ShowWidget(
-                                                  key: Key(
-                                                      'Keyci2_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
-                                                  visitId:
-                                                      listViewVOrdersVisitsOpenRow
-                                                          .orderId!,
-                                                ),
                                               );
                                             },
-                                          );
-                                        },
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                );
-                              } else if (_model.lpsvOrdersVisitsProcessing ==
-                                  'reported') {
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FutureBuilder<List<VOrdersVisitsOpenRow>>(
-                                        future:
-                                            VOrdersVisitsOpenTable().queryRows(
-                                          queryFn: (q) => q
-                                              .eq(
-                                                'orderId',
-                                                widget.orderId,
-                                              )
-                                              .eq(
-                                                'processingId',
-                                                2,
-                                              )
-                                              .order('dateStart',
-                                                  ascending: true),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                    );
+                                  } else if (_model
+                                          .lpsvOrdersVisitsProcessing ==
+                                      'reported') {
+                                    return SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FutureBuilder<
+                                              List<VOrdersVisitsOpenRow>>(
+                                            future: VOrdersVisitsOpenTable()
+                                                .queryRows(
+                                              queryFn: (q) => q
+                                                  .eq(
+                                                    'orderId',
+                                                    widget.orderId,
+                                                  )
+                                                  .eq(
+                                                    'processingId',
+                                                    2,
+                                                  )
+                                                  .order('dateStart',
+                                                      ascending: true),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<VOrdersVisitsOpenRow>
-                                              listViewVOrdersVisitsOpenRowList =
-                                              snapshot.data!;
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewVOrdersVisitsOpenRowList
-                                                    .length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 12.0),
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewVOrdersVisitsOpenRow =
-                                                  listViewVOrdersVisitsOpenRowList[
-                                                      listViewIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'pgOrderVisitShow',
-                                                    queryParameters: {
-                                                      'visitId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .visitId,
-                                                        ParamType.int,
-                                                      ),
-                                                      'orderId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .orderId,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
+                                                );
+                                              }
+                                              List<VOrdersVisitsOpenRow>
+                                                  listViewVOrdersVisitsOpenRowList =
+                                                  snapshot.data!;
+                                              return ListView.separated(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    listViewVOrdersVisitsOpenRowList
+                                                        .length,
+                                                separatorBuilder: (_, __) =>
+                                                    const SizedBox(height: 12.0),
+                                                itemBuilder:
+                                                    (context, listViewIndex) {
+                                                  final listViewVOrdersVisitsOpenRow =
+                                                      listViewVOrdersVisitsOpenRowList[
+                                                          listViewIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pgOrderVisitShow',
+                                                        queryParameters: {
+                                                          'visitId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .visitId,
+                                                            ParamType.int,
+                                                          ),
+                                                          'orderId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .orderId,
+                                                            ParamType.int,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child:
+                                                        CpOrderVisitCard2ShowWidget(
+                                                      key: Key(
+                                                          'Key0zo_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
+                                                      visitId:
+                                                          listViewVOrdersVisitsOpenRow
+                                                              .orderId!,
+                                                    ),
                                                   );
                                                 },
-                                                child:
-                                                    CpOrderVisitCard2ShowWidget(
-                                                  key: Key(
-                                                      'Key0zo_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
-                                                  visitId:
-                                                      listViewVOrdersVisitsOpenRow
-                                                          .orderId!,
-                                                ),
                                               );
                                             },
-                                          );
-                                        },
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FutureBuilder<List<VOrdersVisitsOpenRow>>(
-                                        future:
-                                            VOrdersVisitsOpenTable().queryRows(
-                                          queryFn: (q) => q
-                                              .eq(
-                                                'orderId',
-                                                widget.orderId,
-                                              )
-                                              .eq(
-                                                'processingId',
-                                                3,
-                                              )
-                                              .order('dateStart',
-                                                  ascending: true),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                    );
+                                  } else {
+                                    return SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FutureBuilder<
+                                              List<VOrdersVisitsOpenRow>>(
+                                            future: VOrdersVisitsOpenTable()
+                                                .queryRows(
+                                              queryFn: (q) => q
+                                                  .eq(
+                                                    'orderId',
+                                                    widget.orderId,
+                                                  )
+                                                  .eq(
+                                                    'processingId',
+                                                    3,
+                                                  )
+                                                  .order('dateStart',
+                                                      ascending: true),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<VOrdersVisitsOpenRow>
-                                              listViewVOrdersVisitsOpenRowList =
-                                              snapshot.data!;
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewVOrdersVisitsOpenRowList
-                                                    .length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 12.0),
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewVOrdersVisitsOpenRow =
-                                                  listViewVOrdersVisitsOpenRowList[
-                                                      listViewIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'pgOrderVisitShow',
-                                                    queryParameters: {
-                                                      'visitId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .visitId,
-                                                        ParamType.int,
-                                                      ),
-                                                      'orderId': serializeParam(
-                                                        listViewVOrdersVisitsOpenRow
-                                                            .orderId,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
+                                                );
+                                              }
+                                              List<VOrdersVisitsOpenRow>
+                                                  listViewVOrdersVisitsOpenRowList =
+                                                  snapshot.data!;
+                                              return ListView.separated(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    listViewVOrdersVisitsOpenRowList
+                                                        .length,
+                                                separatorBuilder: (_, __) =>
+                                                    const SizedBox(height: 12.0),
+                                                itemBuilder:
+                                                    (context, listViewIndex) {
+                                                  final listViewVOrdersVisitsOpenRow =
+                                                      listViewVOrdersVisitsOpenRowList[
+                                                          listViewIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'pgOrderVisitShow',
+                                                        queryParameters: {
+                                                          'visitId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .visitId,
+                                                            ParamType.int,
+                                                          ),
+                                                          'orderId':
+                                                              serializeParam(
+                                                            listViewVOrdersVisitsOpenRow
+                                                                .orderId,
+                                                            ParamType.int,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child:
+                                                        CpOrderVisitCard2ShowWidget(
+                                                      key: Key(
+                                                          'Keyyb4_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
+                                                      visitId:
+                                                          listViewVOrdersVisitsOpenRow
+                                                              .orderId!,
+                                                    ),
                                                   );
                                                 },
-                                                child:
-                                                    CpOrderVisitCard2ShowWidget(
-                                                  key: Key(
-                                                      'Keyyb4_${listViewIndex}_of_${listViewVOrdersVisitsOpenRowList.length}'),
-                                                  visitId:
-                                                      listViewVOrdersVisitsOpenRow
-                                                          .orderId!,
-                                                ),
                                               );
                                             },
-                                          );
-                                        },
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                );
-                              }
-                            },
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ].divide(const SizedBox(height: 12.0)),
                   ),

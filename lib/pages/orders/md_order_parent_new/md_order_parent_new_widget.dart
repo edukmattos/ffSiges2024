@@ -178,28 +178,6 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      borderWidth: 1.0,
-                      buttonSize: 44.0,
-                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ),
                 Material(
                   color: Colors.transparent,
                   elevation: 5.0,
@@ -212,7 +190,7 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
                     ),
                   ),
                   child: Container(
-                    width: double.infinity,
+                    width: 600.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: const BorderRadius.only(
@@ -247,15 +225,39 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 0.0, 8.0),
-                                            child: Text(
-                                              'Solicitação de Serviço',
-                                              style:
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 8.0),
+                                              child: Text(
+                                                'Solicitação de Serviço',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineSmall,
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineSmall,
+                                                      .primaryBackground,
+                                              icon: Icon(
+                                                Icons.close_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 36.0,
+                                              ),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                              },
                                             ),
                                           ),
                                         ],
@@ -405,7 +407,7 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
                                                     onChanged: (val) =>
                                                         setState(() => _model
                                                                 .choiceChipsValue =
-                                                            val?.first),
+                                                            val?.firstOrNull),
                                                     selectedChipStyle:
                                                         ChipStyle(
                                                       backgroundColor:

@@ -285,8 +285,12 @@ dynamic deserializeParam<T>(
             return UsersNotificationsRow(data);
           case OrdersFollowersRow:
             return OrdersFollowersRow(data);
+          case OrdersVisitsServicesRow:
+            return OrdersVisitsServicesRow(data);
           case UsersMaterialsRow:
             return UsersMaterialsRow(data);
+          case VOrdersVisitsServicesRow:
+            return VOrdersVisitsServicesRow(data);
           case VOrdersCountByUnitsParentsStatusesRow:
             return VOrdersCountByUnitsParentsStatusesRow(data);
           case VAssetsMaterialsRow:
@@ -351,6 +355,8 @@ dynamic deserializeParam<T>(
             return OrdersStatusesLogsRow(data);
           case VUsersCountByOrdersVisitsRow:
             return VUsersCountByOrdersVisitsRow(data);
+          case ServicesRow:
+            return ServicesRow(data);
           case DepartmentsRow:
             return DepartmentsRow(data);
           case VOrdersCountByUnitsParentsOpenRow:
@@ -359,6 +365,8 @@ dynamic deserializeParam<T>(
             return VOrdersCountByUnitsOpenRow(data);
           case VOrdersRow:
             return VOrdersRow(data);
+          case ContractsServicesRow:
+            return ContractsServicesRow(data);
           case VOrdersVisitsTeamsRow:
             return VOrdersVisitsTeamsRow(data);
           case VOrdersVisitsAssetsRow:
@@ -371,6 +379,8 @@ dynamic deserializeParam<T>(
             return UnitsRow(data);
           case VAssetsTagsSubsRow:
             return VAssetsTagsSubsRow(data);
+          case ContractsRow:
+            return ContractsRow(data);
           case OrdersCancelReasonsRow:
             return OrdersCancelReasonsRow(data);
           case UsersRow:

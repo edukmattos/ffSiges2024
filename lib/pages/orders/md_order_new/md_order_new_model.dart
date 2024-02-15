@@ -28,8 +28,11 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
   // Model for cpDropdownOrdersTypesSubs component.
   late CpDropdownOrdersTypesSubsModel cpDropdownOrdersTypesSubsModel;
   // State field(s) for ChoiceChips widget.
-  String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
   // Model for cpDropdownTeamsDepartment component.
   late CpDropdownTeamsDepartmentModel cpDropdownTeamsDepartmentModel;
   // Model for cpDropdownLeaderTeamsSelected component.

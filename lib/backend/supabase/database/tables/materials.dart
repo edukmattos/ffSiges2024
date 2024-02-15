@@ -25,4 +25,7 @@ class MaterialsRow extends SupabaseDataRow {
 
   String? get searchable => getField<String>('searchable');
   set searchable(String? value) => setField<String>('searchable', value);
+
+  int? get companyId => getField<int>('companyId');
+  set companyId(int? value) => setField<int>('companyId', value);
 }

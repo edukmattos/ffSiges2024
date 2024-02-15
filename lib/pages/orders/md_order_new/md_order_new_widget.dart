@@ -478,7 +478,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     onChanged: (val) =>
                                                         setState(() => _model
                                                                 .choiceChipsValue =
-                                                            val?.first),
+                                                            val?.firstOrNull),
                                                     selectedChipStyle:
                                                         ChipStyle(
                                                       backgroundColor:

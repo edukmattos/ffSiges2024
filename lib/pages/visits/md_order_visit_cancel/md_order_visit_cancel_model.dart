@@ -40,9 +40,9 @@ class MdOrderVisitCancelModel
   late CpDropdownVisitOrdersStatusesModel cpDropdownVisitOrdersStatusesModel;
   // Model for cpInputTexMultiline component.
   late CpInputTexMultilineModel cpInputTexMultilineModel;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<OrdersVisitsRow>? resOrderVisitCurrent;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<UsersRow>? resUserVisitClose;
 
   /// Initialization and disposal methods.

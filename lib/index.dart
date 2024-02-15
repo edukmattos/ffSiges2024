@@ -42,8 +42,8 @@ export '/pages/visits/pg_order_visit_show/pg_order_visit_show_widget.dart'
 export '/pages/visits/pg_order_visit_asset1_search/pg_order_visit_asset1_search_widget.dart'
     show PgOrderVisitAsset1SearchWidget;
 export '/list11_messages/list11_messages_widget.dart' show List11MessagesWidget;
-export '/pages/visits/pg_order_visit_asset3_services_search/pg_order_visit_asset3_services_search_widget.dart'
-    show PgOrderVisitAsset3ServicesSearchWidget;
+export '/pages/visits/pg_order_visit_asset3_activities_search/pg_order_visit_asset3_activities_search_widget.dart'
+    show PgOrderVisitAsset3ActivitiesSearchWidget;
 export '/pages/visits/pg_order_visit_asset2_before/pg_order_visit_asset2_before_widget.dart'
     show PgOrderVisitAsset2BeforeWidget;
 export '/create3_support_ticket_bug_report/create3_support_ticket_bug_report_widget.dart'

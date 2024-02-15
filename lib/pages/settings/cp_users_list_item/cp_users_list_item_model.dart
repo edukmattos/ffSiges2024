@@ -16,7 +16,7 @@ class CpUsersListItemModel extends FlutterFlowModel<CpUsersListItemWidget> {
   Completer<List<VUsersRow>>? requestCompleter;
   // Stores action output result for [Backend Call - API (usersLeaderByTeamId)] action in Switch widget.
   ApiCallResponse? resUsersLeadersTeamSelected;
-  // Stores action output result for [Backend Call - Update Row] action in Switch widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Switch widget.
   List<UsersRow>? resLeader;
 
   /// Initialization and disposal methods.

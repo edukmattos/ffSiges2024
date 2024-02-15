@@ -16,6 +16,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:octo_image/octo_image.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_asset2_before_model.dart';
 export 'pg_order_visit_asset2_before_model.dart';
@@ -300,28 +301,35 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                   .fade,
                                                           child:
                                                               FlutterFlowExpandedImageView(
-                                                            image:
-                                                                Image.network(
-                                                              () {
-                                                                if ((widget.operation ==
-                                                                        'before') &&
-                                                                    (containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
-                                                                            null &&
-                                                                        containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
-                                                                            '')) {
-                                                                  return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
-                                                                } else if ((widget
-                                                                            .operation ==
-                                                                        'after') &&
-                                                                    (containerVOrdersVisitsAssetsRow?.afterImgFileName !=
-                                                                            null &&
-                                                                        containerVOrdersVisitsAssetsRow?.afterImgFileName !=
-                                                                            '')) {
-                                                                  return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
-                                                                } else {
-                                                                  return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
-                                                                }
-                                                              }(),
+                                                            image: OctoImage(
+                                                              placeholderBuilder:
+                                                                  OctoPlaceholder
+                                                                      .blurHash(
+                                                                'DMAE',
+                                                              ),
+                                                              image:
+                                                                  NetworkImage(
+                                                                () {
+                                                                  if ((widget.operation ==
+                                                                          'before') &&
+                                                                      (containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
+                                                                              null &&
+                                                                          containerVOrdersVisitsAssetsRow?.beforeImgFileName !=
+                                                                              '')) {
+                                                                    return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                                  } else if ((widget
+                                                                              .operation ==
+                                                                          'after') &&
+                                                                      (containerVOrdersVisitsAssetsRow?.afterImgFileName !=
+                                                                              null &&
+                                                                          containerVOrdersVisitsAssetsRow?.afterImgFileName !=
+                                                                              '')) {
+                                                                    return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                                  } else {
+                                                                    return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                                  }
+                                                                }(),
+                                                              ),
                                                               fit: BoxFit
                                                                   .contain,
                                                               alignment:
@@ -391,41 +399,48 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(12.0),
-                                                        child: Image.network(
-                                                          () {
-                                                            if ((widget.operation ==
-                                                                    'before') &&
-                                                                (containerVOrdersVisitsAssetsRow
-                                                                            ?.beforeImgFileName !=
-                                                                        null &&
-                                                                    containerVOrdersVisitsAssetsRow
-                                                                            ?.beforeImgFileName !=
-                                                                        '')) {
-                                                              return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
-                                                            } else if ((widget
-                                                                        .operation ==
-                                                                    'after') &&
-                                                                (containerVOrdersVisitsAssetsRow
-                                                                            ?.afterImgFileName !=
-                                                                        null &&
-                                                                    containerVOrdersVisitsAssetsRow
-                                                                            ?.afterImgFileName !=
-                                                                        '')) {
-                                                              return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
-                                                            } else {
-                                                              return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
-                                                            }
-                                                          }(),
+                                                        child: OctoImage(
+                                                          placeholderBuilder:
+                                                              OctoPlaceholder
+                                                                  .blurHash(
+                                                            'DMAE',
+                                                          ),
+                                                          image: NetworkImage(
+                                                            () {
+                                                              if ((widget.operation ==
+                                                                      'before') &&
+                                                                  (containerVOrdersVisitsAssetsRow
+                                                                              ?.beforeImgFileName !=
+                                                                          null &&
+                                                                      containerVOrdersVisitsAssetsRow
+                                                                              ?.beforeImgFileName !=
+                                                                          '')) {
+                                                                return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.beforeImgFilePath}${containerVOrdersVisitsAssetsRow?.beforeImgFileName}';
+                                                              } else if ((widget
+                                                                          .operation ==
+                                                                      'after') &&
+                                                                  (containerVOrdersVisitsAssetsRow
+                                                                              ?.afterImgFileName !=
+                                                                          null &&
+                                                                      containerVOrdersVisitsAssetsRow
+                                                                              ?.afterImgFileName !=
+                                                                          '')) {
+                                                                return '${FFAppConstants.appServerUrlStorage}${containerVOrdersVisitsAssetsRow?.afterImgFilePath}${containerVOrdersVisitsAssetsRow?.afterImgFileName}';
+                                                              } else {
+                                                                return '${FFAppConstants.appServerUrlStorage}${FFAppConstants.appImagesFilePath}${FFAppConstants.appImageNoFileName}';
+                                                              }
+                                                            }(),
+                                                          ),
                                                           width:
                                                               MediaQuery.sizeOf(
                                                                           context)
                                                                       .width *
-                                                                  1.0,
+                                                                  3.0,
                                                           height:
                                                               MediaQuery.sizeOf(
                                                                           context)
                                                                       .height *
-                                                                  1.0,
+                                                                  3.0,
                                                           fit: BoxFit.cover,
                                                           alignment: const Alignment(
                                                               0.0, 0.0),
@@ -1184,7 +1199,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                 setState(() {});
 
                                                 context.goNamed(
-                                                    'pgOrderVisitAsset3ServicesSearch');
+                                                    'pgOrderVisitAsset3ActivitiesSearch');
                                               } else {
                                                 await OrdersVisitsAssetsTable()
                                                     .update(

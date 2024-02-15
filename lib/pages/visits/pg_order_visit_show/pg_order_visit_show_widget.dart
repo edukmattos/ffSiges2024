@@ -11,9 +11,11 @@ import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_show_model.dart';
 export 'pg_order_visit_show_model.dart';
@@ -224,51 +226,6 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                     const CpOrderVisitAssetShowBottomNavBarWidget(),
                               ),
                             ),
-                            if (valueOrDefault<int>(
-                                  FFAppState()
-                                      .stOrderVisitSelected
-                                      .first
-                                      .processingId,
-                                  1,
-                                ) !=
-                                4)
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 12.0,
-                                borderWidth: 1.0,
-                                buttonSize: 50.0,
-                                fillColor: FlutterFlowTheme.of(context).primary,
-                                icon: Icon(
-                                  Icons.add,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                  size: 24.0,
-                                ),
-                                showLoadingIndicator: true,
-                                onPressed: () async {
-                                  await action_blocks.abPermissionCheck(
-                                    context,
-                                    abAppPageId: 1,
-                                    abUserProfileId: valueOrDefault<int>(
-                                      FFAppState().stUserCurrent.profileId,
-                                      0,
-                                    ),
-                                  );
-                                  if (FFAppState().stIsPermission) {
-                                    context.pushNamed(
-                                      'pgOrderVisitAsset1Search',
-                                      queryParameters: {
-                                        'visitId': serializeParam(
-                                          widget.visitId,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  } else {
-                                    return;
-                                  }
-                                },
-                              ),
                           ],
                         ),
                         if (FFAppState().stOrderVisitShowNavBarOption ==
@@ -278,6 +235,71 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: Text(
+                                        'Ativos',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineSmall,
+                                      ),
+                                    ),
+                                    if (valueOrDefault<int>(
+                                          FFAppState()
+                                              .stOrderVisitSelected
+                                              .first
+                                              .processingId,
+                                          1,
+                                        ) !=
+                                        4)
+                                      FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 12.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 50.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                          size: 24.0,
+                                        ),
+                                        showLoadingIndicator: true,
+                                        onPressed: () async {
+                                          await action_blocks.abPermissionCheck(
+                                            context,
+                                            abAppPageId: 1,
+                                            abUserProfileId:
+                                                valueOrDefault<int>(
+                                              FFAppState()
+                                                  .stUserCurrent
+                                                  .profileId,
+                                              0,
+                                            ),
+                                          );
+                                          if (FFAppState().stIsPermission) {
+                                            context.pushNamed(
+                                              'pgOrderVisitAsset1Search',
+                                              queryParameters: {
+                                                'visitId': serializeParam(
+                                                  widget.visitId,
+                                                  ParamType.int,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            return;
+                                          }
+                                        },
+                                      ),
+                                  ],
+                                ),
                                 FutureBuilder<List<VOrdersVisitsAssetsRow>>(
                                   future:
                                       (_model.requestCompleter ??= Completer<
@@ -387,6 +409,340 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                               listViewVOrdersVisitsAssetsRow
                                                   .beforeUnitDescription,
                                               'unitDescription',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ].divide(const SizedBox(height: 12.0)),
+                            ),
+                          ),
+                        if (FFAppState().stOrderVisitShowNavBarOption ==
+                            'services')
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: Text(
+                                        'Serviços',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineSmall,
+                                      ),
+                                    ),
+                                    if (valueOrDefault<int>(
+                                          FFAppState()
+                                              .stOrderVisitSelected
+                                              .first
+                                              .processingId,
+                                          1,
+                                        ) !=
+                                        4)
+                                      FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 12.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 50.0,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                          size: 24.0,
+                                        ),
+                                        showLoadingIndicator: true,
+                                        onPressed: () async {
+                                          await action_blocks.abPermissionCheck(
+                                            context,
+                                            abAppPageId: 1,
+                                            abUserProfileId:
+                                                valueOrDefault<int>(
+                                              FFAppState()
+                                                  .stUserCurrent
+                                                  .profileId,
+                                              0,
+                                            ),
+                                          );
+                                          if (FFAppState().stIsPermission) {
+                                            context.pushNamed(
+                                              'pgOrderVisitAsset1Search',
+                                              queryParameters: {
+                                                'visitId': serializeParam(
+                                                  widget.visitId,
+                                                  ParamType.int,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            return;
+                                          }
+                                        },
+                                      ),
+                                  ],
+                                ),
+                                FutureBuilder<List<VOrdersVisitsServicesRow>>(
+                                  future:
+                                      VOrdersVisitsServicesTable().queryRows(
+                                    queryFn: (q) => q.eq(
+                                      'orderVisitId',
+                                      valueOrDefault<int>(
+                                        FFAppState()
+                                            .stOrderVisitSelected
+                                            .first
+                                            .id,
+                                        1,
+                                      ),
+                                    ),
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    List<VOrdersVisitsServicesRow>
+                                        listViewServicesSelectedVOrdersVisitsServicesRowList =
+                                        snapshot.data!;
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount:
+                                          listViewServicesSelectedVOrdersVisitsServicesRowList
+                                              .length,
+                                      itemBuilder: (context,
+                                          listViewServicesSelectedIndex) {
+                                        final listViewServicesSelectedVOrdersVisitsServicesRow =
+                                            listViewServicesSelectedVOrdersVisitsServicesRowList[
+                                                listViewServicesSelectedIndex];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 12.0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 70.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  blurRadius: 4.0,
+                                                  color: Color(0x32000000),
+                                                  offset: Offset(0.0, 2.0),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                        .serviceDescription,
+                                                                    'serviceDescription',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                      .serviceUnit,
+                                                                  'serviceUnit',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Adicionar',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child:
+                                                              FlutterFlowIconButton(
+                                                            borderColor: Colors
+                                                                .transparent,
+                                                            borderRadius: 12.0,
+                                                            buttonSize: 50.0,
+                                                            fillColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                            icon: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .trashAlt,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBtnText,
+                                                              size: 24.0,
+                                                            ),
+                                                            showLoadingIndicator:
+                                                                true,
+                                                            onPressed: () {
+                                                              print(
+                                                                  'IconButton pressed ...');
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         );

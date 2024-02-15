@@ -193,9 +193,15 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case OrdersFollowersRow:
         return OrdersFollowersRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case OrdersVisitsServicesRow:
+        return OrdersVisitsServicesRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case UsersMaterialsRow:
         return UsersMaterialsRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VOrdersVisitsServicesRow:
+        return VOrdersVisitsServicesRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsParentsStatusesRow:
         return VOrdersCountByUnitsParentsStatusesRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -284,6 +290,8 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VUsersCountByOrdersVisitsRow:
         return VUsersCountByOrdersVisitsRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case ServicesRow:
+        return ServicesRow(json.decode(param) as Map<String, dynamic>) as T;
       case DepartmentsRow:
         return DepartmentsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsParentsOpenRow:
@@ -294,6 +302,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
             json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersRow:
         return VOrdersRow(json.decode(param) as Map<String, dynamic>) as T;
+      case ContractsServicesRow:
+        return ContractsServicesRow(json.decode(param) as Map<String, dynamic>)
+            as T;
       case VOrdersVisitsTeamsRow:
         return VOrdersVisitsTeamsRow(json.decode(param) as Map<String, dynamic>)
             as T;
@@ -311,6 +322,8 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VAssetsTagsSubsRow:
         return VAssetsTagsSubsRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case ContractsRow:
+        return ContractsRow(json.decode(param) as Map<String, dynamic>) as T;
       case OrdersCancelReasonsRow:
         return OrdersCancelReasonsRow(
             json.decode(param) as Map<String, dynamic>) as T;

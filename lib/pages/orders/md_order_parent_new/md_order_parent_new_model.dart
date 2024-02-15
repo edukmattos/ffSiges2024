@@ -21,8 +21,11 @@ class MdOrderParentNewModel extends FlutterFlowModel<MdOrderParentNewWidget> {
   // Model for cpDropdownOrdersTypes component.
   late CpDropdownOrdersTypesModel cpDropdownOrdersTypesModel;
   // State field(s) for ChoiceChips widget.
-  String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
   // Model for cpInputText component.
   late CpInputTextModel cpInputTextModel;
   // Stores action output result for [Action Block - abChoicesOrdersPrioritiesId] action in Button widget.

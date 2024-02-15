@@ -11,20 +11,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'pg_order_visit_asset3_services_search_model.dart';
-export 'pg_order_visit_asset3_services_search_model.dart';
+import 'pg_order_visit_asset3_activities_search_model.dart';
+export 'pg_order_visit_asset3_activities_search_model.dart';
 
-class PgOrderVisitAsset3ServicesSearchWidget extends StatefulWidget {
-  const PgOrderVisitAsset3ServicesSearchWidget({super.key});
+class PgOrderVisitAsset3ActivitiesSearchWidget extends StatefulWidget {
+  const PgOrderVisitAsset3ActivitiesSearchWidget({super.key});
 
   @override
-  State<PgOrderVisitAsset3ServicesSearchWidget> createState() =>
-      _PgOrderVisitAsset3ServicesSearchWidgetState();
+  State<PgOrderVisitAsset3ActivitiesSearchWidget> createState() =>
+      _PgOrderVisitAsset3ActivitiesSearchWidgetState();
 }
 
-class _PgOrderVisitAsset3ServicesSearchWidgetState
-    extends State<PgOrderVisitAsset3ServicesSearchWidget> {
-  late PgOrderVisitAsset3ServicesSearchModel _model;
+class _PgOrderVisitAsset3ActivitiesSearchWidgetState
+    extends State<PgOrderVisitAsset3ActivitiesSearchWidget> {
+  late PgOrderVisitAsset3ActivitiesSearchModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,7 +32,7 @@ class _PgOrderVisitAsset3ServicesSearchWidgetState
   void initState() {
     super.initState();
     _model =
-        createModel(context, () => PgOrderVisitAsset3ServicesSearchModel());
+        createModel(context, () => PgOrderVisitAsset3ActivitiesSearchModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

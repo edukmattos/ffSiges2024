@@ -126,8 +126,8 @@ class _CpAssetMaterialsWidgetState extends State<CpAssetMaterialsWidget> {
                               ),
                               FlutterFlowChoiceChips(
                                 options: const [ChipData('Uso'), ChipData('Todos')],
-                                onChanged: (val) => setState(
-                                    () => _model.choiceChipsValue = val?.first),
+                                onChanged: (val) => setState(() =>
+                                    _model.choiceChipsValue = val?.firstOrNull),
                                 selectedChipStyle: ChipStyle(
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).accent1,

@@ -31,4 +31,7 @@ class WarehousesRow extends SupabaseDataRow {
 
   String? get address => getField<String>('address');
   set address(String? value) => setField<String>('address', value);
+
+  int? get departmentId => getField<int>('departmentId');
+  set departmentId(int? value) => setField<int>('departmentId', value);
 }

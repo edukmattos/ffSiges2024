@@ -23,9 +23,6 @@ class CompaniesRow extends SupabaseDataRow {
   String? get description => getField<String>('description');
   set description(String? value) => setField<String>('description', value);
 
-  int get counterOrders => getField<int>('counterOrders')!;
-  set counterOrders(int value) => setField<int>('counterOrders', value);
-
   String? get imgFilePath => getField<String>('imgFilePath');
   set imgFilePath(String? value) => setField<String>('imgFilePath', value);
 

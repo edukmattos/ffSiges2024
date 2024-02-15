@@ -33,9 +33,9 @@ class MdOrderVisitCloseModel extends FlutterFlowModel<MdOrderVisitCloseWidget> {
   ApiCallResponse? resOrderVisitTeamCurrent;
   // Model for cpDropdownVisitOrdersStatuses component.
   late CpDropdownVisitOrdersStatusesModel cpDropdownVisitOrdersStatusesModel;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<OrdersVisitsRow>? resOrderVisitCurrent;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<UsersRow>? resUserVisitClose;
 
   /// Initialization and disposal methods.

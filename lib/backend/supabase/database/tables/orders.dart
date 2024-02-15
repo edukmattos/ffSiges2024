@@ -114,4 +114,7 @@ class OrdersRow extends SupabaseDataRow {
 
   double? get unitLongitude => getField<double>('unitLongitude');
   set unitLongitude(double? value) => setField<double>('unitLongitude', value);
+
+  int? get contractId => getField<int>('contractId');
+  set contractId(int? value) => setField<int>('contractId', value);
 }

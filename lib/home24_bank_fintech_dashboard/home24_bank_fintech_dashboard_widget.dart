@@ -827,8 +827,8 @@ class _Home24BankFintechDashboardWidgetState
                                 ChipData('Income'),
                                 ChipData('Expenses')
                               ],
-                              onChanged: (val) => setState(
-                                  () => _model.choiceChipsValue = val?.first),
+                              onChanged: (val) => setState(() =>
+                                  _model.choiceChipsValue = val?.firstOrNull),
                               selectedChipStyle: ChipStyle(
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).accent1,

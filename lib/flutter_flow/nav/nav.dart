@@ -247,11 +247,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const List11MessagesWidget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitAsset3ServicesSearch',
-          path: '/pgOrderVisitAsset3ServicesSearch',
+          name: 'pgOrderVisitAsset3ActivitiesSearch',
+          path: '/pgOrderVisitAsset3ActivitiesSearch',
           requireAuth: true,
           builder: (context, params) =>
-              const PgOrderVisitAsset3ServicesSearchWidget(),
+              const PgOrderVisitAsset3ActivitiesSearchWidget(),
         ),
         FFRoute(
           name: 'pgOrderVisitAsset2Before',

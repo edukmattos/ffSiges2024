@@ -163,7 +163,7 @@ final parametersBuilderMap =
         },
       ),
   'List11Messages': ParameterData.none(),
-  'pgOrderVisitAsset3ServicesSearch': ParameterData.none(),
+  'pgOrderVisitAsset3ActivitiesSearch': ParameterData.none(),
   'pgOrderVisitAsset2Before': (data) async => ParameterData(
         allParams: {
           'operation': getParameter<String>(data, 'operation'),

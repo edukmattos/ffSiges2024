@@ -26,4 +26,7 @@ class MaterialsStockRow extends SupabaseDataRow {
 
   double? get amount => getField<double>('amount');
   set amount(double? value) => setField<double>('amount', value);
+
+  int? get companyId => getField<int>('companyId');
+  set companyId(int? value) => setField<int>('companyId', value);
 }
