@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_leader_teams_selected/cp_dropdown_leader_teams_selected_widget.dart';
+import '/pages/components/cp_dropdown_orders_contracts/cp_dropdown_orders_contracts_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
 import '/pages/components/cp_dropdown_teams_department/cp_dropdown_teams_department_widget.dart';
@@ -33,6 +34,8 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // Model for cpDropdownOrdersContracts component.
+  late CpDropdownOrdersContractsModel cpDropdownOrdersContractsModel;
   // Model for cpDropdownTeamsDepartment component.
   late CpDropdownTeamsDepartmentModel cpDropdownTeamsDepartmentModel;
   // Model for cpDropdownLeaderTeamsSelected component.
@@ -59,6 +62,8 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
         createModel(context, () => CpDropdownOrdersTypesModel());
     cpDropdownOrdersTypesSubsModel =
         createModel(context, () => CpDropdownOrdersTypesSubsModel());
+    cpDropdownOrdersContractsModel =
+        createModel(context, () => CpDropdownOrdersContractsModel());
     cpDropdownTeamsDepartmentModel =
         createModel(context, () => CpDropdownTeamsDepartmentModel());
     cpDropdownLeaderTeamsSelectedModel =
@@ -75,6 +80,7 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
     cpInputTexMultilineModel.dispose();
     cpDropdownOrdersTypesModel.dispose();
     cpDropdownOrdersTypesSubsModel.dispose();
+    cpDropdownOrdersContractsModel.dispose();
     cpDropdownTeamsDepartmentModel.dispose();
     cpDropdownLeaderTeamsSelectedModel.dispose();
     cpInputDateDisabledModel.dispose();

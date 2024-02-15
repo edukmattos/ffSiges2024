@@ -284,6 +284,51 @@ class _CpOrderVisitAssetShowBottomNavBarWidgetState
                         FFAppState().stOrderVisitShowNavBarOption == 'vehicles'
                             ? FlutterFlowTheme.of(context).primary
                             : const Color(0x00FFFFFF),
+                    icon: Icon(
+                      Icons.attach_file,
+                      color: FFAppState().stOrderVisitShowNavBarOption ==
+                              'vehicles'
+                          ? FlutterFlowTheme.of(context).primaryBtnText
+                          : const Color(0xFF585858),
+                      size: 30.0,
+                    ),
+                    showLoadingIndicator: true,
+                    onPressed: () async {
+                      _model.updatePage(() {
+                        FFAppState().stOrderVisitShowNavBarOption = 'vehicles';
+                      });
+                    },
+                  ),
+                ),
+              ),
+              AlignedTooltip(
+                content: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      'Transporte',
+                      style: FlutterFlowTheme.of(context).bodyLarge,
+                    )),
+                offset: 4.0,
+                preferredDirection: AxisDirection.down,
+                borderRadius: BorderRadius.circular(8.0),
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                elevation: 4.0,
+                tailBaseWidth: 24.0,
+                tailLength: 12.0,
+                waitDuration: const Duration(milliseconds: 100),
+                showDuration: const Duration(milliseconds: 1500),
+                triggerMode: TooltipTriggerMode.tap,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 2.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 12.0,
+                    buttonSize: 50.0,
+                    fillColor:
+                        FFAppState().stOrderVisitShowNavBarOption == 'vehicles'
+                            ? FlutterFlowTheme.of(context).primary
+                            : const Color(0x00FFFFFF),
                     icon: FaIcon(
                       FontAwesomeIcons.shuttleVan,
                       color: FFAppState().stOrderVisitShowNavBarOption ==

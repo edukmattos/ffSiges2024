@@ -39,6 +39,7 @@ export 'tables/profiles_permissions.dart';
 export 'tables/orders_priorities.dart';
 export 'tables/assets.dart';
 export 'tables/orders_statusess.dart';
+export 'tables/v_contracts.dart';
 export 'tables/v_units.dart';
 export 'tables/v_dash_admin_orders_analysis.dart';
 export 'tables/v_dash_admin_orders_scheduled.dart';

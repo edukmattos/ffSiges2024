@@ -317,6 +317,8 @@ dynamic deserializeParam<T>(
             return AssetsRow(data);
           case OrdersStatusessRow:
             return OrdersStatusessRow(data);
+          case VContractsRow:
+            return VContractsRow(data);
           case VUnitsRow:
             return VUnitsRow(data);
           case VDashAdminOrdersAnalysisRow:

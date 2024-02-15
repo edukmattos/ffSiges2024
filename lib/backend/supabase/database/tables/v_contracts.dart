@@ -1,21 +1,21 @@
 import '../database.dart';
 
-class ContractsTable extends SupabaseTable<ContractsRow> {
+class VContractsTable extends SupabaseTable<VContractsRow> {
   @override
-  String get tableName => 'contracts';
+  String get tableName => 'v_contracts';
 
   @override
-  ContractsRow createRow(Map<String, dynamic> data) => ContractsRow(data);
+  VContractsRow createRow(Map<String, dynamic> data) => VContractsRow(data);
 }
 
-class ContractsRow extends SupabaseDataRow {
-  ContractsRow(super.data);
+class VContractsRow extends SupabaseDataRow {
+  VContractsRow(super.data);
 
   @override
-  SupabaseTable get table => ContractsTable();
+  SupabaseTable get table => VContractsTable();
 
-  int get id => getField<int>('id')!;
-  set id(int value) => setField<int>('id', value);
+  int? get id => getField<int>('id');
+  set id(int? value) => setField<int>('id', value);
 
   int? get clientCompanyId => getField<int>('clientCompanyId');
   set clientCompanyId(int? value) => setField<int>('clientCompanyId', value);
@@ -32,12 +32,11 @@ class ContractsRow extends SupabaseDataRow {
   set providerDepartmentId(int? value) =>
       setField<int>('providerDepartmentId', value);
 
+  String? get providerCompanyDescription =>
+      getField<String>('providerCompanyDescription');
+  set providerCompanyDescription(String? value) =>
+      setField<String>('providerCompanyDescription', value);
+
   String? get description => getField<String>('description');
   set description(String? value) => setField<String>('description', value);
-
-  bool? get isAvailable => getField<bool>('isAvailable');
-  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
-
-  bool? get isDeleted => getField<bool>('isDeleted');
-  set isDeleted(bool? value) => setField<bool>('isDeleted', value);
 }

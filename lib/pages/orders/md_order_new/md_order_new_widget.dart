@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_leader_teams_selected/cp_dropdown_leader_teams_selected_widget.dart';
+import '/pages/components/cp_dropdown_orders_contracts/cp_dropdown_orders_contracts_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
 import '/pages/components/cp_dropdown_teams_department/cp_dropdown_teams_department_widget.dart';
@@ -178,6 +179,26 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
         ),
       ],
     ),
+    'textOnPageLoadAnimation7': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -220,28 +241,6 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      borderWidth: 1.0,
-                      buttonSize: 44.0,
-                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ),
                 Material(
                   color: Colors.transparent,
                   elevation: 5.0,
@@ -287,7 +286,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
                                             padding:
@@ -298,6 +297,29 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .headlineSmall,
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(1.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 25.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              icon: Icon(
+                                                Icons.close_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 30.0,
+                                              ),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                              },
                                             ),
                                           ),
                                         ],
@@ -581,7 +603,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(2.0, 0.0, 0.0, 4.0),
                                               child: Text(
-                                                'Equipe responsável',
+                                                'Contrato',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .labelLarge
@@ -594,6 +616,32 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     ),
                                               ).animateOnPageLoad(animationsMap[
                                                   'textOnPageLoadAnimation5']!),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model
+                                                  .cpDropdownOrdersContractsModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child:
+                                                  const CpDropdownOrdersContractsWidget(),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Equipe responsável',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation6']!),
                                             ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional
@@ -624,7 +672,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                               .primaryText,
                                                     ),
                                               ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation6']!),
+                                                  'textOnPageLoadAnimation7']!),
                                             ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional

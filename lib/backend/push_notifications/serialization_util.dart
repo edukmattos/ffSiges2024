@@ -239,6 +239,8 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case OrdersStatusessRow:
         return OrdersStatusessRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VContractsRow:
+        return VContractsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VUnitsRow:
         return VUnitsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VDashAdminOrdersAnalysisRow:

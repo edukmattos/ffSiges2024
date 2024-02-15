@@ -92,7 +92,7 @@ class _PgOrderVisitAssetMovingWidgetState
               ),
             ),
             title: Text(
-              'Visita',
+              'Atendimento',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Outfit',
                     color: Colors.white,
