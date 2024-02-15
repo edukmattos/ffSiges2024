@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "392150210688",
+    "project_id": "siges-43828",
+    "storage_bucket": "siges-43828.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392150210688:android:1cdb6f53efedb2d62b2e65",
+        "android_client_info": {
+          "package_name": "br.com.dmae.siges"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVbzqPbYAuwMsXprlN2uz2JxW4Pbq2q_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392150210688:android:c98c0a565ceb96302b2e65",
+        "android_client_info": {
+          "package_name": "br.com.siges.dmae"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVbzqPbYAuwMsXprlN2uz2JxW4Pbq2q_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392150210688:android:9b7131357933e46c2b2e65",
+        "android_client_info": {
+          "package_name": "com.mycompany.siges2024"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVbzqPbYAuwMsXprlN2uz2JxW4Pbq2q_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
