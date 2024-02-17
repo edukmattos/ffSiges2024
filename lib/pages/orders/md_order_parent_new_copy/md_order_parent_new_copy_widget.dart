@@ -16,11 +16,11 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'md_order_parent_new_model.dart';
-export 'md_order_parent_new_model.dart';
+import 'md_order_parent_new_copy_model.dart';
+export 'md_order_parent_new_copy_model.dart';
 
-class MdOrderParentNewWidget extends StatefulWidget {
-  const MdOrderParentNewWidget({
+class MdOrderParentNewCopyWidget extends StatefulWidget {
+  const MdOrderParentNewCopyWidget({
     super.key,
     required this.unitId,
   });
@@ -28,12 +28,13 @@ class MdOrderParentNewWidget extends StatefulWidget {
   final int? unitId;
 
   @override
-  State<MdOrderParentNewWidget> createState() => _MdOrderParentNewWidgetState();
+  State<MdOrderParentNewCopyWidget> createState() =>
+      _MdOrderParentNewCopyWidgetState();
 }
 
-class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
+class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
     with TickerProviderStateMixin {
-  late MdOrderParentNewModel _model;
+  late MdOrderParentNewCopyModel _model;
 
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
@@ -147,7 +148,7 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MdOrderParentNewModel());
+    _model = createModel(context, () => MdOrderParentNewCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -595,13 +596,12 @@ class _MdOrderParentNewWidgetState extends State<MdOrderParentNewWidget>
                                                               getCurrentTimestamp),
                                                     );
                                                     if (ApiOrdersCounterGroup
-                                                            .currentCounterCall
-                                                            .counter(
-                                                          (_model.resOrderCounterCurrent
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        ) !=
-                                                        null) {
+                                                        .currentCounterCall
+                                                        .counter(
+                                                      (_model.resOrderCounterCurrent
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                    )) {
                                                       setState(() {
                                                         _model.lcsvOrderCounter =
                                                             ApiOrdersCounterGroup

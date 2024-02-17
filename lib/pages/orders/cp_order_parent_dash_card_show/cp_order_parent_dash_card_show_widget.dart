@@ -1,13 +1,16 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/cp_order_priority_widget.dart';
+import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/orders/cp_order_parent_status_card/cp_order_parent_status_card_widget.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_order_parent_dash_card_show_model.dart';
 export 'cp_order_parent_dash_card_show_model.dart';
@@ -131,26 +134,6 @@ class _CpOrderParentDashCardShowWidgetState
         ),
       ],
     ),
-    'dividerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1400.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation5': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -167,6 +150,26 @@ class _CpOrderParentDashCardShowWidgetState
           delay: 1600.ms,
           duration: 600.ms,
           begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'dividerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1400.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -246,7 +249,7 @@ class _CpOrderParentDashCardShowWidgetState
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -286,6 +289,13 @@ class _CpOrderParentDashCardShowWidgetState
         }
       }
     });
+
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -379,11 +389,11 @@ class _CpOrderParentDashCardShowWidgetState
                               '.',
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .headlineMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Outfit',
-                                  color: Colors.white,
-                                  fontSize: 20.0,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
                                 ),
                           ),
                         ).animateOnPageLoad(
@@ -404,16 +414,66 @@ class _CpOrderParentDashCardShowWidgetState
                             animationsMap['textOnPageLoadAnimation2']!),
                       ],
                     ),
-                    Column(
+                    Row(
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
+                        wrapWithModel(
+                          model: _model.cpOrderPriorityModel,
+                          updateCallback: () => setState(() {}),
+                          child: CpOrderPriorityWidget(
+                            priorityId: containerVOrdersParentRow!.priorityId!,
+                            priorityDescription:
+                                containerVOrdersParentRow.priorityDescription!,
+                          ),
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
+                            if (!_model.isFollowed)
+                              FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                borderRadius: 25.0,
+                                borderWidth: 4.0,
+                                buttonSize: 50.0,
+                                icon: Icon(
+                                  Icons.bookmark_add_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  size: 30.0,
+                                ),
+                                showLoadingIndicator: true,
+                                onPressed: () async {
+                                  await OrdersFollowersTable().insert({
+                                    'orderId': widget.orderId,
+                                    'userId': FFAppState().stUserCurrent.id,
+                                  });
+                                  setState(() {
+                                    _model.isFollowed = true;
+                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Adicionado aos seus Favoritos',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                },
+                              ),
                             if (_model.isFollowed)
                               FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
                                 borderRadius: 25.0,
+                                borderWidth: 4.0,
                                 buttonSize: 50.0,
                                 icon: Icon(
                                   Icons.bookmark_rounded,
@@ -464,45 +524,24 @@ class _CpOrderParentDashCardShowWidgetState
                                   setState(() {});
                                 },
                               ),
-                            if (!_model.isFollowed)
-                              FlutterFlowIconButton(
-                                borderRadius: 25.0,
-                                buttonSize: 50.0,
-                                icon: Icon(
-                                  Icons.bookmark_add_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                  size: 30.0,
-                                ),
-                                showLoadingIndicator: true,
-                                onPressed: () async {
-                                  await OrdersFollowersTable().insert({
-                                    'orderId': widget.orderId,
-                                    'userId': FFAppState().stUserCurrent.id,
-                                  });
-                                  setState(() {
-                                    _model.isFollowed = true;
-                                  });
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Adicionado aos seus Favoritos',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
-                                  );
-                                },
-                              ),
                           ],
                         ),
-                      ],
+                        FlutterFlowIconButton(
+                          borderColor:
+                              FlutterFlowTheme.of(context).primaryBtnText,
+                          borderRadius: 25.0,
+                          borderWidth: 4.0,
+                          buttonSize: 50.0,
+                          icon: FaIcon(
+                            FontAwesomeIcons.ellipsisV,
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
+                        ),
+                      ].divide(const SizedBox(width: 8.0)),
                     ),
                   ],
                 ),
@@ -529,7 +568,7 @@ class _CpOrderParentDashCardShowWidgetState
                                   'pgUnitShowOri',
                                   queryParameters: {
                                     'unitId': serializeParam(
-                                      containerVOrdersParentRow?.unitId,
+                                      containerVOrdersParentRow.unitId,
                                       ParamType.int,
                                     ),
                                   }.withoutNulls,
@@ -537,7 +576,7 @@ class _CpOrderParentDashCardShowWidgetState
                               },
                               child: Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersParentRow?.unitDescription,
+                                  containerVOrdersParentRow.unitDescription,
                                   '.',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -554,8 +593,8 @@ class _CpOrderParentDashCardShowWidgetState
                           SelectionArea(
                               child: Text(
                             valueOrDefault<String>(
-                              containerVOrdersParentRow?.requestedServices,
-                              '.',
+                              containerVOrdersParentRow.assetTagDescription,
+                              'Setor Não Informado',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -565,29 +604,24 @@ class _CpOrderParentDashCardShowWidgetState
                                 ),
                           )).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation4']!),
+                          SelectionArea(
+                              child: Text(
+                            valueOrDefault<String>(
+                              containerVOrdersParentRow.requestedServices,
+                              '.',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0x9AFFFFFF),
+                                ),
+                          )).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation5']!),
                         ],
                       ),
                     ),
                   ],
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      wrapWithModel(
-                        model: _model.cpOrderParentStatusCardModel,
-                        updateCallback: () => setState(() {}),
-                        child: CpOrderParentStatusCardWidget(
-                          statusId: containerVOrdersParentRow!.statusId!,
-                          statusDescription:
-                              containerVOrdersParentRow.statusDescription!,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
                 const Divider(
                   height: 12.0,
@@ -627,7 +661,7 @@ class _CpOrderParentDashCardShowWidgetState
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation5']!),
+                              animationsMap['textOnPageLoadAnimation6']!),
                           Text(
                             valueOrDefault<String>(
                               containerVOrdersParentRow.requesterTeamCode,
@@ -640,7 +674,7 @@ class _CpOrderParentDashCardShowWidgetState
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation6']!),
+                              animationsMap['textOnPageLoadAnimation7']!),
                           Text(
                             valueOrDefault<String>(
                               containerVOrdersParentRow.requesterPhone,
@@ -653,7 +687,7 @@ class _CpOrderParentDashCardShowWidgetState
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation7']!),
+                              animationsMap['textOnPageLoadAnimation8']!),
                         ],
                       ),
                     ),
@@ -685,32 +719,95 @@ class _CpOrderParentDashCardShowWidgetState
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation8']!),
-                          Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.of(context).tertiary,
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 2.0, 8.0, 2.0),
-                              child: Text(
-                                valueOrDefault<String>(
-                                  containerVOrdersParentRow
-                                      .priorityDescription,
-                                  'status',
-                                ),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation9']!),
-                            ),
-                          ),
+                              animationsMap['textOnPageLoadAnimation9']!),
                         ],
                       ),
                     ),
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 8.0, 4.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.layerGroup,
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              size: 24.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          wrapWithModel(
+                            model: _model.cpOrdersStatusesModel,
+                            updateCallback: () => setState(() {}),
+                            child: CpOrdersStatusesWidget(
+                              cpStatusId: containerVOrdersParentRow.statusId!,
+                              cpStatusDescription:
+                                  containerVOrdersParentRow.statusDescription!,
+                            ),
+                          ),
+                        ].divide(const SizedBox(width: 8.0)),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.layerGroup,
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              size: 24.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'pgOrderProgramming',
+                            queryParameters: {
+                              'orderId': serializeParam(
+                                containerVOrdersParentRow.id,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        text: 'Programar',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ].divide(const SizedBox(height: 8.0)),
             ),

@@ -760,12 +760,46 @@ Future abOrderParentSelected(
 }) async {
   ApiCallResponse? resOrderParentSelected;
 
-  resOrderParentSelected = await ApiOrdersParentGroup.orderParenByIdCall.call(
+  resOrderParentSelected = await ApiOrdersGroup.orderByIdCall.call(
     orderId: abOrderId,
   );
   if ((resOrderParentSelected.succeeded ?? true)) {
-    FFAppState().stOrderParentSelected = DtVOrderParentStruct(
-      id: abOrderId,
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return AlertDialog(
+          title: const Text('11'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: const Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
+    FFAppState().stOrderParentSelected =
+        ((resOrderParentSelected.jsonBody ?? '')
+                .toList()
+                .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
+                .toList() as Iterable<DtVOrderStruct?>)
+            .withoutNulls
+            .toList()
+            .cast<DtVOrderStruct>();
+  } else {
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return AlertDialog(
+          title: const Text('22'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: const Text('Ok'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -839,9 +873,9 @@ Future abOrderVisitProcessingCheck(
       0,
     );
     FFAppState().stOrderVisitAssetsDraftAmount = 0;
-    FFAppState().stOrdervisitAssetsReportedAmount = 0;
+    FFAppState().stOrderVisitAssetsReportedAmount = 0;
     FFAppState().stOrdervisitAssetsDisapprovedAmount = 0;
-    FFAppState().stOrdervisitAssetsApprovedAmount = 0;
+    FFAppState().stOrderVisitAssetsApprovedAmount = 0;
     while (FFAppState().stCounterLoop <= FFAppState().stCounterLoopFinal) {
       if (FFAppState()
               .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
@@ -854,8 +888,8 @@ Future abOrderVisitProcessingCheck(
                 .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
                 .processingId ==
             2) {
-          FFAppState().stOrdervisitAssetsReportedAmount =
-              FFAppState().stOrdervisitAssetsReportedAmount + 1;
+          FFAppState().stOrderVisitAssetsReportedAmount =
+              FFAppState().stOrderVisitAssetsReportedAmount + 1;
         } else {
           if (FFAppState()
                   .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
@@ -868,8 +902,8 @@ Future abOrderVisitProcessingCheck(
                     .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
                     .processingId ==
                 4) {
-              FFAppState().stOrdervisitAssetsApprovedAmount =
-                  FFAppState().stOrdervisitAssetsApprovedAmount + 1;
+              FFAppState().stOrderVisitAssetsApprovedAmount =
+                  FFAppState().stOrderVisitAssetsApprovedAmount + 1;
             }
           }
         }
@@ -883,11 +917,11 @@ Future abOrderVisitProcessingCheck(
         'orderVisitAssetsDraftAmount':
             FFAppState().stOrderVisitAssetsDraftAmount,
         'orderVisitAssetsReportedAmount':
-            FFAppState().stOrdervisitAssetsReportedAmount,
+            FFAppState().stOrderVisitAssetsReportedAmount,
         'orderVisitAssetsDisapprovedAmount':
             FFAppState().stOrdervisitAssetsDisapprovedAmount,
         'orderVisitAssetsApprovedAmount':
-            FFAppState().stOrdervisitAssetsApprovedAmount,
+            FFAppState().stOrderVisitAssetsApprovedAmount,
       },
       matchingRows: (rows) => rows.eq(
         'id',
@@ -899,7 +933,7 @@ Future abOrderVisitProcessingCheck(
     );
     if (FFAppState().stOrderVisitSelected.first.statusId == 2) {
       if ((FFAppState().stCounterLoopFinal ==
-              FFAppState().stOrdervisitAssetsReportedAmount) &&
+              FFAppState().stOrderVisitAssetsReportedAmount) &&
           (FFAppState().stOrderVisitSelected.first.processingId != 2) &&
           (FFAppState().stCounterLoopFinal > 0)) {
         var confirmDialogResponse = await showDialog<bool>(

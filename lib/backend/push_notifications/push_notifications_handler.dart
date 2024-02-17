@@ -119,11 +119,6 @@ final parametersBuilderMap =
   'pgSettingsDepartment': ParameterData.none(),
   'pgSettingUsers': ParameterData.none(),
   'pgDashboardUserVisits': ParameterData.none(),
-  'pgOrderParentSearchByUnit': (data) async => ParameterData(
-        allParams: {
-          'unitId': getParameter<int>(data, 'unitId'),
-        },
-      ),
   'pgOrderParentShow': (data) async => ParameterData(
         allParams: {
           'orderId': getParameter<int>(data, 'orderId'),
@@ -190,6 +185,13 @@ final parametersBuilderMap =
   'pgUnitShow': (data) async => ParameterData(
         allParams: {
           'unitId': getParameter<int>(data, 'unitId'),
+        },
+      ),
+  'pgDashboardAdminCopy': ParameterData.none(),
+  'pgOrderParentNew': ParameterData.none(),
+  'pgOrderProgramming': (data) async => ParameterData(
+        allParams: {
+          'orderId': getParameter<int>(data, 'orderId'),
         },
       ),
 };

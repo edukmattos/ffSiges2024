@@ -287,10 +287,16 @@ dynamic deserializeParam<T>(
             return OrdersFollowersRow(data);
           case OrdersVisitsServicesRow:
             return OrdersVisitsServicesRow(data);
+          case VOrdersCountByUnitsAssetsTagsRow:
+            return VOrdersCountByUnitsAssetsTagsRow(data);
+          case VOrdersParentOpenRow:
+            return VOrdersParentOpenRow(data);
           case UsersMaterialsRow:
             return UsersMaterialsRow(data);
           case VOrdersVisitsServicesRow:
             return VOrdersVisitsServicesRow(data);
+          case VOrdersOpenRow:
+            return VOrdersOpenRow(data);
           case VOrdersCountByUnitsParentsStatusesRow:
             return VOrdersCountByUnitsParentsStatusesRow(data);
           case VAssetsMaterialsRow:

@@ -1,19 +1,19 @@
 import '../database.dart';
 
-class VOrdersParentTable extends SupabaseTable<VOrdersParentRow> {
+class VOrdersParentOpenTable extends SupabaseTable<VOrdersParentOpenRow> {
   @override
-  String get tableName => 'v_orders_parent';
+  String get tableName => 'v_orders_parent_open';
 
   @override
-  VOrdersParentRow createRow(Map<String, dynamic> data) =>
-      VOrdersParentRow(data);
+  VOrdersParentOpenRow createRow(Map<String, dynamic> data) =>
+      VOrdersParentOpenRow(data);
 }
 
-class VOrdersParentRow extends SupabaseDataRow {
-  VOrdersParentRow(super.data);
+class VOrdersParentOpenRow extends SupabaseDataRow {
+  VOrdersParentOpenRow(super.data);
 
   @override
-  SupabaseTable get table => VOrdersParentTable();
+  SupabaseTable get table => VOrdersParentOpenTable();
 
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);
@@ -149,11 +149,4 @@ class VOrdersParentRow extends SupabaseDataRow {
   String? get priorityDescription => getField<String>('priorityDescription');
   set priorityDescription(String? value) =>
       setField<String>('priorityDescription', value);
-
-  int? get assetTagId => getField<int>('assetTagId');
-  set assetTagId(int? value) => setField<int>('assetTagId', value);
-
-  String? get assetTagDescription => getField<String>('assetTagDescription');
-  set assetTagDescription(String? value) =>
-      setField<String>('assetTagDescription', value);
 }

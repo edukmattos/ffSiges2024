@@ -19,6 +19,12 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
 
   int? lcsvOrderChildCounter;
 
+  int lcsvCompanyId = 1;
+
+  int lcsvDepartmentId = 1;
+
+  int lcsvContractId = 1;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -38,6 +44,8 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
   late CpDropdownOrdersContractsModel cpDropdownOrdersContractsModel;
   // Model for cpDropdownTeamsDepartment component.
   late CpDropdownTeamsDepartmentModel cpDropdownTeamsDepartmentModel;
+  // Stores action output result for [Backend Call - API (contractById)] action in cpDropdownTeamsDepartment widget.
+  ApiCallResponse? resContractSelected;
   // Model for cpDropdownLeaderTeamsSelected component.
   late CpDropdownLeaderTeamsSelectedModel cpDropdownLeaderTeamsSelectedModel;
   DateTime? datePicked;
@@ -45,10 +53,6 @@ class MdOrderNewModel extends FlutterFlowModel<MdOrderNewWidget> {
   late CpInputDateDisabledModel cpInputDateDisabledModel;
   // Stores action output result for [Action Block - abChoicesOrdersPrioritiesId] action in Button widget.
   int? resAbOrderPriorityId;
-  // Stores action output result for [Backend Call - API (orderParenById)] action in Button widget.
-  ApiCallResponse? resOrderParentCurrent;
-  // Stores action output result for [Backend Call - API (unitById)] action in Button widget.
-  ApiCallResponse? resOrderParentUnit;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   OrdersRow? resOrderAdded;
 

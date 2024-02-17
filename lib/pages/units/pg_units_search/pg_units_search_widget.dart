@@ -237,6 +237,7 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
                             updateCallback: () => setState(() {}),
                             child: const CpInputTextWidget(
                               labelText: 'Pesquisar',
+                              isReadOnly: false,
                             ),
                           ),
                         ),

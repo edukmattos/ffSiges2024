@@ -55,6 +55,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
     int? teamId,
     String? teamCode,
     String? teamDescription,
+    int? year,
+    int? counterParent,
+    int? counterChild,
+    int? assetTagId,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _parentId = parentId,
@@ -101,6 +105,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         _teamId = teamId,
         _teamCode = teamCode,
         _teamDescription = teamDescription,
+        _year = year,
+        _counterParent = counterParent,
+        _counterChild = counterChild,
+        _assetTagId = assetTagId,
         super(firestoreUtilData);
 
   // "id" field.
@@ -399,6 +407,36 @@ class DtVOrderStruct extends FFFirebaseStruct {
   set teamDescription(String? val) => _teamDescription = val;
   bool hasTeamDescription() => _teamDescription != null;
 
+  // "year" field.
+  int? _year;
+  int get year => _year ?? 0;
+  set year(int? val) => _year = val;
+  void incrementYear(int amount) => _year = year + amount;
+  bool hasYear() => _year != null;
+
+  // "counterParent" field.
+  int? _counterParent;
+  int get counterParent => _counterParent ?? 0;
+  set counterParent(int? val) => _counterParent = val;
+  void incrementCounterParent(int amount) =>
+      _counterParent = counterParent + amount;
+  bool hasCounterParent() => _counterParent != null;
+
+  // "counterChild" field.
+  int? _counterChild;
+  int get counterChild => _counterChild ?? 0;
+  set counterChild(int? val) => _counterChild = val;
+  void incrementCounterChild(int amount) =>
+      _counterChild = counterChild + amount;
+  bool hasCounterChild() => _counterChild != null;
+
+  // "assetTagId" field.
+  int? _assetTagId;
+  int get assetTagId => _assetTagId ?? 0;
+  set assetTagId(int? val) => _assetTagId = val;
+  void incrementAssetTagId(int amount) => _assetTagId = assetTagId + amount;
+  bool hasAssetTagId() => _assetTagId != null;
+
   static DtVOrderStruct fromMap(Map<String, dynamic> data) => DtVOrderStruct(
         id: castToType<int>(data['id']),
         parentId: castToType<int>(data['parentId']),
@@ -445,6 +483,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         teamId: castToType<int>(data['teamId']),
         teamCode: data['teamCode'] as String?,
         teamDescription: data['teamDescription'] as String?,
+        year: castToType<int>(data['year']),
+        counterParent: castToType<int>(data['counterParent']),
+        counterChild: castToType<int>(data['counterChild']),
+        assetTagId: castToType<int>(data['assetTagId']),
       );
 
   static DtVOrderStruct? maybeFromMap(dynamic data) =>
@@ -496,6 +538,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         'teamId': _teamId,
         'teamCode': _teamCode,
         'teamDescription': _teamDescription,
+        'year': _year,
+        'counterParent': _counterParent,
+        'counterChild': _counterChild,
+        'assetTagId': _assetTagId,
       }.withoutNulls;
 
   @override
@@ -679,6 +725,22 @@ class DtVOrderStruct extends FFFirebaseStruct {
         'teamDescription': serializeParam(
           _teamDescription,
           ParamType.String,
+        ),
+        'year': serializeParam(
+          _year,
+          ParamType.int,
+        ),
+        'counterParent': serializeParam(
+          _counterParent,
+          ParamType.int,
+        ),
+        'counterChild': serializeParam(
+          _counterChild,
+          ParamType.int,
+        ),
+        'assetTagId': serializeParam(
+          _assetTagId,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -909,6 +971,26 @@ class DtVOrderStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        year: deserializeParam(
+          data['year'],
+          ParamType.int,
+          false,
+        ),
+        counterParent: deserializeParam(
+          data['counterParent'],
+          ParamType.int,
+          false,
+        ),
+        counterChild: deserializeParam(
+          data['counterChild'],
+          ParamType.int,
+          false,
+        ),
+        assetTagId: deserializeParam(
+          data['assetTagId'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -961,7 +1043,11 @@ class DtVOrderStruct extends FFFirebaseStruct {
         teamLeaderNameShort == other.teamLeaderNameShort &&
         teamId == other.teamId &&
         teamCode == other.teamCode &&
-        teamDescription == other.teamDescription;
+        teamDescription == other.teamDescription &&
+        year == other.year &&
+        counterParent == other.counterParent &&
+        counterChild == other.counterChild &&
+        assetTagId == other.assetTagId;
   }
 
   @override
@@ -1010,7 +1096,11 @@ class DtVOrderStruct extends FFFirebaseStruct {
         teamLeaderNameShort,
         teamId,
         teamCode,
-        teamDescription
+        teamDescription,
+        year,
+        counterParent,
+        counterChild,
+        assetTagId
       ]);
 }
 
@@ -1060,6 +1150,10 @@ DtVOrderStruct createDtVOrderStruct({
   int? teamId,
   String? teamCode,
   String? teamDescription,
+  int? year,
+  int? counterParent,
+  int? counterChild,
+  int? assetTagId,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -1111,6 +1205,10 @@ DtVOrderStruct createDtVOrderStruct({
       teamId: teamId,
       teamCode: teamCode,
       teamDescription: teamDescription,
+      year: year,
+      counterParent: counterParent,
+      counterChild: counterChild,
+      assetTagId: assetTagId,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

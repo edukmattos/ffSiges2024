@@ -167,14 +167,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const PgDashboardUserVisitsWidget(),
         ),
         FFRoute(
-          name: 'pgOrderParentSearchByUnit',
-          path: '/pgOrderParentSearchByUnit',
-          requireAuth: true,
-          builder: (context, params) => PgOrderParentSearchByUnitWidget(
-            unitId: params.getParam('unitId', ParamType.int),
-          ),
-        ),
-        FFRoute(
           name: 'pgOrderParentShow',
           path: '/pgOrderParentShow',
           requireAuth: true,
@@ -362,6 +354,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => PgUnitShowWidget(
             unitId: params.getParam('unitId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'pgDashboardAdminCopy',
+          path: '/pgDashboardAdminCopy',
+          requireAuth: true,
+          builder: (context, params) => const PgDashboardAdminCopyWidget(),
+        ),
+        FFRoute(
+          name: 'pgOrderParentNew',
+          path: '/pgOrderParentNew',
+          requireAuth: true,
+          builder: (context, params) => const PgOrderParentNewWidget(),
+        ),
+        FFRoute(
+          name: 'pgOrderProgramming',
+          path: '/pgOrderProgramming',
+          requireAuth: true,
+          builder: (context, params) => PgOrderProgrammingWidget(
+            orderId: params.getParam('orderId', ParamType.int),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

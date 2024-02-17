@@ -12,9 +12,11 @@ class CpDropdownTeamsDepartmentWidget extends StatefulWidget {
   const CpDropdownTeamsDepartmentWidget({
     super.key,
     this.hintText,
-  });
+    int? departmentId,
+  }) : departmentId = departmentId ?? 1;
 
   final String? hintText;
+  final int departmentId;
 
   @override
   State<CpDropdownTeamsDepartmentWidget> createState() =>
@@ -52,7 +54,10 @@ class _CpDropdownTeamsDepartmentWidgetState
 
     return FutureBuilder<ApiCallResponse>(
       future: ApiTeamsGroup.teamsByDeparmentCall.call(
-        departmentId: FFAppState().stUserCurrent.departmentId,
+        departmentId: valueOrDefault<int>(
+          widget.departmentId,
+          1,
+        ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

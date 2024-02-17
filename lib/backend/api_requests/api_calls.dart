@@ -1669,6 +1669,48 @@ class UnitsAllCall {
 
 /// End apiUnits Group Code
 
+/// Start apiContracts Group Code
+
+class ApiContractsGroup {
+  static String baseUrl = 'https://hssopxcprokinupxvrtw.supabase.co/rest/v1/';
+  static Map<String, String> headers = {
+    'apiKey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
+  };
+  static ContractByIdCall contractByIdCall = ContractByIdCall();
+}
+
+class ContractByIdCall {
+  Future<ApiCallResponse> call({
+    int? contractId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'contractById',
+      apiUrl:
+          '${ApiContractsGroup.baseUrl}v_contracts?id=eq.$contractId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End apiContracts Group Code
+
 /// Start apiOrdersTypesActivities Group Code
 
 class ApiOrdersTypesActivitiesGroup {
@@ -2351,176 +2393,6 @@ class OrderParenByIdCall {
       alwaysAllowBody: false,
     );
   }
-
-  int? id(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].id''',
-      ));
-  int? companyId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].companyId''',
-      ));
-  int? departmentId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].departmentId''',
-      ));
-  String? orderMask(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].orderMask''',
-      ));
-  int? typeId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].typeId''',
-      ));
-  String? typeCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].typeCode''',
-      ));
-  String? requestedServices(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].requestedServices''',
-      ));
-  int? systemParentId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].systemParentId''',
-      ));
-  String? systemParentDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].systemParentDescription''',
-      ));
-  String? systemParentCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].systemParentCode''',
-      ));
-  int? systemId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].systemId''',
-      ));
-  String? systemDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].systemDescription''',
-      ));
-  String? systemCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].systemCode''',
-      ));
-  int? unitTypeParentId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitTypeParentId''',
-      ));
-  String? unitTypeParentDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitTypeParentDescription''',
-      ));
-  String? unitTypeParentCode(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitTypeParentCode''',
-      ));
-  int? unitTypeId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitTypeId''',
-      ));
-  String? unitTypeDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitTypeDescription''',
-      ));
-  String? unitTypeCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitTypeCode''',
-      ));
-  int? unitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitId''',
-      ));
-  String? unitDescription(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitDescription''',
-      ));
-  double? unitLatitude(dynamic response) => castToType<double>(getJsonField(
-        response,
-        r'''$[:].unitLatitude''',
-      ));
-  double? unitLongitude(dynamic response) => castToType<double>(getJsonField(
-        response,
-        r'''$[:].unitLongitude''',
-      ));
-  String? requesterName(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].requesterName''',
-      ));
-  String? requesterPhone(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].requesterPhone''',
-      ));
-  int? requesterTeamId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].requesterTeamId''',
-      ));
-  String? requesterTeamCode(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].requesterTeamCode''',
-      ));
-  String? requesterDate(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].requesterDate''',
-      ));
-  int? requesterDateUnix(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].requesterDateUnix''',
-      ));
-  int? statusId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].statusId''',
-      ));
-  String? statusCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].statusCode''',
-      ));
-  String? statusDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].statusDescription''',
-      ));
-  String? statusDate(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].statusDate''',
-      ));
-  int? statusDateUnix(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].statusDateUnix''',
-      ));
-  int? priorityId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].priorityId''',
-      ));
-  String? priorityCode(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].priorityCode''',
-      ));
-  String? priorityDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].priorityDescription''',
-      ));
-  int? year(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].year''',
-      ));
-  int? counterChild(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].counterChild''',
-      ));
-  int? counterParent(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].counterParent''',
-      ));
 }
 
 /// End apiOrdersParent Group Code

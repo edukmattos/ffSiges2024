@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/cp_order_priority_widget.dart';
+import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/orders/cp_order_parent_status_card/cp_order_parent_status_card_widget.dart';
 import 'cp_order_parent_dash_card_show_widget.dart'
     show CpOrderParentDashCardShowWidget;
 import 'package:flutter/material.dart';
@@ -15,22 +16,25 @@ class CpOrderParentDashCardShowModel
 
   // Stores action output result for [Backend Call - API (orderFollowed)] action in cpOrderParentDashCardShow widget.
   ApiCallResponse? apiResultxzh;
+  // Model for cpOrderPriority component.
+  late CpOrderPriorityModel cpOrderPriorityModel;
   // Stores action output result for [Backend Call - API (orderFollowed)] action in IconButton widget.
   ApiCallResponse? apiResult6nl;
-  // Model for cpOrderParentStatusCard component.
-  late CpOrderParentStatusCardModel cpOrderParentStatusCardModel;
+  // Model for cpOrdersStatuses component.
+  late CpOrdersStatusesModel cpOrdersStatusesModel;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    cpOrderParentStatusCardModel =
-        createModel(context, () => CpOrderParentStatusCardModel());
+    cpOrderPriorityModel = createModel(context, () => CpOrderPriorityModel());
+    cpOrdersStatusesModel = createModel(context, () => CpOrdersStatusesModel());
   }
 
   @override
   void dispose() {
-    cpOrderParentStatusCardModel.dispose();
+    cpOrderPriorityModel.dispose();
+    cpOrdersStatusesModel.dispose();
   }
 
   /// Action blocks are added here.

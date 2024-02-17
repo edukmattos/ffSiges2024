@@ -117,4 +117,11 @@ class OrdersRow extends SupabaseDataRow {
 
   int? get contractId => getField<int>('contractId');
   set contractId(int? value) => setField<int>('contractId', value);
+
+  int? get providerCompanyId => getField<int>('providerCompanyId');
+  set providerCompanyId(int? value) =>
+      setField<int>('providerCompanyId', value);
+
+  int? get assetTagId => getField<int>('assetTagId');
+  set assetTagId(int? value) => setField<int>('assetTagId', value);
 }

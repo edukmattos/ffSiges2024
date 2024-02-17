@@ -622,40 +622,98 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                   .cpDropdownOrdersContractsModel,
                                               updateCallback: () =>
                                                   setState(() {}),
+                                              updateOnChange: true,
                                               child:
                                                   const CpDropdownOrdersContractsWidget(),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
-                                              child: Text(
-                                                'Equipe responsável',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelLarge
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'textOnPageLoadAnimation6']!),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 0.0, 12.0),
-                                              child: wrapWithModel(
-                                                model: _model
-                                                    .cpDropdownTeamsDepartmentModel,
-                                                updateCallback: () =>
-                                                    setState(() {}),
-                                                child:
-                                                    const CpDropdownTeamsDepartmentWidget(),
+                                            if (_model
+                                                    .cpDropdownOrdersContractsModel
+                                                    .dropdownOrdersContractsValue !=
+                                                null)
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        2.0, 0.0, 0.0, 4.0),
+                                                child: Text(
+                                                  'Equipe responsável',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'textOnPageLoadAnimation6']!),
                                               ),
-                                            ),
+                                            if (_model
+                                                    .cpDropdownOrdersContractsModel
+                                                    .dropdownOrdersContractsValue !=
+                                                null)
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    _model.resContractSelected =
+                                                        await ApiContractsGroup
+                                                            .contractByIdCall
+                                                            .call(
+                                                      contractId: _model
+                                                          .cpDropdownOrdersContractsModel
+                                                          .dropdownOrdersContractsValue,
+                                                    );
+                                                    if ((_model
+                                                            .resContractSelected
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      setState(() {
+                                                        _model.lcsvCompanyId =
+                                                            getJsonField(
+                                                          (_model.resContractSelected
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.providerCompanyId''',
+                                                        );
+                                                        _model.lcsvDepartmentId =
+                                                            getJsonField(
+                                                          (_model.resContractSelected
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.providerDepartmentId''',
+                                                        );
+                                                        _model.lcsvContractId = _model
+                                                            .cpDropdownOrdersContractsModel
+                                                            .dropdownOrdersContractsValue!;
+                                                      });
+                                                    }
+
+                                                    setState(() {});
+                                                  },
+                                                  child: wrapWithModel(
+                                                    model: _model
+                                                        .cpDropdownTeamsDepartmentModel,
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    updateOnChange: true,
+                                                    child:
+                                                        const CpDropdownTeamsDepartmentWidget(),
+                                                  ),
+                                                ),
+                                              ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(2.0, 0.0, 0.0, 4.0),
@@ -1060,22 +1118,12 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                   if (_model
                                                           .resAbOrderPriorityId !=
                                                       0) {
-                                                    _model.resOrderParentCurrent =
-                                                        await ApiOrdersParentGroup
-                                                            .orderParenByIdCall
-                                                            .call(
-                                                      orderId:
-                                                          widget.orderParentId,
-                                                    );
                                                     setState(() {
                                                       _model.lcsvOrderChildCounter =
-                                                          (ApiOrdersParentGroup
-                                                                  .orderParenByIdCall
-                                                                  .counterChild(
-                                                                (_model.resOrderParentCurrent
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              )!) +
+                                                          FFAppState()
+                                                                  .stOrderParentSelected
+                                                                  .first
+                                                                  .counterChild +
                                                               1;
                                                     });
                                                     await OrdersTable().update(
@@ -1086,20 +1134,10 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       matchingRows: (rows) =>
                                                           rows.eq(
                                                         'id',
-                                                        widget.orderParentId,
-                                                      ),
-                                                    );
-                                                    _model.resOrderParentUnit =
-                                                        await ApiUnitsGroup
-                                                            .unitByIdCall
-                                                            .call(
-                                                      unitId:
-                                                          ApiOrdersParentGroup
-                                                              .orderParenByIdCall
-                                                              .unitId(
-                                                        (_model.resOrderParentCurrent
-                                                                ?.jsonBody ??
-                                                            ''),
+                                                        FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .id,
                                                       ),
                                                     );
                                                     _model.resOrderAdded =
@@ -1120,45 +1158,27 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       'typeSubId': _model
                                                           .cpDropdownOrdersTypesSubsModel
                                                           .dropdownOrdersTypesSubsValue,
-                                                      'unitId':
-                                                          ApiOrdersParentGroup
-                                                              .orderParenByIdCall
-                                                              .unitId(
-                                                        (_model.resOrderParentCurrent
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                      'systemParentId':
-                                                          ApiUnitsGroup
-                                                              .unitByIdCall
-                                                              .systemParentId(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                      'systemId': ApiUnitsGroup
-                                                          .unitByIdCall
-                                                          .systemId(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
+                                                      'unitId': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .unitId,
+                                                      'systemParentId': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .systemParentId,
+                                                      'systemId': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .systemId,
                                                       'unitTypeParentId':
-                                                          ApiUnitsGroup
-                                                              .unitByIdCall
-                                                              .unitTypeParentId(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                      'unitTypeId':
-                                                          ApiUnitsGroup
-                                                              .unitByIdCall
-                                                              .unitTypeId(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
+                                                          FFAppState()
+                                                              .stOrderParentSelected
+                                                              .first
+                                                              .unitTypeParentId,
+                                                      'unitTypeId': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .unitTypeId,
                                                       'requesterName':
                                                           FFAppState()
                                                               .stUserCurrent
@@ -1178,24 +1198,12 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           .cpInputTexMultilineModel
                                                           .inputTextMultineController
                                                           .text,
-                                                      'year':
-                                                          ApiOrdersParentGroup
-                                                              .orderParenByIdCall
-                                                              .year(
-                                                        (_model.resOrderParentCurrent
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
+                                                      'year': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .year,
                                                       'orderMask':
-                                                          '${ApiOrdersParentGroup.orderParenByIdCall.counterParent(
-                                                                (_model.resOrderParentCurrent
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              )?.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${ApiOrdersParentGroup.orderParenByIdCall.year(
-                                                                (_model.resOrderParentCurrent
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              )?.toString()}',
+                                                          '${FFAppState().stOrderParentSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOrderParentSelected.first.year.toString()}',
                                                       'requesterDate':
                                                           supaSerialize<
                                                                   DateTime>(
@@ -1214,30 +1222,19 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                   .datePicked),
                                                       'priorityId': _model
                                                           .resAbOrderPriorityId,
-                                                      'unitLatitude':
-                                                          ApiUnitsGroup
-                                                              .unitByIdCall
-                                                              .latitude(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
-                                                      'unitLongitude':
-                                                          ApiUnitsGroup
-                                                              .unitByIdCall
-                                                              .longitude(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      ),
+                                                      'unitLatitude': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .unitLatitude,
+                                                      'unitLongitude': FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .unitLongitude,
                                                     });
-                                                    if (ApiOrdersParentGroup
-                                                            .orderParenByIdCall
-                                                            .statusId(
-                                                          (_model.resOrderParentCurrent
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        ) ==
+                                                    if (FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .statusId ==
                                                         1) {
                                                       await OrdersTable()
                                                           .update(
@@ -1251,15 +1248,21 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                         matchingRows: (rows) =>
                                                             rows.eq(
                                                           'id',
-                                                          widget.orderParentId,
+                                                          FFAppState()
+                                                              .stOrderParentSelected
+                                                              .first
+                                                              .id,
                                                         ),
                                                       );
                                                       unawaited(
                                                         () async {
                                                           await OrdersStatusesLogsTable()
                                                               .insert({
-                                                            'orderParentId': widget
-                                                                .orderParentId,
+                                                            'orderParentId':
+                                                                FFAppState()
+                                                                    .stOrderParentSelected
+                                                                    .first
+                                                                    .id,
                                                             'orderStatusId': 2,
                                                             'orderStatusDate':
                                                                 supaSerialize<
@@ -1288,8 +1291,11 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       () async {
                                                         await OrdersStatusesLogsTable()
                                                             .insert({
-                                                          'orderParentId': widget
-                                                              .orderParentId,
+                                                          'orderParentId':
+                                                              FFAppState()
+                                                                  .stOrderParentSelected
+                                                                  .first
+                                                                  .id,
                                                           'orderStatusId': 3,
                                                           'orderStatusDate':
                                                               supaSerialize<
@@ -1323,11 +1329,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       abTitle:
                                                           'Serviço Agendado',
                                                       abBody:
-                                                          'OS ${_model.resOrderAdded?.orderMask}\\n${ApiUnitsGroup.unitByIdCall.descriptionFull(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      )}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                          'OS ${_model.resOrderAdded?.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                       abUserIdFrom: FFAppState()
                                                           .stUserCurrent
                                                           .id,
@@ -1340,17 +1342,14 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     await action_blocks
                                                         .abOrderParentEvents(
                                                       context,
-                                                      abOrderParentId: _model
-                                                          .resOrderAdded
-                                                          ?.parentId,
+                                                      abOrderParentId: FFAppState()
+                                                          .stOrderParentSelected
+                                                          .first
+                                                          .id,
                                                       abTitle:
                                                           'OS ${_model.resOrderAdded?.orderMask}: Agendada',
                                                       abBody:
-                                                          '${ApiUnitsGroup.unitByIdCall.descriptionFull(
-                                                        (_model.resOrderParentUnit
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      )}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                          '${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                     );
                                                     Navigator.pop(context);
                                                   } else {

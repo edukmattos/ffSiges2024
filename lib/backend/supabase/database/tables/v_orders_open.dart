@@ -1,19 +1,18 @@
 import '../database.dart';
 
-class VOrdersParentTable extends SupabaseTable<VOrdersParentRow> {
+class VOrdersOpenTable extends SupabaseTable<VOrdersOpenRow> {
   @override
-  String get tableName => 'v_orders_parent';
+  String get tableName => 'v_orders_open';
 
   @override
-  VOrdersParentRow createRow(Map<String, dynamic> data) =>
-      VOrdersParentRow(data);
+  VOrdersOpenRow createRow(Map<String, dynamic> data) => VOrdersOpenRow(data);
 }
 
-class VOrdersParentRow extends SupabaseDataRow {
-  VOrdersParentRow(super.data);
+class VOrdersOpenRow extends SupabaseDataRow {
+  VOrdersOpenRow(super.data);
 
   @override
-  SupabaseTable get table => VOrdersParentTable();
+  SupabaseTable get table => VOrdersOpenTable();
 
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);
@@ -27,23 +26,27 @@ class VOrdersParentRow extends SupabaseDataRow {
   int? get departmentId => getField<int>('departmentId');
   set departmentId(int? value) => setField<int>('departmentId', value);
 
+  int? get contractId => getField<int>('contractId');
+  set contractId(int? value) => setField<int>('contractId', value);
+
+  String? get contractDescription => getField<String>('contractDescription');
+  set contractDescription(String? value) =>
+      setField<String>('contractDescription', value);
+
   String? get orderMask => getField<String>('orderMask');
   set orderMask(String? value) => setField<String>('orderMask', value);
-
-  int? get year => getField<int>('year');
-  set year(int? value) => setField<int>('year', value);
-
-  int? get counterChild => getField<int>('counterChild');
-  set counterChild(int? value) => setField<int>('counterChild', value);
-
-  int? get counterParent => getField<int>('counterParent');
-  set counterParent(int? value) => setField<int>('counterParent', value);
 
   int? get typeId => getField<int>('typeId');
   set typeId(int? value) => setField<int>('typeId', value);
 
   String? get typeCode => getField<String>('typeCode');
   set typeCode(String? value) => setField<String>('typeCode', value);
+
+  int? get typeSubId => getField<int>('typeSubId');
+  set typeSubId(int? value) => setField<int>('typeSubId', value);
+
+  String? get typeSubCode => getField<String>('typeSubCode');
+  set typeSubCode(String? value) => setField<String>('typeSubCode', value);
 
   String? get requestedServices => getField<String>('requestedServices');
   set requestedServices(String? value) =>
@@ -150,10 +153,20 @@ class VOrdersParentRow extends SupabaseDataRow {
   set priorityDescription(String? value) =>
       setField<String>('priorityDescription', value);
 
-  int? get assetTagId => getField<int>('assetTagId');
-  set assetTagId(int? value) => setField<int>('assetTagId', value);
+  int? get teamLeaderId => getField<int>('teamLeaderId');
+  set teamLeaderId(int? value) => setField<int>('teamLeaderId', value);
 
-  String? get assetTagDescription => getField<String>('assetTagDescription');
-  set assetTagDescription(String? value) =>
-      setField<String>('assetTagDescription', value);
+  String? get teamLeaderNameShort => getField<String>('teamLeaderNameShort');
+  set teamLeaderNameShort(String? value) =>
+      setField<String>('teamLeaderNameShort', value);
+
+  int? get teamId => getField<int>('teamId');
+  set teamId(int? value) => setField<int>('teamId', value);
+
+  String? get teamCode => getField<String>('teamCode');
+  set teamCode(String? value) => setField<String>('teamCode', value);
+
+  String? get teamDescription => getField<String>('teamDescription');
+  set teamDescription(String? value) =>
+      setField<String>('teamDescription', value);
 }

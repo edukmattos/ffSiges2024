@@ -1,17 +1,15 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/orders/cp_order_parent_status_card/cp_order_parent_status_card_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_order_card_show_model.dart';
 export 'cp_order_card_show_model.dart';
@@ -108,7 +106,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -128,7 +126,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -406,12 +404,11 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               '.',
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .headlineMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Outfit',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBtnText,
-                                  fontSize: 20.0,
                                 ),
                           ),
                         ).animateOnPageLoad(
@@ -441,45 +438,60 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 2.0, 8.0, 2.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    containerVOrdersRow?.priorityDescription,
-                                    'status',
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  elevation: 4.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 2.0, 8.0, 2.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        containerVOrdersRow
+                                            ?.priorityDescription,
+                                        'status',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ),
                                 ),
+                                Text(
+                                  '${valueOrDefault<String>(
+                                    dateTimeFormat('d/M H:mm',
+                                        containerVOrdersRow?.statusDate),
+                                    '.',
+                                  )} h',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: const Color(0x9AFFFFFF),
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation3']!),
+                              ],
+                            ),
+                            wrapWithModel(
+                              model: _model.cpOrdersStatusesModel,
+                              updateCallback: () => setState(() {}),
+                              child: CpOrdersStatusesWidget(
+                                cpStatusId: containerVOrdersRow!.statusId!,
+                                cpStatusDescription:
+                                    containerVOrdersRow.statusDescription!,
                               ),
                             ),
-                            FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context).error,
-                              borderRadius: 12.0,
-                              buttonSize: 50.0,
-                              fillColor: FlutterFlowTheme.of(context).error,
-                              icon: FaIcon(
-                                FontAwesomeIcons.trashAlt,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                size: 24.0,
-                              ),
-                              showLoadingIndicator: true,
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ],
+                          ].divide(const SizedBox(width: 8.0)),
                         ),
                       ],
                     ),
@@ -507,7 +519,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   'pgUnitShowOri',
                                   queryParameters: {
                                     'unitId': serializeParam(
-                                      containerVOrdersRow?.unitId,
+                                      containerVOrdersRow.unitId,
                                       ParamType.int,
                                     ),
                                   }.withoutNulls,
@@ -515,7 +527,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               },
                               child: Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersRow?.unitDescription,
+                                  containerVOrdersRow.unitDescription,
                                   '.',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -527,11 +539,11 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     ),
                               ),
                             ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation3']!),
+                                animationsMap['textOnPageLoadAnimation4']!),
                           ),
                           Text(
                             valueOrDefault<String>(
-                              containerVOrdersRow?.requestedServices,
+                              containerVOrdersRow.requestedServices,
                               'team',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -541,7 +553,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation4']!),
+                              animationsMap['textOnPageLoadAnimation5']!),
                         ],
                       ),
                     ),
@@ -557,19 +569,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            containerVOrdersRow?.teamLeaderNameShort,
-                            'team',
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
-                                  ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation5']!),
-                        Text(
-                          valueOrDefault<String>(
-                            containerVOrdersRow?.teamCode,
+                            containerVOrdersRow.teamLeaderNameShort,
                             'team',
                           ),
                           style:
@@ -579,27 +579,11 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation6']!),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        wrapWithModel(
-                          model: _model.cpOrderParentStatusCardModel,
-                          updateCallback: () => setState(() {}),
-                          child: CpOrderParentStatusCardWidget(
-                            statusId: containerVOrdersRow!.statusId!,
-                            statusDescription:
-                                containerVOrdersRow.statusDescription!,
-                          ),
-                        ),
                         Text(
-                          '${valueOrDefault<String>(
-                            dateTimeFormat(
-                                'd/M H:mm', containerVOrdersRow.statusDate),
-                            '.',
-                          )} h',
+                          valueOrDefault<String>(
+                            containerVOrdersRow.teamCode,
+                            'team',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',

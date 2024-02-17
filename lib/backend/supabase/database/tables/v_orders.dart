@@ -26,6 +26,13 @@ class VOrdersRow extends SupabaseDataRow {
   int? get departmentId => getField<int>('departmentId');
   set departmentId(int? value) => setField<int>('departmentId', value);
 
+  int? get contractId => getField<int>('contractId');
+  set contractId(int? value) => setField<int>('contractId', value);
+
+  String? get contractDescription => getField<String>('contractDescription');
+  set contractDescription(String? value) =>
+      setField<String>('contractDescription', value);
+
   String? get orderMask => getField<String>('orderMask');
   set orderMask(String? value) => setField<String>('orderMask', value);
 

@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/orders/cp_order_parent_unit_show/cp_order_parent_unit_show_widget.dart';
-import '/pages/orders/md_order_parent_new/md_order_parent_new_widget.dart';
 import '/pages/units/cp_unit_card_show/cp_unit_card_show_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
@@ -294,26 +293,6 @@ class _PgUnitShowOriWidgetState extends State<PgUnitShowOriWidget>
                 ),
               );
               if (FFAppState().stIsPermission) {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: MdOrderParentNewWidget(
-                          unitId: widget.unitId!,
-                        ),
-                      ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
               } else {
                 return;
               }

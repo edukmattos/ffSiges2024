@@ -5,10 +5,11 @@ import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
-import 'md_order_parent_new_widget.dart' show MdOrderParentNewWidget;
+import 'md_order_parent_new_copy_widget.dart' show MdOrderParentNewCopyWidget;
 import 'package:flutter/material.dart';
 
-class MdOrderParentNewModel extends FlutterFlowModel<MdOrderParentNewWidget> {
+class MdOrderParentNewCopyModel
+    extends FlutterFlowModel<MdOrderParentNewCopyWidget> {
   ///  Local state fields for this component.
 
   int? lcsvOrderCounter;

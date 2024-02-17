@@ -235,10 +235,10 @@ class FFAppState extends ChangeNotifier {
     _stOrderVisitAssetsDraftAmount = value;
   }
 
-  int _stOrdervisitAssetsReportedAmount = 0;
-  int get stOrdervisitAssetsReportedAmount => _stOrdervisitAssetsReportedAmount;
-  set stOrdervisitAssetsReportedAmount(int value) {
-    _stOrdervisitAssetsReportedAmount = value;
+  int _stOrderVisitAssetsReportedAmount = 0;
+  int get stOrderVisitAssetsReportedAmount => _stOrderVisitAssetsReportedAmount;
+  set stOrderVisitAssetsReportedAmount(int value) {
+    _stOrderVisitAssetsReportedAmount = value;
   }
 
   int _stOrdervisitAssetsDisapprovedAmount = 0;
@@ -248,21 +248,10 @@ class FFAppState extends ChangeNotifier {
     _stOrdervisitAssetsDisapprovedAmount = value;
   }
 
-  int _stOrdervisitAssetsApprovedAmount = 0;
-  int get stOrdervisitAssetsApprovedAmount => _stOrdervisitAssetsApprovedAmount;
-  set stOrdervisitAssetsApprovedAmount(int value) {
-    _stOrdervisitAssetsApprovedAmount = value;
-  }
-
-  DtVOrderParentStruct _stOrderParentSelected = DtVOrderParentStruct();
-  DtVOrderParentStruct get stOrderParentSelected => _stOrderParentSelected;
-  set stOrderParentSelected(DtVOrderParentStruct value) {
-    _stOrderParentSelected = value;
-  }
-
-  void updateStOrderParentSelectedStruct(
-      Function(DtVOrderParentStruct) updateFn) {
-    updateFn(_stOrderParentSelected);
+  int _stOrderVisitAssetsApprovedAmount = 0;
+  int get stOrderVisitAssetsApprovedAmount => _stOrderVisitAssetsApprovedAmount;
+  set stOrderVisitAssetsApprovedAmount(int value) {
+    _stOrderVisitAssetsApprovedAmount = value;
   }
 
   List<DtVOrderFollowerStruct> _stOrdersFollowers = [
@@ -467,6 +456,45 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInStOrderSelected(int index, DtVOrderStruct value) {
     _stOrderSelected.insert(index, value);
+  }
+
+  DtOrderParentNewStruct _stOrderParentNew = DtOrderParentNewStruct();
+  DtOrderParentNewStruct get stOrderParentNew => _stOrderParentNew;
+  set stOrderParentNew(DtOrderParentNewStruct value) {
+    _stOrderParentNew = value;
+  }
+
+  void updateStOrderParentNewStruct(Function(DtOrderParentNewStruct) updateFn) {
+    updateFn(_stOrderParentNew);
+  }
+
+  List<DtVOrderStruct> _stOrderParentSelected = [];
+  List<DtVOrderStruct> get stOrderParentSelected => _stOrderParentSelected;
+  set stOrderParentSelected(List<DtVOrderStruct> value) {
+    _stOrderParentSelected = value;
+  }
+
+  void addToStOrderParentSelected(DtVOrderStruct value) {
+    _stOrderParentSelected.add(value);
+  }
+
+  void removeFromStOrderParentSelected(DtVOrderStruct value) {
+    _stOrderParentSelected.remove(value);
+  }
+
+  void removeAtIndexFromStOrderParentSelected(int index) {
+    _stOrderParentSelected.removeAt(index);
+  }
+
+  void updateStOrderParentSelectedAtIndex(
+    int index,
+    DtVOrderStruct Function(DtVOrderStruct) updateFn,
+  ) {
+    _stOrderParentSelected[index] = updateFn(_stOrderParentSelected[index]);
+  }
+
+  void insertAtIndexInStOrderParentSelected(int index, DtVOrderStruct value) {
+    _stOrderParentSelected.insert(index, value);
   }
 }
 
