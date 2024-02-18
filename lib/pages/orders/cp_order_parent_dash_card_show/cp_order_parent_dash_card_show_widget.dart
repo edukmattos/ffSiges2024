@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -775,6 +776,11 @@ class _CpOrderParentDashCardShowWidgetState
                       ),
                       FFButtonWidget(
                         onPressed: () async {
+                          await action_blocks.abOrderParentSelected(
+                            context,
+                            abOrderId: containerVOrdersParentRow.id,
+                          );
+
                           context.pushNamed(
                             'pgOrderProgramming',
                             queryParameters: {

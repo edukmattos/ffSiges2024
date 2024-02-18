@@ -106,16 +106,21 @@ class _PgAssetShowWidgetState extends State<PgAssetShowWidget> {
                         model: _model.cpAssetListItemCardModel,
                         updateCallback: () => setState(() {}),
                         child: CpAssetListItemCardWidget(
-                          code: FFAppState().stAssetSelected.code,
-                          description: FFAppState().stAssetSelected.description,
+                          code: FFAppState().stAssetSeleted.first.code,
+                          description:
+                              FFAppState().stAssetSeleted.first.description,
                           tagDescription:
-                              FFAppState().stAssetSelected.tagDescription,
-                          tagSubDescription:
-                              FFAppState().stAssetSelected.tagSubDescription,
-                          statusDescription:
-                              FFAppState().stAssetSelected.statusDescription,
+                              FFAppState().stAssetSeleted.first.tagDescription,
+                          tagSubDescription: FFAppState()
+                              .stAssetSeleted
+                              .first
+                              .tagSubDescription,
+                          statusDescription: FFAppState()
+                              .stAssetSeleted
+                              .first
+                              .statusDescription,
                           unitDescription:
-                              FFAppState().stAssetSelected.unitDescription,
+                              FFAppState().stAssetSeleted.first.unitDescription,
                         ),
                       ),
                       Flexible(

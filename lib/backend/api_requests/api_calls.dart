@@ -2663,10 +2663,14 @@ class ApiOrdersVisitsAssetsGroup {
   };
   static AssetsByOrderVisitIdCall assetsByOrderVisitIdCall =
       AssetsByOrderVisitIdCall();
+  static OrdersVisitsAssetsByUnitAssetTagCall
+      ordersVisitsAssetsByUnitAssetTagCall =
+      OrdersVisitsAssetsByUnitAssetTagCall();
   static IdByvisitIdNassetIdCall idByvisitIdNassetIdCall =
       IdByvisitIdNassetIdCall();
   static OrderVisitAssetByIdCall orderVisitAssetByIdCall =
       OrderVisitAssetByIdCall();
+  static AssetsByUnitTagCall assetsByUnitTagCall = AssetsByUnitTagCall();
 }
 
 class AssetsByOrderVisitIdCall {
@@ -2721,6 +2725,40 @@ class AssetsByOrderVisitIdCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
+}
+
+class OrdersVisitsAssetsByUnitAssetTagCall {
+  Future<ApiCallResponse> call({
+    int? searchUnitId = 1,
+    int? searchAssetTagId = 1,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "search_unit_id": $searchUnitId,
+  "search_asset_tag_id": $searchAssetTagId
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ordersVisitsAssetsByUnitAssetTag',
+      apiUrl:
+          '${ApiOrdersVisitsAssetsGroup.baseUrl}rpc/fc_orders_visits_assets_by_unit_id_tag_id',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class IdByvisitIdNassetIdCall {
@@ -2998,6 +3036,40 @@ class OrderVisitAssetByIdCall {
         response,
         r'''$[:].afterUnitLongitude''',
       ));
+}
+
+class AssetsByUnitTagCall {
+  Future<ApiCallResponse> call({
+    int? searchUnitId,
+    int? searchAssetTagId,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "search_unit_id": $searchUnitId,
+  "search_asset_tag_id": $searchAssetTagId
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'assetsByUnitTag',
+      apiUrl:
+          '${ApiOrdersVisitsAssetsGroup.baseUrl}rpc/fc_assets_by_orders_visits_assets_unit_id_tag_id',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End apiOrdersVisitsAssets Group Code

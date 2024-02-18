@@ -827,7 +827,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                   .deleteFileCall
                                                                   .call(
                                                                 fileUrl:
-                                                                    'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSelected.id.toString()}/${_model.lpsvFileNameToDelete}',
+                                                                    'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSeleted.first.id.toString()}/${_model.lpsvFileNameToDelete}',
                                                               );
                                                             } else {
                                                               return;

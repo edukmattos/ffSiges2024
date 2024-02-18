@@ -252,10 +252,10 @@ class _PgOrderVisitAsset1SearchWidgetState
                                               .id,
                                           1,
                                         ),
-                                        abAssetId: valueOrDefault<int>(
-                                          FFAppState().stAssetSelected.id,
-                                          0,
-                                        ),
+                                        abAssetId: FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .id,
                                       );
                                       if (_model.resOrderVisitAssetIsExist!) {
                                         ScaffoldMessenger.of(context)
@@ -277,21 +277,13 @@ class _PgOrderVisitAsset1SearchWidgetState
                                           ),
                                         );
                                       } else {
-                                        _model.resAssetSelected100 =
-                                            await ApiAssetsGroup.assetByIdCall
-                                                .call(
-                                          assetId: valueOrDefault<int>(
-                                            FFAppState().stAssetSelected.id,
-                                            0,
-                                          ),
-                                        );
                                         _model.resOrderVisitAssetAdded =
                                             await OrdersVisitsAssetsTable()
                                                 .insert({
-                                          'assetId': valueOrDefault<int>(
-                                            FFAppState().stAssetSelected.id,
-                                            0,
-                                          ),
+                                          'assetId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .id,
                                           'orderVisitId': valueOrDefault<int>(
                                             FFAppState()
                                                 .stOrderVisitSelected
@@ -299,62 +291,38 @@ class _PgOrderVisitAsset1SearchWidgetState
                                                 .id,
                                             1,
                                           ),
-                                          'beforeUnitId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .unitId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'beforeTagId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .tagId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'beforeTagSubId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .tagSubId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'beforeStatusId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .statusId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'afterUnitId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .unitId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'afterTagId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .tagId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'afterTagSubId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .tagSubId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                          'afterStatusId': ApiAssetsGroup
-                                              .assetByIdCall
-                                              .statusId(
-                                            (_model.resAssetSelected100
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
+                                          'beforeUnitId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .unitId,
+                                          'beforeTagId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .tagId,
+                                          'beforeTagSubId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .tagSubId,
+                                          'beforeStatusId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .statusId,
+                                          'afterUnitId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .unitId,
+                                          'afterTagId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .tagId,
+                                          'afterTagSubId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .tagSubId,
+                                          'afterStatusId': FFAppState()
+                                              .stAssetSeleted
+                                              .first
+                                              .statusId,
                                           'processingId': 1,
                                         });
                                       }
@@ -370,10 +338,10 @@ class _PgOrderVisitAsset1SearchWidgetState
                                               .id,
                                           1,
                                         ),
-                                        assetId: valueOrDefault<int>(
-                                          FFAppState().stAssetSelected.id,
-                                          0,
-                                        ),
+                                        assetId: FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .id,
                                       );
                                       await action_blocks
                                           .abOrderVisitAssetSelected(

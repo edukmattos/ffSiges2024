@@ -25,8 +25,6 @@ class PgOrderVisitAsset1SearchModel
   Completer<ApiCallResponse>? apiRequestCompleter;
   // Stores action output result for [Action Block - abOrderVisitAssetIsExist] action in cpAssetListItemCard widget.
   bool? resOrderVisitAssetIsExist;
-  // Stores action output result for [Backend Call - API (assetById)] action in cpAssetListItemCard widget.
-  ApiCallResponse? resAssetSelected100;
   // Stores action output result for [Backend Call - Insert Row] action in cpAssetListItemCard widget.
   OrdersVisitsAssetsRow? resOrderVisitAssetAdded;
   // Stores action output result for [Backend Call - API (idByvisitIdNassetId)] action in cpAssetListItemCard widget.

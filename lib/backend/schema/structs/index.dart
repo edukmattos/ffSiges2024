@@ -9,6 +9,7 @@ export 'dt_order_visit_asset_struct.dart';
 export 'dt_order_visit_open_team_users_struct.dart';
 export 'dt_user_struct.dart';
 export 'dt_user_leader_by_team_struct.dart';
+export 'dt_v_asset_struct.dart';
 export 'dt_v_order_struct.dart';
 export 'dt_v_order_follower_struct.dart';
 export 'dt_v_order_visit_struct.dart';

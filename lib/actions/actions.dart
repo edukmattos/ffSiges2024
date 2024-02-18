@@ -529,47 +529,17 @@ Future abAssetSelected(
 }) async {
   ApiCallResponse? resAssetSelected101;
 
-  FFAppState().stAssetSelected = DtAssetStruct();
   resAssetSelected101 = await ApiAssetsGroup.assetByIdCall.call(
     assetId: abAssetId,
   );
   if ((resAssetSelected101.succeeded ?? true)) {
-    FFAppState().updateStAssetSelectedStruct(
-      (e) => e
-        ..id = ApiAssetsGroup.assetByIdCall.id(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..code = ApiAssetsGroup.assetByIdCall.code(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..description = ApiAssetsGroup.assetByIdCall.description(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..unitId = ApiAssetsGroup.assetByIdCall.unitId(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..tagId = ApiAssetsGroup.assetByIdCall.tagId(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..tagDescription = ApiAssetsGroup.assetByIdCall.tagDescription(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..tagSubDescription = ApiAssetsGroup.assetByIdCall.tagSubDescription(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..tagSubId = ApiAssetsGroup.assetByIdCall.tagSubId(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..statusId = ApiAssetsGroup.assetByIdCall.statusId(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..statusDescription = ApiAssetsGroup.assetByIdCall.statusDescription(
-          (resAssetSelected101?.jsonBody ?? ''),
-        )
-        ..unitDescription = ApiAssetsGroup.assetByIdCall.unitDescription(
-          (resAssetSelected101?.jsonBody ?? ''),
-        ),
-    );
+    FFAppState().stAssetSeleted = ((resAssetSelected101.jsonBody ?? '')
+            .toList()
+            .map<DtVAssetStruct?>(DtVAssetStruct.maybeFromMap)
+            .toList() as Iterable<DtVAssetStruct?>)
+        .withoutNulls
+        .toList()
+        .cast<DtVAssetStruct>();
   }
 }
 
@@ -764,20 +734,6 @@ Future abOrderParentSelected(
     orderId: abOrderId,
   );
   if ((resOrderParentSelected.succeeded ?? true)) {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: const Text('11'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: const Text('Ok'),
-            ),
-          ],
-        );
-      },
-    );
     FFAppState().stOrderParentSelected =
         ((resOrderParentSelected.jsonBody ?? '')
                 .toList()
@@ -1022,10 +978,7 @@ Future<bool> abOrderVisitAssetIsExist(
       FFAppState().stOrderVisitSelected.first.id,
       1,
     ),
-    assetId: valueOrDefault<int>(
-      FFAppState().stAssetSelected.id,
-      0,
-    ),
+    assetId: FFAppState().stAssetSeleted.first.id,
   );
   if (ApiOrdersVisitsAssetsGroup.idByvisitIdNassetIdCall.id(
         (resOrderVisitAssetCheck.jsonBody ?? ''),

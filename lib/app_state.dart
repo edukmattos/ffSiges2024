@@ -115,16 +115,6 @@ class FFAppState extends ChangeNotifier {
     _stAssets.insert(index, value);
   }
 
-  DtAssetStruct _stAssetSelected = DtAssetStruct();
-  DtAssetStruct get stAssetSelected => _stAssetSelected;
-  set stAssetSelected(DtAssetStruct value) {
-    _stAssetSelected = value;
-  }
-
-  void updateStAssetSelectedStruct(Function(DtAssetStruct) updateFn) {
-    updateFn(_stAssetSelected);
-  }
-
   List<DtUserLeaderByTeamStruct> _stUsersLeadersByTeam = [];
   List<DtUserLeaderByTeamStruct> get stUsersLeadersByTeam =>
       _stUsersLeadersByTeam;
@@ -495,6 +485,35 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInStOrderParentSelected(int index, DtVOrderStruct value) {
     _stOrderParentSelected.insert(index, value);
+  }
+
+  List<DtVAssetStruct> _stAssetSeleted = [];
+  List<DtVAssetStruct> get stAssetSeleted => _stAssetSeleted;
+  set stAssetSeleted(List<DtVAssetStruct> value) {
+    _stAssetSeleted = value;
+  }
+
+  void addToStAssetSeleted(DtVAssetStruct value) {
+    _stAssetSeleted.add(value);
+  }
+
+  void removeFromStAssetSeleted(DtVAssetStruct value) {
+    _stAssetSeleted.remove(value);
+  }
+
+  void removeAtIndexFromStAssetSeleted(int index) {
+    _stAssetSeleted.removeAt(index);
+  }
+
+  void updateStAssetSeletedAtIndex(
+    int index,
+    DtVAssetStruct Function(DtVAssetStruct) updateFn,
+  ) {
+    _stAssetSeleted[index] = updateFn(_stAssetSeleted[index]);
+  }
+
+  void insertAtIndexInStAssetSeleted(int index, DtVAssetStruct value) {
+    _stAssetSeleted.insert(index, value);
   }
 }
 

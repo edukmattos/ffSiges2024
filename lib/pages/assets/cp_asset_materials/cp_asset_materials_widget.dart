@@ -54,7 +54,7 @@ class _CpAssetMaterialsWidgetState extends State<CpAssetMaterialsWidget> {
         queryFn: (q) => q
             .eq(
               'assetId',
-              FFAppState().stAssetSelected.id,
+              FFAppState().stAssetSeleted.first.id,
             )
             .order('materialDescription', ascending: true),
       ),
