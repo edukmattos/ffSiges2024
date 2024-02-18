@@ -1048,30 +1048,47 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                 .BadgeAnimationType
                                                                 .scale,
                                                             toAnimate: true,
-                                                            child: Card(
-                                                              clipBehavior: Clip
-                                                                  .antiAliasWithSaveLayer,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .success,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                              ),
-                                                              child: const Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            12.0),
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .fire_truck,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 24.0,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrdersView =
+                                                                      'ordersAuthorized';
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                child: const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .fire_truck,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 24.0,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1298,7 +1315,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                               onTap: () async {
                                                                 setState(() {
                                                                   _model.lpsvOrdersView =
-                                                                      'scheduled';
+                                                                      'ordersScheduled';
                                                                 });
                                                               },
                                                               child: Card(
@@ -1491,7 +1508,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                               onTap: () async {
                                                                 setState(() {
                                                                   _model.lpsvOrdersView =
-                                                                      'inProgress';
+                                                                      'ordersInProgress';
                                                                 });
                                                               },
                                                               child: Card(
@@ -1684,7 +1701,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                               onTap: () async {
                                                                 setState(() {
                                                                   _model.lpsvOrdersView =
-                                                                      'suspended';
+                                                                      'ordersSuspended';
                                                                 });
                                                               },
                                                               child: Card(
@@ -2144,384 +2161,391 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: Container(
-                              width: double.infinity,
-                              height: MediaQuery.sizeOf(context).height * 1.0,
-                              decoration: const BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Builder(
-                                    builder: (context) {
-                                      if (_model.lpsvOrdersView ==
-                                          'ordersAnalysis') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<
-                                                  List<VOrdersParentRow>>(
-                                                future: VOrdersParentTable()
-                                                    .queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        1,
-                                                      )
-                                                      .order('requesterDate'),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
+                                decoration: const BoxDecoration(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Builder(
+                                      builder: (context) {
+                                        if (_model.lpsvOrdersView ==
+                                            'ordersAnalysis') {
+                                          return SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FutureBuilder<
+                                                    List<VOrdersParentRow>>(
+                                                  future: VOrdersParentTable()
+                                                      .queryRows(
+                                                    queryFn: (q) => q
+                                                        .eq(
+                                                          'statusId',
+                                                          1,
+                                                        )
+                                                        .order('requesterDate'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersParentRow>
-                                                      listViewVOrdersParentRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewVOrdersParentRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewVOrdersParentRow =
-                                                          listViewVOrdersParentRowList[
-                                                              listViewIndex];
-                                                      return CpOrderParentDashCardShowWidget(
-                                                        key: Key(
-                                                            'Key8n0_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
-                                                        orderId:
-                                                            listViewVOrdersParentRow
-                                                                .id!,
                                                       );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      } else if (_model.lpsvOrdersView ==
-                                          'ordersAuthorized') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<
-                                                  List<VOrdersParentRow>>(
-                                                future: VOrdersParentTable()
-                                                    .queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        2,
-                                                      )
-                                                      .order('requesterDate'),
+                                                    }
+                                                    List<VOrdersParentRow>
+                                                        listViewVOrdersParentRowList =
+                                                        snapshot.data!;
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewVOrdersParentRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => const SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewVOrdersParentRow =
+                                                            listViewVOrdersParentRowList[
+                                                                listViewIndex];
+                                                        return CpOrderParentDashCardShowWidget(
+                                                          key: Key(
+                                                              'Key8n0_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
+                                                          orderId:
+                                                              listViewVOrdersParentRow
+                                                                  .id!,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              ],
+                                            ),
+                                          );
+                                        } else if (_model.lpsvOrdersView ==
+                                            'ordersAuthorized') {
+                                          return SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FutureBuilder<
+                                                    List<VOrdersParentRow>>(
+                                                  future: VOrdersParentTable()
+                                                      .queryRows(
+                                                    queryFn: (q) => q
+                                                        .eq(
+                                                          'statusId',
+                                                          2,
+                                                        )
+                                                        .order('requesterDate'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersParentRow>
-                                                      listViewVOrdersParentRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewVOrdersParentRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewVOrdersParentRow =
-                                                          listViewVOrdersParentRowList[
-                                                              listViewIndex];
-                                                      return CpOrderParentDashCardShowWidget(
-                                                        key: Key(
-                                                            'Keyxxd_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
-                                                        orderId:
-                                                            listViewVOrdersParentRow
-                                                                .id!,
                                                       );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      } else if (_model.lpsvOrdersView ==
-                                          'scheduled') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<List<VOrdersRow>>(
-                                                future:
-                                                    VOrdersTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        3,
-                                                      )
-                                                      .order('requesterDate'),
+                                                    }
+                                                    List<VOrdersParentRow>
+                                                        listViewVOrdersParentRowList =
+                                                        snapshot.data!;
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewVOrdersParentRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => const SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewVOrdersParentRow =
+                                                            listViewVOrdersParentRowList[
+                                                                listViewIndex];
+                                                        return CpOrderParentDashCardShowWidget(
+                                                          key: Key(
+                                                              'Keyxxd_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
+                                                          orderId:
+                                                              listViewVOrdersParentRow
+                                                                  .id!,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              ],
+                                            ),
+                                          );
+                                        } else if (_model.lpsvOrdersView ==
+                                            'ordersScheduled') {
+                                          return SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FutureBuilder<List<VOrdersRow>>(
+                                                  future:
+                                                      VOrdersTable().queryRows(
+                                                    queryFn: (q) => q
+                                                        .eq(
+                                                          'statusId',
+                                                          3,
+                                                        )
+                                                        .order('requesterDate'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersRow>
-                                                      listViewVOrdersRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewVOrdersRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewVOrdersRow =
-                                                          listViewVOrdersRowList[
-                                                              listViewIndex];
-                                                      return CpOrderCardShowWidget(
-                                                        key: Key(
-                                                            'Key1g5_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
-                                                        orderId:
-                                                            listViewVOrdersRow
-                                                                .id!,
                                                       );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      } else if (_model.lpsvOrdersView ==
-                                          'inProgress') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<List<VOrdersRow>>(
-                                                future:
-                                                    VOrdersTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        4,
-                                                      )
-                                                      .order('requesterDate'),
+                                                    }
+                                                    List<VOrdersRow>
+                                                        listViewVOrdersRowList =
+                                                        snapshot.data!;
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewVOrdersRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => const SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewVOrdersRow =
+                                                            listViewVOrdersRowList[
+                                                                listViewIndex];
+                                                        return CpOrderCardShowWidget(
+                                                          key: Key(
+                                                              'Key1g5_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
+                                                          orderId:
+                                                              listViewVOrdersRow
+                                                                  .id!,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              ],
+                                            ),
+                                          );
+                                        } else if (_model.lpsvOrdersView ==
+                                            'ordersInProgress') {
+                                          return SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FutureBuilder<List<VOrdersRow>>(
+                                                  future:
+                                                      VOrdersTable().queryRows(
+                                                    queryFn: (q) => q
+                                                        .eq(
+                                                          'statusId',
+                                                          4,
+                                                        )
+                                                        .order('requesterDate'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersRow>
-                                                      listViewVOrdersRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewVOrdersRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewVOrdersRow =
-                                                          listViewVOrdersRowList[
-                                                              listViewIndex];
-                                                      return CpOrderCardShowWidget(
-                                                        key: Key(
-                                                            'Key4qq_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
-                                                        orderId:
-                                                            listViewVOrdersRow
-                                                                .id!,
                                                       );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      } else {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FutureBuilder<List<VOrdersRow>>(
-                                                future:
-                                                    VOrdersTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        5,
-                                                      )
-                                                      .order('requesterDate'),
+                                                    }
+                                                    List<VOrdersRow>
+                                                        listViewVOrdersRowList =
+                                                        snapshot.data!;
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewVOrdersRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => const SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewVOrdersRow =
+                                                            listViewVOrdersRowList[
+                                                                listViewIndex];
+                                                        return CpOrderCardShowWidget(
+                                                          key: Key(
+                                                              'Key4qq_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
+                                                          orderId:
+                                                              listViewVOrdersRow
+                                                                  .id!,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              ],
+                                            ),
+                                          );
+                                        } else {
+                                          return SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FutureBuilder<List<VOrdersRow>>(
+                                                  future:
+                                                      VOrdersTable().queryRows(
+                                                    queryFn: (q) => q
+                                                        .eq(
+                                                          'statusId',
+                                                          5,
+                                                        )
+                                                        .order('requesterDate'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersRow>
-                                                      listViewVOrdersRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding: EdgeInsets.zero,
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewVOrdersRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewIndex) {
-                                                      final listViewVOrdersRow =
-                                                          listViewVOrdersRowList[
-                                                              listViewIndex];
-                                                      return CpOrderCardShowWidget(
-                                                        key: Key(
-                                                            'Key6nz_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
-                                                        orderId:
-                                                            listViewVOrdersRow
-                                                                .id!,
                                                       );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation13']!),
+                                                    }
+                                                    List<VOrdersRow>
+                                                        listViewVOrdersRowList =
+                                                        snapshot.data!;
+                                                    return ListView.separated(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          listViewVOrdersRowList
+                                                              .length,
+                                                      separatorBuilder:
+                                                          (_, __) => const SizedBox(
+                                                              height: 12.0),
+                                                      itemBuilder: (context,
+                                                          listViewIndex) {
+                                                        final listViewVOrdersRow =
+                                                            listViewVOrdersRowList[
+                                                                listViewIndex];
+                                                        return CpOrderCardShowWidget(
+                                                          key: Key(
+                                                              'Key6nz_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
+                                                          orderId:
+                                                              listViewVOrdersRow
+                                                                  .id!,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation13']!),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
