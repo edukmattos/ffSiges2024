@@ -593,10 +593,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                      shape: BoxShape.rectangle,
+                                                      shape: BoxShape.circle,
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -688,11 +685,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     .of(context)
                                                                 .tertiary,
                                                             shape:
-                                                                RoundedRectangleBorder(
+                                                                const RoundedRectangleBorder(
                                                               borderRadius:
                                                                   BorderRadius
-                                                                      .circular(
-                                                                          10.0),
+                                                                      .only(
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        40.0),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        40.0),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        40.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        40.0),
+                                                              ),
                                                             ),
                                                             child: const Padding(
                                                               padding:
@@ -771,12 +780,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -878,11 +883,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                         context)
                                                                     .tertiary,
                                                                 shape:
-                                                                    RoundedRectangleBorder(
+                                                                    const RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10.0),
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                  ),
                                                                 ),
                                                                 child: const Padding(
                                                                   padding:
@@ -964,12 +981,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1071,11 +1084,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                         context)
                                                                     .success,
                                                                 shape:
-                                                                    RoundedRectangleBorder(
+                                                                    const RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10.0),
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                  ),
                                                                 ),
                                                                 child: const Padding(
                                                                   padding:
@@ -1218,12 +1243,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1325,11 +1346,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                         context)
                                                                     .tertiary,
                                                                 shape:
-                                                                    RoundedRectangleBorder(
+                                                                    const RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10.0),
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                  ),
                                                                 ),
                                                                 child: const Padding(
                                                                   padding:
@@ -1411,12 +1444,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1518,11 +1547,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                         context)
                                                                     .success,
                                                                 shape:
-                                                                    RoundedRectangleBorder(
+                                                                    const RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10.0),
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                  ),
                                                                 ),
                                                                 child: const Padding(
                                                                   padding:
@@ -1604,12 +1645,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1704,19 +1741,31 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                       'ordersSuspended';
                                                                 });
                                                               },
-                                                              child: Card(
+                                                              child: const Card(
                                                                 clipBehavior: Clip
                                                                     .antiAliasWithSaveLayer,
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFF595555),
                                                                 shape:
                                                                     RoundedRectangleBorder(
                                                                   borderRadius:
                                                                       BorderRadius
-                                                                          .circular(
-                                                                              10.0),
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            40.0),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            40.0),
+                                                                  ),
                                                                 ),
-                                                                child: const Padding(
+                                                                child: Padding(
                                                                   padding:
                                                                       EdgeInsets
                                                                           .all(
@@ -1811,10 +1860,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                      shape: BoxShape.rectangle,
+                                                      shape: BoxShape.circle,
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1891,11 +1937,24 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .of(context)
                                                               .primary,
                                                           shape:
-                                                              RoundedRectangleBorder(
+                                                              const RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(
-                                                                        12.0),
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          40.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                            ),
                                                           ),
                                                           child: const Padding(
                                                             padding:
@@ -1925,10 +1984,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                      shape: BoxShape.rectangle,
+                                                      shape: BoxShape.circle,
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -2005,11 +2061,24 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .of(context)
                                                               .tertiary,
                                                           shape:
-                                                              RoundedRectangleBorder(
+                                                              const RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(
-                                                                        10.0),
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          40.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                            ),
                                                           ),
                                                           child: const Padding(
                                                             padding:
@@ -2040,10 +2109,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                      shape: BoxShape.rectangle,
+                                                      shape: BoxShape.circle,
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -2120,11 +2186,24 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .of(context)
                                                               .error,
                                                           shape:
-                                                              RoundedRectangleBorder(
+                                                              const RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(
-                                                                        10.0),
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          40.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      40.0),
+                                                            ),
                                                           ),
                                                           child: const Padding(
                                                             padding:

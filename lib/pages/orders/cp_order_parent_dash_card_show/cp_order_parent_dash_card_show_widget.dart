@@ -432,10 +432,7 @@ class _CpOrderParentDashCardShowWidgetState
                           children: [
                             if (!_model.isFollowed)
                               FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
                                 borderRadius: 25.0,
-                                borderWidth: 4.0,
                                 buttonSize: 50.0,
                                 icon: Icon(
                                   Icons.bookmark_add_rounded,
@@ -471,10 +468,7 @@ class _CpOrderParentDashCardShowWidgetState
                               ),
                             if (_model.isFollowed)
                               FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
                                 borderRadius: 25.0,
-                                borderWidth: 4.0,
                                 buttonSize: 50.0,
                                 icon: Icon(
                                   Icons.bookmark_rounded,
@@ -528,16 +522,15 @@ class _CpOrderParentDashCardShowWidgetState
                           ],
                         ),
                         FlutterFlowIconButton(
-                          borderColor:
-                              FlutterFlowTheme.of(context).primaryBtnText,
                           borderRadius: 25.0,
-                          borderWidth: 4.0,
                           buttonSize: 50.0,
+                          fillColor: FlutterFlowTheme.of(context).error,
                           icon: FaIcon(
-                            FontAwesomeIcons.ellipsisV,
+                            FontAwesomeIcons.timesCircle,
                             color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 24.0,
+                            size: 30.0,
                           ),
+                          showLoadingIndicator: true,
                           onPressed: () {
                             print('IconButton pressed ...');
                           },

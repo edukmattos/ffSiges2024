@@ -49,8 +49,6 @@ export '/create3_support_ticket_bug_report/create3_support_ticket_bug_report_wid
 export '/pages/visits/pg_order_visit_asset_moving/pg_order_visit_asset_moving_widget.dart'
     show PgOrderVisitAssetMovingWidget;
 export '/profile09/profile09_widget.dart' show Profile09Widget;
-export '/pages/visits/pg_order_visit_asset_analisys/pg_order_visit_asset_analisys_widget.dart'
-    show PgOrderVisitAssetAnalisysWidget;
 export '/home12_activity/home12_activity_widget.dart' show Home12ActivityWidget;
 export '/home09_dashboard/home09_dashboard_widget.dart'
     show Home09DashboardWidget;

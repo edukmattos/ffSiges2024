@@ -138,31 +138,36 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                 child: CpOrderVisitAssetListItemCardWidget(
                                   code: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .code,
                                   statusDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeStatusDescription,
                                   description: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .description,
                                   tagDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeTagDescription,
                                   tagSubDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeTagSubDescription,
                                   processingId: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .processingId,
                                   isMoved: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .isMoved,
-                                  unitDescription: valueOrDefault<String>(
-                                    FFAppState()
-                                        .stOrderVisitAssetSelected
-                                        .beforeUnitDescription,
-                                    'unitDescription',
-                                  ),
+                                  unitDescription: FFAppState()
+                                      .stOrderVisitAssetSelected
+                                      .first
+                                      .beforeUnitDescription,
                                 ),
                               ),
                               Row(
@@ -191,21 +196,17 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                         queryFn: (q) => q
                                             .eq(
                                               'orderVisitId',
-                                              valueOrDefault<int>(
-                                                FFAppState()
-                                                    .stOrderVisitAssetSelected
-                                                    .orderVisitId,
-                                                0,
-                                              ),
+                                              FFAppState()
+                                                  .stOrderVisitAssetSelected
+                                                  .first
+                                                  .orderVisitId,
                                             )
                                             .eq(
                                               'assetId',
-                                              valueOrDefault<int>(
-                                                FFAppState()
-                                                    .stOrderVisitAssetSelected
-                                                    .assetId,
-                                                0,
-                                              ),
+                                              FFAppState()
+                                                  .stOrderVisitAssetSelected
+                                                  .first
+                                                  .assetId,
                                             ),
                                       )))
                                     .future,
@@ -500,6 +501,7 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                             ),
                                             'assetId': FFAppState()
                                                 .stOrderVisitAssetSelected
+                                                .first
                                                 .assetId,
                                             'activityId': _model
                                                 .cpDropdownOrdersTypesActivitiesModel

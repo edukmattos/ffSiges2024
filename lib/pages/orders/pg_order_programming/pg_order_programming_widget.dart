@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,7 +9,6 @@ import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_parent_dash_card_show/cp_order_parent_dash_card_show_widget.dart';
 import '/pages/orders/cp_order_programming_assets_list_item_card/cp_order_programming_assets_list_item_card_widget.dart';
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -164,14 +164,14 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                     ),
                   ),
                   Column(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 4.0),
                         child: Text(
-                          'Qual o Setor ?',
+                          'Setor',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -185,6 +185,7 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                         model: _model.cpDropdownAssetsTagsModel,
                         updateCallback: () => setState(() {}),
                         child: CpDropdownAssetsTagsWidget(
+                          hintText: 'Setor',
                           initialValue: FFAppState()
                               .stOrderParentSelected
                               .first
@@ -198,7 +199,7 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                       alignment: const AlignmentDirectional(0.0, -1.0),
                       child: SingleChildScrollView(
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -241,9 +242,20 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                                           .dropdownAssetsTagsValue,
                                     );
                                     if ((_model.resUnits?.succeeded ?? true)) {
-                                      setState(() =>
-                                          _model.apiRequestCompleter = null);
-                                      await _model.waitForApiRequestCompleted();
+                                      setState(() {
+                                        FFAppState().stAssets =
+                                            ((_model.resUnits?.jsonBody ?? '')
+                                                        .toList()
+                                                        .map<DtVAssetStruct?>(
+                                                            DtVAssetStruct
+                                                                .maybeFromMap)
+                                                        .toList()
+                                                    as Iterable<
+                                                        DtVAssetStruct?>)
+                                                .withoutNulls
+                                                .toList()
+                                                .cast<DtVAssetStruct>();
+                                      });
                                     }
 
                                     setState(() {});
@@ -251,99 +263,45 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                                 ),
                               ],
                             ),
-                            FutureBuilder<ApiCallResponse>(
-                              future: (_model.apiRequestCompleter ??=
-                                      Completer<ApiCallResponse>()
-                                        ..complete(ApiOrdersVisitsAssetsGroup
-                                            .assetsByUnitTagCall
-                                            .call(
-                                          searchUnitId: FFAppState()
-                                              .stOrderParentSelected
-                                              .first
-                                              .unitId,
-                                          searchAssetTagId: _model
-                                              .cpDropdownAssetsTagsModel
-                                              .dropdownAssetsTagsValue,
-                                        )))
-                                  .future,
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final columnAssetsByUnitTagResponse =
-                                    snapshot.data!;
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Builder(
-                                        builder: (context) {
-                                          final assetsByTagId = getJsonField(
-                                            columnAssetsByUnitTagResponse
-                                                .jsonBody,
-                                            r'''$''',
-                                          ).toList();
-                                          return ListView.separated(
-                                            padding: EdgeInsets.zero,
-                                            primary: false,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: assetsByTagId.length,
-                                            separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 12.0),
-                                            itemBuilder:
-                                                (context, assetsByTagIdIndex) {
-                                              final assetsByTagIdItem =
-                                                  assetsByTagId[
-                                                      assetsByTagIdIndex];
-                                              return CpOrderProgrammingAssetsListItemCardWidget(
-                                                key: Key(
-                                                    'Keyf00_${assetsByTagIdIndex}_of_${assetsByTagId.length}'),
-                                                code: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.code''',
-                                                ).toString(),
-                                                statusDescription: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.statusDescription''',
-                                                ).toString(),
-                                                description: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.description''',
-                                                ).toString(),
-                                                tagDescription: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.tagDescription''',
-                                                ).toString(),
-                                                tagSubDescription: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.tagSubDescription''',
-                                                ).toString(),
-                                                unitDescription: getJsonField(
-                                                  assetsByTagIdItem,
-                                                  r'''$.unitDescription''',
-                                                ).toString(),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Builder(
+                                  builder: (context) {
+                                    final assetsByTagId =
+                                        FFAppState().stAssets.toList();
+                                    return ListView.separated(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: assetsByTagId.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 12.0),
+                                      itemBuilder:
+                                          (context, assetsByTagIdIndex) {
+                                        final assetsByTagIdItem =
+                                            assetsByTagId[assetsByTagIdIndex];
+                                        return CpOrderProgrammingAssetsListItemCardWidget(
+                                          key: Key(
+                                              'Keyf00_${assetsByTagIdIndex}_of_${assetsByTagId.length}'),
+                                          code: assetsByTagIdItem.code,
+                                          statusDescription: assetsByTagIdItem
+                                              .statusDescription,
+                                          description:
+                                              assetsByTagIdItem.description,
+                                          tagDescription:
+                                              assetsByTagIdItem.tagDescription,
+                                          tagSubDescription: assetsByTagIdItem
+                                              .tagSubDescription,
+                                          unitDescription:
+                                              assetsByTagIdItem.unitDescription,
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                           ].divide(const SizedBox(height: 12.0)),
                         ),

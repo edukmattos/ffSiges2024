@@ -174,7 +174,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                           ..complete(VOrdersVisitsAssetsTable().querySingleRow(
                             queryFn: (q) => q.eq(
                               'id',
-                              FFAppState().stOrderVisitAssetSelected.id,
+                              FFAppState().stOrderVisitAssetSelected.first.id,
                             ),
                           )))
                     .future,
@@ -224,29 +224,36 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                     child: CpOrderVisitAssetListItemCardWidget(
                                       code: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .code,
                                       statusDescription: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .beforeStatusDescription,
                                       description: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .description,
                                       tagDescription: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .beforeTagDescription,
                                       tagSubDescription: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .beforeTagSubDescription,
                                       processingId: FFAppState()
                                           .stOrderVisitAssetSelected
+                                          .first
                                           .processingId,
-                                      isMoved: false,
-                                      unitDescription: valueOrDefault<String>(
-                                        FFAppState()
-                                            .stOrderVisitAssetSelected
-                                            .beforeUnitDescription,
-                                        'unitDescription',
-                                      ),
+                                      isMoved: FFAppState()
+                                          .stOrderVisitAssetSelected
+                                          .first
+                                          .isMoved,
+                                      unitDescription: FFAppState()
+                                          .stOrderVisitAssetSelected
+                                          .first
+                                          .beforeUnitDescription,
                                     ),
                                   ),
                                 ),
@@ -518,6 +525,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                   'before') {
                                                                 if (FFAppState()
                                                                             .stOrderVisitAssetSelected
+                                                                            .first
                                                                             .beforeImgFileName !=
                                                                         '') {
                                                                   var confirmDialogResponse =
@@ -571,6 +579,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                         'id',
                                                                         FFAppState()
                                                                             .stOrderVisitAssetSelected
+                                                                            .first
                                                                             .id,
                                                                       ),
                                                                     );
@@ -585,6 +594,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                               } else {
                                                                 if (FFAppState()
                                                                             .stOrderVisitAssetSelected
+                                                                            .first
                                                                             .afterImgFileName !=
                                                                         '') {
                                                                   var confirmDialogResponse =
@@ -638,6 +648,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                         'id',
                                                                         FFAppState()
                                                                             .stOrderVisitAssetSelected
+                                                                            .first
                                                                             .id,
                                                                       ),
                                                                     );
@@ -662,6 +673,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                 abOrderVisitAssetId:
                                                                     FFAppState()
                                                                         .stOrderVisitAssetSelected
+                                                                        .first
                                                                         .id,
                                                               );
                                                             } else {
@@ -748,13 +760,14 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         onPressed: () async {
                                                           setState(() {
                                                             _model.lpsvFilePath =
-                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}';
+                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}';
                                                           });
                                                           if (widget
                                                                   .operation ==
                                                               'before') {
                                                             if (FFAppState()
                                                                         .stOrderVisitAssetSelected
+                                                                        .first
                                                                         .beforeImgFileName ==
                                                                     '') {
                                                               // Dont Exist
@@ -775,6 +788,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                           } else {
                                                             if (FFAppState()
                                                                         .stOrderVisitAssetSelected
+                                                                        .first
                                                                         .afterImgFileName ==
                                                                     '') {
                                                               // Dont Exist
@@ -837,7 +851,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                               await selectMediaWithSourceBottomSheet(
                                                             context: context,
                                                             storageFolderPath:
-                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}',
+                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}',
                                                             maxWidth: 500.00,
                                                             maxHeight: 500.00,
                                                             imageQuality: 100,
@@ -936,7 +950,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                     functions.cfGetFileNameFromFileUrlUploaded(
                                                                         _model
                                                                             .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.id.toString()}'}/'),
                                                               },
                                                               matchingRows:
                                                                   (rows) =>
@@ -944,6 +958,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                 'id',
                                                                 FFAppState()
                                                                     .stOrderVisitAssetSelected
+                                                                    .first
                                                                     .id,
                                                               ),
                                                             );
@@ -957,7 +972,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                     functions.cfGetFileNameFromFileUrlUploaded(
                                                                         _model
                                                                             .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.assetId.toString()}'}/'),
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.id.toString()}'}/'),
                                                               },
                                                               matchingRows:
                                                                   (rows) =>
@@ -965,6 +980,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                 'id',
                                                                 FFAppState()
                                                                     .stOrderVisitAssetSelected
+                                                                    .first
                                                                     .id,
                                                               ),
                                                             );
@@ -976,6 +992,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                             abOrderVisitAssetId:
                                                                 FFAppState()
                                                                     .stOrderVisitAssetSelected
+                                                                    .first
                                                                     .id,
                                                           );
                                                           setState(() => _model
@@ -1186,6 +1203,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'id',
                                                     FFAppState()
                                                         .stOrderVisitAssetSelected
+                                                        .first
                                                         .id,
                                                   ),
                                                 );
@@ -1194,6 +1212,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                   context,
                                                   abOrderVisitAssetId: FFAppState()
                                                       .stOrderVisitAssetSelected
+                                                      .first
                                                       .id,
                                                 );
                                                 setState(() {});
@@ -1214,6 +1233,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'id',
                                                     FFAppState()
                                                         .stOrderVisitAssetSelected
+                                                        .first
                                                         .id,
                                                   ),
                                                 );
@@ -1222,6 +1242,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                   context,
                                                   abOrderVisitAssetId: FFAppState()
                                                       .stOrderVisitAssetSelected
+                                                      .first
                                                       .id,
                                                 );
                                                 setState(() {});
@@ -1297,6 +1318,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'id',
                                                     FFAppState()
                                                         .stOrderVisitAssetSelected
+                                                        .first
                                                         .id,
                                                   ),
                                                 );
@@ -1399,6 +1421,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'id',
                                                     FFAppState()
                                                         .stOrderVisitAssetSelected
+                                                        .first
                                                         .id,
                                                   ),
                                                 );
@@ -1416,6 +1439,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'id',
                                                     FFAppState()
                                                         .stOrderVisitAssetSelected
+                                                        .first
                                                         .id,
                                                   ),
                                                 );

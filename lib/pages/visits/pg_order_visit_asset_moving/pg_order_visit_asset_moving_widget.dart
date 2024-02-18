@@ -114,7 +114,7 @@ class _PgOrderVisitAssetMovingWidgetState
                           ..complete(OrdersVisitsAssetsTable().querySingleRow(
                             queryFn: (q) => q.eq(
                               'id',
-                              FFAppState().stOrderVisitAssetSelected.id,
+                              FFAppState().stOrderVisitAssetSelected.first.id,
                             ),
                           )))
                     .future,
@@ -158,31 +158,36 @@ class _PgOrderVisitAssetMovingWidgetState
                                 child: CpOrderVisitAssetListItemCardWidget(
                                   code: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .code,
                                   statusDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeStatusDescription,
                                   description: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .description,
                                   tagDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeTagDescription,
                                   tagSubDescription: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .beforeTagSubDescription,
                                   processingId: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .processingId,
                                   isMoved: FFAppState()
                                       .stOrderVisitAssetSelected
+                                      .first
                                       .isMoved,
-                                  unitDescription: valueOrDefault<String>(
-                                    FFAppState()
-                                        .stOrderVisitAssetSelected
-                                        .beforeUnitDescription,
-                                    'unitDescription',
-                                  ),
+                                  unitDescription: FFAppState()
+                                      .stOrderVisitAssetSelected
+                                      .first
+                                      .beforeUnitDescription,
                                 ),
                               ),
                               Column(
@@ -346,6 +351,7 @@ class _PgOrderVisitAssetMovingWidgetState
                                                 'id',
                                                 FFAppState()
                                                     .stOrderVisitAssetSelected
+                                                    .first
                                                     .id,
                                               ),
                                             );
@@ -800,6 +806,7 @@ class _PgOrderVisitAssetMovingWidgetState
                                                 'id',
                                                 FFAppState()
                                                     .stOrderVisitAssetSelected
+                                                    .first
                                                     .id,
                                               ),
                                             );
@@ -808,6 +815,7 @@ class _PgOrderVisitAssetMovingWidgetState
                                               context,
                                               abOrderVisitAssetId: FFAppState()
                                                   .stOrderVisitAssetSelected
+                                                  .first
                                                   .id,
                                             );
 

@@ -167,7 +167,6 @@ final parametersBuilderMap =
   'Create3SupportTicketBugReport': ParameterData.none(),
   'pgOrderVisitAssetMoving': ParameterData.none(),
   'Profile09': ParameterData.none(),
-  'pgOrderVisitAssetAnalisys': ParameterData.none(),
   'Home12Activity': ParameterData.none(),
   'Home09Dashboard': ParameterData.none(),
   'pgAssetsSearch': ParameterData.none(),

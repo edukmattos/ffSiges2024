@@ -270,11 +270,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Profile09Widget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitAssetAnalisys',
-          path: '/pgOrderVisitAssetAnalisys',
-          builder: (context, params) => const PgOrderVisitAssetAnalisysWidget(),
-        ),
-        FFRoute(
           name: 'Home12Activity',
           path: '/home12Activity',
           builder: (context, params) => const Home12ActivityWidget(),

@@ -86,35 +86,6 @@ class FFAppState extends ChangeNotifier {
     _stCounterLoopFinal = value;
   }
 
-  List<DtAssetStruct> _stAssets = [];
-  List<DtAssetStruct> get stAssets => _stAssets;
-  set stAssets(List<DtAssetStruct> value) {
-    _stAssets = value;
-  }
-
-  void addToStAssets(DtAssetStruct value) {
-    _stAssets.add(value);
-  }
-
-  void removeFromStAssets(DtAssetStruct value) {
-    _stAssets.remove(value);
-  }
-
-  void removeAtIndexFromStAssets(int index) {
-    _stAssets.removeAt(index);
-  }
-
-  void updateStAssetsAtIndex(
-    int index,
-    DtAssetStruct Function(DtAssetStruct) updateFn,
-  ) {
-    _stAssets[index] = updateFn(_stAssets[index]);
-  }
-
-  void insertAtIndexInStAssets(int index, DtAssetStruct value) {
-    _stAssets.insert(index, value);
-  }
-
   List<DtUserLeaderByTeamStruct> _stUsersLeadersByTeam = [];
   List<DtUserLeaderByTeamStruct> get stUsersLeadersByTeam =>
       _stUsersLeadersByTeam;
@@ -174,19 +145,6 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInStOrderVisitOpenTeamUsers(int index, int value) {
     _stOrderVisitOpenTeamUsers.insert(index, value);
-  }
-
-  DtVOrderVisitAssetStruct _stOrderVisitAssetSelected =
-      DtVOrderVisitAssetStruct();
-  DtVOrderVisitAssetStruct get stOrderVisitAssetSelected =>
-      _stOrderVisitAssetSelected;
-  set stOrderVisitAssetSelected(DtVOrderVisitAssetStruct value) {
-    _stOrderVisitAssetSelected = value;
-  }
-
-  void updateStOrderVisitAssetSelectedStruct(
-      Function(DtVOrderVisitAssetStruct) updateFn) {
-    updateFn(_stOrderVisitAssetSelected);
   }
 
   List<DtVOrderVisitAssetsStruct> _stOrderVisitAssets = [];
@@ -514,6 +472,67 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInStAssetSeleted(int index, DtVAssetStruct value) {
     _stAssetSeleted.insert(index, value);
+  }
+
+  List<DtVAssetStruct> _stAssets = [];
+  List<DtVAssetStruct> get stAssets => _stAssets;
+  set stAssets(List<DtVAssetStruct> value) {
+    _stAssets = value;
+  }
+
+  void addToStAssets(DtVAssetStruct value) {
+    _stAssets.add(value);
+  }
+
+  void removeFromStAssets(DtVAssetStruct value) {
+    _stAssets.remove(value);
+  }
+
+  void removeAtIndexFromStAssets(int index) {
+    _stAssets.removeAt(index);
+  }
+
+  void updateStAssetsAtIndex(
+    int index,
+    DtVAssetStruct Function(DtVAssetStruct) updateFn,
+  ) {
+    _stAssets[index] = updateFn(_stAssets[index]);
+  }
+
+  void insertAtIndexInStAssets(int index, DtVAssetStruct value) {
+    _stAssets.insert(index, value);
+  }
+
+  List<DtVOrderVisitAssetsStruct> _stOrderVisitAssetSelected = [];
+  List<DtVOrderVisitAssetsStruct> get stOrderVisitAssetSelected =>
+      _stOrderVisitAssetSelected;
+  set stOrderVisitAssetSelected(List<DtVOrderVisitAssetsStruct> value) {
+    _stOrderVisitAssetSelected = value;
+  }
+
+  void addToStOrderVisitAssetSelected(DtVOrderVisitAssetsStruct value) {
+    _stOrderVisitAssetSelected.add(value);
+  }
+
+  void removeFromStOrderVisitAssetSelected(DtVOrderVisitAssetsStruct value) {
+    _stOrderVisitAssetSelected.remove(value);
+  }
+
+  void removeAtIndexFromStOrderVisitAssetSelected(int index) {
+    _stOrderVisitAssetSelected.removeAt(index);
+  }
+
+  void updateStOrderVisitAssetSelectedAtIndex(
+    int index,
+    DtVOrderVisitAssetsStruct Function(DtVOrderVisitAssetsStruct) updateFn,
+  ) {
+    _stOrderVisitAssetSelected[index] =
+        updateFn(_stOrderVisitAssetSelected[index]);
+  }
+
+  void insertAtIndexInStOrderVisitAssetSelected(
+      int index, DtVOrderVisitAssetsStruct value) {
+    _stOrderVisitAssetSelected.insert(index, value);
   }
 }
 

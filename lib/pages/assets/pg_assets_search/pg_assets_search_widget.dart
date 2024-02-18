@@ -135,7 +135,20 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                             searchTerms: _model.cpInputTextSearchModel
                                 .inputTextController.text,
                           );
-                          if (!(_model.resAssets?.succeeded ?? true)) {
+                          if ((_model.resAssets?.succeeded ?? true)) {
+                            setState(() {
+                              FFAppState().stAssets =
+                                  ((_model.resAssets?.jsonBody ?? '')
+                                              .toList()
+                                              .map<DtVAssetStruct?>(
+                                                  DtVAssetStruct.maybeFromMap)
+                                              .toList()
+                                          as Iterable<DtVAssetStruct?>)
+                                      .withoutNulls
+                                      .toList()
+                                      .cast<DtVAssetStruct>();
+                            });
+                          } else {
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
@@ -191,24 +204,16 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                               '')
                         Builder(
                           builder: (context) {
-                            final apiAssets = ((_model.resAssets?.jsonBody ??
-                                            '')
-                                        .toList()
-                                        .map<DtAssetStruct?>(
-                                            DtAssetStruct.maybeFromMap)
-                                        .toList() as Iterable<DtAssetStruct?>)
-                                    .withoutNulls
-                                    .toList() ??
-                                [];
+                            final assets = FFAppState().stAssets.toList();
                             return ListView.separated(
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
-                              itemCount: apiAssets.length,
+                              itemCount: assets.length,
                               separatorBuilder: (_, __) =>
                                   const SizedBox(height: 8.0),
-                              itemBuilder: (context, apiAssetsIndex) {
-                                final apiAssetsItem = apiAssets[apiAssetsIndex];
+                              itemBuilder: (context, assetsIndex) {
+                                final assetsItem = assets[assetsIndex];
                                 return InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -218,7 +223,7 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                                     await action_blocks.abAssetSelected(
                                       context,
                                       abAssetId: valueOrDefault<int>(
-                                        apiAssetsItem.id,
+                                        assetsItem.id,
                                         0,
                                       ),
                                     );
@@ -227,29 +232,29 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                                   },
                                   child: CpAssetListItemCardWidget(
                                     key: Key(
-                                        'Keyiiz_${apiAssetsIndex}_of_${apiAssets.length}'),
+                                        'Keyiiz_${assetsIndex}_of_${assets.length}'),
                                     code: valueOrDefault<String>(
-                                      apiAssetsItem.code,
+                                      assetsItem.code,
                                       'code',
                                     ),
                                     description: valueOrDefault<String>(
-                                      apiAssetsItem.description,
+                                      assetsItem.description,
                                       'description',
                                     ),
                                     tagDescription: valueOrDefault<String>(
-                                      apiAssetsItem.tagDescription,
+                                      assetsItem.tagDescription,
                                       'tagDescription',
                                     ),
                                     tagSubDescription: valueOrDefault<String>(
-                                      apiAssetsItem.tagSubDescription,
+                                      assetsItem.tagSubDescription,
                                       'tagSubDescription',
                                     ),
                                     statusDescription: valueOrDefault<String>(
-                                      apiAssetsItem.statusDescription,
+                                      assetsItem.statusDescription,
                                       'statusDescription',
                                     ),
                                     unitDescription: valueOrDefault<String>(
-                                      apiAssetsItem.unitDescription,
+                                      assetsItem.unitDescription,
                                       'unitDescription',
                                     ),
                                   ),
