@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,11 +15,14 @@ class CpOrdersStatusesWidget extends StatefulWidget {
     super.key,
     int? cpStatusId,
     String? cpStatusDescription,
+    int? cpBadge,
   })  : cpStatusId = cpStatusId ?? 1,
-        cpStatusDescription = cpStatusDescription ?? 'cpStatusDescription';
+        cpStatusDescription = cpStatusDescription ?? 'cpStatusDescription',
+        cpBadge = cpBadge ?? 0;
 
   final int cpStatusId;
   final String cpStatusDescription;
+  final int cpBadge;
 
   @override
   State<CpOrdersStatusesWidget> createState() => _CpOrdersStatusesWidgetState();
@@ -173,15 +177,83 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Expanded(
+                  child: Container(
+                    width: 60.0,
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).info,
+                        width: 6.0,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: FaIcon(
+                            FontAwesomeIcons.whmcs,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation1']!),
+                ),
+              ],
+            );
+          } else if (widget.cpStatusId == 2) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 Container(
-                  width: 50.0,
-                  height: 50.0,
+                  width: 60.0,
+                  height: 60.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).tertiary,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: FlutterFlowTheme.of(context).info,
-                      width: 4.0,
+                      width: 6.0,
                     ),
                   ),
                   alignment: const AlignmentDirectional(0.0, 0.0),
@@ -203,59 +275,30 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
                     waitDuration: const Duration(milliseconds: 100),
                     showDuration: const Duration(milliseconds: 1500),
                     triggerMode: TooltipTriggerMode.tap,
-                    child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: FaIcon(
-                        FontAwesomeIcons.whmcs,
-                        color: Colors.white,
-                        size: 30.0,
+                    child: badges.Badge(
+                      badgeContent: Text(
+                        widget.cpBadge.toString(),
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.white,
+                            ),
                       ),
-                    ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation1']!),
-              ],
-            );
-          } else if (widget.cpStatusId == 2) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 50.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).success,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).info,
-                      width: 4.0,
-                    ),
-                  ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: AlignedTooltip(
-                    content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'Autorizadas',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        )),
-                    offset: 4.0,
-                    preferredDirection: AxisDirection.down,
-                    borderRadius: BorderRadius.circular(8.0),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).primaryBtnText,
-                    elevation: 4.0,
-                    tailBaseWidth: 24.0,
-                    tailLength: 12.0,
-                    waitDuration: const Duration(milliseconds: 100),
-                    showDuration: const Duration(milliseconds: 1500),
-                    triggerMode: TooltipTriggerMode.tap,
-                    child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Icon(
-                        Icons.fire_truck,
-                        color: Colors.white,
-                        size: 24.0,
+                      showBadge: widget.cpBadge > 0,
+                      shape: badges.BadgeShape.circle,
+                      badgeColor: FlutterFlowTheme.of(context).primary,
+                      elevation: 4.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      position: badges.BadgePosition.topEnd(),
+                      animationType: badges.BadgeAnimationType.scale,
+                      toAnimate: true,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.whmcs,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
                       ),
                     ),
                   ),
@@ -268,8 +311,73 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  width: 50.0,
-                  height: 50.0,
+                  width: 60.0,
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).success,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).info,
+                      width: 6.0,
+                    ),
+                  ),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: AlignedTooltip(
+                    content: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          widget.cpStatusDescription,
+                          style: FlutterFlowTheme.of(context).bodyLarge,
+                        )),
+                    offset: 4.0,
+                    preferredDirection: AxisDirection.down,
+                    borderRadius: BorderRadius.circular(8.0),
+                    backgroundColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 4.0,
+                    tailBaseWidth: 24.0,
+                    tailLength: 12.0,
+                    waitDuration: const Duration(milliseconds: 100),
+                    showDuration: const Duration(milliseconds: 1500),
+                    triggerMode: TooltipTriggerMode.tap,
+                    child: badges.Badge(
+                      badgeContent: Text(
+                        widget.cpBadge.toString(),
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.white,
+                            ),
+                      ),
+                      showBadge: widget.cpBadge > 0,
+                      shape: badges.BadgeShape.circle,
+                      badgeColor: FlutterFlowTheme.of(context).primary,
+                      elevation: 4.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      position: badges.BadgePosition.topEnd(),
+                      animationType: badges.BadgeAnimationType.scale,
+                      toAnimate: true,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          Icons.fire_truck,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation3']!),
+              ],
+            );
+          } else if (widget.cpStatusId == 4) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 60.0,
+                  height: 60.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).tertiary,
                     shape: BoxShape.circle,
@@ -297,20 +405,38 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
                     waitDuration: const Duration(milliseconds: 100),
                     showDuration: const Duration(milliseconds: 1500),
                     triggerMode: TooltipTriggerMode.tap,
-                    child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Icon(
-                        Icons.calendar_month,
-                        color: Colors.white,
-                        size: 24.0,
+                    child: badges.Badge(
+                      badgeContent: Text(
+                        widget.cpBadge.toString(),
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Readex Pro',
+                              color: Colors.white,
+                            ),
+                      ),
+                      showBadge: widget.cpBadge > 0,
+                      shape: badges.BadgeShape.circle,
+                      badgeColor: FlutterFlowTheme.of(context).primary,
+                      elevation: 4.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      position: badges.BadgePosition.topEnd(),
+                      animationType: badges.BadgeAnimationType.scale,
+                      toAnimate: true,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          Icons.calendar_month,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
                       ),
                     ),
                   ),
                 ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation3']!),
+                    animationsMap['containerOnPageLoadAnimation4']!),
               ],
             );
-          } else if (widget.cpStatusId == 4) {
+          } else if (widget.cpStatusId == 5) {
             return Container(
               width: 50.0,
               height: 50.0,
@@ -344,47 +470,6 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
                   padding: EdgeInsets.all(4.0),
                   child: FaIcon(
                     FontAwesomeIcons.solidFlag,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                ),
-              ),
-            ).animateOnPageLoad(
-                animationsMap['containerOnPageLoadAnimation4']!);
-          } else if (widget.cpStatusId == 5) {
-            return Container(
-              width: 50.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryText,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: FlutterFlowTheme.of(context).info,
-                  width: 4.0,
-                ),
-              ),
-              alignment: const AlignmentDirectional(0.0, 0.0),
-              child: AlignedTooltip(
-                content: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text(
-                      widget.cpStatusDescription,
-                      style: FlutterFlowTheme.of(context).bodyLarge,
-                    )),
-                offset: 4.0,
-                preferredDirection: AxisDirection.down,
-                borderRadius: BorderRadius.circular(8.0),
-                backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-                elevation: 4.0,
-                tailBaseWidth: 24.0,
-                tailLength: 12.0,
-                waitDuration: const Duration(milliseconds: 100),
-                showDuration: const Duration(milliseconds: 1500),
-                triggerMode: TooltipTriggerMode.tap,
-                child: const Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Icon(
-                    Icons.pause_sharp,
                     color: Colors.white,
                     size: 24.0,
                   ),

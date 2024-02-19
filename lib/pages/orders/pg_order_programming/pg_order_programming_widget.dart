@@ -9,10 +9,13 @@ import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_parent_dash_card_show/cp_order_parent_dash_card_show_widget.dart';
 import '/pages/orders/cp_order_programming_assets_list_item_card/cp_order_programming_assets_list_item_card_widget.dart';
+import '/pages/orders/md_order_new/md_order_new_widget.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_programming_model.dart';
 export 'pg_order_programming_model.dart';
@@ -97,6 +100,66 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print('FloatingActionButton pressed ...');
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          child: AlignedTooltip(
+            content: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  'Criar OS',
+                  style: FlutterFlowTheme.of(context).bodyLarge,
+                )),
+            offset: 4.0,
+            preferredDirection: AxisDirection.down,
+            borderRadius: BorderRadius.circular(8.0),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 4.0,
+            tailBaseWidth: 24.0,
+            tailLength: 12.0,
+            waitDuration: const Duration(milliseconds: 100),
+            showDuration: const Duration(milliseconds: 1500),
+            triggerMode: TooltipTriggerMode.tap,
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  enableDrag: false,
+                  useSafeArea: true,
+                  context: context,
+                  builder: (context) {
+                    return GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: MdOrderNewWidget(
+                          orderParentId:
+                              FFAppState().stOrderParentSelected.first.id,
+                        ),
+                      ),
+                    );
+                  },
+                ).then((value) => safeSetState(() {}));
+              },
+              child: FaIcon(
+                FontAwesomeIcons.simCard,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
+          ),
+        ),
         endDrawer: Drawer(
           elevation: 16.0,
           child: wrapWithModel(
@@ -171,7 +234,7 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 4.0),
                         child: Text(
-                          'Setor',
+                          'Historico da Atividades',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -307,6 +370,10 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                         ),
                       ),
                     ),
+                  ),
+                  const Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [],
                   ),
                 ].divide(const SizedBox(height: 12.0)),
               ),

@@ -169,4 +169,20 @@ class VOrdersOpenRow extends SupabaseDataRow {
   String? get teamDescription => getField<String>('teamDescription');
   set teamDescription(String? value) =>
       setField<String>('teamDescription', value);
+
+  int? get assetTagId => getField<int>('assetTagId');
+  set assetTagId(int? value) => setField<int>('assetTagId', value);
+
+  String? get assetTagDescription => getField<String>('assetTagDescription');
+  set assetTagDescription(String? value) =>
+      setField<String>('assetTagDescription', value);
+
+  int? get year => getField<int>('year');
+  set year(int? value) => setField<int>('year', value);
+
+  int? get counterParent => getField<int>('counterParent');
+  set counterParent(int? value) => setField<int>('counterParent', value);
+
+  int? get counterChild => getField<int>('counterChild');
+  set counterChild(int? value) => setField<int>('counterChild', value);
 }

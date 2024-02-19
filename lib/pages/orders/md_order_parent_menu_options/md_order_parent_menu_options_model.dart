@@ -1,9 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'cp_order_menu_options_widget.dart' show CpOrderMenuOptionsWidget;
+import 'md_order_parent_menu_options_widget.dart'
+    show MdOrderParentMenuOptionsWidget;
 import 'package:flutter/material.dart';
 
-class CpOrderMenuOptionsModel
-    extends FlutterFlowModel<CpOrderMenuOptionsWidget> {
+class MdOrderParentMenuOptionsModel
+    extends FlutterFlowModel<MdOrderParentMenuOptionsWidget> {
   /// Initialization and disposal methods.
 
   @override

@@ -534,6 +534,42 @@ class FFAppState extends ChangeNotifier {
       int index, DtVOrderVisitAssetsStruct value) {
     _stOrderVisitAssetSelected.insert(index, value);
   }
+
+  List<DtVOrderVisitAssetActivityStruct> _stOrderVisitAssetActivities = [];
+  List<DtVOrderVisitAssetActivityStruct> get stOrderVisitAssetActivities =>
+      _stOrderVisitAssetActivities;
+  set stOrderVisitAssetActivities(
+      List<DtVOrderVisitAssetActivityStruct> value) {
+    _stOrderVisitAssetActivities = value;
+  }
+
+  void addToStOrderVisitAssetActivities(
+      DtVOrderVisitAssetActivityStruct value) {
+    _stOrderVisitAssetActivities.add(value);
+  }
+
+  void removeFromStOrderVisitAssetActivities(
+      DtVOrderVisitAssetActivityStruct value) {
+    _stOrderVisitAssetActivities.remove(value);
+  }
+
+  void removeAtIndexFromStOrderVisitAssetActivities(int index) {
+    _stOrderVisitAssetActivities.removeAt(index);
+  }
+
+  void updateStOrderVisitAssetActivitiesAtIndex(
+    int index,
+    DtVOrderVisitAssetActivityStruct Function(DtVOrderVisitAssetActivityStruct)
+        updateFn,
+  ) {
+    _stOrderVisitAssetActivities[index] =
+        updateFn(_stOrderVisitAssetActivities[index]);
+  }
+
+  void insertAtIndexInStOrderVisitAssetActivities(
+      int index, DtVOrderVisitAssetActivityStruct value) {
+    _stOrderVisitAssetActivities.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

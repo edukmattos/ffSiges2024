@@ -19,14 +19,9 @@ class VOrdersVisitsAssetsActivitiesRow extends SupabaseDataRow {
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);
 
-  int? get orderVisitId => getField<int>('orderVisitId');
-  set orderVisitId(int? value) => setField<int>('orderVisitId', value);
-
-  int? get orderTypeId => getField<int>('orderTypeId');
-  set orderTypeId(int? value) => setField<int>('orderTypeId', value);
-
-  int? get assetId => getField<int>('assetId');
-  set assetId(int? value) => setField<int>('assetId', value);
+  int? get orderVisitAssetId => getField<int>('orderVisitAssetId');
+  set orderVisitAssetId(int? value) =>
+      setField<int>('orderVisitAssetId', value);
 
   int? get activityId => getField<int>('activityId');
   set activityId(int? value) => setField<int>('activityId', value);

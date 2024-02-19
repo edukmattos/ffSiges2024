@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/cp_order_priority_widget.dart';
 import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -106,7 +107,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -126,7 +127,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -191,26 +192,6 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
         ),
       ],
     ),
-    'dividerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1400.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'textOnPageLoadAnimation8': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -227,6 +208,26 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           delay: 1600.ms,
           duration: 600.ms,
           begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'dividerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1400.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -272,6 +273,26 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
       ],
     ),
     'textOnPageLoadAnimation11': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1600.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation12': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1600.ms),
@@ -439,57 +460,12 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Card(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  elevation: 4.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 2.0, 8.0, 2.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        containerVOrdersRow
-                                            ?.priorityDescription,
-                                        'status',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  '${valueOrDefault<String>(
-                                    dateTimeFormat('d/M H:mm',
-                                        containerVOrdersRow?.statusDate),
-                                    '.',
-                                  )} h',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0x9AFFFFFF),
-                                      ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation3']!),
-                              ],
-                            ),
                             wrapWithModel(
-                              model: _model.cpOrdersStatusesModel,
+                              model: _model.cpOrderPriorityModel,
                               updateCallback: () => setState(() {}),
-                              child: CpOrdersStatusesWidget(
-                                cpStatusId: containerVOrdersRow!.statusId!,
-                                cpStatusDescription:
-                                    containerVOrdersRow.statusDescription!,
-                              ),
+                              child: const CpOrderPriorityWidget(),
                             ),
                           ].divide(const SizedBox(width: 8.0)),
                         ),
@@ -519,7 +495,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   'pgUnitShowOri',
                                   queryParameters: {
                                     'unitId': serializeParam(
-                                      containerVOrdersRow.unitId,
+                                      containerVOrdersRow?.unitId,
                                       ParamType.int,
                                     ),
                                   }.withoutNulls,
@@ -527,7 +503,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               },
                               child: Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersRow.unitDescription,
+                                  containerVOrdersRow?.unitDescription,
                                   '.',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -539,11 +515,24 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     ),
                               ),
                             ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation4']!),
+                                animationsMap['textOnPageLoadAnimation3']!),
                           ),
                           Text(
                             valueOrDefault<String>(
-                              containerVOrdersRow.requestedServices,
+                              containerVOrdersRow?.assetTagDescription,
+                              'assetTagDescription',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0x9AFFFFFF),
+                                ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation4']!),
+                          Text(
+                            valueOrDefault<String>(
+                              containerVOrdersRow?.requestedServices,
                               'team',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -569,7 +558,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            containerVOrdersRow.teamLeaderNameShort,
+                            containerVOrdersRow?.teamLeaderNameShort,
                             'team',
                           ),
                           style:
@@ -581,7 +570,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                             animationsMap['textOnPageLoadAnimation6']!),
                         Text(
                           valueOrDefault<String>(
-                            containerVOrdersRow.teamCode,
+                            containerVOrdersRow?.teamCode,
                             'team',
                           ),
                           style:
@@ -591,6 +580,134 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation7']!),
+                      ],
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${valueOrDefault<String>(
+                                  dateTimeFormat('d/M H:mm',
+                                      containerVOrdersRow?.statusDate),
+                                  '.',
+                                )} h',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0x9AFFFFFF),
+                                    ),
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation8']!),
+                              wrapWithModel(
+                                model: _model.cpOrdersStatusesModel,
+                                updateCallback: () => setState(() {}),
+                                child: CpOrdersStatusesWidget(
+                                  cpStatusId: containerVOrdersRow!.statusId!,
+                                  cpStatusDescription:
+                                      containerVOrdersRow.statusDescription!,
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  height: 12.0,
+                  thickness: 1.0,
+                  color: Color(0xFF6AA3B8),
+                ).animateOnPageLoad(
+                    animationsMap['dividerOnPageLoadAnimation']!),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Solicitante',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersRow.requesterName,
+                                  '.',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0x9AFFFFFF),
+                                    ),
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation9']!),
+                              Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersRow.requesterTeamCode,
+                                  '.',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0x9AFFFFFF),
+                                    ),
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation10']!),
+                              Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersRow.requesterPhone,
+                                  '.',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0x9AFFFFFF),
+                                    ),
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation11']!),
+                              Text(
+                                '${valueOrDefault<String>(
+                                  dateTimeFormat('d/M H:mm',
+                                      containerVOrdersRow.requesterDate),
+                                  '.',
+                                )} h',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0x9AFFFFFF),
+                                    ),
+                              ).animateOnPageLoad(
+                                  animationsMap['textOnPageLoadAnimation12']!),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -869,113 +986,6 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                           ),
                         ),
                       ),
-                  ],
-                ),
-                const Divider(
-                  height: 12.0,
-                  thickness: 1.0,
-                  color: Color(0xFF6AA3B8),
-                ).animateOnPageLoad(
-                    animationsMap['dividerOnPageLoadAnimation']!),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Solicitante',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                    ),
-                              ),
-                              Text(
-                                valueOrDefault<String>(
-                                  containerVOrdersRow.requesterName,
-                                  '.',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation8']!),
-                              Text(
-                                valueOrDefault<String>(
-                                  containerVOrdersRow.requesterTeamCode,
-                                  '.',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation9']!),
-                              Text(
-                                valueOrDefault<String>(
-                                  containerVOrdersRow.requesterPhone,
-                                  '.',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation10']!),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Data/hora',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                    ),
-                              ),
-                              Text(
-                                '${valueOrDefault<String>(
-                                  dateTimeFormat('d/M H:mm',
-                                      containerVOrdersRow.requesterDate),
-                                  '.',
-                                )} h',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation11']!),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ].divide(const SizedBox(height: 8.0)),

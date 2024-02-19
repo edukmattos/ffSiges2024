@@ -257,6 +257,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                   fontFamily: 'Outfit',
                   color: Colors.white,
                   fontSize: 28.0,
+                  fontWeight: FontWeight.w600,
                 ),
           ),
           actions: const [],
@@ -397,6 +398,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                               height: 70.0,
                                               constraints: const BoxConstraints(
                                                 minHeight: 0.0,
+                                                maxHeight: 150.0,
                                               ),
                                               decoration: BoxDecoration(
                                                 color:
@@ -498,28 +500,6 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                                             r'''$.id''',
                                                           );
                                                         });
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: Text(_model
-                                                                  .lpsvStepForm
-                                                                  .toString()),
-                                                              content:
-                                                                  const Text('2'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: const Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
                                                       },
                                                     ),
                                                   ],

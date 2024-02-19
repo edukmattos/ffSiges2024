@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -7,19 +8,23 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
+import '/pages/components/cp_dropdown_leader_teams_selected/cp_dropdown_leader_teams_selected_widget.dart';
+import '/pages/components/cp_dropdown_orders_contracts/cp_dropdown_orders_contracts_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
+import '/pages/components/cp_dropdown_teams_department/cp_dropdown_teams_department_widget.dart';
+import '/pages/components/cp_input_date_disabled/cp_input_date_disabled_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'md_order_new_model.dart';
-export 'md_order_new_model.dart';
+import 'md_order_new_copy_model.dart';
+export 'md_order_new_copy_model.dart';
 
-class MdOrderNewWidget extends StatefulWidget {
-  const MdOrderNewWidget({
+class MdOrderNewCopyWidget extends StatefulWidget {
+  const MdOrderNewCopyWidget({
     super.key,
     required this.orderParentId,
   });
@@ -27,12 +32,12 @@ class MdOrderNewWidget extends StatefulWidget {
   final int? orderParentId;
 
   @override
-  State<MdOrderNewWidget> createState() => _MdOrderNewWidgetState();
+  State<MdOrderNewCopyWidget> createState() => _MdOrderNewCopyWidgetState();
 }
 
-class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
+class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
     with TickerProviderStateMixin {
-  late MdOrderNewModel _model;
+  late MdOrderNewCopyModel _model;
 
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
@@ -155,6 +160,66 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
         ),
       ],
     ),
+    'textOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation7': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation8': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -166,7 +231,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MdOrderNewModel());
+    _model = createModel(context, () => MdOrderNewCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -249,7 +314,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 8.0),
                                               child: Text(
-                                                'Ordem Serviço',
+                                                'Ordem de Serviço',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .headlineSmall,
@@ -469,192 +534,496 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     ),
                                                   ],
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 24.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    2.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    4.0),
-                                                        child: Text(
-                                                          'Prioridade',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelLarge
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Prioridade',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation5']!),
+                                                    ),
+                                                    FutureBuilder<
+                                                        List<
+                                                            OrdersPrioritiesRow>>(
+                                                      future:
+                                                          OrdersPrioritiesTable()
+                                                              .queryRows(
+                                                        queryFn: (q) =>
+                                                            q.order('id'),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<OrdersPrioritiesRow>
+                                                            choiceChipsOrdersPrioritiesRowList =
+                                                            snapshot.data!;
+                                                        return FlutterFlowChoiceChips(
+                                                          options: choiceChipsOrdersPrioritiesRowList
+                                                              .map((e) =>
+                                                                  e.description)
+                                                              .withoutNulls
+                                                              .toList()
+                                                              .map((label) =>
+                                                                  ChipData(
+                                                                      label))
+                                                              .toList(),
+                                                          onChanged: (val) =>
+                                                              setState(() => _model
+                                                                      .choiceChipsValue =
+                                                                  val?.firstOrNull),
+                                                          selectedChipStyle:
+                                                              ChipStyle(
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                            iconColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            iconSize: 18.0,
+                                                            labelPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        4.0,
+                                                                        12.0,
+                                                                        4.0),
+                                                            elevation: 0.0,
+                                                            borderColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            borderWidth: 2.0,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          unselectedChipStyle:
+                                                              ChipStyle(
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                    ),
+                                                            iconColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            iconSize: 18.0,
+                                                            labelPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        4.0,
+                                                                        12.0,
+                                                                        4.0),
+                                                            elevation: 0.0,
+                                                            borderColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            borderWidth: 2.0,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          chipSpacing: 8.0,
+                                                          rowSpacing: 8.0,
+                                                          multiselect: false,
+                                                          initialized: _model
+                                                                  .choiceChipsValue !=
+                                                              null,
+                                                          alignment:
+                                                              WrapAlignment
+                                                                  .start,
+                                                          controller: _model
+                                                                  .choiceChipsValueController ??=
+                                                              FormFieldController<
+                                                                  List<String>>(
+                                                            ['1'],
+                                                          ),
+                                                          wrapped: false,
+                                                        ).animateOnPageLoad(
+                                                            animationsMap[
+                                                                'choiceChipsOnPageLoadAnimation']!);
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Contrato',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation6']!),
+                                                    ),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .cpDropdownOrdersContractsModel,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      updateOnChange: true,
+                                                      child:
+                                                          const CpDropdownOrdersContractsWidget(),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ].divide(const SizedBox(height: 12.0)),
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Equipe responsável',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation7']!),
+                                                    ),
+                                                    if (_model
+                                                            .cpDropdownOrdersContractsModel
+                                                            .dropdownOrdersContractsValue !=
+                                                        null)
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          _model.resContractSelected =
+                                                              await ApiContractsGroup
+                                                                  .contractByIdCall
+                                                                  .call(
+                                                            contractId: _model
+                                                                .cpDropdownOrdersContractsModel
+                                                                .dropdownOrdersContractsValue,
+                                                          );
+                                                          if ((_model
+                                                                  .resContractSelected
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            setState(() {
+                                                              _model.lcsvCompanyId =
+                                                                  getJsonField(
+                                                                (_model.resContractSelected
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$.providerCompanyId''',
+                                                              );
+                                                              _model.lcsvDepartmentId =
+                                                                  getJsonField(
+                                                                (_model.resContractSelected
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$.providerDepartmentId''',
+                                                              );
+                                                              _model.lcsvContractId = _model
+                                                                  .cpDropdownOrdersContractsModel
+                                                                  .dropdownOrdersContractsValue!;
+                                                            });
+                                                          }
+
+                                                          setState(() {});
+                                                        },
+                                                        child: wrapWithModel(
+                                                          model: _model
+                                                              .cpDropdownTeamsDepartmentModel,
+                                                          updateCallback: () =>
+                                                              setState(() {}),
+                                                          updateOnChange: true,
+                                                          child:
+                                                              CpDropdownTeamsDepartmentWidget(
+                                                            departmentId: _model
+                                                                .lcsvDepartmentId,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Líder',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation8']!),
+                                                    ),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .cpDropdownLeaderTeamsSelectedModel,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      child:
+                                                          CpDropdownLeaderTeamsSelectedWidget(
+                                                        teamId: _model
+                                                            .lcsvDepartmentId,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 24.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      final datePickedDate =
+                                                          await showDatePicker(
+                                                        context: context,
+                                                        initialDate:
+                                                            getCurrentTimestamp,
+                                                        firstDate:
+                                                            getCurrentTimestamp,
+                                                        lastDate:
+                                                            DateTime(2050),
+                                                      );
+
+                                                      TimeOfDay?
+                                                          datePickedTime;
+                                                      if (datePickedDate !=
+                                                          null) {
+                                                        datePickedTime =
+                                                            await showTimePicker(
+                                                          context: context,
+                                                          initialTime: TimeOfDay
+                                                              .fromDateTime(
+                                                                  getCurrentTimestamp),
+                                                        );
+                                                      }
+
+                                                      if (datePickedDate !=
+                                                              null &&
+                                                          datePickedTime !=
+                                                              null) {
+                                                        safeSetState(() {
+                                                          _model.datePicked =
+                                                              DateTime(
+                                                            datePickedDate
+                                                                .year,
+                                                            datePickedDate
+                                                                .month,
+                                                            datePickedDate.day,
+                                                            datePickedTime!
+                                                                .hour,
+                                                            datePickedTime
+                                                                .minute,
+                                                          );
+                                                        });
+                                                      }
+                                                      setState(() {
+                                                        _model.lcsvExpectedDateStart =
+                                                            _model.datePicked;
+                                                      });
+                                                    },
+                                                    text: 'AGENDAR',
+                                                    icon: const Icon(
+                                                      Icons.calendar_month,
+                                                      size: 15.0,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      height: 40.0,
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
+                                                                    .backgroundComponents,
                                                               ),
-                                                        ).animateOnPageLoad(
-                                                            animationsMap[
-                                                                'textOnPageLoadAnimation5']!),
+                                                      elevation: 3.0,
+                                                      borderSide: const BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
                                                       ),
-                                                      FutureBuilder<
-                                                          List<
-                                                              OrdersPrioritiesRow>>(
-                                                        future:
-                                                            OrdersPrioritiesTable()
-                                                                .queryRows(
-                                                          queryFn: (q) =>
-                                                              q.order('id'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  valueColor:
-                                                                      AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<OrdersPrioritiesRow>
-                                                              choiceChipsOrdersPrioritiesRowList =
-                                                              snapshot.data!;
-                                                          return FlutterFlowChoiceChips(
-                                                            options: choiceChipsOrdersPrioritiesRowList
-                                                                .map((e) => e
-                                                                    .description)
-                                                                .withoutNulls
-                                                                .toList()
-                                                                .map((label) =>
-                                                                    ChipData(
-                                                                        label))
-                                                                .toList(),
-                                                            onChanged: (val) =>
-                                                                setState(() => _model
-                                                                        .choiceChipsValue =
-                                                                    val?.firstOrNull),
-                                                            selectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                      ),
-                                                              iconColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          4.0,
-                                                                          12.0,
-                                                                          4.0),
-                                                              elevation: 0.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            unselectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                      ),
-                                                              iconColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          4.0,
-                                                                          12.0,
-                                                                          4.0),
-                                                              elevation: 0.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            chipSpacing: 8.0,
-                                                            rowSpacing: 8.0,
-                                                            multiselect: false,
-                                                            initialized: _model
-                                                                    .choiceChipsValue !=
-                                                                null,
-                                                            alignment:
-                                                                WrapAlignment
-                                                                    .start,
-                                                            controller: _model
-                                                                    .choiceChipsValueController ??=
-                                                                FormFieldController<
-                                                                    List<
-                                                                        String>>(
-                                                              ['1'],
-                                                            ),
-                                                            wrapped: false,
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'choiceChipsOnPageLoadAnimation']!);
-                                                        },
-                                                      ),
-                                                    ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
                                                   ),
-                                                ),
-                                              ].divide(const SizedBox(height: 12.0)),
+                                                  Expanded(
+                                                    child: wrapWithModel(
+                                                      model: _model
+                                                          .cpInputDateDisabledModel,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      updateOnChange: true,
+                                                      child:
+                                                          CpInputDateDisabledWidget(
+                                                        initialValue: null,
+                                                        hintText: _model
+                                                            .lcsvExpectedDateStart,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ].divide(const SizedBox(width: 12.0)),
+                                              ),
                                             ),
                                             Align(
                                               alignment: const AlignmentDirectional(
@@ -733,6 +1102,82 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                               const Text('Ops ...'),
                                                           content: const Text(
                                                               'Informe o sub tipo de serviço'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: const Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    return;
+                                                  }
+                                                  if (_model
+                                                          .cpDropdownTeamsDepartmentModel
+                                                          .dropdownTeamsDepartmentValue ==
+                                                      null) {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              const Text('Ops ...'),
+                                                          content: const Text(
+                                                              'Informe a equipe responsável'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: const Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    return;
+                                                  }
+                                                  if (_model
+                                                          .cpDropdownLeaderTeamsSelectedModel
+                                                          .dropdownLeaderTeamsSelectedValue ==
+                                                      null) {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              const Text('Ops ...'),
+                                                          content: const Text(
+                                                              'Informe a Equipe responsável'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: const Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    return;
+                                                  }
+                                                  if (_model.datePicked ==
+                                                      null) {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              const Text('Ops ...'),
+                                                          content: const Text(
+                                                              'Informe uma data/hora de agendamento'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
@@ -846,10 +1291,18 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           supaSerialize<
                                                                   DateTime>(
                                                               getCurrentTimestamp),
-                                                      'statusId': 2,
-                                                      'statusDate': supaSerialize<
-                                                              DateTime>(
-                                                          getCurrentTimestamp),
+                                                      'teamId': _model
+                                                          .cpDropdownTeamsDepartmentModel
+                                                          .dropdownTeamsDepartmentValue,
+                                                      'teamLeaderId': _model
+                                                          .cpDropdownLeaderTeamsSelectedModel
+                                                          .dropdownLeaderTeamsSelectedValue,
+                                                      'statusId': 3,
+                                                      'statusDate':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              _model
+                                                                  .datePicked),
                                                       'priorityId': _model
                                                           .resAbOrderPriorityId,
                                                       'unitLatitude': FFAppState()
@@ -962,6 +1415,23 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       }(),
                                                     );
                                                     await action_blocks
+                                                        .abUsersNotificationsSend(
+                                                      context,
+                                                      abType: 'orderScheduled',
+                                                      abTitle:
+                                                          'Serviço Agendado',
+                                                      abBody:
+                                                          'OS ${_model.resOrderAdded?.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                      abUserIdFrom: FFAppState()
+                                                          .stUserCurrent
+                                                          .id,
+                                                      abUserIdTo: _model
+                                                          .cpDropdownLeaderTeamsSelectedModel
+                                                          .dropdownLeaderTeamsSelectedValue,
+                                                      abOrderId: _model
+                                                          .resOrderAdded?.id,
+                                                    );
+                                                    await action_blocks
                                                         .abOrderParentEvents(
                                                       context,
                                                       abOrderParentId: FFAppState()
@@ -969,29 +1439,11 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           .first
                                                           .id,
                                                       abTitle:
-                                                          'OS ${_model.resOrderAdded?.orderMask}: Em Avaliação',
+                                                          'OS ${_model.resOrderAdded?.orderMask}: Agendada',
                                                       abBody:
                                                           '${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                     );
                                                     Navigator.pop(context);
-                                                    await action_blocks
-                                                        .abOrderSelected(
-                                                      context,
-                                                      abOrderId: _model
-                                                          .resOrderAdded?.id,
-                                                    );
-
-                                                    context.pushNamed(
-                                                      'pgOrderShow',
-                                                      queryParameters: {
-                                                        'orderId':
-                                                            serializeParam(
-                                                          _model.resOrderAdded
-                                                              ?.id,
-                                                          ParamType.int,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
                                                   } else {
                                                     await showDialog(
                                                       context: context,

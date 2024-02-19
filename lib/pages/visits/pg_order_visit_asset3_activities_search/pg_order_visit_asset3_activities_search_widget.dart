@@ -1,3 +1,6 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +11,7 @@ import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_l
 import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +37,12 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
     super.initState();
     _model =
         createModel(context, () => PgOrderVisitAsset3ActivitiesSearchModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() => _model.requestCompleter = null);
+      await _model.waitForRequestCompleted();
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -193,21 +203,13 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                       ..complete(
                                           VOrdersVisitsAssetsActivitiesTable()
                                               .queryRows(
-                                        queryFn: (q) => q
-                                            .eq(
-                                              'orderVisitId',
-                                              FFAppState()
-                                                  .stOrderVisitAssetSelected
-                                                  .first
-                                                  .orderVisitId,
-                                            )
-                                            .eq(
-                                              'assetId',
-                                              FFAppState()
-                                                  .stOrderVisitAssetSelected
-                                                  .first
-                                                  .assetId,
-                                            ),
+                                        queryFn: (q) => q.eq(
+                                          'orderVisitAssetId',
+                                          FFAppState()
+                                              .stOrderVisitAssetSelected
+                                              .first
+                                              .id,
+                                        ),
                                       )))
                                     .future,
                                 builder: (context, snapshot) {
@@ -483,37 +485,130 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                       alignment: const AlignmentDirectional(0.0, 1.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          await OrdersVisitsAssetsActivitiesTable()
-                                              .insert({
-                                            'orderVisitId': valueOrDefault<int>(
-                                              FFAppState()
-                                                  .stOrderVisitSelected
-                                                  .first
-                                                  .id,
-                                              1,
-                                            ),
-                                            'orderTypeId': valueOrDefault<int>(
-                                              FFAppState()
-                                                  .stOrderSelected
-                                                  .first
-                                                  .typeId,
-                                              1,
-                                            ),
-                                            'assetId': FFAppState()
+                                          var shouldSetState = false;
+                                          _model.resOrderVisitAssetActivities =
+                                              await ApiOrdersVisitsAssetsActivitiesGroup
+                                                  .activitiesByOrderVisitAssetIdCall
+                                                  .call(
+                                            orderVisitAssetId: FFAppState()
                                                 .stOrderVisitAssetSelected
                                                 .first
-                                                .assetId,
-                                            'activityId': _model
-                                                .cpDropdownOrdersTypesActivitiesModel
-                                                .dropdownOrdersTypesActivitiesValue,
-                                            'amount': 1,
-                                          });
-                                          await Future.delayed(const Duration(
-                                              milliseconds: 1000));
-                                          setState(() =>
-                                              _model.requestCompleter = null);
-                                          await _model
-                                              .waitForRequestCompleted();
+                                                .id,
+                                          );
+                                          shouldSetState = true;
+                                          if ((_model
+                                                  .resOrderVisitAssetActivities
+                                                  ?.succeeded ??
+                                              true)) {
+                                            setState(() {
+                                              _model.lpsvActivities = ((_model
+                                                                  .resOrderVisitAssetActivities
+                                                                  ?.jsonBody ??
+                                                              '')
+                                                          .toList()
+                                                          .map<DtVOrderVisitAssetActivityStruct?>(
+                                                              DtVOrderVisitAssetActivityStruct
+                                                                  .maybeFromMap)
+                                                          .toList()
+                                                      as Iterable<
+                                                          DtVOrderVisitAssetActivityStruct?>)
+                                                  .withoutNulls
+                                                  .toList()
+                                                  .cast<
+                                                      DtVOrderVisitAssetActivityStruct>();
+                                            });
+                                            setState(() {
+                                              FFAppState().stCounterLoop = 0;
+                                              FFAppState().stCounterLoopFinal =
+                                                  valueOrDefault<int>(
+                                                _model.lpsvActivities.length,
+                                                0,
+                                              );
+                                            });
+                                            while (FFAppState().stCounterLoop <
+                                                FFAppState()
+                                                    .stCounterLoopFinal) {
+                                              if (_model
+                                                      .lpsvActivities[
+                                                          FFAppState()
+                                                              .stCounterLoop]
+                                                      .activityId ==
+                                                  _model
+                                                      .cpDropdownOrdersTypesActivitiesModel
+                                                      .dropdownOrdersTypesActivitiesValue) {
+                                                setState(() {
+                                                  _model.lpsvIsExistActivity =
+                                                      true;
+                                                });
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Atividade já associada !',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBtnText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .error,
+                                                  ),
+                                                );
+                                                if (shouldSetState) {
+                                                  setState(() {});
+                                                }
+                                                return;
+                                              }
+                                              setState(() {
+                                                FFAppState().stCounterLoop =
+                                                    FFAppState().stCounterLoop +
+                                                        1;
+                                              });
+                                            }
+                                            if (_model.lpsvIsExistActivity) {
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
+                                              return;
+                                            }
+
+                                            await OrdersVisitsAssetsActivitiesTable()
+                                                .insert({
+                                              'activityId': _model
+                                                  .cpDropdownOrdersTypesActivitiesModel
+                                                  .dropdownOrdersTypesActivitiesValue,
+                                              'amount': 1.0,
+                                              'orderVisitAssetId': FFAppState()
+                                                  .stOrderVisitAssetSelected
+                                                  .first
+                                                  .id,
+                                            });
+                                            setState(() {
+                                              _model.addToLpsvActivities(
+                                                  DtVOrderVisitAssetActivityStruct(
+                                                orderVisitAssetId: FFAppState()
+                                                    .stOrderVisitAssetSelected
+                                                    .first
+                                                    .id,
+                                                activityId: _model
+                                                    .cpDropdownOrdersTypesActivitiesModel
+                                                    .dropdownOrdersTypesActivitiesValue,
+                                              ));
+                                            });
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 1000));
+                                            setState(() =>
+                                                _model.requestCompleter = null);
+                                            await _model
+                                                .waitForRequestCompleted();
+                                          }
+                                          if (shouldSetState) setState(() {});
                                         },
                                         text: 'INCLUIR\n',
                                         icon: const Icon(

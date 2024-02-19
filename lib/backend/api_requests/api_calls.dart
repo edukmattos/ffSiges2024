@@ -3074,6 +3074,77 @@ class AssetsByUnitTagCall {
 
 /// End apiOrdersVisitsAssets Group Code
 
+/// Start apiOrdersVisitsAssetsActivities Group Code
+
+class ApiOrdersVisitsAssetsActivitiesGroup {
+  static String baseUrl = 'https://hssopxcprokinupxvrtw.supabase.co/rest/v1/';
+  static Map<String, String> headers = {
+    'apiKey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
+  };
+  static ActivitiesByOrderVisitAssetIdCall activitiesByOrderVisitAssetIdCall =
+      ActivitiesByOrderVisitAssetIdCall();
+}
+
+class ActivitiesByOrderVisitAssetIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitAssetId = 1,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'activitiesByOrderVisitAssetId',
+      apiUrl:
+          '${ApiOrdersVisitsAssetsActivitiesGroup.baseUrl}v_orders_visits_assets_activities?orderVisitAssetId=eq.$orderVisitAssetId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<int>? id(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<int>? assetId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].assetId''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<int>? processingId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].processingId''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+}
+
+/// End apiOrdersVisitsAssetsActivities Group Code
+
 /// Start apiOrdersVisits Group Code
 
 class ApiOrdersVisitsGroup {
