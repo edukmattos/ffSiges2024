@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -72,10 +73,13 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: Colors.transparent,
-          child: Image.asset(
-            'assets/images/67.jpeg',
-            fit: BoxFit.cover,
+          color: FlutterFlowTheme.of(context).backgroundComponents,
+          child: Center(
+            child: Image.asset(
+              'assets/images/67.jpeg',
+              width: 150.0,
+              fit: BoxFit.fitHeight,
+            ),
           ),
         )
       : widget.child;
@@ -181,7 +185,6 @@ final parametersBuilderMap =
           'unitId': getParameter<int>(data, 'unitId'),
         },
       ),
-  'pgDashboardAdminCopy': ParameterData.none(),
   'pgOrderParentNew': ParameterData.none(),
   'pgOrderProgramming': (data) async => ParameterData(
         allParams: {

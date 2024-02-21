@@ -1,5 +1,4 @@
 import '/backend/supabase/supabase.dart';
-import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_dashboard_admin_model.dart';
 export 'pg_dashboard_admin_model.dart';
@@ -36,26 +34,6 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
 
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 20.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1.ms),
@@ -95,7 +73,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation3': AnimationInfo(
+    'textOnPageLoadAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 180.ms),
@@ -186,32 +164,12 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
           begin: 0.0,
           end: 1.0,
         ),
-        MoveEffect(
+        ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: const Offset(100.0, 0.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 180.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 180.ms,
-          duration: 600.ms,
-          begin: const Offset(20.0, 0.0),
-          end: const Offset(0.0, 0.0),
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -266,26 +224,6 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
           begin: 0.0,
           end: 1.0,
         ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1.0, 1.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation9': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -295,7 +233,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation5': AnimationInfo(
+    'textOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 180.ms),
@@ -312,6 +250,26 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
           duration: 600.ms,
           begin: const Offset(20.0, 0.0),
           end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation9': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -366,6 +324,46 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
           begin: 0.0,
           end: 1.0,
         ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(100.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation4': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 180.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 180.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 180.ms,
+          duration: 600.ms,
+          begin: const Offset(20.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation13': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
@@ -375,7 +373,47 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
         ),
       ],
     ),
-    'containerOnPageLoadAnimation13': AnimationInfo(
+    'containerOnPageLoadAnimation14': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation15': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation16': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1600.ms),
@@ -413,10 +451,22 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
         () async {
           setState(() => _model.requestCompleter3 = null);
           await _model.waitForRequestCompleted3();
-          setState(() => _model.requestCompleter2 = null);
-          await _model.waitForRequestCompleted2();
+          setState(() => _model.requestCompleter4 = null);
+          await _model.waitForRequestCompleted4();
           setState(() => _model.requestCompleter1 = null);
           await _model.waitForRequestCompleted1();
+          setState(() => _model.requestCompleter6 = null);
+          await _model.waitForRequestCompleted6();
+          setState(() => _model.requestCompleter9 = null);
+          await _model.waitForRequestCompleted9();
+          setState(() => _model.requestCompleter2 = null);
+          await _model.waitForRequestCompleted2();
+          setState(() => _model.requestCompleter8 = null);
+          await _model.waitForRequestCompleted8();
+          setState(() => _model.requestCompleter7 = null);
+          await _model.waitForRequestCompleted7();
+          setState(() => _model.requestCompleter5 = null);
+          await _model.waitForRequestCompleted5();
         },
       );
     });
@@ -537,24 +587,6 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              valueOrDefault<String>(
-                                _model.lpsvOrderStatusId?.toString(),
-                                '0',
-                              ),
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xB3FFFFFF),
-                                  ),
-                            ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation1']!),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 4.0, 0.0, 0.0),
-                            child: Text(
                               FFAppState().stUserCurrent.departmentDescription,
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
@@ -564,7 +596,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                     color: const Color(0xB3FFFFFF),
                                   ),
                             ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation2']!),
+                                animationsMap['textOnPageLoadAnimation1']!),
                           ),
                         ],
                       ),
@@ -633,309 +665,1185 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         .primaryText,
                                                   ),
                                             ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation3']!),
+                                                'textOnPageLoadAnimation2']!),
                                           ],
                                         ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  6.0, 0.0, 6.0, 0.0),
+                                                  12.0, 0.0, 12.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              FutureBuilder<
-                                                  List<
-                                                      VDashAdminOrdersUnscheduleRow>>(
-                                                future:
-                                                    VDashAdminOrdersUnscheduleTable()
-                                                        .querySingleRow(
-                                                  queryFn: (q) => q,
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus1Row>>(
+                                                    future: (_model
+                                                                .requestCompleter3 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus1Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus1Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus1Row>
+                                                          containerParentStatus1VDashAdminOrdersParentStatus1RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus1VDashAdminOrdersParentStatus1Row =
+                                                          containerParentStatus1VDashAdminOrdersParentStatus1RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus1VDashAdminOrdersParentStatus1RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Não Programadas',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus1VDashAdminOrdersParentStatus1Row
+                                                                    ?.counterOrderParentStatus1
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus1VDashAdminOrdersParentStatus1Row!
+                                                                        .counterOrderParentStatus1! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      1;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'NP',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VDashAdminOrdersUnscheduleRow>
-                                                      containerScheduleVDashAdminOrdersUnscheduleRowList =
-                                                      snapshot.data!;
-                                                  final containerScheduleVDashAdminOrdersUnscheduleRow =
-                                                      containerScheduleVDashAdminOrdersUnscheduleRowList
-                                                              .isNotEmpty
-                                                          ? containerScheduleVDashAdminOrdersUnscheduleRowList
-                                                              .first
-                                                          : null;
-                                                  return InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.lpsvOrderStatusId =
-                                                            1;
-                                                        _model.lpsvIsParent =
-                                                            true;
-                                                      });
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation2']!);
                                                     },
-                                                    child: Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          setState(() {
-                                                            _model.lpsvOrderStatusId =
-                                                                1;
-                                                            _model.lpsvIsParent =
-                                                                true;
-                                                          });
-                                                        },
-                                                        child: wrapWithModel(
-                                                          model: _model
-                                                              .cpOrdersStatusesModel1,
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          child:
-                                                              CpOrdersStatusesWidget(
-                                                            cpStatusId: 1,
-                                                            cpStatusDescription:
-                                                                'Não Programada',
-                                                            cpBadge:
-                                                                containerScheduleVDashAdminOrdersUnscheduleRow!
-                                                                    .counterUnschedule!,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation2']!);
-                                                },
+                                                  ),
+                                                ],
                                               ),
-                                              FutureBuilder<
-                                                  List<
-                                                      VDashAdminOrdersAnalysisRow>>(
-                                                future:
-                                                    VDashAdminOrdersAnalysisTable()
-                                                        .querySingleRow(
-                                                  queryFn: (q) => q,
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus2Row>>(
+                                                    future: (_model
+                                                                .requestCompleter4 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus2Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus2Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
                                                           ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus2Row>
+                                                          containerParentStatus2VDashAdminOrdersParentStatus2RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus2VDashAdminOrdersParentStatus2Row =
+                                                          containerParentStatus2VDashAdminOrdersParentStatus2RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus2VDashAdminOrdersParentStatus2RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VDashAdminOrdersAnalysisRow>
-                                                      containerAnalysisVDashAdminOrdersAnalysisRowList =
-                                                      snapshot.data!;
-                                                  final containerAnalysisVDashAdminOrdersAnalysisRow =
-                                                      containerAnalysisVDashAdminOrdersAnalysisRowList
-                                                              .isNotEmpty
-                                                          ? containerAnalysisVDashAdminOrdersAnalysisRowList
-                                                              .first
-                                                          : null;
-                                                  return InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.lpsvOrderStatusId =
-                                                            2;
-                                                        _model.lpsvIsParent =
-                                                            true;
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          setState(() {
-                                                            _model.lpsvOrderStatusId =
-                                                                2;
-                                                            _model.lpsvIsParent =
-                                                                true;
-                                                          });
-                                                        },
-                                                        child: wrapWithModel(
-                                                          model: _model
-                                                              .cpOrdersStatusesModel2,
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          child:
-                                                              CpOrdersStatusesWidget(
-                                                            cpStatusId: 2,
-                                                            cpStatusDescription:
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
                                                                 'Avaliação',
-                                                            cpBadge:
-                                                                containerAnalysisVDashAdminOrdersAnalysisRow!
-                                                                    .counterAnalysis!,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus2VDashAdminOrdersParentStatus2Row
+                                                                    ?.counterOrderParentStatus2
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus2VDashAdminOrdersParentStatus2Row!
+                                                                        .counterOrderParentStatus2! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      2;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'AV',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation3']!);
-                                                },
-                                              ),
-                                              FutureBuilder<
-                                                  List<
-                                                      VDashAdminOrdersAuthorizedRow>>(
-                                                future:
-                                                    VDashAdminOrdersAuthorizedTable()
-                                                        .querySingleRow(
-                                                  queryFn: (q) => q,
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VDashAdminOrdersAuthorizedRow>
-                                                      containerAuthorizedVDashAdminOrdersAuthorizedRowList =
-                                                      snapshot.data!;
-                                                  final containerAuthorizedVDashAdminOrdersAuthorizedRow =
-                                                      containerAuthorizedVDashAdminOrdersAuthorizedRowList
-                                                              .isNotEmpty
-                                                          ? containerAuthorizedVDashAdminOrdersAuthorizedRowList
-                                                              .first
-                                                          : null;
-                                                  return InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.lpsvOrderStatusId =
-                                                            3;
-                                                        _model.lpsvIsParent =
-                                                            true;
-                                                      });
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation3']!);
                                                     },
-                                                    child: Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          setState(() {
-                                                            _model.lpsvOrderStatusId =
-                                                                3;
-                                                            _model.lpsvIsParent =
-                                                                true;
-                                                          });
-                                                        },
-                                                        child: wrapWithModel(
-                                                          model: _model
-                                                              .cpOrdersStatusesModel3,
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          child:
-                                                              CpOrdersStatusesWidget(
-                                                            cpStatusId: 3,
-                                                            cpStatusDescription:
-                                                                'Autorizado',
-                                                            cpBadge:
-                                                                containerAuthorizedVDashAdminOrdersAuthorizedRow!
-                                                                    .counterAuthorized!,
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus3Row>>(
+                                                    future: (_model
+                                                                .requestCompleter1 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus3Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus3Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus3Row>
+                                                          containerParentStatus3VDashAdminOrdersParentStatus3RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus3VDashAdminOrdersParentStatus3Row =
+                                                          containerParentStatus3VDashAdminOrdersParentStatus3RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus3VDashAdminOrdersParentStatus3RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Autorizadas',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus3VDashAdminOrdersParentStatus3Row
+                                                                    ?.counterOrderParentStatus3
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus3VDashAdminOrdersParentStatus3Row!
+                                                                        .counterOrderParentStatus3! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      3;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'AU',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation4']!);
-                                                },
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation4']!);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus4Row>>(
+                                                    future: (_model
+                                                                .requestCompleter6 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus4Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus4Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus4Row>
+                                                          containerParentStatus4VDashAdminOrdersParentStatus4RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus4VDashAdminOrdersParentStatus4Row =
+                                                          containerParentStatus4VDashAdminOrdersParentStatus4RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus4VDashAdminOrdersParentStatus4RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Agendadas',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus4VDashAdminOrdersParentStatus4Row
+                                                                    ?.counterOrderParentStatus4
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus4VDashAdminOrdersParentStatus4Row!
+                                                                        .counterOrderParentStatus4! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      4;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'AG',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation5']!);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus5Row>>(
+                                                    future: (_model
+                                                                .requestCompleter9 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus5Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus5Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus5Row>
+                                                          containerParentStatus5VDashAdminOrdersParentStatus5RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus5VDashAdminOrdersParentStatus5Row =
+                                                          containerParentStatus5VDashAdminOrdersParentStatus5RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus5VDashAdminOrdersParentStatus5RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Execução',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus5VDashAdminOrdersParentStatus5Row
+                                                                    ?.counterOrderParentStatus5
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus5VDashAdminOrdersParentStatus5Row!
+                                                                        .counterOrderParentStatus5! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      5;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'EX',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation6']!);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  FutureBuilder<
+                                                      List<
+                                                          VDashAdminOrdersParentStatus6Row>>(
+                                                    future: (_model
+                                                                .requestCompleter2 ??=
+                                                            Completer<
+                                                                List<
+                                                                    VDashAdminOrdersParentStatus6Row>>()
+                                                              ..complete(
+                                                                  VDashAdminOrdersParentStatus6Table()
+                                                                      .querySingleRow(
+                                                                queryFn: (q) =>
+                                                                    q,
+                                                              )))
+                                                        .future,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<VDashAdminOrdersParentStatus6Row>
+                                                          containerParentStatus6VDashAdminOrdersParentStatus6RowList =
+                                                          snapshot.data!;
+                                                      final containerParentStatus6VDashAdminOrdersParentStatus6Row =
+                                                          containerParentStatus6VDashAdminOrdersParentStatus6RowList
+                                                                  .isNotEmpty
+                                                              ? containerParentStatus6VDashAdminOrdersParentStatus6RowList
+                                                                  .first
+                                                              : null;
+                                                      return Container(
+                                                        width: 60.0,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: AlignedTooltip(
+                                                          content: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(4.0),
+                                                              child: Text(
+                                                                'Suspensas',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              )),
+                                                          offset: 4.0,
+                                                          preferredDirection:
+                                                              AxisDirection
+                                                                  .down,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBtnText,
+                                                          elevation: 4.0,
+                                                          tailBaseWidth: 24.0,
+                                                          tailLength: 12.0,
+                                                          waitDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      100),
+                                                          showDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1500),
+                                                          triggerMode:
+                                                              TooltipTriggerMode
+                                                                  .tap,
+                                                          child: badges.Badge(
+                                                            badgeContent: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerParentStatus6VDashAdminOrdersParentStatus6Row
+                                                                    ?.counterOrderParentStatus6
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                  ),
+                                                            ),
+                                                            showBadge:
+                                                                containerParentStatus6VDashAdminOrdersParentStatus6Row!
+                                                                        .counterOrderParentStatus6! >
+                                                                    0,
+                                                            shape: badges
+                                                                .BadgeShape
+                                                                .circle,
+                                                            badgeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            elevation: 4.0,
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            position: badges
+                                                                    .BadgePosition
+                                                                .topEnd(),
+                                                            animationType: badges
+                                                                .BadgeAnimationType
+                                                                .scale,
+                                                            toAnimate: true,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      6;
+                                                                  _model.lpsvIsParent =
+                                                                      true;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent3,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Text(
+                                                                    'SU',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'containerOnPageLoadAnimation7']!);
+                                                    },
+                                                  ),
+                                                ],
                                               ),
                                             ].divide(const SizedBox(width: 12.0)),
                                           ),
@@ -988,13 +1896,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         .primaryText,
                                                   ),
                                             ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation4']!),
+                                                'textOnPageLoadAnimation3']!),
                                           ],
                                         ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  6.0, 0.0, 6.0, 0.0),
+                                                  12.0, 0.0, 12.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -1003,14 +1911,14 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                 children: [
                                                   FutureBuilder<
                                                       List<
-                                                          VDashAdminOrdersScheduledRow>>(
+                                                          VDashAdminOrdersStatus2Row>>(
                                                     future: (_model
-                                                                .requestCompleter3 ??=
+                                                                .requestCompleter8 ??=
                                                             Completer<
                                                                 List<
-                                                                    VDashAdminOrdersScheduledRow>>()
+                                                                    VDashAdminOrdersStatus2Row>>()
                                                               ..complete(
-                                                                  VDashAdminOrdersScheduledTable()
+                                                                  VDashAdminOrdersStatus2Table()
                                                                       .querySingleRow(
                                                                 queryFn: (q) =>
                                                                     q,
@@ -1037,13 +1945,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           ),
                                                         );
                                                       }
-                                                      List<VDashAdminOrdersScheduledRow>
-                                                          containerScheduledVDashAdminOrdersScheduledRowList =
+                                                      List<VDashAdminOrdersStatus2Row>
+                                                          containerOrderStatus2VDashAdminOrdersStatus2RowList =
                                                           snapshot.data!;
-                                                      final containerScheduledVDashAdminOrdersScheduledRow =
-                                                          containerScheduledVDashAdminOrdersScheduledRowList
+                                                      final containerOrderStatus2VDashAdminOrdersStatus2Row =
+                                                          containerOrderStatus2VDashAdminOrdersStatus2RowList
                                                                   .isNotEmpty
-                                                              ? containerScheduledVDashAdminOrdersScheduledRowList
+                                                              ? containerOrderStatus2VDashAdminOrdersStatus2RowList
                                                                   .first
                                                               : null;
                                                       return Container(
@@ -1053,15 +1961,9 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .accent2,
+                                                              .primaryBackground,
                                                           shape:
                                                               BoxShape.circle,
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .info,
-                                                            width: 6.0,
-                                                          ),
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1105,9 +2007,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .tap,
                                                           child: badges.Badge(
                                                             badgeContent: Text(
-                                                              containerScheduledVDashAdminOrdersScheduledRow!
-                                                                  .counterScheduled!
-                                                                  .toString(),
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerOrderStatus2VDashAdminOrdersStatus2Row
+                                                                    ?.counterOrderStatus2
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelSmall
@@ -1120,7 +2026,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   ),
                                                             ),
                                                             showBadge:
-                                                                containerScheduledVDashAdminOrdersScheduledRow.counterScheduled! >
+                                                                containerOrderStatus2VDashAdminOrdersStatus2Row!
+                                                                        .counterOrderStatus2! >
                                                                     0,
                                                             shape: badges
                                                                 .BadgeShape
@@ -1140,34 +2047,49 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                 .BadgeAnimationType
                                                                 .scale,
                                                             toAnimate: true,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                          12.0),
-                                                              child: InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  setState(() {
-                                                                    _model.lpsvOrdersView =
-                                                                        'ordersScheduled';
-                                                                  });
-                                                                },
-                                                                child: const Icon(
-                                                                  Icons
-                                                                      .calendar_month,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 24.0,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      2;
+                                                                  _model.lpsvIsParent =
+                                                                      false;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .calendar_month,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 24.0,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1175,7 +2097,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         ),
                                                       ).animateOnPageLoad(
                                                           animationsMap[
-                                                              'containerOnPageLoadAnimation6']!);
+                                                              'containerOnPageLoadAnimation9']!);
                                                     },
                                                   ),
                                                 ],
@@ -1185,14 +2107,14 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                 children: [
                                                   FutureBuilder<
                                                       List<
-                                                          VDashAdminOrdersInProgressRow>>(
+                                                          VDashAdminOrdersStatus3Row>>(
                                                     future: (_model
-                                                                .requestCompleter2 ??=
+                                                                .requestCompleter7 ??=
                                                             Completer<
                                                                 List<
-                                                                    VDashAdminOrdersInProgressRow>>()
+                                                                    VDashAdminOrdersStatus3Row>>()
                                                               ..complete(
-                                                                  VDashAdminOrdersInProgressTable()
+                                                                  VDashAdminOrdersStatus3Table()
                                                                       .querySingleRow(
                                                                 queryFn: (q) =>
                                                                     q,
@@ -1219,13 +2141,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           ),
                                                         );
                                                       }
-                                                      List<VDashAdminOrdersInProgressRow>
-                                                          containerInProgressVDashAdminOrdersInProgressRowList =
+                                                      List<VDashAdminOrdersStatus3Row>
+                                                          containerrderStatus3VDashAdminOrdersStatus3RowList =
                                                           snapshot.data!;
-                                                      final containerInProgressVDashAdminOrdersInProgressRow =
-                                                          containerInProgressVDashAdminOrdersInProgressRowList
+                                                      final containerrderStatus3VDashAdminOrdersStatus3Row =
+                                                          containerrderStatus3VDashAdminOrdersStatus3RowList
                                                                   .isNotEmpty
-                                                              ? containerInProgressVDashAdminOrdersInProgressRowList
+                                                              ? containerrderStatus3VDashAdminOrdersStatus3RowList
                                                                   .first
                                                               : null;
                                                       return Container(
@@ -1235,15 +2157,9 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .success,
+                                                              .primaryBackground,
                                                           shape:
                                                               BoxShape.circle,
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .info,
-                                                            width: 6.0,
-                                                          ),
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1287,9 +2203,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .tap,
                                                           child: badges.Badge(
                                                             badgeContent: Text(
-                                                              containerInProgressVDashAdminOrdersInProgressRow!
-                                                                  .counterInProgress!
-                                                                  .toString(),
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerrderStatus3VDashAdminOrdersStatus3Row
+                                                                    ?.counterOrderStatus3
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelSmall
@@ -1302,7 +2222,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   ),
                                                             ),
                                                             showBadge:
-                                                                containerInProgressVDashAdminOrdersInProgressRow.counterInProgress! >
+                                                                containerrderStatus3VDashAdminOrdersStatus3Row!
+                                                                        .counterOrderStatus3! >
                                                                     0,
                                                             shape: badges
                                                                 .BadgeShape
@@ -1322,33 +2243,49 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                 .BadgeAnimationType
                                                                 .scale,
                                                             toAnimate: true,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(6.0),
-                                                              child: InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  setState(() {
-                                                                    _model.lpsvOrdersView =
-                                                                        'ordersInProgress';
-                                                                  });
-                                                                },
-                                                                child: const FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .tools,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 24.0,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      3;
+                                                                  _model.lpsvIsParent =
+                                                                      false;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .fire_truck,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 24.0,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1356,7 +2293,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         ),
                                                       ).animateOnPageLoad(
                                                           animationsMap[
-                                                              'containerOnPageLoadAnimation7']!);
+                                                              'containerOnPageLoadAnimation10']!);
                                                     },
                                                   ),
                                                 ],
@@ -1366,14 +2303,14 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                 children: [
                                                   FutureBuilder<
                                                       List<
-                                                          VDashAdminOrdersSuspendedRow>>(
+                                                          VDashAdminOrdersStatus4Row>>(
                                                     future: (_model
-                                                                .requestCompleter1 ??=
+                                                                .requestCompleter5 ??=
                                                             Completer<
                                                                 List<
-                                                                    VDashAdminOrdersSuspendedRow>>()
+                                                                    VDashAdminOrdersStatus4Row>>()
                                                               ..complete(
-                                                                  VDashAdminOrdersSuspendedTable()
+                                                                  VDashAdminOrdersStatus4Table()
                                                                       .querySingleRow(
                                                                 queryFn: (q) =>
                                                                     q,
@@ -1400,13 +2337,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                           ),
                                                         );
                                                       }
-                                                      List<VDashAdminOrdersSuspendedRow>
-                                                          containerSuspendedVDashAdminOrdersSuspendedRowList =
+                                                      List<VDashAdminOrdersStatus4Row>
+                                                          containerOrderStatus4VDashAdminOrdersStatus4RowList =
                                                           snapshot.data!;
-                                                      final containerSuspendedVDashAdminOrdersSuspendedRow =
-                                                          containerSuspendedVDashAdminOrdersSuspendedRowList
+                                                      final containerOrderStatus4VDashAdminOrdersStatus4Row =
+                                                          containerOrderStatus4VDashAdminOrdersStatus4RowList
                                                                   .isNotEmpty
-                                                              ? containerSuspendedVDashAdminOrdersSuspendedRowList
+                                                              ? containerOrderStatus4VDashAdminOrdersStatus4RowList
                                                                   .first
                                                               : null;
                                                       return Container(
@@ -1416,15 +2353,9 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryText,
+                                                              .primaryBackground,
                                                           shape:
                                                               BoxShape.circle,
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBtnText,
-                                                            width: 6.0,
-                                                          ),
                                                         ),
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1468,9 +2399,13 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   .tap,
                                                           child: badges.Badge(
                                                             badgeContent: Text(
-                                                              containerSuspendedVDashAdminOrdersSuspendedRow!
-                                                                  .counterSuspended!
-                                                                  .toString(),
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerOrderStatus4VDashAdminOrdersStatus4Row
+                                                                    ?.counterOrderStatus4
+                                                                    ?.toString(),
+                                                                '0',
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelSmall
@@ -1483,7 +2418,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                   ),
                                                             ),
                                                             showBadge:
-                                                                containerSuspendedVDashAdminOrdersSuspendedRow.counterSuspended! >
+                                                                containerOrderStatus4VDashAdminOrdersStatus4Row!
+                                                                        .counterOrderStatus4! >
                                                                     0,
                                                             shape: badges
                                                                 .BadgeShape
@@ -1503,34 +2439,48 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                 .BadgeAnimationType
                                                                 .scale,
                                                             toAnimate: true,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                          12.0),
-                                                              child: InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  setState(() {
-                                                                    _model.lpsvOrdersView =
-                                                                        'ordersSuspended';
-                                                                  });
-                                                                },
-                                                                child: const Icon(
-                                                                  Icons
-                                                                      .pause_sharp,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 24.0,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  _model.lpsvOrderStatusId =
+                                                                      4;
+                                                                  _model.lpsvIsParent =
+                                                                      false;
+                                                                });
+                                                              },
+                                                              child: Card(
+                                                                clipBehavior: Clip
+                                                                    .antiAliasWithSaveLayer,
+                                                                color: const Color(
+                                                                    0xFF595555),
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                ),
+                                                                child: const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .pause_sharp,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 24.0,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -1538,7 +2488,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         ),
                                                       ).animateOnPageLoad(
                                                           animationsMap[
-                                                              'containerOnPageLoadAnimation8']!);
+                                                              'containerOnPageLoadAnimation11']!);
                                                     },
                                                   ),
                                                 ],
@@ -1550,7 +2500,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                     ),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation5']!),
+                                    'containerOnPageLoadAnimation8']!),
                                 Container(
                                   height: 80.0,
                                   decoration: BoxDecoration(
@@ -1583,7 +2533,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Atendimentos',
+                                              'Visitas',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .labelMedium
@@ -1594,7 +2544,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                         .primaryText,
                                                   ),
                                             ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation5']!),
+                                                'textOnPageLoadAnimation4']!),
                                           ],
                                         ),
                                         Padding(
@@ -1611,18 +2561,10 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     width: 60.0,
                                                     height: 60.0,
                                                     decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBtnText,
-                                                        width: 6.0,
-                                                      ),
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1658,18 +2600,69 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                       triggerMode:
                                                           TooltipTriggerMode
                                                               .tap,
-                                                      child: const Padding(
-                                                        padding: EdgeInsets.all(
-                                                            12.0),
-                                                        child: Icon(
-                                                          Icons.draw,
-                                                          color: Colors.white,
-                                                          size: 24.0,
+                                                      child: badges.Badge(
+                                                        badgeContent: Text(
+                                                          random_data
+                                                              .randomInteger(
+                                                                  1, 222)
+                                                              .toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                              ),
+                                                        ),
+                                                        showBadge: true,
+                                                        shape: badges
+                                                            .BadgeShape.circle,
+                                                        badgeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        elevation: 4.0,
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        position:
+                                                            badges.BadgePosition
+                                                                .topEnd(),
+                                                        animationType: badges
+                                                            .BadgeAnimationType
+                                                            .scale,
+                                                        toAnimate: true,
+                                                        child: Card(
+                                                          clipBehavior: Clip
+                                                              .antiAliasWithSaveLayer,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        40.0),
+                                                          ),
+                                                          child: const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    12.0),
+                                                            child: Icon(
+                                                              Icons.draw,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 24.0,
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation10']!),
+                                                      'containerOnPageLoadAnimation13']!),
                                                 ],
                                               ),
                                               Column(
@@ -1679,18 +2672,10 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     width: 60.0,
                                                     height: 60.0,
                                                     decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBtnText,
-                                                        width: 6.0,
-                                                      ),
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1760,21 +2745,36 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             .BadgeAnimationType
                                                             .scale,
                                                         toAnimate: true,
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  12.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .report_problem,
-                                                            color: Colors.white,
-                                                            size: 24.0,
+                                                        child: Card(
+                                                          clipBehavior: Clip
+                                                              .antiAliasWithSaveLayer,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        40.0),
+                                                          ),
+                                                          child: const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    12.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .report_problem,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 24.0,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation11']!),
+                                                      'containerOnPageLoadAnimation14']!),
                                                 ],
                                               ),
                                               Column(
@@ -1784,18 +2784,10 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     width: 60.0,
                                                     height: 60.0,
                                                     decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBtnText,
-                                                        width: 6.0,
-                                                      ),
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1865,20 +2857,35 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             .BadgeAnimationType
                                                             .scale,
                                                         toAnimate: true,
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  12.0),
-                                                          child: Icon(
-                                                            Icons.thumb_down,
-                                                            color: Colors.white,
-                                                            size: 24.0,
+                                                        child: Card(
+                                                          clipBehavior: Clip
+                                                              .antiAliasWithSaveLayer,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        40.0),
+                                                          ),
+                                                          child: const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    12.0),
+                                                            child: Icon(
+                                                              Icons.thumb_down,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 24.0,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation12']!),
+                                                      'containerOnPageLoadAnimation15']!),
                                                 ],
                                               ),
                                             ].divide(const SizedBox(width: 12.0)),
@@ -1888,7 +2895,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                     ),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation9']!),
+                                    'containerOnPageLoadAnimation12']!),
                               ].divide(const SizedBox(width: 12.0)),
                             ),
                           ),
@@ -1929,12 +2936,17 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Text(
-                                                        'Hello World',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s Não programadas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
                                                       ),
                                                       FutureBuilder<
                                                           List<
@@ -1967,7 +2979,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             );
                                                           }
                                                           List<VOrdersOpenParentStatus1Row>
-                                                              listViewVOrdersOpenParentStatus1RowList =
+                                                              listViewParentsStatus1VOrdersOpenParentStatus1RowList =
                                                               snapshot.data!;
                                                           return ListView
                                                               .separated(
@@ -1978,7 +2990,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewVOrdersOpenParentStatus1RowList
+                                                                listViewParentsStatus1VOrdersOpenParentStatus1RowList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -1986,22 +2998,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     height:
                                                                         12.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewVOrdersOpenParentStatus1Row =
-                                                                  listViewVOrdersOpenParentStatus1RowList[
-                                                                      listViewIndex];
+                                                                listViewParentsStatus1Index) {
+                                                              final listViewParentsStatus1VOrdersOpenParentStatus1Row =
+                                                                  listViewParentsStatus1VOrdersOpenParentStatus1RowList[
+                                                                      listViewParentsStatus1Index];
                                                               return CpOrderParentDashCardShowWidget(
                                                                 key: Key(
-                                                                    'Keyxll_${listViewIndex}_of_${listViewVOrdersOpenParentStatus1RowList.length}'),
+                                                                    'Keyxll_${listViewParentsStatus1Index}_of_${listViewParentsStatus1VOrdersOpenParentStatus1RowList.length}'),
                                                                 orderId:
-                                                                    listViewVOrdersOpenParentStatus1Row
+                                                                    listViewParentsStatus1VOrdersOpenParentStatus1Row
                                                                         .id!,
                                                               );
                                                             },
                                                           );
                                                         },
                                                       ),
-                                                    ],
+                                                    ].divide(
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                                 );
                                               } else if (_model
@@ -2012,6 +3025,18 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s em Avaliação',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
                                                       FutureBuilder<
                                                           List<
                                                               VOrdersOpenParentStatus2Row>>(
@@ -2043,7 +3068,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             );
                                                           }
                                                           List<VOrdersOpenParentStatus2Row>
-                                                              listViewVOrdersOpenParentStatus2RowList =
+                                                              listViewParentsStatus2VOrdersOpenParentStatus2RowList =
                                                               snapshot.data!;
                                                           return ListView
                                                               .separated(
@@ -2054,7 +3079,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewVOrdersOpenParentStatus2RowList
+                                                                listViewParentsStatus2VOrdersOpenParentStatus2RowList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -2062,22 +3087,23 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     height:
                                                                         12.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewVOrdersOpenParentStatus2Row =
-                                                                  listViewVOrdersOpenParentStatus2RowList[
-                                                                      listViewIndex];
+                                                                listViewParentsStatus2Index) {
+                                                              final listViewParentsStatus2VOrdersOpenParentStatus2Row =
+                                                                  listViewParentsStatus2VOrdersOpenParentStatus2RowList[
+                                                                      listViewParentsStatus2Index];
                                                               return CpOrderParentDashCardShowWidget(
                                                                 key: Key(
-                                                                    'Key8n0_${listViewIndex}_of_${listViewVOrdersOpenParentStatus2RowList.length}'),
+                                                                    'Key8n0_${listViewParentsStatus2Index}_of_${listViewParentsStatus2VOrdersOpenParentStatus2RowList.length}'),
                                                                 orderId:
-                                                                    listViewVOrdersOpenParentStatus2Row
+                                                                    listViewParentsStatus2VOrdersOpenParentStatus2Row
                                                                         .id!,
                                                               );
                                                             },
                                                           );
                                                         },
                                                       ),
-                                                    ],
+                                                    ].divide(
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                                 );
                                               } else if (_model
@@ -2088,6 +3114,18 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s Autorizadas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
                                                       FutureBuilder<
                                                           List<
                                                               VOrdersOpenParentStatus3Row>>(
@@ -2119,7 +3157,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             );
                                                           }
                                                           List<VOrdersOpenParentStatus3Row>
-                                                              listViewVOrdersOpenParentStatus3RowList =
+                                                              listViewParentsStatus3VOrdersOpenParentStatus3RowList =
                                                               snapshot.data!;
                                                           return ListView
                                                               .separated(
@@ -2130,7 +3168,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewVOrdersOpenParentStatus3RowList
+                                                                listViewParentsStatus3VOrdersOpenParentStatus3RowList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -2138,37 +3176,50 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     height:
                                                                         12.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewVOrdersOpenParentStatus3Row =
-                                                                  listViewVOrdersOpenParentStatus3RowList[
-                                                                      listViewIndex];
+                                                                listViewParentsStatus3Index) {
+                                                              final listViewParentsStatus3VOrdersOpenParentStatus3Row =
+                                                                  listViewParentsStatus3VOrdersOpenParentStatus3RowList[
+                                                                      listViewParentsStatus3Index];
                                                               return CpOrderParentDashCardShowWidget(
                                                                 key: Key(
-                                                                    'Keyxxd_${listViewIndex}_of_${listViewVOrdersOpenParentStatus3RowList.length}'),
+                                                                    'Keyxxd_${listViewParentsStatus3Index}_of_${listViewParentsStatus3VOrdersOpenParentStatus3RowList.length}'),
                                                                 orderId:
-                                                                    listViewVOrdersOpenParentStatus3Row
+                                                                    listViewParentsStatus3VOrdersOpenParentStatus3Row
                                                                         .id!,
                                                               );
                                                             },
                                                           );
                                                         },
                                                       ),
-                                                    ],
+                                                    ].divide(
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                                 );
                                               } else if (_model
-                                                      .lpsvOrdersView ==
-                                                  'ordersScheduled') {
+                                                      .lpsvOrderStatusId ==
+                                                  4) {
                                                 return SingleChildScrollView(
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s Agendadas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
                                                       FutureBuilder<
                                                           List<
-                                                              VOrdersScheduledRow>>(
+                                                              VOrdersOpenStatus2Row>>(
                                                         future:
-                                                            VOrdersScheduledTable()
+                                                            VOrdersOpenStatus2Table()
                                                                 .queryRows(
                                                           queryFn: (q) => q,
                                                         ),
@@ -2194,8 +3245,8 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                               ),
                                                             );
                                                           }
-                                                          List<VOrdersScheduledRow>
-                                                              listViewVOrdersScheduledRowList =
+                                                          List<VOrdersOpenStatus2Row>
+                                                              listViewParentsStatus4VOrdersOpenStatus2RowList =
                                                               snapshot.data!;
                                                           return ListView
                                                               .separated(
@@ -2206,7 +3257,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewVOrdersScheduledRowList
+                                                                listViewParentsStatus4VOrdersOpenStatus2RowList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -2214,30 +3265,45 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     height:
                                                                         12.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewVOrdersScheduledRow =
-                                                                  listViewVOrdersScheduledRowList[
-                                                                      listViewIndex];
+                                                                listViewParentsStatus4Index) {
+                                                              final listViewParentsStatus4VOrdersOpenStatus2Row =
+                                                                  listViewParentsStatus4VOrdersOpenStatus2RowList[
+                                                                      listViewParentsStatus4Index];
                                                               return CpOrderCardShowWidget(
                                                                 key: Key(
-                                                                    'Key1g5_${listViewIndex}_of_${listViewVOrdersScheduledRowList.length}'),
+                                                                    'Key1g5_${listViewParentsStatus4Index}_of_${listViewParentsStatus4VOrdersOpenStatus2RowList.length}'),
                                                                 orderId:
-                                                                    listViewVOrdersScheduledRow
+                                                                    listViewParentsStatus4VOrdersOpenStatus2Row
                                                                         .id!,
                                                               );
                                                             },
                                                           );
                                                         },
                                                       ),
-                                                    ],
+                                                    ].divide(
+                                                        const SizedBox(height: 8.0)),
                                                   ),
                                                 );
-                                              } else {
+                                              } else if (_model
+                                                      .lpsvOrderStatusId ==
+                                                  5) {
                                                 return SingleChildScrollView(
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s Execução',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
                                                       FutureBuilder<
                                                           List<VOrdersRow>>(
                                                         future: VOrdersTable()
@@ -2273,7 +3339,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             );
                                                           }
                                                           List<VOrdersRow>
-                                                              listViewVOrdersRowList =
+                                                              listViewParentsStatus5VOrdersRowList =
                                                               snapshot.data!;
                                                           return ListView
                                                               .separated(
@@ -2284,7 +3350,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewVOrdersRowList
+                                                                listViewParentsStatus5VOrdersRowList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -2292,15 +3358,105 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                                                     height:
                                                                         12.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewVOrdersRow =
-                                                                  listViewVOrdersRowList[
-                                                                      listViewIndex];
+                                                                listViewParentsStatus5Index) {
+                                                              final listViewParentsStatus5VOrdersRow =
+                                                                  listViewParentsStatus5VOrdersRowList[
+                                                                      listViewParentsStatus5Index];
                                                               return CpOrderCardShowWidget(
                                                                 key: Key(
-                                                                    'Key2my_${listViewIndex}_of_${listViewVOrdersRowList.length}'),
+                                                                    'Key2my_${listViewParentsStatus5Index}_of_${listViewParentsStatus5VOrdersRowList.length}'),
                                                                 orderId:
-                                                                    listViewVOrdersRow
+                                                                    listViewParentsStatus5VOrdersRow
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'SS\'s Suspensas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<VOrdersRow>>(
+                                                        future: VOrdersTable()
+                                                            .queryRows(
+                                                          queryFn: (q) => q
+                                                              .eq(
+                                                                'statusId',
+                                                                4,
+                                                              )
+                                                              .order(
+                                                                  'requesterDate'),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersRow>
+                                                              listViewParentsStatus6VOrdersRowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewParentsStatus6VOrdersRowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewParentsStatus6Index) {
+                                                              final listViewParentsStatus6VOrdersRow =
+                                                                  listViewParentsStatus6VOrdersRowList[
+                                                                      listViewParentsStatus6Index];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keyn6v_${listViewParentsStatus6Index}_of_${listViewParentsStatus6VOrdersRowList.length}'),
+                                                                orderId:
+                                                                    listViewParentsStatus6VOrdersRow
                                                                         .id!,
                                                               );
                                                             },
@@ -2314,10 +3470,447 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                             },
                                           );
                                         } else {
-                                          return Text(
-                                            'Hello World',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                          return Builder(
+                                            builder: (context) {
+                                              if (_model.lpsvOrderStatusId ==
+                                                  2) {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'OS\'s em Avaliação',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<
+                                                              VOrdersOpenStatus2Row>>(
+                                                        future:
+                                                            VOrdersOpenStatus2Table()
+                                                                .queryRows(
+                                                          queryFn: (q) => q,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersOpenStatus2Row>
+                                                              listViewVOrdersOpenStatus2RowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewVOrdersOpenStatus2RowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewVOrdersOpenStatus2Row =
+                                                                  listViewVOrdersOpenStatus2RowList[
+                                                                      listViewIndex];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keygsf_${listViewIndex}_of_${listViewVOrdersOpenStatus2RowList.length}'),
+                                                                orderId:
+                                                                    listViewVOrdersOpenStatus2Row
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else if (_model
+                                                      .lpsvOrderStatusId ==
+                                                  3) {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'OS\'s Autorizadas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<
+                                                              VOrdersOpenStatus3Row>>(
+                                                        future:
+                                                            VOrdersOpenStatus3Table()
+                                                                .queryRows(
+                                                          queryFn: (q) => q,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersOpenStatus3Row>
+                                                              listViewVOrdersOpenStatus3RowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewVOrdersOpenStatus3RowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewVOrdersOpenStatus3Row =
+                                                                  listViewVOrdersOpenStatus3RowList[
+                                                                      listViewIndex];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keyer3_${listViewIndex}_of_${listViewVOrdersOpenStatus3RowList.length}'),
+                                                                orderId:
+                                                                    listViewVOrdersOpenStatus3Row
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else if (_model
+                                                      .lpsvOrderStatusId ==
+                                                  4) {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'OS\'s Agendadas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<
+                                                              VOrdersOpenStatus4Row>>(
+                                                        future:
+                                                            VOrdersOpenStatus4Table()
+                                                                .queryRows(
+                                                          queryFn: (q) => q,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersOpenStatus4Row>
+                                                              listViewVOrdersOpenStatus4RowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewVOrdersOpenStatus4RowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewVOrdersOpenStatus4Row =
+                                                                  listViewVOrdersOpenStatus4RowList[
+                                                                      listViewIndex];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keyov6_${listViewIndex}_of_${listViewVOrdersOpenStatus4RowList.length}'),
+                                                                orderId:
+                                                                    listViewVOrdersOpenStatus4Row
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else if (_model
+                                                      .lpsvOrderStatusId ==
+                                                  5) {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'OS\'s Execução',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<
+                                                              VOrdersOpenStatus5Row>>(
+                                                        future:
+                                                            VOrdersOpenStatus5Table()
+                                                                .queryRows(
+                                                          queryFn: (q) => q,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersOpenStatus5Row>
+                                                              listViewVOrdersOpenStatus5RowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewVOrdersOpenStatus5RowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewVOrdersOpenStatus5Row =
+                                                                  listViewVOrdersOpenStatus5RowList[
+                                                                      listViewIndex];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keyd5g_${listViewIndex}_of_${listViewVOrdersOpenStatus5RowList.length}'),
+                                                                orderId:
+                                                                    listViewVOrdersOpenStatus5Row
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else {
+                                                return SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'OS\'s Suspesas',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      FutureBuilder<
+                                                          List<
+                                                              VOrdersOpenStatus6Row>>(
+                                                        future:
+                                                            VOrdersOpenStatus6Table()
+                                                                .queryRows(
+                                                          queryFn: (q) => q,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VOrdersOpenStatus6Row>
+                                                              listViewVOrdersOpenStatus6RowList =
+                                                              snapshot.data!;
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewVOrdersOpenStatus6RowList
+                                                                    .length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    height:
+                                                                        12.0),
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewVOrdersOpenStatus6Row =
+                                                                  listViewVOrdersOpenStatus6RowList[
+                                                                      listViewIndex];
+                                                              return CpOrderCardShowWidget(
+                                                                key: Key(
+                                                                    'Keymqj_${listViewIndex}_of_${listViewVOrdersOpenStatus6RowList.length}'),
+                                                                orderId:
+                                                                    listViewVOrdersOpenStatus6Row
+                                                                        .id!,
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }
+                                            },
                                           );
                                         }
                                       },
@@ -2325,7 +3918,7 @@ class _PgDashboardAdminWidgetState extends State<PgDashboardAdminWidget>
                                   ],
                                 ),
                               ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation13']!),
+                                  'containerOnPageLoadAnimation16']!),
                             ),
                           ),
                         ],

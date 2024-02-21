@@ -16,10 +16,10 @@ class CpOrderParentDashCardShowModel
 
   // Stores action output result for [Backend Call - API (orderFollowed)] action in cpOrderParentDashCardShow widget.
   ApiCallResponse? apiResultxzh;
-  // Model for cpOrderPriority component.
-  late CpOrderPriorityModel cpOrderPriorityModel;
   // Stores action output result for [Backend Call - API (orderFollowed)] action in IconButton widget.
   ApiCallResponse? apiResult6nl;
+  // Model for cpOrderPriority component.
+  late CpOrderPriorityModel cpOrderPriorityModel;
   // Model for cpOrdersStatuses component.
   late CpOrdersStatusesModel cpOrdersStatusesModel;
 

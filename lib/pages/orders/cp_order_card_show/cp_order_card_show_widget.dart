@@ -107,7 +107,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -127,7 +127,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -172,6 +172,26 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
         ),
       ],
     ),
+    'dividerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1400.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 30.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
     'textOnPageLoadAnimation7': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -208,26 +228,6 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
           delay: 1600.ms,
           duration: 600.ms,
           begin: const Offset(0.0, 50.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'dividerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1400.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -293,6 +293,46 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
       ],
     ),
     'textOnPageLoadAnimation12': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1600.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation13': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1600.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation14': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1600.ms),
@@ -399,58 +439,73 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
+                    Row(
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              'pgOrderShow',
-                              queryParameters: {
-                                'orderId': serializeParam(
-                                  widget.orderId,
-                                  ParamType.int,
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await action_blocks.abOrderSelected(
+                                  context,
+                                  abOrderId: widget.orderId,
+                                );
+
+                                context.pushNamed(
+                                  'pgOrderShow',
+                                  queryParameters: {
+                                    'orderId': serializeParam(
+                                      widget.orderId,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersRow?.orderMask,
+                                  '.',
                                 ),
-                              }.withoutNulls,
-                            );
-                          },
-                          child: Text(
-                            valueOrDefault<String>(
-                              containerVOrdersRow?.orderMask,
-                              '.',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                ),
-                          ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation1']!),
-                        Text(
-                          '${valueOrDefault<String>(
-                            containerVOrdersRow?.typeCode,
-                            '.',
-                          )}/${valueOrDefault<String>(
-                            containerVOrdersRow?.typeSubCode,
-                            '.',
-                          )}',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
                               ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation2']!),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
+                            Text(
+                              '${valueOrDefault<String>(
+                                containerVOrdersRow?.typeCode,
+                                '.',
+                              )}/${valueOrDefault<String>(
+                                containerVOrdersRow?.typeSubCode,
+                                '.',
+                              )}',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation2']!),
+                          ],
+                        ),
+                        wrapWithModel(
+                          model: _model.cpOrderPriorityModel,
+                          updateCallback: () => setState(() {}),
+                          child: const CpOrderPriorityWidget(),
+                        ),
                       ],
                     ),
                     Column(
@@ -462,10 +517,28 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            Text(
+                              '${valueOrDefault<String>(
+                                dateTimeFormat('d/M H:mm',
+                                    containerVOrdersRow?.statusDate),
+                                '.',
+                              )} h',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0x9AFFFFFF),
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation3']!),
                             wrapWithModel(
-                              model: _model.cpOrderPriorityModel,
+                              model: _model.cpOrdersStatusesModel,
                               updateCallback: () => setState(() {}),
-                              child: const CpOrderPriorityWidget(),
+                              child: CpOrdersStatusesWidget(
+                                cpStatusId: containerVOrdersRow!.statusId!,
+                                cpStatusDescription:
+                                    containerVOrdersRow.statusDescription!,
+                              ),
                             ),
                           ].divide(const SizedBox(width: 8.0)),
                         ),
@@ -495,7 +568,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   'pgUnitShowOri',
                                   queryParameters: {
                                     'unitId': serializeParam(
-                                      containerVOrdersRow?.unitId,
+                                      containerVOrdersRow.unitId,
                                       ParamType.int,
                                     ),
                                   }.withoutNulls,
@@ -503,7 +576,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               },
                               child: Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersRow?.unitDescription,
+                                  containerVOrdersRow.unitDescription,
                                   '.',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -515,11 +588,11 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     ),
                               ),
                             ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation3']!),
+                                animationsMap['textOnPageLoadAnimation4']!),
                           ),
                           Text(
                             valueOrDefault<String>(
-                              containerVOrdersRow?.assetTagDescription,
+                              containerVOrdersRow.assetTagDescription,
                               'assetTagDescription',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -529,10 +602,10 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation4']!),
+                              animationsMap['textOnPageLoadAnimation5']!),
                           Text(
                             valueOrDefault<String>(
-                              containerVOrdersRow?.requestedServices,
+                              containerVOrdersRow.requestedServices,
                               'team',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -542,82 +615,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   color: const Color(0x9AFFFFFF),
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation5']!),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          valueOrDefault<String>(
-                            containerVOrdersRow?.teamLeaderNameShort,
-                            'team',
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
-                                  ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation6']!),
-                        Text(
-                          valueOrDefault<String>(
-                            containerVOrdersRow?.teamCode,
-                            'team',
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
-                                  ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation7']!),
-                      ],
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${valueOrDefault<String>(
-                                  dateTimeFormat('d/M H:mm',
-                                      containerVOrdersRow?.statusDate),
-                                  '.',
-                                )} h',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
-                                    ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation8']!),
-                              wrapWithModel(
-                                model: _model.cpOrdersStatusesModel,
-                                updateCallback: () => setState(() {}),
-                                child: CpOrdersStatusesWidget(
-                                  cpStatusId: containerVOrdersRow!.statusId!,
-                                  cpStatusDescription:
-                                      containerVOrdersRow.statusDescription!,
-                                ),
-                              ),
-                            ].divide(const SizedBox(width: 8.0)),
-                          ),
+                              animationsMap['textOnPageLoadAnimation6']!),
                         ],
                       ),
                     ),
@@ -664,7 +662,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                       color: const Color(0x9AFFFFFF),
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation9']!),
+                                  animationsMap['textOnPageLoadAnimation7']!),
                               Text(
                                 valueOrDefault<String>(
                                   containerVOrdersRow.requesterTeamCode,
@@ -677,7 +675,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                       color: const Color(0x9AFFFFFF),
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation10']!),
+                                  animationsMap['textOnPageLoadAnimation8']!),
                               Text(
                                 valueOrDefault<String>(
                                   containerVOrdersRow.requesterPhone,
@@ -690,7 +688,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                       color: const Color(0x9AFFFFFF),
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation11']!),
+                                  animationsMap['textOnPageLoadAnimation9']!),
                               Text(
                                 '${valueOrDefault<String>(
                                   dateTimeFormat('d/M H:mm',
@@ -704,9 +702,77 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                       color: const Color(0x9AFFFFFF),
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation12']!),
+                                  animationsMap['textOnPageLoadAnimation10']!),
                             ],
                           ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Responsável',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                  ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersRow.companydescription,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0x9AFFFFFF),
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation11']!),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersRow.teamCode,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0x9AFFFFFF),
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation12']!),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersRow.teamLeaderNameShort,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0x9AFFFFFF),
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation13']!),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersRow.contractDescription,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0x9AFFFFFF),
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation14']!),
+                          ],
                         ),
                       ],
                     ),

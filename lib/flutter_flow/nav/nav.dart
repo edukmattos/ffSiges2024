@@ -10,6 +10,7 @@ import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
 import '/index.dart';
 import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -351,12 +352,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'pgDashboardAdminCopy',
-          path: '/pgDashboardAdminCopy',
-          requireAuth: true,
-          builder: (context, params) => const PgDashboardAdminCopyWidget(),
-        ),
-        FFRoute(
           name: 'pgOrderParentNew',
           path: '/pgOrderParentNew',
           requireAuth: true,
@@ -549,10 +544,13 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/67.jpeg',
-                    fit: BoxFit.cover,
+                  color: FlutterFlowTheme.of(context).backgroundComponents,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/67.jpeg',
+                      width: 150.0,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 )
               : PushNotificationsHandler(child: page);

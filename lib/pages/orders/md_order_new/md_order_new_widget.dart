@@ -971,15 +971,9 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       abTitle:
                                                           'OS ${_model.resOrderAdded?.orderMask}: Em Avaliação',
                                                       abBody:
-                                                          '${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                          '${FFAppState().stOrderParentSelected.first.unitDescription}${_model.resOrderAdded?.requestedServices}\\n',
                                                     );
                                                     Navigator.pop(context);
-                                                    await action_blocks
-                                                        .abOrderSelected(
-                                                      context,
-                                                      abOrderId: _model
-                                                          .resOrderAdded?.id,
-                                                    );
 
                                                     context.pushNamed(
                                                       'pgOrderShow',
@@ -991,6 +985,13 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           ParamType.int,
                                                         ),
                                                       }.withoutNulls,
+                                                    );
+
+                                                    await action_blocks
+                                                        .abOrderSelected(
+                                                      context,
+                                                      abOrderId: _model
+                                                          .resOrderAdded?.id,
                                                     );
                                                   } else {
                                                     await showDialog(

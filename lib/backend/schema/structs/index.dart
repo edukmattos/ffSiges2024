@@ -2,6 +2,7 @@ export '/backend/schema/util/schema_util.dart';
 
 export 'api_dt_users_by_visit_id_struct.dart';
 export 'dt_asset_struct.dart';
+export 'dt_filters_services_struct.dart';
 export 'dt_order_struct.dart';
 export 'dt_order_parent_new_struct.dart';
 export 'dt_order_visit_struct.dart';

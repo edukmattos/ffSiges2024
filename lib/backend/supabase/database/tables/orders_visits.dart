@@ -82,15 +82,15 @@ class OrdersVisitsRow extends SupabaseDataRow {
   set orderVisitAssetsReportedAmount(int? value) =>
       setField<int>('orderVisitAssetsReportedAmount', value);
 
-  double? get totalMaterials => getField<double>('totalMaterials');
-  set totalMaterials(double? value) =>
-      setField<double>('totalMaterials', value);
+  double? get priceMaterials => getField<double>('priceMaterials');
+  set priceMaterials(double? value) =>
+      setField<double>('priceMaterials', value);
 
-  double? get totalServices => getField<double>('totalServices');
-  set totalServices(double? value) => setField<double>('totalServices', value);
+  double? get priceServices => getField<double>('priceServices');
+  set priceServices(double? value) => setField<double>('priceServices', value);
 
-  double? get totalVehicles => getField<double>('totalVehicles');
-  set totalVehicles(double? value) => setField<double>('totalVehicles', value);
+  double? get priceVehicles => getField<double>('priceVehicles');
+  set priceVehicles(double? value) => setField<double>('priceVehicles', value);
 
   int? get createdUserId => getField<int>('createdUserId');
   set createdUserId(int? value) => setField<int>('createdUserId', value);
@@ -142,4 +142,7 @@ class OrdersVisitsRow extends SupabaseDataRow {
   double? get createdLongitude => getField<double>('createdLongitude');
   set createdLongitude(double? value) =>
       setField<double>('createdLongitude', value);
+
+  double? get priceTotal => getField<double>('priceTotal');
+  set priceTotal(double? value) => setField<double>('priceTotal', value);
 }

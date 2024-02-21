@@ -12,9 +12,11 @@ class CpDropdownOrdersTypesSubsWidget extends StatefulWidget {
   const CpDropdownOrdersTypesSubsWidget({
     super.key,
     this.hintText,
+    this.initialValue,
   });
 
   final String? hintText;
+  final int? initialValue;
 
   @override
   State<CpDropdownOrdersTypesSubsWidget> createState() =>

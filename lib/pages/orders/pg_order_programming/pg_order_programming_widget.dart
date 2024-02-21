@@ -12,7 +12,6 @@ import '/pages/orders/cp_order_programming_assets_list_item_card/cp_order_progra
 import '/pages/orders/md_order_new/md_order_new_widget.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -66,9 +65,6 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => PgOrderProgrammingModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

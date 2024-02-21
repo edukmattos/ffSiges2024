@@ -6,12 +6,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
+import '/pages/orders/md_order_menu_options/md_order_menu_options_widget.dart';
 import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_show_model.dart';
 export 'pg_order_show_model.dart';
@@ -264,6 +266,49 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 25.0,
+                              buttonSize: 50.0,
+                              icon: FaIcon(
+                                FontAwesomeIcons.ellipsisV,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 30.0,
+                              ),
+                              showLoadingIndicator: true,
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  useSafeArea: true,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: const MdOrderMenuOptionsWidget(),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                       wrapWithModel(
                         model: _model.cpOrderCardShowModel,
                         updateCallback: () => setState(() {}),

@@ -1,18 +1,19 @@
 import '../database.dart';
 
-class VOrdersTable extends SupabaseTable<VOrdersRow> {
+class VOrdersOpenStatus5Table extends SupabaseTable<VOrdersOpenStatus5Row> {
   @override
-  String get tableName => 'v_orders';
+  String get tableName => 'v_orders_open_status_5';
 
   @override
-  VOrdersRow createRow(Map<String, dynamic> data) => VOrdersRow(data);
+  VOrdersOpenStatus5Row createRow(Map<String, dynamic> data) =>
+      VOrdersOpenStatus5Row(data);
 }
 
-class VOrdersRow extends SupabaseDataRow {
-  VOrdersRow(super.data);
+class VOrdersOpenStatus5Row extends SupabaseDataRow {
+  VOrdersOpenStatus5Row(super.data);
 
   @override
-  SupabaseTable get table => VOrdersTable();
+  SupabaseTable get table => VOrdersOpenStatus5Table();
 
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);

@@ -147,6 +147,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return uploadedFileFromString(param) as T;
       case UnitsTypesRow:
         return UnitsTypesRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersParentStatus3Row:
+        return VDashAdminOrdersParentStatus3Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByTeamsStatusesRow:
         return VOrdersCountByTeamsStatusesRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -155,11 +158,11 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VOrdersFollowersRow:
         return VOrdersFollowersRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VDashAdminOrdersStatus6Row:
+        return VDashAdminOrdersStatus6Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case LogsRow:
         return LogsRow(json.decode(param) as Map<String, dynamic>) as T;
-      case VDashAdminOrdersUnscheduleRow:
-        return VDashAdminOrdersUnscheduleRow(
-            json.decode(param) as Map<String, dynamic>) as T;
       case OrdersVisitsProcessingRow:
         return OrdersVisitsProcessingRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -180,6 +183,12 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VProfilesPermissionsRow:
         return VProfilesPermissionsRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersOpenStatus6Row:
+        return VOrdersOpenStatus6Row(json.decode(param) as Map<String, dynamic>)
+            as T;
+      case VDashAdminOrdersParentStatus4Row:
+        return VDashAdminOrdersParentStatus4Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case UsersStatusesRow:
         return UsersStatusesRow(json.decode(param) as Map<String, dynamic>)
             as T;
@@ -188,8 +197,14 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VOrdersTypesActivitiesRow:
         return VOrdersTypesActivitiesRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersOpenStatus3Row:
+        return VOrdersOpenStatus3Row(json.decode(param) as Map<String, dynamic>)
+            as T;
       case CompaniesRow:
         return CompaniesRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersParentStatus1Row:
+        return VDashAdminOrdersParentStatus1Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case OrdersVisitsAssetsRow:
         return OrdersVisitsAssetsRow(json.decode(param) as Map<String, dynamic>)
             as T;
@@ -214,6 +229,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VOrdersVisitsServicesRow:
         return VOrdersVisitsServicesRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersStatus5Row:
+        return VDashAdminOrdersStatus5Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersOpenRow:
         return VOrdersOpenRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsParentsStatusesRow:
@@ -226,9 +244,6 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return VAssetsTagsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsStatusesRow:
         return VOrdersCountByUnitsStatusesRow(
-            json.decode(param) as Map<String, dynamic>) as T;
-      case VDashAdminOrdersSuspendedRow:
-        return VDashAdminOrdersSuspendedRow(
             json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersVisitsOpenRow:
         return VOrdersVisitsOpenRow(json.decode(param) as Map<String, dynamic>)
@@ -257,20 +272,20 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return VContractsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VUnitsRow:
         return VUnitsRow(json.decode(param) as Map<String, dynamic>) as T;
-      case VDashAdminOrdersAnalysisRow:
-        return VDashAdminOrdersAnalysisRow(
-            json.decode(param) as Map<String, dynamic>) as T;
-      case VDashAdminOrdersScheduledRow:
-        return VDashAdminOrdersScheduledRow(
-            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersOpenParentStatus3Row:
         return VOrdersOpenParentStatus3Row(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersOpenStatus5Row:
+        return VOrdersOpenStatus5Row(json.decode(param) as Map<String, dynamic>)
+            as T;
       case AssetsStatusessRow:
         return AssetsStatusessRow(json.decode(param) as Map<String, dynamic>)
             as T;
       case OrdersTypesRow:
         return OrdersTypesRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersStatus2Row:
+        return VDashAdminOrdersStatus2Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VUsersNotificationsCountRow:
         return VUsersNotificationsCountRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -287,6 +302,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VOrdersAuthorizedRow:
         return VOrdersAuthorizedRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VOrdersCountByTeamLeadersStatusesOpenRow:
+        return VOrdersCountByTeamLeadersStatusesOpenRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case SystemsRow:
         return SystemsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersVisitsCountByTeamleaderOpenRow:
@@ -312,6 +330,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case OrdersStatusesLogsRow:
         return OrdersStatusesLogsRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VDashAdminOrdersParentStatus5Row:
+        return VDashAdminOrdersParentStatus5Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VUsersCountByOrdersVisitsRow:
         return VUsersCountByOrdersVisitsRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -321,6 +342,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return DepartmentsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsParentsOpenRow:
         return VOrdersCountByUnitsParentsOpenRow(
+            json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersParentStatus2Row:
+        return VDashAdminOrdersParentStatus2Row(
             json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByUnitsOpenRow:
         return VOrdersCountByUnitsOpenRow(
@@ -358,26 +382,29 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return WarehousesRow(json.decode(param) as Map<String, dynamic>) as T;
       case OrdersVisitsRow:
         return OrdersVisitsRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersOpenStatus2Row:
+        return VOrdersOpenStatus2Row(json.decode(param) as Map<String, dynamic>)
+            as T;
       case MaterialsRow:
         return MaterialsRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersSuspendedRow:
         return VOrdersSuspendedRow(json.decode(param) as Map<String, dynamic>)
             as T;
+      case VDashAdminOrdersStatus3Row:
+        return VDashAdminOrdersStatus3Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case TeamsRow:
         return TeamsRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersStatus4Row:
+        return VDashAdminOrdersStatus4Row(
+            json.decode(param) as Map<String, dynamic>) as T;
       case AppPagesRow:
         return AppPagesRow(json.decode(param) as Map<String, dynamic>) as T;
       case AssetsTypesRow:
         return AssetsTypesRow(json.decode(param) as Map<String, dynamic>) as T;
-      case VOrdersCountByTeamleadersStatusesOpenRow:
-        return VOrdersCountByTeamleadersStatusesOpenRow(
-            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersScheduledRow:
         return VOrdersScheduledRow(json.decode(param) as Map<String, dynamic>)
             as T;
-      case VDashAdminOrdersAuthorizedRow:
-        return VDashAdminOrdersAuthorizedRow(
-            json.decode(param) as Map<String, dynamic>) as T;
       case OrdersRow:
         return OrdersRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersCountByParentsStatusesRow:
@@ -392,14 +419,17 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case UsersFiltersOrdersRow:
         return UsersFiltersOrdersRow(json.decode(param) as Map<String, dynamic>)
             as T;
-      case VDashAdminOrdersInProgressRow:
-        return VDashAdminOrdersInProgressRow(
-            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersOpenParentStatus2Row:
         return VOrdersOpenParentStatus2Row(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersOpenStatus4Row:
+        return VOrdersOpenStatus4Row(json.decode(param) as Map<String, dynamic>)
+            as T;
       case OrdersVisitsAssetsMaterialsRow:
         return OrdersVisitsAssetsMaterialsRow(
+            json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminOrdersParentStatus6Row:
+        return VDashAdminOrdersParentStatus6Row(
             json.decode(param) as Map<String, dynamic>) as T;
       case UsersProfilesRow:
         return UsersProfilesRow(json.decode(param) as Map<String, dynamic>)

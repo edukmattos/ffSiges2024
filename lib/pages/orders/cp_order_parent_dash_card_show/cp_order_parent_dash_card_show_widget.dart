@@ -6,11 +6,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/orders/md_order_parent_menu_options/md_order_parent_menu_options_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_order_parent_dash_card_show_model.dart';
 export 'cp_order_parent_dash_card_show_model.dart';
@@ -437,17 +435,9 @@ class _CpOrderParentDashCardShowWidgetState
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        wrapWithModel(
-                          model: _model.cpOrderPriorityModel,
-                          updateCallback: () => setState(() {}),
-                          child: CpOrderPriorityWidget(
-                            priorityId: containerVOrdersParentRow!.priorityId!,
-                            priorityDescription:
-                                containerVOrdersParentRow.priorityDescription!,
-                          ),
-                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             if (!_model.isFollowed)
                               FlutterFlowIconButton(
@@ -539,41 +529,16 @@ class _CpOrderParentDashCardShowWidgetState
                                   setState(() {});
                                 },
                               ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 1.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 25.0,
-                                buttonSize: 50.0,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.ellipsisV,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                  size: 30.0,
-                                ),
-                                showLoadingIndicator: true,
-                                onPressed: () async {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    enableDrag: false,
-                                    useSafeArea: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: MdOrderParentMenuOptionsWidget(
-                                          statusId: containerVOrdersParentRow.statusId!,
-                                          orderId:
-                                              containerVOrdersParentRow.id!,
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(() {}));
-                                },
-                              ),
-                            ),
                           ],
+                        ),
+                        wrapWithModel(
+                          model: _model.cpOrderPriorityModel,
+                          updateCallback: () => setState(() {}),
+                          child: CpOrderPriorityWidget(
+                            priorityId: containerVOrdersParentRow!.priorityId!,
+                            priorityDescription:
+                                containerVOrdersParentRow.priorityDescription!,
+                          ),
                         ),
                       ].divide(const SizedBox(width: 8.0)),
                     ),

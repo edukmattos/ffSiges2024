@@ -166,7 +166,7 @@ Future abUsersNotificationsSend(
       ),
     );
   } else {
-    if (abType == 'orderScheduled') {
+    if (abType == 'orderAuthorized') {
       apiResultaht112 =
           await ApiFcmNotificationsGroup.sendNotificationCall.call(
         title: abTitle,

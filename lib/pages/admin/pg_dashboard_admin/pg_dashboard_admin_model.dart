@@ -1,5 +1,4 @@
 import '/backend/supabase/supabase.dart';
-import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
@@ -19,15 +18,15 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  Completer<List<VDashAdminOrdersScheduledRow>>? requestCompleter3;
-  Completer<List<VDashAdminOrdersInProgressRow>>? requestCompleter2;
-  Completer<List<VDashAdminOrdersSuspendedRow>>? requestCompleter1;
-  // Model for cpOrdersStatuses component.
-  late CpOrdersStatusesModel cpOrdersStatusesModel1;
-  // Model for cpOrdersStatuses component.
-  late CpOrdersStatusesModel cpOrdersStatusesModel2;
-  // Model for cpOrdersStatuses component.
-  late CpOrdersStatusesModel cpOrdersStatusesModel3;
+  Completer<List<VDashAdminOrdersParentStatus1Row>>? requestCompleter3;
+  Completer<List<VDashAdminOrdersParentStatus2Row>>? requestCompleter4;
+  Completer<List<VDashAdminOrdersParentStatus3Row>>? requestCompleter1;
+  Completer<List<VDashAdminOrdersParentStatus4Row>>? requestCompleter6;
+  Completer<List<VDashAdminOrdersParentStatus5Row>>? requestCompleter9;
+  Completer<List<VDashAdminOrdersParentStatus6Row>>? requestCompleter2;
+  Completer<List<VDashAdminOrdersStatus2Row>>? requestCompleter8;
+  Completer<List<VDashAdminOrdersStatus3Row>>? requestCompleter7;
+  Completer<List<VDashAdminOrdersStatus4Row>>? requestCompleter5;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
   // Model for cpNotificationsIcon component.
@@ -37,12 +36,6 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
 
   @override
   void initState(BuildContext context) {
-    cpOrdersStatusesModel1 =
-        createModel(context, () => CpOrdersStatusesModel());
-    cpOrdersStatusesModel2 =
-        createModel(context, () => CpOrdersStatusesModel());
-    cpOrdersStatusesModel3 =
-        createModel(context, () => CpOrdersStatusesModel());
     cpMenuModel = createModel(context, () => CpMenuModel());
     cpNotificationsIconModel =
         createModel(context, () => CpNotificationsIconModel());
@@ -51,9 +44,6 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpOrdersStatusesModel1.dispose();
-    cpOrdersStatusesModel2.dispose();
-    cpOrdersStatusesModel3.dispose();
     cpMenuModel.dispose();
     cpNotificationsIconModel.dispose();
   }
@@ -77,7 +67,7 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
     }
   }
 
-  Future waitForRequestCompleted2({
+  Future waitForRequestCompleted4({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -85,7 +75,7 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      final requestComplete = requestCompleter4?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
@@ -101,6 +91,96 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted6({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter6?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted9({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter9?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted8({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter8?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted7({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter7?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted5({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter5?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

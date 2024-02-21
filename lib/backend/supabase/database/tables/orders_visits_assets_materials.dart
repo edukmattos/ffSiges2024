@@ -45,4 +45,7 @@ class OrdersVisitsAssetsMaterialsRow extends SupabaseDataRow {
 
   String? get localization => getField<String>('localization');
   set localization(String? value) => setField<String>('localization', value);
+
+  double? get discount => getField<double>('discount');
+  set discount(double? value) => setField<double>('discount', value);
 }

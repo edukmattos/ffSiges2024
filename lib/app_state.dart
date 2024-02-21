@@ -43,6 +43,18 @@ class FFAppState extends ChangeNotifier {
           latLngFromString(prefs.getString('ff_stMapOrdersCenterSelected')) ??
               _stMapOrdersCenterSelected;
     });
+    _safeInit(() {
+      if (prefs.containsKey('ff_stFiltersServices')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_stFiltersServices') ?? '{}';
+          _stFiltersServices = DtFiltersServicesStruct.fromSerializableMap(
+              jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -569,6 +581,48 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInStOrderVisitAssetActivities(
       int index, DtVOrderVisitAssetActivityStruct value) {
     _stOrderVisitAssetActivities.insert(index, value);
+  }
+
+  List<DtVContractStruct> _stContractSelected = [];
+  List<DtVContractStruct> get stContractSelected => _stContractSelected;
+  set stContractSelected(List<DtVContractStruct> value) {
+    _stContractSelected = value;
+  }
+
+  void addToStContractSelected(DtVContractStruct value) {
+    _stContractSelected.add(value);
+  }
+
+  void removeFromStContractSelected(DtVContractStruct value) {
+    _stContractSelected.remove(value);
+  }
+
+  void removeAtIndexFromStContractSelected(int index) {
+    _stContractSelected.removeAt(index);
+  }
+
+  void updateStContractSelectedAtIndex(
+    int index,
+    DtVContractStruct Function(DtVContractStruct) updateFn,
+  ) {
+    _stContractSelected[index] = updateFn(_stContractSelected[index]);
+  }
+
+  void insertAtIndexInStContractSelected(int index, DtVContractStruct value) {
+    _stContractSelected.insert(index, value);
+  }
+
+  DtFiltersServicesStruct _stFiltersServices = DtFiltersServicesStruct();
+  DtFiltersServicesStruct get stFiltersServices => _stFiltersServices;
+  set stFiltersServices(DtFiltersServicesStruct value) {
+    _stFiltersServices = value;
+    prefs.setString('ff_stFiltersServices', value.serialize());
+  }
+
+  void updateStFiltersServicesStruct(
+      Function(DtFiltersServicesStruct) updateFn) {
+    updateFn(_stFiltersServices);
+    prefs.setString('ff_stFiltersServices', _stFiltersServices.serialize());
   }
 }
 

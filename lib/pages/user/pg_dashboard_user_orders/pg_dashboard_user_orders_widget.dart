@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,9 +11,6 @@ import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
 import '/pages/visits/cp_order_visit_card1_show/cp_order_visit_card1_show_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'dart:async';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -121,12 +119,7 @@ class _PgDashboardUserOrdersWidgetState
       await Future.delayed(const Duration(milliseconds: 2000));
       await actions.caSupabaseConnect(
         'orders',
-        () async {
-          setState(() => _model.requestCompleter1 = null);
-          await _model.waitForRequestCompleted1();
-          setState(() => _model.requestCompleter2 = null);
-          await _model.waitForRequestCompleted2();
-        },
+        () async {},
       );
       if (FFAppState().stUserCurrent.statusId != 2) {
         if (FFAppState().stUserCurrent.statusId == 1) {
@@ -192,13 +185,6 @@ class _PgDashboardUserOrdersWidgetState
         setState(() {});
       }
     });
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -267,8 +253,8 @@ class _PgDashboardUserOrdersWidgetState
         ),
         body: SafeArea(
           top: true,
-          child: FutureBuilder<List<VOrdersCountByTeamleadersStatusesOpenRow>>(
-            future: VOrdersCountByTeamleadersStatusesOpenTable().querySingleRow(
+          child: FutureBuilder<List<VOrdersCountByTeamLeadersStatusesOpenRow>>(
+            future: VOrdersCountByTeamLeadersStatusesOpenTable().querySingleRow(
               queryFn: (q) => q.eq(
                 'teamLeaderId',
                 FFAppState().stUserCurrent.id,
@@ -289,13 +275,13 @@ class _PgDashboardUserOrdersWidgetState
                   ),
                 );
               }
-              List<VOrdersCountByTeamleadersStatusesOpenRow>
-                  containerVOrdersCountByTeamleadersStatusesOpenRowList =
+              List<VOrdersCountByTeamLeadersStatusesOpenRow>
+                  containerVOrdersCountByTeamLeadersStatusesOpenRowList =
                   snapshot.data!;
-              final containerVOrdersCountByTeamleadersStatusesOpenRow =
-                  containerVOrdersCountByTeamleadersStatusesOpenRowList
+              final containerVOrdersCountByTeamLeadersStatusesOpenRow =
+                  containerVOrdersCountByTeamLeadersStatusesOpenRowList
                           .isNotEmpty
-                      ? containerVOrdersCountByTeamleadersStatusesOpenRowList
+                      ? containerVOrdersCountByTeamLeadersStatusesOpenRowList
                           .first
                       : null;
               return Container(
@@ -307,8 +293,8 @@ class _PgDashboardUserOrdersWidgetState
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    if (containerVOrdersCountByTeamleadersStatusesOpenRow
-                            ?.counterStatusOpen !=
+                    if (containerVOrdersCountByTeamLeadersStatusesOpenRow
+                            ?.counterTeamLeadersStatusOpen !=
                         null)
                       Container(
                         width: double.infinity,
@@ -344,356 +330,172 @@ class _PgDashboardUserOrdersWidgetState
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        FutureBuilder<
-                                            List<
-                                                VOrdersCountByTeamsStatusesRow>>(
-                                          future: (_model.requestCompleter1 ??=
-                                                  Completer<
-                                                      List<
-                                                          VOrdersCountByTeamsStatusesRow>>()
-                                                    ..complete(
-                                                        VOrdersCountByTeamsStatusesTable()
-                                                            .querySingleRow(
-                                                      queryFn: (q) => q
-                                                          .eq(
-                                                            'teamId',
-                                                            FFAppState()
-                                                                .stUserCurrent
-                                                                .teamId,
-                                                          )
-                                                          .eq(
-                                                            'statusId',
-                                                            3,
-                                                          ),
-                                                    )))
-                                              .future,
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            List<VOrdersCountByTeamsStatusesRow>
-                                                containerScheduledCounterVOrdersCountByTeamsStatusesRowList =
-                                                snapshot.data!;
-                                            // Return an empty Container when the item does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
-                                            final containerScheduledCounterVOrdersCountByTeamsStatusesRow =
-                                                containerScheduledCounterVOrdersCountByTeamsStatusesRowList
-                                                        .isNotEmpty
-                                                    ? containerScheduledCounterVOrdersCountByTeamsStatusesRowList
-                                                        .first
-                                                    : null;
-                                            return Container(
-                                              width: 60.0,
-                                              height: 60.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                shape: BoxShape.circle,
-                                              ),
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AlignedTooltip(
-                                                content: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4.0),
-                                                    child: Text(
-                                                      'Agendadas',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge,
-                                                    )),
-                                                offset: 4.0,
-                                                preferredDirection:
-                                                    AxisDirection.down,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
-                                                elevation: 4.0,
-                                                tailBaseWidth: 24.0,
-                                                tailLength: 12.0,
-                                                waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
-                                                    milliseconds: 1500),
-                                                triggerMode:
-                                                    TooltipTriggerMode.tap,
-                                                child: badges.Badge(
-                                                  badgeContent: Text(
-                                                    containerScheduledCounterVOrdersCountByTeamsStatusesRow!
-                                                        .counterStatus!
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                  ),
-                                                  showBadge:
-                                                      containerScheduledCounterVOrdersCountByTeamsStatusesRow.counterStatus! >
-                                                          0,
-                                                  shape:
-                                                      badges.BadgeShape.circle,
-                                                  badgeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .accent4,
-                                                  elevation: 4.0,
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  position: badges.BadgePosition
-                                                      .topEnd(),
-                                                  animationType: badges
-                                                      .BadgeAnimationType.scale,
-                                                  toAnimate: true,
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.lpsvOrdersView =
-                                                            'scheduled';
-                                                      });
-                                                    },
-                                                    child: Card(
-                                                      clipBehavior: Clip
-                                                          .antiAliasWithSaveLayer,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      child: const Padding(
-                                                        padding: EdgeInsets.all(
-                                                            12.0),
-                                                        child: Icon(
-                                                          Icons.calendar_month,
-                                                          color: Colors.white,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation1']!);
-                                          },
+                                    FutureBuilder<
+                                        List<
+                                            VOrdersCountByTeamLeadersStatusesOpenRow>>(
+                                      future:
+                                          VOrdersCountByTeamLeadersStatusesOpenTable()
+                                              .querySingleRow(
+                                        queryFn: (q) => q.eq(
+                                          'teamLeaderId',
+                                          FFAppState().stUserCurrent.id,
                                         ),
-                                      ],
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<VOrdersCountByTeamLeadersStatusesOpenRow>
+                                            containerScheduleVOrdersCountByTeamLeadersStatusesOpenRowList =
+                                            snapshot.data!;
+                                        final containerScheduleVOrdersCountByTeamLeadersStatusesOpenRow =
+                                            containerScheduleVOrdersCountByTeamLeadersStatusesOpenRowList
+                                                    .isNotEmpty
+                                                ? containerScheduleVOrdersCountByTeamLeadersStatusesOpenRowList
+                                                    .first
+                                                : null;
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.lspvOrderStatusId = 3;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: 60.0,
+                                            height: 60.0,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                setState(() {
+                                                  _model.lspvOrderStatusId = 3;
+                                                });
+                                              },
+                                              child: wrapWithModel(
+                                                model: _model
+                                                    .cpOrdersStatusesModel1,
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: CpOrdersStatusesWidget(
+                                                  cpStatusId:
+                                                      _model.lspvOrderStatusId!,
+                                                  cpStatusDescription:
+                                                      'Não Programada',
+                                                  cpBadge:
+                                                      containerScheduleVOrdersCountByTeamLeadersStatusesOpenRow!
+                                                          .counterTeamLeadersStatusOpen!,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ).animateOnPageLoad(animationsMap[
+                                            'containerOnPageLoadAnimation1']!);
+                                      },
                                     ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        FutureBuilder<
-                                            List<
-                                                VOrdersCountByTeamsStatusesRow>>(
-                                          future: (_model.requestCompleter2 ??=
-                                                  Completer<
-                                                      List<
-                                                          VOrdersCountByTeamsStatusesRow>>()
-                                                    ..complete(
-                                                        VOrdersCountByTeamsStatusesTable()
-                                                            .querySingleRow(
-                                                      queryFn: (q) => q
-                                                          .eq(
-                                                            'teamId',
-                                                            FFAppState()
-                                                                .stUserCurrent
-                                                                .teamId,
-                                                          )
-                                                          .eq(
-                                                            'statusId',
-                                                            5,
-                                                          ),
-                                                    )))
-                                              .future,
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            List<VOrdersCountByTeamsStatusesRow>
-                                                containerSuspendedCounterVOrdersCountByTeamsStatusesRowList =
-                                                snapshot.data!;
-                                            // Return an empty Container when the item does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
-                                            final containerSuspendedCounterVOrdersCountByTeamsStatusesRow =
-                                                containerSuspendedCounterVOrdersCountByTeamsStatusesRowList
-                                                        .isNotEmpty
-                                                    ? containerSuspendedCounterVOrdersCountByTeamsStatusesRowList
-                                                        .first
-                                                    : null;
-                                            return Container(
-                                              width: 60.0,
-                                              height: 60.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                shape: BoxShape.circle,
-                                              ),
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AlignedTooltip(
-                                                content: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4.0),
-                                                    child: Text(
-                                                      'Suspensas',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge,
-                                                    )),
-                                                offset: 4.0,
-                                                preferredDirection:
-                                                    AxisDirection.down,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
-                                                elevation: 4.0,
-                                                tailBaseWidth: 24.0,
-                                                tailLength: 12.0,
-                                                waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
-                                                    milliseconds: 1500),
-                                                triggerMode:
-                                                    TooltipTriggerMode.tap,
-                                                child: badges.Badge(
-                                                  badgeContent: Text(
-                                                    containerSuspendedCounterVOrdersCountByTeamsStatusesRow!
-                                                        .counterStatus!
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                  ),
-                                                  showBadge:
-                                                      containerSuspendedCounterVOrdersCountByTeamsStatusesRow.counterStatus! >
-                                                          0,
-                                                  shape:
-                                                      badges.BadgeShape.circle,
-                                                  badgeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .accent4,
-                                                  elevation: 4.0,
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  position: badges.BadgePosition
-                                                      .topEnd(),
-                                                  animationType: badges
-                                                      .BadgeAnimationType.scale,
-                                                  toAnimate: true,
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.lpsvOrdersView =
-                                                            'suspended';
-                                                      });
-                                                    },
-                                                    child: Card(
-                                                      clipBehavior: Clip
-                                                          .antiAliasWithSaveLayer,
-                                                      color: const Color(0xFF595555),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(40.0),
-                                                      ),
-                                                      child: const Padding(
-                                                        padding: EdgeInsets.all(
-                                                            12.0),
-                                                        child: Icon(
-                                                          Icons.pause_sharp,
-                                                          color: Colors.white,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
+                                    FutureBuilder<
+                                        List<VDashAdminOrdersStatus3Row>>(
+                                      future: VDashAdminOrdersStatus3Table()
+                                          .querySingleRow(
+                                        queryFn: (q) => q,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                                 ),
                                               ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation2']!);
+                                            ),
+                                          );
+                                        }
+                                        List<VDashAdminOrdersStatus3Row>
+                                            containerScheduleVDashAdminOrdersStatus3RowList =
+                                            snapshot.data!;
+                                        final containerScheduleVDashAdminOrdersStatus3Row =
+                                            containerScheduleVDashAdminOrdersStatus3RowList
+                                                    .isNotEmpty
+                                                ? containerScheduleVDashAdminOrdersStatus3RowList
+                                                    .first
+                                                : null;
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.lspvOrderStatusId = 3;
+                                            });
                                           },
-                                        ),
-                                      ],
+                                          child: Container(
+                                            width: 60.0,
+                                            height: 60.0,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                setState(() {
+                                                  _model.lspvOrderStatusId = 3;
+                                                });
+                                              },
+                                              child: wrapWithModel(
+                                                model: _model
+                                                    .cpOrdersStatusesModel2,
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: CpOrdersStatusesWidget(
+                                                  cpStatusId:
+                                                      _model.lspvOrderStatusId!,
+                                                  cpStatusDescription:
+                                                      'Não Programada',
+                                                  cpBadge:
+                                                      containerScheduleVDashAdminOrdersStatus3Row!
+                                                          .counterOrderStatus3!,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ).animateOnPageLoad(animationsMap[
+                                            'containerOnPageLoadAnimation2']!);
+                                      },
                                     ),
                                   ].divide(const SizedBox(width: 12.0)),
                                 ),
@@ -812,185 +614,85 @@ class _PgDashboardUserOrdersWidgetState
                                     );
                                   },
                                 ),
-                              if (containerVOrdersCountByTeamleadersStatusesOpenRow
-                                      ?.counterStatusOpen !=
+                              if (containerVOrdersCountByTeamLeadersStatusesOpenRow
+                                      ?.counterTeamLeadersStatusOpen !=
                                   null)
                                 Container(
                                   decoration: const BoxDecoration(),
-                                  child: Builder(
-                                    builder: (context) {
-                                      if (_model.lpsvOrdersView ==
-                                          'scheduled') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              FutureBuilder<List<VOrdersRow>>(
-                                                future:
-                                                    VOrdersTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        3,
-                                                      )
-                                                      .eq(
-                                                        'teamLeaderId',
-                                                        FFAppState()
-                                                            .stUserCurrent
-                                                            .id,
-                                                      )
-                                                      .order('statusDate',
-                                                          ascending: true),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersRow>
-                                                      listViewScheduledVOrdersRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding:
-                                                        const EdgeInsets.fromLTRB(
-                                                      0,
-                                                      12.0,
-                                                      0,
-                                                      0,
-                                                    ),
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewScheduledVOrdersRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewScheduledIndex) {
-                                                      final listViewScheduledVOrdersRow =
-                                                          listViewScheduledVOrdersRowList[
-                                                              listViewScheduledIndex];
-                                                      return CpOrderCardShowWidget(
-                                                        key: Key(
-                                                            'Keyn3b_${listViewScheduledIndex}_of_${listViewScheduledVOrdersRowList.length}'),
-                                                        orderId:
-                                                            listViewScheduledVOrdersRow
-                                                                .id!,
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        FutureBuilder<List<VOrdersOpenRow>>(
+                                          future: VOrdersOpenTable().queryRows(
+                                            queryFn: (q) => q
+                                                .eq(
+                                                  'statusId',
+                                                  _model.lspvOrderStatusId,
+                                                )
+                                                .eq(
+                                                  'teamLeaderId',
+                                                  FFAppState().stUserCurrent.id,
+                                                )
+                                                .order('statusDate',
+                                                    ascending: true),
                                           ),
-                                        );
-                                      } else if (_model.lpsvOrdersView ==
-                                          'suspended') {
-                                        return SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              FutureBuilder<List<VOrdersRow>>(
-                                                future:
-                                                    VOrdersTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'statusId',
-                                                        5,
-                                                      )
-                                                      .eq(
-                                                        'teamLeaderId',
-                                                        FFAppState()
-                                                            .stUserCurrent
-                                                            .id,
-                                                      )
-                                                      .order('statusDate',
-                                                          ascending: true),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<VOrdersRow>
-                                                      listViewSuspendedVOrdersRowList =
-                                                      snapshot.data!;
-                                                  return ListView.separated(
-                                                    padding:
-                                                        const EdgeInsets.fromLTRB(
-                                                      0,
-                                                      12.0,
-                                                      0,
-                                                      0,
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
                                                     ),
-                                                    primary: false,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        listViewSuspendedVOrdersRowList
-                                                            .length,
-                                                    separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 12.0),
-                                                    itemBuilder: (context,
-                                                        listViewSuspendedIndex) {
-                                                      final listViewSuspendedVOrdersRow =
-                                                          listViewSuspendedVOrdersRowList[
-                                                              listViewSuspendedIndex];
-                                                      return CpOrderCardShowWidget(
-                                                        key: Key(
-                                                            'Keyb36_${listViewSuspendedIndex}_of_${listViewSuspendedVOrdersRowList.length}'),
-                                                        orderId:
-                                                            listViewSuspendedVOrdersRow
-                                                                .id!,
-                                                      );
-                                                    },
-                                                  );
-                                                },
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<VOrdersOpenRow>
+                                                listViewScheduledVOrdersOpenRowList =
+                                                snapshot.data!;
+                                            return ListView.separated(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                0,
+                                                12.0,
+                                                0,
+                                                0,
                                               ),
-                                            ],
-                                          ),
-                                        );
-                                      } else {
-                                        return Text(
-                                          ' ',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        );
-                                      }
-                                    },
+                                              primary: false,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewScheduledVOrdersOpenRowList
+                                                      .length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(height: 12.0),
+                                              itemBuilder: (context,
+                                                  listViewScheduledIndex) {
+                                                final listViewScheduledVOrdersOpenRow =
+                                                    listViewScheduledVOrdersOpenRowList[
+                                                        listViewScheduledIndex];
+                                                return CpOrderCardShowWidget(
+                                                  key: Key(
+                                                      'Keyn3b_${listViewScheduledIndex}_of_${listViewScheduledVOrdersOpenRowList.length}'),
+                                                  orderId:
+                                                      listViewScheduledVOrdersOpenRow
+                                                          .id!,
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                             ],
@@ -998,8 +700,8 @@ class _PgDashboardUserOrdersWidgetState
                         ),
                       ),
                     ),
-                    if (containerVOrdersCountByTeamleadersStatusesOpenRow
-                            ?.counterStatusOpen ==
+                    if (containerVOrdersCountByTeamLeadersStatusesOpenRow
+                            ?.counterTeamLeadersStatusOpen ==
                         null)
                       Flexible(
                         child: Align(

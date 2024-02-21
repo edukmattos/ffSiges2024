@@ -2412,6 +2412,7 @@ class ApiOrdersGroup {
   static OrdersByStatusIdCall ordersByStatusIdCall = OrdersByStatusIdCall();
   static OrdersByStatusIdAndDateCall ordersByStatusIdAndDateCall =
       OrdersByStatusIdAndDateCall();
+  static FiltersCall filtersCall = FiltersCall();
 }
 
 class OrderByIdCall {
@@ -2482,6 +2483,39 @@ class OrdersByStatusIdAndDateCall {
         'Content-Type': 'application/json',
       },
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class FiltersCall {
+  Future<ApiCallResponse> call({
+    List<int>? searchUnitsList,
+  }) async {
+    final searchUnits = _serializeList(searchUnitsList);
+
+    final ffApiRequestBody = '''
+{
+  "search_units": $searchUnits
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'filters',
+      apiUrl: '${ApiOrdersGroup.baseUrl}rpc/fc_v_orders_filters',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
