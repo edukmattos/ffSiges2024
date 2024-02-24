@@ -6,7 +6,6 @@ import '/pages/assets/cp_asset_list_item_card/cp_asset_list_item_card_widget.dar
 import '/pages/assets/cp_asset_materials/cp_asset_materials_widget.dart';
 import '/pages/assets/cp_asset_show_bottom_nav_bar/cp_asset_show_bottom_nav_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'pg_asset_show_model.dart';
 export 'pg_asset_show_model.dart';
@@ -40,15 +39,6 @@ class _PgAssetShowWidgetState extends State<PgAssetShowWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(

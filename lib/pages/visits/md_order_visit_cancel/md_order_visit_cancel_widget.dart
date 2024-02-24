@@ -95,7 +95,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.resOrderVisitTeamCurrent =
           await ApiOrdersVisitsTeamsGroup.apiDtUsersByVisitIdCall.call(
-        visitId: FFAppState().stUserCurrent.orderVisitIdInProgress,
+        visitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
       );
       setState(() {
         _model.lcsvUsersByVisitId =
@@ -406,7 +406,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                               getCurrentTimestamp),
                                                       'reportedUserId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .id,
                                                       'comments': _model
                                                           .cpInputTexMultilineModel
@@ -494,10 +494,10 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                       .abUserUpdate(
                                                     context,
                                                     abEmail: FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .email,
                                                     abAccessToken: FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .accessToken,
                                                   );
                                                   await OrdersTable().update(
@@ -521,7 +521,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                   Navigator.pop(context);
                                                   setState(() {
                                                     FFAppState()
-                                                        .updateStUserCurrentStruct(
+                                                        .updateAsUserCurrentStruct(
                                                       (e) => e
                                                         ..orderIdInProgress =
                                                             null
@@ -589,7 +589,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                       'statusDescription',
                                                     )}',
                                                     abBody:
-                                                        '${FFAppState().stUserCurrent.nameShort} cancelou atendimento em ${valueOrDefault<String>(
+                                                        '${FFAppState().asUserCurrent.nameShort} cancelou atendimento em ${valueOrDefault<String>(
                                                       FFAppState()
                                                           .stOrderSelected
                                                           .first

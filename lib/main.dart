@@ -133,9 +133,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'pgDashboardUserOrders': const PgDashboardUserOrdersWidget(),
       'pgUnitsSearch': const PgUnitsSearchWidget(),
       'pgDashboardUserVisits': const PgDashboardUserVisitsWidget(),
+      'pgDashboardUserOrders': const PgDashboardUserOrdersWidget(),
+      'pgOrdersVisitsServicesSearch': const PgOrdersVisitsServicesSearchWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -156,14 +157,6 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.dashboard_sharp,
-              size: 24.0,
-            ),
-            label: 'Meu Painel',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.home_outlined,
               size: 24.0,
             ),
@@ -176,6 +169,22 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Visitas',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24.0,
+            ),
+            label: 'UO\'s',
             tooltip: '',
           )
         ],

@@ -9,7 +9,6 @@ import '/pages/components/cp_dropdown_teams/cp_dropdown_teams_widget.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_signup_profile_model.dart';
@@ -82,15 +81,6 @@ class _PgSignupProfileWidgetState extends State<PgSignupProfileWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -287,7 +277,7 @@ class _PgSignupProfileWidgetState extends State<PgSignupProfileWidget>
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'id',
-                                          FFAppState().stUserCurrent.id,
+                                          FFAppState().asUserCurrent.id,
                                         ),
                                       );
                                     } else {
@@ -320,7 +310,7 @@ class _PgSignupProfileWidgetState extends State<PgSignupProfileWidget>
                                     _model.apiResult2po =
                                         await ApiAuthGroup.authLogoutCall.call(
                                       accessToken: FFAppState()
-                                          .stUserCurrent
+                                          .asUserCurrent
                                           .accessToken,
                                     );
                                     shouldSetState = true;

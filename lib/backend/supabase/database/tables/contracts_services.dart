@@ -24,6 +24,15 @@ class ContractsServicesRow extends SupabaseDataRow {
   int? get serviceId => getField<int>('serviceId');
   set serviceId(int? value) => setField<int>('serviceId', value);
 
-  double? get unitPrice => getField<double>('unitPrice');
-  set unitPrice(double? value) => setField<double>('unitPrice', value);
+  double? get priceUnit => getField<double>('priceUnit');
+  set priceUnit(double? value) => setField<double>('priceUnit', value);
+
+  bool? get isAvailable => getField<bool>('isAvailable');
+  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
+
+  bool? get isDeleted => getField<bool>('isDeleted');
+  set isDeleted(bool? value) => setField<bool>('isDeleted', value);
+
+  String? get unit => getField<String>('unit');
+  set unit(String? value) => setField<String>('unit', value);
 }

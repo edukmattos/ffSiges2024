@@ -11,8 +11,6 @@ import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_l
 import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_asset3_activities_search_model.dart';
@@ -38,12 +36,6 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
     _model =
         createModel(context, () => PgOrderVisitAsset3ActivitiesSearchModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() => _model.requestCompleter = null);
-      await _model.waitForRequestCompleted();
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -56,15 +48,6 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -517,60 +500,70 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                                   .cast<
                                                       DtVOrderVisitAssetActivityStruct>();
                                             });
-                                            setState(() {
-                                              FFAppState().stCounterLoop = 0;
-                                              FFAppState().stCounterLoopFinal =
-                                                  valueOrDefault<int>(
-                                                _model.lpsvActivities.length,
-                                                0,
-                                              );
-                                            });
-                                            while (FFAppState().stCounterLoop <
-                                                FFAppState()
-                                                    .stCounterLoopFinal) {
-                                              if (_model
-                                                      .lpsvActivities[
-                                                          FFAppState()
-                                                              .stCounterLoop]
-                                                      .activityId ==
-                                                  _model
-                                                      .cpDropdownOrdersTypesActivitiesModel
-                                                      .dropdownOrdersTypesActivitiesValue) {
-                                                setState(() {
-                                                  _model.lpsvIsExistActivity =
-                                                      true;
-                                                });
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Atividade já associada !',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBtnText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .error,
-                                                  ),
-                                                );
-                                                if (shouldSetState) {
-                                                  setState(() {});
-                                                }
-                                                return;
-                                              }
+                                            if (_model.lpsvActivities.isNotEmpty) {
                                               setState(() {
-                                                FFAppState().stCounterLoop =
-                                                    FFAppState().stCounterLoop +
-                                                        1;
+                                                FFAppState().stCounterLoop = 0;
+                                                FFAppState()
+                                                        .stCounterLoopFinal =
+                                                    valueOrDefault<int>(
+                                                  _model.lpsvActivities.length,
+                                                  0,
+                                                );
+                                              });
+                                              while (
+                                                  FFAppState().stCounterLoop <
+                                                      FFAppState()
+                                                          .stCounterLoopFinal) {
+                                                if (_model
+                                                        .lpsvActivities[
+                                                            FFAppState()
+                                                                .stCounterLoop]
+                                                        .activityId ==
+                                                    _model
+                                                        .cpDropdownOrdersTypesActivitiesModel
+                                                        .dropdownOrdersTypesActivitiesValue) {
+                                                  setState(() {
+                                                    _model.lpsvIsExistActivity =
+                                                        true;
+                                                  });
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Atividade já associada !',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBtnText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
+                                                  );
+                                                  if (shouldSetState) {
+                                                    setState(() {});
+                                                  }
+                                                  return;
+                                                }
+                                                setState(() {
+                                                  FFAppState().stCounterLoop =
+                                                      FFAppState()
+                                                              .stCounterLoop +
+                                                          1;
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {
+                                                _model.lpsvIsExistActivity =
+                                                    false;
                                               });
                                             }
+
                                             if (_model.lpsvIsExistActivity) {
                                               if (shouldSetState) {
                                                 setState(() {});
@@ -578,8 +571,9 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                               return;
                                             }
 
-                                            await OrdersVisitsAssetsActivitiesTable()
-                                                .insert({
+                                            _model.resOrderVisitAssetActivityAdded =
+                                                await OrdersVisitsAssetsActivitiesTable()
+                                                    .insert({
                                               'activityId': _model
                                                   .cpDropdownOrdersTypesActivitiesModel
                                                   .dropdownOrdersTypesActivitiesValue,
@@ -589,18 +583,7 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                                                   .first
                                                   .id,
                                             });
-                                            setState(() {
-                                              _model.addToLpsvActivities(
-                                                  DtVOrderVisitAssetActivityStruct(
-                                                orderVisitAssetId: FFAppState()
-                                                    .stOrderVisitAssetSelected
-                                                    .first
-                                                    .id,
-                                                activityId: _model
-                                                    .cpDropdownOrdersTypesActivitiesModel
-                                                    .dropdownOrdersTypesActivitiesValue,
-                                              ));
-                                            });
+                                            shouldSetState = true;
                                             await Future.delayed(const Duration(
                                                 milliseconds: 1000));
                                             setState(() =>

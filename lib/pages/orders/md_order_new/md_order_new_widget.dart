@@ -782,11 +782,11 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                         await OrdersTable()
                                                             .insert({
                                                       'companyId': FFAppState()
-                                                          .stUserCurrent
+                                                          .asUserCurrent
                                                           .companyId,
                                                       'departmentId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .departmentId,
                                                       'parentId':
                                                           widget.orderParentId,
@@ -819,15 +819,15 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           .unitTypeId,
                                                       'requesterName':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .nameShort,
                                                       'requesterTeamId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .teamId,
                                                       'createdUserId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .id,
                                                       'createdDate': supaSerialize<
                                                               DateTime>(
@@ -911,7 +911,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                         ?.createdDate),
                                                             'createdUserId':
                                                                 FFAppState()
-                                                                    .stUserCurrent
+                                                                    .asUserCurrent
                                                                     .id,
                                                             'createdDate':
                                                                 supaSerialize<
@@ -919,7 +919,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                     getCurrentTimestamp),
                                                             'companyId':
                                                                 FFAppState()
-                                                                    .stUserCurrent
+                                                                    .asUserCurrent
                                                                     .id,
                                                             'departmentId': 1,
                                                           });
@@ -944,7 +944,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                       ?.createdDate),
                                                           'createdUserId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'createdDate':
                                                               supaSerialize<
@@ -952,7 +952,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                   getCurrentTimestamp),
                                                           'companyId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'departmentId': 1,
                                                           'orderId': _model

@@ -58,7 +58,7 @@ class _CpDropdownOrdersCancelReasonsWidgetState
             .eq(
               'departmentId',
               valueOrDefault<int>(
-                FFAppState().stUserCurrent.departmentId,
+                FFAppState().asUserCurrent.departmentId,
                 1,
               ),
             )

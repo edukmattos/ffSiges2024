@@ -11,7 +11,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -158,15 +157,6 @@ class _PgDashboardUserVisitsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -221,7 +211,7 @@ class _PgDashboardUserVisitsWidgetState
               future: VOrdersVisitsCountByTeamleaderOpenTable().querySingleRow(
                 queryFn: (q) => q.eq(
                   'teamLeaderId',
-                  FFAppState().stUserCurrent.id,
+                  FFAppState().asUserCurrent.id,
                 ),
               ),
               builder: (context, snapshot) {
@@ -269,7 +259,7 @@ class _PgDashboardUserVisitsWidgetState
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    FFAppState().stUserCurrent.teamCode,
+                                    FFAppState().asUserCurrent.teamCode,
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -296,7 +286,7 @@ class _PgDashboardUserVisitsWidgetState
                                         queryFn: (q) => q
                                             .eq(
                                               'teamLeaderId',
-                                              FFAppState().stUserCurrent.id,
+                                              FFAppState().asUserCurrent.id,
                                             )
                                             .eq(
                                               'processingId',
@@ -464,7 +454,7 @@ class _PgDashboardUserVisitsWidgetState
                                         queryFn: (q) => q
                                             .eq(
                                               'teamLeaderId',
-                                              FFAppState().stUserCurrent.id,
+                                              FFAppState().asUserCurrent.id,
                                             )
                                             .eq(
                                               'processingId',
@@ -632,7 +622,7 @@ class _PgDashboardUserVisitsWidgetState
                                         queryFn: (q) => q
                                             .eq(
                                               'teamLeaderId',
-                                              FFAppState().stUserCurrent.id,
+                                              FFAppState().asUserCurrent.id,
                                             )
                                             .eq(
                                               'processingId',
@@ -798,14 +788,14 @@ class _PgDashboardUserVisitsWidgetState
                           ),
                         ),
                       ),
-                    if (FFAppState().stUserCurrent.orderVisitIdInProgress > 0)
+                    if (FFAppState().asUserCurrent.orderVisitIdInProgress > 0)
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: FutureBuilder<List<VOrdersVisitsRow>>(
                           future: VOrdersVisitsTable().querySingleRow(
                             queryFn: (q) => q.eq(
                               'id',
-                              FFAppState().stUserCurrent.orderVisitIdInProgress,
+                              FFAppState().asUserCurrent.orderVisitIdInProgress,
                             ),
                           ),
                           builder: (context, snapshot) {
@@ -878,7 +868,7 @@ class _PgDashboardUserVisitsWidgetState
                                 .querySingleRow(
                               queryFn: (q) => q.eq(
                                 'teamLeaderId',
-                                FFAppState().stUserCurrent.id,
+                                FFAppState().asUserCurrent.id,
                               ),
                             ),
                             builder: (context, snapshot) {
@@ -944,7 +934,7 @@ class _PgDashboardUserVisitsWidgetState
                                                                       (q) => q
                                                                           .eq(
                                                                             'teamLeaderId',
-                                                                            FFAppState().stUserCurrent.id,
+                                                                            FFAppState().asUserCurrent.id,
                                                                           )
                                                                           .eq(
                                                                             'processingId',
@@ -1082,7 +1072,7 @@ class _PgDashboardUserVisitsWidgetState
                                                                       (q) => q
                                                                           .eq(
                                                                             'teamLeaderId',
-                                                                            FFAppState().stUserCurrent.id,
+                                                                            FFAppState().asUserCurrent.id,
                                                                           )
                                                                           .eq(
                                                                             'processingId',
@@ -1218,7 +1208,7 @@ class _PgDashboardUserVisitsWidgetState
                                                                       (q) => q
                                                                           .eq(
                                                                             'teamLeaderId',
-                                                                            FFAppState().stUserCurrent.id,
+                                                                            FFAppState().asUserCurrent.id,
                                                                           )
                                                                           .eq(
                                                                             'processingId',

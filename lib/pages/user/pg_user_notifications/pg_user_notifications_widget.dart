@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'pg_user_notifications_model.dart';
 export 'pg_user_notifications_model.dart';
@@ -40,15 +39,6 @@ class _PgUserNotificationsWidgetState extends State<PgUserNotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -113,7 +103,7 @@ class _PgUserNotificationsWidgetState extends State<PgUserNotificationsWidget> {
                 future: UsersNotificationsTable().queryRows(
                   queryFn: (q) => q.eq(
                     'userIdTo',
-                    FFAppState().stUserCurrent.id,
+                    FFAppState().asUserCurrent.id,
                   ),
                 ),
                 builder: (context, snapshot) {

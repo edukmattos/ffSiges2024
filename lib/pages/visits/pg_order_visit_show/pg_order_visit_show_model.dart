@@ -13,7 +13,8 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  Completer<List<VOrdersVisitsAssetsRow>>? requestCompleter;
+  Completer<List<VOrdersVisitsRow>>? requestCompleter1;
+  Completer<List<VOrdersVisitsServicesRow>>? requestCompleter2;
   // Model for cpNotificationsIcon component.
   late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpMenu component.
@@ -54,7 +55,7 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
 
   /// Additional helper methods are added here.
 
-  Future waitForRequestCompleted({
+  Future waitForRequestCompleted1({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -62,7 +63,22 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter?.isCompleted ?? false;
+      final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

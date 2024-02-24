@@ -8,8 +8,6 @@ export '/pages/auth/pg_signup_email_password/pg_signup_email_password_widget.dar
     show PgSignupEmailPasswordWidget;
 export '/pages/auth/pg_my_profile/pg_my_profile_widget.dart'
     show PgMyProfileWidget;
-export '/pages/user/pg_dashboard_user_orders/pg_dashboard_user_orders_widget.dart'
-    show PgDashboardUserOrdersWidget;
 export '/pages/units/pg_units_search/pg_units_search_widget.dart'
     show PgUnitsSearchWidget;
 export '/pages/units/pg_units_new/pg_units_new_widget.dart'
@@ -78,3 +76,7 @@ export '/pages/orders/pg_order_parent_new/pg_order_parent_new_widget.dart'
     show PgOrderParentNewWidget;
 export '/pages/orders/pg_order_programming/pg_order_programming_widget.dart'
     show PgOrderProgrammingWidget;
+export '/pages/user/pg_dashboard_user_orders/pg_dashboard_user_orders_widget.dart'
+    show PgDashboardUserOrdersWidget;
+export '/pages/visits/pg_orders_visits_services_search/pg_orders_visits_services_search_widget.dart'
+    show PgOrdersVisitsServicesSearchWidget;

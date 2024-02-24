@@ -79,18 +79,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => _RouteErrorBuilder(
         state: state,
-        child: RootPageContext.wrap(
-          appStateNotifier.loggedIn ? const NavBarPage() : const PgSigninWidget(),
-          errorRoute: state.location,
-        ),
+        child: appStateNotifier.loggedIn ? const NavBarPage() : const PgSigninWidget(),
       ),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? const NavBarPage() : const PgSigninWidget(),
-          ),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const NavBarPage() : const PgSigninWidget(),
         ),
         FFRoute(
           name: 'pgSignin',
@@ -118,14 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/pgMyProfile',
           requireAuth: true,
           builder: (context, params) => const PgMyProfileWidget(),
-        ),
-        FFRoute(
-          name: 'pgDashboardUserOrders',
-          path: '/pgDashboardUserOrders',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'pgDashboardUserOrders')
-              : const PgDashboardUserOrdersWidget(),
         ),
         FFRoute(
           name: 'pgUnitsSearch',
@@ -364,6 +352,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgOrderProgrammingWidget(
             orderId: params.getParam('orderId', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'pgDashboardUserOrders',
+          path: '/pgDashboardUserOrders',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'pgDashboardUserOrders')
+              : const PgDashboardUserOrdersWidget(),
+        ),
+        FFRoute(
+          name: 'pgOrdersVisitsServicesSearch',
+          path: '/pgOrdersVisitsServicesSearch',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'pgOrdersVisitsServicesSearch')
+              : const PgOrdersVisitsServicesSearchWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -535,6 +539,7 @@ class FFRoute {
           return null;
         },
         pageBuilder: (context, state) {
+          fixStatusBarOniOS16AndBelow(context);
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
               ? FutureBuilder(

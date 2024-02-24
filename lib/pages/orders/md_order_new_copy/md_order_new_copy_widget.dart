@@ -1227,11 +1227,11 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                         await OrdersTable()
                                                             .insert({
                                                       'companyId': FFAppState()
-                                                          .stUserCurrent
+                                                          .asUserCurrent
                                                           .companyId,
                                                       'departmentId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .departmentId,
                                                       'parentId':
                                                           widget.orderParentId,
@@ -1264,15 +1264,15 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           .unitTypeId,
                                                       'requesterName':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .nameShort,
                                                       'requesterTeamId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .teamId,
                                                       'createdUserId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .id,
                                                       'createdDate': supaSerialize<
                                                               DateTime>(
@@ -1364,7 +1364,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                                         ?.createdDate),
                                                             'createdUserId':
                                                                 FFAppState()
-                                                                    .stUserCurrent
+                                                                    .asUserCurrent
                                                                     .id,
                                                             'createdDate':
                                                                 supaSerialize<
@@ -1372,7 +1372,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                                     getCurrentTimestamp),
                                                             'companyId':
                                                                 FFAppState()
-                                                                    .stUserCurrent
+                                                                    .asUserCurrent
                                                                     .id,
                                                             'departmentId': 1,
                                                           });
@@ -1397,7 +1397,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                                       ?.createdDate),
                                                           'createdUserId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'createdDate':
                                                               supaSerialize<
@@ -1405,7 +1405,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                                   getCurrentTimestamp),
                                                           'companyId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'departmentId': 1,
                                                           'orderId': _model
@@ -1423,7 +1423,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                       abBody:
                                                           'OS ${_model.resOrderAdded?.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                       abUserIdFrom: FFAppState()
-                                                          .stUserCurrent
+                                                          .asUserCurrent
                                                           .id,
                                                       abUserIdTo: _model
                                                           .cpDropdownLeaderTeamsSelectedModel

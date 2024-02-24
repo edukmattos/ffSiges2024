@@ -14,7 +14,6 @@ import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_show_model.dart';
@@ -64,10 +63,22 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
       await Future.delayed(const Duration(milliseconds: 2000));
       await actions.caSupabaseConnect(
         'ordersVisits',
-        () async {},
+        () async {
+          setState(() => _model.requestCompleter1 = null);
+          await _model.waitForRequestCompleted1();
+        },
       );
-      setState(() => _model.requestCompleter = null);
-      await _model.waitForRequestCompleted();
+      await actions.caSupabaseDisconnect(
+        'ordersVisitsServices',
+      );
+      await Future.delayed(const Duration(milliseconds: 2000));
+      await actions.caSupabaseConnect(
+        'ordersVisitsServices',
+        () async {
+          setState(() => _model.requestCompleter2 = null);
+          await _model.waitForRequestCompleted2();
+        },
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -82,15 +93,6 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -158,12 +160,15 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
               height: double.infinity,
               decoration: const BoxDecoration(),
               child: FutureBuilder<List<VOrdersVisitsRow>>(
-                future: VOrdersVisitsTable().querySingleRow(
-                  queryFn: (q) => q.eq(
-                    'id',
-                    widget.visitId,
-                  ),
-                ),
+                future: (_model.requestCompleter1 ??=
+                        Completer<List<VOrdersVisitsRow>>()
+                          ..complete(VOrdersVisitsTable().querySingleRow(
+                            queryFn: (q) => q.eq(
+                              'id',
+                              widget.visitId,
+                            ),
+                          )))
+                    .future,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -283,7 +288,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                 abUserProfileId:
                                                     valueOrDefault<int>(
                                                   FFAppState()
-                                                      .stUserCurrent
+                                                      .asUserCurrent
                                                       .profileId,
                                                   0,
                                                 ),
@@ -306,25 +311,19 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                       ],
                                     ),
                                     FutureBuilder<List<VOrdersVisitsAssetsRow>>(
-                                      future: (_model.requestCompleter ??=
-                                              Completer<
-                                                  List<
-                                                      VOrdersVisitsAssetsRow>>()
-                                                ..complete(
-                                                    VOrdersVisitsAssetsTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'orderVisitId',
-                                                    valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOrderVisitSelected
-                                                          .first
-                                                          .id,
-                                                      1,
-                                                    ),
-                                                  ),
-                                                )))
-                                          .future,
+                                      future:
+                                          VOrdersVisitsAssetsTable().queryRows(
+                                        queryFn: (q) => q.eq(
+                                          'orderVisitId',
+                                          valueOrDefault<int>(
+                                            FFAppState()
+                                                .stOrderVisitSelected
+                                                .first
+                                                .id,
+                                            1,
+                                          ),
+                                        ),
+                                      ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -459,67 +458,54 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                               1,
                                             ) !=
                                             4)
-                                          FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 12.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 50.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            icon: Icon(
-                                              Icons.add,
-                                              color:
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onLongPress: () async {},
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 255.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                              size: 24.0,
-                                            ),
-                                            showLoadingIndicator: true,
-                                            onPressed: () async {
-                                              await action_blocks
-                                                  .abPermissionCheck(
-                                                context,
-                                                abAppPageId: 1,
-                                                abUserProfileId:
-                                                    valueOrDefault<int>(
-                                                  FFAppState()
-                                                      .stUserCurrent
-                                                      .profileId,
-                                                  0,
-                                                ),
-                                              );
-                                              if (FFAppState().stIsPermission) {
+                                                      .primary,
+                                              icon: Icon(
+                                                Icons.add,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                                size: 24.0,
+                                              ),
+                                              showLoadingIndicator: true,
+                                              onPressed: () async {
                                                 context.pushNamed(
-                                                  'pgOrderVisitAsset1Search',
-                                                  queryParameters: {
-                                                    'visitId': serializeParam(
-                                                      widget.visitId,
-                                                      ParamType.int,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              } else {
-                                                return;
-                                              }
-                                            },
+                                                    'pgOrdersVisitsServicesSearch');
+                                              },
+                                            ),
                                           ),
                                       ],
                                     ),
                                     FutureBuilder<
                                         List<VOrdersVisitsServicesRow>>(
-                                      future: VOrdersVisitsServicesTable()
-                                          .queryRows(
-                                        queryFn: (q) => q.eq(
-                                          'orderVisitId',
-                                          valueOrDefault<int>(
-                                            FFAppState()
-                                                .stOrderVisitSelected
-                                                .first
-                                                .id,
-                                            1,
-                                          ),
-                                        ),
-                                      ),
+                                      future: (_model.requestCompleter2 ??=
+                                              Completer<
+                                                  List<
+                                                      VOrdersVisitsServicesRow>>()
+                                                ..complete(
+                                                    VOrdersVisitsServicesTable()
+                                                        .queryRows(
+                                                  queryFn: (q) => q.eq(
+                                                    'orderVisitId',
+                                                    FFAppState()
+                                                        .stOrderVisitSelected
+                                                        .first
+                                                        .id,
+                                                  ),
+                                                )))
+                                          .future,
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -629,18 +615,44 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
                                                                   Text(
-                                                                    'Qte: ${listViewServicesSelectedVOrdersVisitsServicesRow.amount?.toString()} ${listViewServicesSelectedVOrdersVisitsServicesRow.serviceUnit} | Vlr.Unit.: ${formatNumber(
+                                                                    'Qte: ${formatNumber(
+                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                          .amount,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .custom,
+                                                                      format:
+                                                                          '#.00',
+                                                                      locale:
+                                                                          'pt_BR',
+                                                                    )}${listViewServicesSelectedVOrdersVisitsServicesRow.serviceUnit} | Vlr.Unit.: ${formatNumber(
                                                                       listViewServicesSelectedVOrdersVisitsServicesRow
                                                                           .priceUnit,
                                                                       formatType:
                                                                           FormatType
-                                                                              .decimal,
-                                                                      decimalType:
-                                                                          DecimalType
-                                                                              .automatic,
-                                                                    )}',
+                                                                              .custom,
+                                                                      currency:
+                                                                          'R\$ ',
+                                                                      format:
+                                                                          '#,###.00',
+                                                                      locale:
+                                                                          'pt_BR',
+                                                                    )} | Desc:  ${formatNumber(
+                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                          .discount,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .custom,
+                                                                      format:
+                                                                          '###.00',
+                                                                      locale:
+                                                                          'pt_BR',
+                                                                    )}%',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -649,6 +661,32 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                                               'Readex Pro',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryText,
+                                                                        ),
+                                                                  ),
+                                                                  Text(
+                                                                    formatNumber(
+                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                          .total!,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .custom,
+                                                                      currency:
+                                                                          'R\$ ',
+                                                                      format:
+                                                                          '#,###.00',
+                                                                      locale:
+                                                                          'pt_BR',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
                                                                   ),
                                                                 ],
@@ -737,9 +775,59 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                                 ),
                                                                 showLoadingIndicator:
                                                                     true,
-                                                                onPressed: () {
-                                                                  print(
-                                                                      'IconButton pressed ...');
+                                                                onPressed:
+                                                                    () async {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: const Text('Ops ...'),
+                                                                                content: const Text('Deseja realmente EXCLUIR ?'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: const Text('Cancelar'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: const Text('Confirmar'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    await OrdersVisitsServicesTable()
+                                                                        .delete(
+                                                                      matchingRows:
+                                                                          (rows) =>
+                                                                              rows.eq(
+                                                                        'id',
+                                                                        listViewServicesSelectedVOrdersVisitsServicesRow
+                                                                            .id,
+                                                                      ),
+                                                                    );
+                                                                    await action_blocks
+                                                                        .abOrderVisitSelectedServices(
+                                                                      context,
+                                                                      abOrderVisitId: FFAppState()
+                                                                          .stOrderVisitSelected
+                                                                          .first
+                                                                          .id,
+                                                                    );
+                                                                    setState(
+                                                                        () {});
+                                                                    setState(() =>
+                                                                        _model.requestCompleter1 =
+                                                                            null);
+                                                                    await _model
+                                                                        .waitForRequestCompleted1();
+                                                                  }
                                                                 },
                                                               ),
                                                             ),

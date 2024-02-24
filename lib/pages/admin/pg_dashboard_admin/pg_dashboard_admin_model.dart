@@ -21,12 +21,9 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
   Completer<List<VDashAdminOrdersParentStatus1Row>>? requestCompleter3;
   Completer<List<VDashAdminOrdersParentStatus2Row>>? requestCompleter4;
   Completer<List<VDashAdminOrdersParentStatus3Row>>? requestCompleter1;
-  Completer<List<VDashAdminOrdersParentStatus4Row>>? requestCompleter6;
-  Completer<List<VDashAdminOrdersParentStatus5Row>>? requestCompleter9;
+  Completer<List<VDashAdminOrdersParentStatus4Row>>? requestCompleter5;
+  Completer<List<VDashAdminOrdersParentStatus5Row>>? requestCompleter6;
   Completer<List<VDashAdminOrdersParentStatus6Row>>? requestCompleter2;
-  Completer<List<VDashAdminOrdersStatus2Row>>? requestCompleter8;
-  Completer<List<VDashAdminOrdersStatus3Row>>? requestCompleter7;
-  Completer<List<VDashAdminOrdersStatus4Row>>? requestCompleter5;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
   // Model for cpNotificationsIcon component.
@@ -97,6 +94,21 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
     }
   }
 
+  Future waitForRequestCompleted5({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter5?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   Future waitForRequestCompleted6({
     double minWait = 0,
     double maxWait = double.infinity,
@@ -112,21 +124,6 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
     }
   }
 
-  Future waitForRequestCompleted9({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter9?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
   Future waitForRequestCompleted2({
     double minWait = 0,
     double maxWait = double.infinity,
@@ -136,51 +133,6 @@ class PgDashboardAdminModel extends FlutterFlowModel<PgDashboardAdminWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter2?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted8({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter8?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted7({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter7?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted5({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter5?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

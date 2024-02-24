@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
@@ -11,47 +10,41 @@ class PgDashboardUserOrdersModel
     extends FlutterFlowModel<PgDashboardUserOrdersWidget> {
   ///  Local state fields for this page.
 
-  int? lspvOrderStatusId = 3;
+  String lpsvOrdersView = '';
+
+  int? lpsvOrderStatusId;
+
+  bool? lpsvIsParent = true;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (authLogout)] action in pgDashboardUserOrders widget.
   ApiCallResponse? apiResultqrx;
-  // Model for cpNotificationsIcon component.
-  late CpNotificationsIconModel cpNotificationsIconModel;
-  // Model for cpMenu component.
-  late CpMenuModel cpMenuModel;
-  // Model for cpOrdersStatuses component.
-  late CpOrdersStatusesModel cpOrdersStatusesModel1;
-  // Model for cpOrdersStatuses component.
-  late CpOrdersStatusesModel cpOrdersStatusesModel2;
   // Model for cpOrderVisitCard1Show component.
   late CpOrderVisitCard1ShowModel cpOrderVisitCard1ShowModel;
+  // Model for cpMenu component.
+  late CpMenuModel cpMenuModel;
+  // Model for cpNotificationsIcon component.
+  late CpNotificationsIconModel cpNotificationsIconModel;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    cpNotificationsIconModel =
-        createModel(context, () => CpNotificationsIconModel());
-    cpMenuModel = createModel(context, () => CpMenuModel());
-    cpOrdersStatusesModel1 =
-        createModel(context, () => CpOrdersStatusesModel());
-    cpOrdersStatusesModel2 =
-        createModel(context, () => CpOrdersStatusesModel());
     cpOrderVisitCard1ShowModel =
         createModel(context, () => CpOrderVisitCard1ShowModel());
+    cpMenuModel = createModel(context, () => CpMenuModel());
+    cpNotificationsIconModel =
+        createModel(context, () => CpNotificationsIconModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpNotificationsIconModel.dispose();
-    cpMenuModel.dispose();
-    cpOrdersStatusesModel1.dispose();
-    cpOrdersStatusesModel2.dispose();
     cpOrderVisitCard1ShowModel.dispose();
+    cpMenuModel.dispose();
+    cpNotificationsIconModel.dispose();
   }
 
   /// Action blocks are added here.

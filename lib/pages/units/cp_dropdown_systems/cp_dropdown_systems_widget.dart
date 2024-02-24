@@ -56,7 +56,7 @@ class _CpDropdownSystemsWidgetState extends State<CpDropdownSystemsWidget> {
         queryFn: (q) => q
             .eq(
               'companyId',
-              FFAppState().stUserCurrent.companyId,
+              FFAppState().asUserCurrent.companyId,
             )
             .eq(
               'parentId',

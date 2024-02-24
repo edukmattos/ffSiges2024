@@ -14,7 +14,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -275,15 +274,6 @@ class _PgOrderParentShowWidgetState extends State<PgOrderParentShowWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -310,7 +300,7 @@ class _PgOrderParentShowWidgetState extends State<PgOrderParentShowWidget>
                 await action_blocks.abPermissionCheck(
                   context,
                   abAppPageId: 7,
-                  abUserProfileId: FFAppState().stUserCurrent.profileId,
+                  abUserProfileId: FFAppState().asUserCurrent.profileId,
                 );
                 if (FFAppState().stIsPermission) {
                   Navigator.pop(context);

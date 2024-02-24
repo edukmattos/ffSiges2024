@@ -58,7 +58,7 @@ class _CpDropdownOrdersContractsWidgetState
             .eq(
               'clientDepartmentId',
               valueOrDefault<int>(
-                FFAppState().stUserCurrent.departmentId,
+                FFAppState().asUserCurrent.departmentId,
                 1,
               ),
             )

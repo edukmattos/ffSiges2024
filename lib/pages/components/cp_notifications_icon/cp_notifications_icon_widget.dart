@@ -71,7 +71,7 @@ class _CpNotificationsIconWidgetState extends State<CpNotificationsIconWidget> {
                   ..complete(VUsersNotificationsCountTable().querySingleRow(
                     queryFn: (q) => q.eq(
                       'userIdTo',
-                      FFAppState().stUserCurrent.id,
+                      FFAppState().asUserCurrent.id,
                     ),
                   )))
             .future,

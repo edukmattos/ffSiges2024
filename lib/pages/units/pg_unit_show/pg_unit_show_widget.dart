@@ -7,7 +7,6 @@ import '/pages/orders/cp_order_parent_unit_show/cp_order_parent_unit_show_widget
 import '/pages/units/cp_unit_card_show/cp_unit_card_show_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_unit_show_model.dart';
@@ -71,15 +70,6 @@ class _PgUnitShowWidgetState extends State<PgUnitShowWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -105,7 +95,7 @@ class _PgUnitShowWidgetState extends State<PgUnitShowWidget>
                 context,
                 abAppPageId: 6,
                 abUserProfileId: valueOrDefault<int>(
-                  FFAppState().stUserCurrent.profileId,
+                  FFAppState().asUserCurrent.profileId,
                   0,
                 ),
               );

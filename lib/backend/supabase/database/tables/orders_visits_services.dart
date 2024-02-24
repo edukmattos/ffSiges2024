@@ -18,11 +18,11 @@ class OrdersVisitsServicesRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  int? get orderVisitId => getField<int>('orderVisitId');
-  set orderVisitId(int? value) => setField<int>('orderVisitId', value);
+  int get orderVisitId => getField<int>('orderVisitId')!;
+  set orderVisitId(int value) => setField<int>('orderVisitId', value);
 
-  int? get serviceId => getField<int>('serviceId');
-  set serviceId(int? value) => setField<int>('serviceId', value);
+  int get serviceId => getField<int>('serviceId')!;
+  set serviceId(int value) => setField<int>('serviceId', value);
 
   double? get priceUnit => getField<double>('priceUnit');
   set priceUnit(double? value) => setField<double>('priceUnit', value);

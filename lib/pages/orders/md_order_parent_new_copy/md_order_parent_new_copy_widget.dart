@@ -589,7 +589,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                             .currentCounterCall
                                                             .call(
                                                       companyId: FFAppState()
-                                                          .stUserCurrent
+                                                          .asUserCurrent
                                                           .companyId,
                                                       year: functions
                                                           .cfDateGetYear(
@@ -619,7 +619,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                               .insert({
                                                         'companyId':
                                                             FFAppState()
-                                                                .stUserCurrent
+                                                                .asUserCurrent
                                                                 .companyId,
                                                         'year': functions
                                                             .cfDateGetYear(
@@ -646,7 +646,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                               .eq(
                                                                 'companyId',
                                                                 FFAppState()
-                                                                    .stUserCurrent
+                                                                    .asUserCurrent
                                                                     .companyId,
                                                               )
                                                               .eq(
@@ -668,11 +668,11 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                         await OrdersTable()
                                                             .insert({
                                                       'companyId': FFAppState()
-                                                          .stUserCurrent
+                                                          .asUserCurrent
                                                           .companyId,
                                                       'departmentId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .departmentId,
                                                       'typeId': _model
                                                           .cpDropdownOrdersTypesModel
@@ -711,11 +711,11 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                       ),
                                                       'requesterName':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .nameShort,
                                                       'requesterTeamId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .teamId,
                                                       'requesterPhone': _model
                                                           .cpInputTextModel
@@ -723,7 +723,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                           .text,
                                                       'createdUserId':
                                                           FFAppState()
-                                                              .stUserCurrent
+                                                              .asUserCurrent
                                                               .id,
                                                       'createdDate': supaSerialize<
                                                               DateTime>(
@@ -783,7 +783,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                                   getCurrentTimestamp),
                                                           'createdUserId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'createdDate':
                                                               supaSerialize<
@@ -791,7 +791,7 @@ class _MdOrderParentNewCopyWidgetState extends State<MdOrderParentNewCopyWidget>
                                                                   getCurrentTimestamp),
                                                           'companyId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'departmentId': 1,
                                                         });

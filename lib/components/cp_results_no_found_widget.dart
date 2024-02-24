@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_results_no_found_model.dart';
 export 'cp_results_no_found_model.dart';
@@ -8,14 +9,13 @@ export 'cp_results_no_found_model.dart';
 class CpResultsNoFoundWidget extends StatefulWidget {
   const CpResultsNoFoundWidget({
     super.key,
-    required this.icon,
-    required this.title,
-    required this.body,
-  });
+    String? title,
+    String? body,
+  })  : title = title ?? 'Ops ...',
+        body = body ?? 'Nenhum registro localizado';
 
-  final Widget? icon;
-  final String? title;
-  final String? body;
+  final String title;
+  final String body;
 
   @override
   State<CpResultsNoFoundWidget> createState() => _CpResultsNoFoundWidgetState();
@@ -83,7 +83,11 @@ class _CpResultsNoFoundWidgetState extends State<CpResultsNoFoundWidget> {
                   ),
                   style: FlutterFlowTheme.of(context).headlineMedium,
                 ),
-                widget.icon!,
+                FaIcon(
+                  FontAwesomeIcons.skullCrossbones,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 80.0,
+                ),
                 Text(
                   valueOrDefault<String>(
                     widget.body,

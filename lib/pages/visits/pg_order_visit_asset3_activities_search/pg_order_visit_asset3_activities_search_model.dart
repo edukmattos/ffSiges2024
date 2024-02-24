@@ -33,14 +33,16 @@ class PgOrderVisitAsset3ActivitiesSearchModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  Completer<List<VOrdersVisitsAssetsActivitiesRow>>? requestCompleter;
   // Model for cpOrderVisitAssetListItemCard component.
   late CpOrderVisitAssetListItemCardModel cpOrderVisitAssetListItemCardModel;
+  Completer<List<VOrdersVisitsAssetsActivitiesRow>>? requestCompleter;
   // Model for cpDropdownOrdersTypesActivities component.
   late CpDropdownOrdersTypesActivitiesModel
       cpDropdownOrdersTypesActivitiesModel;
   // Stores action output result for [Backend Call - API (activitiesByOrderVisitAssetId)] action in Button widget.
   ApiCallResponse? resOrderVisitAssetActivities;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  OrdersVisitsAssetsActivitiesRow? resOrderVisitAssetActivityAdded;
 
   /// Initialization and disposal methods.
 

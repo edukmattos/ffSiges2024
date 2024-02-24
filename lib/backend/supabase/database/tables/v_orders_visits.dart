@@ -114,4 +114,17 @@ class VOrdersVisitsRow extends SupabaseDataRow {
 
   String? get comments => getField<String>('comments');
   set comments(String? value) => setField<String>('comments', value);
+
+  double? get priceServices => getField<double>('priceServices');
+  set priceServices(double? value) => setField<double>('priceServices', value);
+
+  double? get priceMaterials => getField<double>('priceMaterials');
+  set priceMaterials(double? value) =>
+      setField<double>('priceMaterials', value);
+
+  double? get priceVehicles => getField<double>('priceVehicles');
+  set priceVehicles(double? value) => setField<double>('priceVehicles', value);
+
+  double? get priceTotal => getField<double>('priceTotal');
+  set priceTotal(double? value) => setField<double>('priceTotal', value);
 }

@@ -356,7 +356,7 @@ class _CpUsersListItemWidgetState extends State<CpUsersListItemWidget> {
                                         abBody:
                                             'Agora vc já pode acessar a sua conta no Siges.',
                                         abUserIdFrom:
-                                            FFAppState().stUserCurrent.id,
+                                            FFAppState().asUserCurrent.id,
                                         abUserIdTo: containerVUsersRow.id,
                                       );
                                     }
@@ -423,7 +423,7 @@ class _CpUsersListItemWidgetState extends State<CpUsersListItemWidget> {
                                         abBody:
                                             'Agora vc já pode acessar a sua conta no Siges.',
                                         abUserIdFrom:
-                                            FFAppState().stUserCurrent.id,
+                                            FFAppState().asUserCurrent.id,
                                         abUserIdTo: containerVUsersRow.id,
                                       );
                                     }

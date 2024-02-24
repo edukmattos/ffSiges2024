@@ -415,7 +415,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: containerVOrdersRow?.statusId == 4
+            color: containerVOrdersRow?.statusId == 5
                 ? FlutterFlowTheme.of(context).success
                 : const Color(0xFF384147),
             boxShadow: const [
@@ -722,7 +722,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                             ),
                             Text(
                               valueOrDefault<String>(
-                                containerVOrdersRow.companydescription,
+                                containerVOrdersRow.teamLeaderNameShort,
                                 '.',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -748,7 +748,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 animationsMap['textOnPageLoadAnimation12']!),
                             Text(
                               valueOrDefault<String>(
-                                containerVOrdersRow.teamLeaderNameShort,
+                                containerVOrdersRow.companydescription,
                                 '.',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -782,10 +782,10 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if ((FFAppState().stUserCurrent.orderVisitIdInProgress ==
+                    if ((FFAppState().asUserCurrent.orderVisitIdInProgress ==
                             0) &&
                         (containerVOrdersRow.teamLeaderId ==
-                            FFAppState().stUserCurrent.id))
+                            FFAppState().asUserCurrent.id))
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -846,8 +846,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     getCurrentTimestamp),
                                 'processingId': 1,
                                 'statusId': 1,
-                                'teamLeaderId': FFAppState().stUserCurrent.id,
-                                'createdUserId': FFAppState().stUserCurrent.id,
+                                'teamLeaderId': FFAppState().asUserCurrent.id,
+                                'createdUserId': FFAppState().asUserCurrent.id,
                                 'createdDate': supaSerialize<DateTime>(
                                     getCurrentTimestamp),
                                 'orderParentId': containerVOrdersRow.parentId,
@@ -858,7 +858,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 abOrderVisitId: _model.resVisitAdded?.id,
                               );
                               setState(() {
-                                FFAppState().updateStUserCurrentStruct(
+                                FFAppState().updateAsUserCurrentStruct(
                                   (e) => e
                                     ..orderVisitIdInProgress = FFAppState()
                                         .stOrderVisitSelected
@@ -873,12 +873,12 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                         .first
                                         .orderParentId
                                     ..orderVisitInProgressTeamLeaderId =
-                                        FFAppState().stUserCurrent.id,
+                                        FFAppState().asUserCurrent.id,
                                 );
                               });
                               _model.resUsersTeamCurrent =
                                   await ApiUsersGroup.usersByTeamIdCall.call(
-                                teamId: FFAppState().stUserCurrent.teamId,
+                                teamId: FFAppState().asUserCurrent.teamId,
                               );
                               shouldSetState = true;
                               setState(() {
@@ -907,12 +907,12 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               });
                               while (FFAppState().stCounterLoop <=
                                   FFAppState().stCounterLoopFinal) {
-                                if (FFAppState().stUserCurrent.id ==
+                                if (FFAppState().asUserCurrent.id ==
                                     FFAppState().stOrderVisitOpenTeamUsers[
                                         FFAppState().stCounterLoop - 1]) {
                                   await OrdersVisitsTeamsTable().insert({
                                     'visitId': _model.resVisitAdded?.id,
-                                    'userId': FFAppState().stUserCurrent.id,
+                                    'userId': FFAppState().asUserCurrent.id,
                                     'isLeader': true,
                                     'orderParentId':
                                         containerVOrdersRow.parentId,
@@ -940,7 +940,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     'orderParentIdInProgress':
                                         _model.resVisitAdded?.orderParentId,
                                     'orderVisitInProgressTeamLeaderId':
-                                        FFAppState().stUserCurrent.id,
+                                        FFAppState().asUserCurrent.id,
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
@@ -958,7 +958,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               });
                               await OrdersTable().update(
                                 data: {
-                                  'statusId': 4,
+                                  'statusId': 5,
                                   'statusDate': supaSerialize<DateTime>(
                                       getCurrentTimestamp),
                                 },
@@ -1008,7 +1008,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   'statusDescription',
                                 )}',
                                 abBody:
-                                    '${FFAppState().stUserCurrent.nameShort} iniciou atendimento em ${valueOrDefault<String>(
+                                    '${FFAppState().asUserCurrent.nameShort} iniciou atendimento em ${valueOrDefault<String>(
                                   FFAppState()
                                       .stOrderSelected
                                       .first

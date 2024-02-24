@@ -14,7 +14,6 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_asset2_before_model.dart';
@@ -100,15 +99,6 @@ class _PgOrderVisitAsset2BeforeWidgetState
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -777,7 +767,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         onPressed: () async {
                                                           setState(() {
                                                             _model.lpsvFilePath =
-                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}';
+                                                                'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}';
                                                           });
                                                           if (widget
                                                                   .operation ==
@@ -858,7 +848,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                   .deleteFileCall
                                                                   .call(
                                                                 fileUrl:
-                                                                    'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSeleted.first.id.toString()}/${_model.lpsvFileNameToDelete}',
+                                                                    'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSeleted.first.id.toString()}/${_model.lpsvFileNameToDelete}',
                                                               );
                                                             } else {
                                                               return;
@@ -868,7 +858,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                               await selectMediaWithSourceBottomSheet(
                                                             context: context,
                                                             storageFolderPath:
-                                                                'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}',
+                                                                'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}',
                                                             maxWidth: 500.00,
                                                             maxHeight: 500.00,
                                                             imageQuality: 100,
@@ -967,7 +957,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                     functions.cfGetFileNameFromFileUrlUploaded(
                                                                         _model
                                                                             .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
                                                               },
                                                               matchingRows:
                                                                   (rows) =>
@@ -989,7 +979,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                                     functions.cfGetFileNameFromFileUrlUploaded(
                                                                         _model
                                                                             .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().stUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
+                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
                                                               },
                                                               matchingRows:
                                                                   (rows) =>
@@ -1324,7 +1314,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'processingId': 2,
                                                     'reportedUserId':
                                                         FFAppState()
-                                                            .stUserCurrent
+                                                            .asUserCurrent
                                                             .id,
                                                     'reportedDate':
                                                         supaSerialize<DateTime>(

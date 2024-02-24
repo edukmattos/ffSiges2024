@@ -111,7 +111,6 @@ final parametersBuilderMap =
   'pgSignupProfile': ParameterData.none(),
   'pgSignupEmailPassword': ParameterData.none(),
   'pgMyProfile': ParameterData.none(),
-  'pgDashboardUserOrders': ParameterData.none(),
   'pgUnitsSearch': ParameterData.none(),
   'pgUnitsNew': ParameterData.none(),
   'pgDashboardAdmin': ParameterData.none(),
@@ -191,6 +190,8 @@ final parametersBuilderMap =
           'orderId': getParameter<int>(data, 'orderId'),
         },
       ),
+  'pgDashboardUserOrders': ParameterData.none(),
+  'pgOrdersVisitsServicesSearch': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

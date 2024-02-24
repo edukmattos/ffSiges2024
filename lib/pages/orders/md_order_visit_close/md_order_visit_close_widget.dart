@@ -73,7 +73,7 @@ class _MdOrderVisitCloseWidgetState extends State<MdOrderVisitCloseWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.resOrderVisitTeamCurrent =
           await ApiOrdersVisitsTeamsGroup.apiDtUsersByVisitIdCall.call(
-        visitId: FFAppState().stUserCurrent.orderVisitIdInProgress,
+        visitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
       );
       setState(() {
         _model.lcsvUsersByVisitId =
@@ -357,10 +357,10 @@ class _MdOrderVisitCloseWidgetState extends State<MdOrderVisitCloseWidget>
                                                     .abUserUpdate(
                                                   context,
                                                   abEmail: FFAppState()
-                                                      .stUserCurrent
+                                                      .asUserCurrent
                                                       .email,
                                                   abAccessToken: FFAppState()
-                                                      .stUserCurrent
+                                                      .asUserCurrent
                                                       .accessToken,
                                                 );
                                                 await OrdersTable().update(
@@ -384,7 +384,7 @@ class _MdOrderVisitCloseWidgetState extends State<MdOrderVisitCloseWidget>
                                                 Navigator.pop(context);
                                                 setState(() {
                                                   FFAppState()
-                                                      .updateStUserCurrentStruct(
+                                                      .updateAsUserCurrentStruct(
                                                     (e) => e
                                                       ..orderIdInProgress = null
                                                       ..orderVisitIdInProgress =
@@ -451,7 +451,7 @@ class _MdOrderVisitCloseWidgetState extends State<MdOrderVisitCloseWidget>
                                                     'statusDescription',
                                                   )}',
                                                   abBody:
-                                                      '${FFAppState().stUserCurrent.nameShort} encerrou atendimento em ${valueOrDefault<String>(
+                                                      '${FFAppState().asUserCurrent.nameShort} encerrou atendimento em ${valueOrDefault<String>(
                                                     FFAppState()
                                                         .stOrderSelected
                                                         .first

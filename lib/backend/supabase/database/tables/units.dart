@@ -105,4 +105,8 @@ class UnitsRow extends SupabaseDataRow {
 
   String? get addressFull => getField<String>('addressFull');
   set addressFull(String? value) => setField<String>('addressFull', value);
+
+  int? get providerCompanyId => getField<int>('providerCompanyId');
+  set providerCompanyId(int? value) =>
+      setField<int>('providerCompanyId', value);
 }

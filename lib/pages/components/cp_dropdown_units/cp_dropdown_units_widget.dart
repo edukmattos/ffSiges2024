@@ -52,12 +52,7 @@ class _CpDropdownUnitsWidgetState extends State<CpDropdownUnitsWidget> {
 
     return FutureBuilder<List<VUnitsRow>>(
       future: VUnitsTable().queryRows(
-        queryFn: (q) => q
-            .eq(
-              'companyId',
-              FFAppState().stUserCurrent.companyId,
-            )
-            .order('descriptionFull', ascending: true),
+        queryFn: (q) => q.order('descriptionFull', ascending: true),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

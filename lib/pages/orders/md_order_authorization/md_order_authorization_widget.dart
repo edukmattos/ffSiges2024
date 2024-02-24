@@ -515,7 +515,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                                   getCurrentTimestamp),
                                                           'createdUserId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'createdDate':
                                                               supaSerialize<
@@ -523,7 +523,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                                   getCurrentTimestamp),
                                                           'companyId':
                                                               FFAppState()
-                                                                  .stUserCurrent
+                                                                  .asUserCurrent
                                                                   .id,
                                                           'departmentId': 1,
                                                         });
@@ -539,7 +539,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                     abBody:
                                                         'OS ${FFAppState().stOrderSelected.first.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${FFAppState().stOrderSelected.first.requestedServices}',
                                                     abUserIdFrom: FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .id,
                                                     abUserIdTo: _model
                                                         .cpDropdownLeaderTeamsSelectedModel

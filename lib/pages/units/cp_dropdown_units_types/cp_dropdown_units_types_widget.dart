@@ -57,7 +57,7 @@ class _CpDropdownUnitsTypesWidgetState
         queryFn: (q) => q
             .eq(
               'companyId',
-              FFAppState().stUserCurrent.companyId,
+              FFAppState().asUserCurrent.companyId,
             )
             .eq(
               'parentId',

@@ -10,7 +10,6 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -130,15 +129,6 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -166,7 +156,7 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
                   context,
                   abAppPageId: 8,
                   abUserProfileId: valueOrDefault<int>(
-                    FFAppState().stUserCurrent.profileId,
+                    FFAppState().asUserCurrent.profileId,
                     0,
                   ),
                 );

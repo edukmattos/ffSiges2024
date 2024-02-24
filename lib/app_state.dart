@@ -19,10 +19,10 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      if (prefs.containsKey('ff_stUserCurrent')) {
+      if (prefs.containsKey('ff_asUserCurrent')) {
         try {
-          final serializedData = prefs.getString('ff_stUserCurrent') ?? '{}';
-          _stUserCurrent =
+          final serializedData = prefs.getString('ff_asUserCurrent') ?? '{}';
+          _asUserCurrent =
               DtUserStruct.fromSerializableMap(jsonDecode(serializedData));
         } catch (e) {
           print("Can't decode persisted data type. Error: $e.");
@@ -64,16 +64,16 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  DtUserStruct _stUserCurrent = DtUserStruct();
-  DtUserStruct get stUserCurrent => _stUserCurrent;
-  set stUserCurrent(DtUserStruct value) {
-    _stUserCurrent = value;
-    prefs.setString('ff_stUserCurrent', value.serialize());
+  DtUserStruct _asUserCurrent = DtUserStruct();
+  DtUserStruct get asUserCurrent => _asUserCurrent;
+  set asUserCurrent(DtUserStruct value) {
+    _asUserCurrent = value;
+    prefs.setString('ff_asUserCurrent', value.serialize());
   }
 
-  void updateStUserCurrentStruct(Function(DtUserStruct) updateFn) {
-    updateFn(_stUserCurrent);
-    prefs.setString('ff_stUserCurrent', _stUserCurrent.serialize());
+  void updateAsUserCurrentStruct(Function(DtUserStruct) updateFn) {
+    updateFn(_asUserCurrent);
+    prefs.setString('ff_asUserCurrent', _asUserCurrent.serialize());
   }
 
   DtUserStruct _stTeamUserSelected = DtUserStruct();
@@ -623,6 +623,109 @@ class FFAppState extends ChangeNotifier {
       Function(DtFiltersServicesStruct) updateFn) {
     updateFn(_stFiltersServices);
     prefs.setString('ff_stFiltersServices', _stFiltersServices.serialize());
+  }
+
+  String _asCwOrderVisitServiceAmountFormatted = '';
+  String get asCwOrderVisitServiceAmountFormatted =>
+      _asCwOrderVisitServiceAmountFormatted;
+  set asCwOrderVisitServiceAmountFormatted(String value) {
+    _asCwOrderVisitServiceAmountFormatted = value;
+  }
+
+  double _asCwOrderVisitServiceAmountDouble = 0.0;
+  double get asCwOrderVisitServiceAmountDouble =>
+      _asCwOrderVisitServiceAmountDouble;
+  set asCwOrderVisitServiceAmountDouble(double value) {
+    _asCwOrderVisitServiceAmountDouble = value;
+  }
+
+  String _asCwOrderVisitServiceDiscountFormatted = '';
+  String get asCwOrderVisitServiceDiscountFormatted =>
+      _asCwOrderVisitServiceDiscountFormatted;
+  set asCwOrderVisitServiceDiscountFormatted(String value) {
+    _asCwOrderVisitServiceDiscountFormatted = value;
+  }
+
+  double _asCwOrderVisitServiceDiscountDouble = 0.0;
+  double get asCwOrderVisitServiceDiscountDouble =>
+      _asCwOrderVisitServiceDiscountDouble;
+  set asCwOrderVisitServiceDiscountDouble(double value) {
+    _asCwOrderVisitServiceDiscountDouble = value;
+  }
+
+  List<DtVOrderVisitServicesStruct> _asOrderVisitSelectedServices = [];
+  List<DtVOrderVisitServicesStruct> get asOrderVisitSelectedServices =>
+      _asOrderVisitSelectedServices;
+  set asOrderVisitSelectedServices(List<DtVOrderVisitServicesStruct> value) {
+    _asOrderVisitSelectedServices = value;
+  }
+
+  void addToAsOrderVisitSelectedServices(DtVOrderVisitServicesStruct value) {
+    _asOrderVisitSelectedServices.add(value);
+  }
+
+  void removeFromAsOrderVisitSelectedServices(
+      DtVOrderVisitServicesStruct value) {
+    _asOrderVisitSelectedServices.remove(value);
+  }
+
+  void removeAtIndexFromAsOrderVisitSelectedServices(int index) {
+    _asOrderVisitSelectedServices.removeAt(index);
+  }
+
+  void updateAsOrderVisitSelectedServicesAtIndex(
+    int index,
+    DtVOrderVisitServicesStruct Function(DtVOrderVisitServicesStruct) updateFn,
+  ) {
+    _asOrderVisitSelectedServices[index] =
+        updateFn(_asOrderVisitSelectedServices[index]);
+  }
+
+  void insertAtIndexInAsOrderVisitSelectedServices(
+      int index, DtVOrderVisitServicesStruct value) {
+    _asOrderVisitSelectedServices.insert(index, value);
+  }
+
+  double _asOrderVisitSelectedServicesTotal = 0.0;
+  double get asOrderVisitSelectedServicesTotal =>
+      _asOrderVisitSelectedServicesTotal;
+  set asOrderVisitSelectedServicesTotal(double value) {
+    _asOrderVisitSelectedServicesTotal = value;
+  }
+
+  List<DtVOrderVisitPricesStruct> _asTmpOrderVisitSelectedPricesBalance = [];
+  List<DtVOrderVisitPricesStruct> get asTmpOrderVisitSelectedPricesBalance =>
+      _asTmpOrderVisitSelectedPricesBalance;
+  set asTmpOrderVisitSelectedPricesBalance(
+      List<DtVOrderVisitPricesStruct> value) {
+    _asTmpOrderVisitSelectedPricesBalance = value;
+  }
+
+  void addToAsTmpOrderVisitSelectedPricesBalance(
+      DtVOrderVisitPricesStruct value) {
+    _asTmpOrderVisitSelectedPricesBalance.add(value);
+  }
+
+  void removeFromAsTmpOrderVisitSelectedPricesBalance(
+      DtVOrderVisitPricesStruct value) {
+    _asTmpOrderVisitSelectedPricesBalance.remove(value);
+  }
+
+  void removeAtIndexFromAsTmpOrderVisitSelectedPricesBalance(int index) {
+    _asTmpOrderVisitSelectedPricesBalance.removeAt(index);
+  }
+
+  void updateAsTmpOrderVisitSelectedPricesBalanceAtIndex(
+    int index,
+    DtVOrderVisitPricesStruct Function(DtVOrderVisitPricesStruct) updateFn,
+  ) {
+    _asTmpOrderVisitSelectedPricesBalance[index] =
+        updateFn(_asTmpOrderVisitSelectedPricesBalance[index]);
+  }
+
+  void insertAtIndexInAsTmpOrderVisitSelectedPricesBalance(
+      int index, DtVOrderVisitPricesStruct value) {
+    _asTmpOrderVisitSelectedPricesBalance.insert(index, value);
   }
 }
 

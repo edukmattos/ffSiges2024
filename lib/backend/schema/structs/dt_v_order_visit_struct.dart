@@ -42,6 +42,10 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     String? comments,
     int? orderCancelReasonId,
     String? orderCancelReasonDescription,
+    double? priceServices,
+    double? priceMaterials,
+    double? priceVehicles,
+    double? priceTotal,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderId = orderId,
@@ -75,6 +79,10 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         _comments = comments,
         _orderCancelReasonId = orderCancelReasonId,
         _orderCancelReasonDescription = orderCancelReasonDescription,
+        _priceServices = priceServices,
+        _priceMaterials = priceMaterials,
+        _priceVehicles = priceVehicles,
+        _priceTotal = priceTotal,
         super(firestoreUtilData);
 
   // "id" field.
@@ -293,6 +301,37 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   bool hasOrderCancelReasonDescription() =>
       _orderCancelReasonDescription != null;
 
+  // "priceServices" field.
+  double? _priceServices;
+  double get priceServices => _priceServices ?? 0.0;
+  set priceServices(double? val) => _priceServices = val;
+  void incrementPriceServices(double amount) =>
+      _priceServices = priceServices + amount;
+  bool hasPriceServices() => _priceServices != null;
+
+  // "priceMaterials" field.
+  double? _priceMaterials;
+  double get priceMaterials => _priceMaterials ?? 0.0;
+  set priceMaterials(double? val) => _priceMaterials = val;
+  void incrementPriceMaterials(double amount) =>
+      _priceMaterials = priceMaterials + amount;
+  bool hasPriceMaterials() => _priceMaterials != null;
+
+  // "priceVehicles" field.
+  double? _priceVehicles;
+  double get priceVehicles => _priceVehicles ?? 0.0;
+  set priceVehicles(double? val) => _priceVehicles = val;
+  void incrementPriceVehicles(double amount) =>
+      _priceVehicles = priceVehicles + amount;
+  bool hasPriceVehicles() => _priceVehicles != null;
+
+  // "priceTotal" field.
+  double? _priceTotal;
+  double get priceTotal => _priceTotal ?? 0.0;
+  set priceTotal(double? val) => _priceTotal = val;
+  void incrementPriceTotal(double amount) => _priceTotal = priceTotal + amount;
+  bool hasPriceTotal() => _priceTotal != null;
+
   static DtVOrderVisitStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitStruct(
         id: castToType<int>(data['id']),
@@ -328,6 +367,10 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         orderCancelReasonId: castToType<int>(data['orderCancelReasonId']),
         orderCancelReasonDescription:
             data['orderCancelReasonDescription'] as String?,
+        priceServices: castToType<double>(data['priceServices']),
+        priceMaterials: castToType<double>(data['priceMaterials']),
+        priceVehicles: castToType<double>(data['priceVehicles']),
+        priceTotal: castToType<double>(data['priceTotal']),
       );
 
   static DtVOrderVisitStruct? maybeFromMap(dynamic data) => data is Map
@@ -367,6 +410,10 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'comments': _comments,
         'orderCancelReasonId': _orderCancelReasonId,
         'orderCancelReasonDescription': _orderCancelReasonDescription,
+        'priceServices': _priceServices,
+        'priceMaterials': _priceMaterials,
+        'priceVehicles': _priceVehicles,
+        'priceTotal': _priceTotal,
       }.withoutNulls;
 
   @override
@@ -498,6 +545,22 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'orderCancelReasonDescription': serializeParam(
           _orderCancelReasonDescription,
           ParamType.String,
+        ),
+        'priceServices': serializeParam(
+          _priceServices,
+          ParamType.double,
+        ),
+        'priceMaterials': serializeParam(
+          _priceMaterials,
+          ParamType.double,
+        ),
+        'priceVehicles': serializeParam(
+          _priceVehicles,
+          ParamType.double,
+        ),
+        'priceTotal': serializeParam(
+          _priceTotal,
+          ParamType.double,
         ),
       }.withoutNulls;
 
@@ -663,6 +726,26 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        priceServices: deserializeParam(
+          data['priceServices'],
+          ParamType.double,
+          false,
+        ),
+        priceMaterials: deserializeParam(
+          data['priceMaterials'],
+          ParamType.double,
+          false,
+        ),
+        priceVehicles: deserializeParam(
+          data['priceVehicles'],
+          ParamType.double,
+          false,
+        ),
+        priceTotal: deserializeParam(
+          data['priceTotal'],
+          ParamType.double,
+          false,
+        ),
       );
 
   @override
@@ -702,7 +785,11 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         isCanceled == other.isCanceled &&
         comments == other.comments &&
         orderCancelReasonId == other.orderCancelReasonId &&
-        orderCancelReasonDescription == other.orderCancelReasonDescription;
+        orderCancelReasonDescription == other.orderCancelReasonDescription &&
+        priceServices == other.priceServices &&
+        priceMaterials == other.priceMaterials &&
+        priceVehicles == other.priceVehicles &&
+        priceTotal == other.priceTotal;
   }
 
   @override
@@ -738,7 +825,11 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         isCanceled,
         comments,
         orderCancelReasonId,
-        orderCancelReasonDescription
+        orderCancelReasonDescription,
+        priceServices,
+        priceMaterials,
+        priceVehicles,
+        priceTotal
       ]);
 }
 
@@ -775,6 +866,10 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
   String? comments,
   int? orderCancelReasonId,
   String? orderCancelReasonDescription,
+  double? priceServices,
+  double? priceMaterials,
+  double? priceVehicles,
+  double? priceTotal,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -813,6 +908,10 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
       comments: comments,
       orderCancelReasonId: orderCancelReasonId,
       orderCancelReasonDescription: orderCancelReasonDescription,
+      priceServices: priceServices,
+      priceMaterials: priceMaterials,
+      priceVehicles: priceVehicles,
+      priceTotal: priceTotal,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

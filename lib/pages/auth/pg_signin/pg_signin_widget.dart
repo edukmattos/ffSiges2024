@@ -8,7 +8,6 @@ import '/pages/components/cp_input_email/cp_input_email_widget.dart';
 import '/pages/components/cp_input_password/cp_input_password_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_signin_model.dart';
@@ -81,15 +80,6 @@ class _PgSigninWidgetState extends State<PgSigninWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(

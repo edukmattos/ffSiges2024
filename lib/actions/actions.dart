@@ -20,7 +20,7 @@ Future abFcmToken(BuildContext context) async {
       },
       matchingRows: (rows) => rows.eq(
         'id',
-        FFAppState().stUserCurrent.id,
+        FFAppState().asUserCurrent.id,
       ),
     );
   }
@@ -36,7 +36,7 @@ Future abUserUpdate(
   resUserCurrent = await ApiUsersGroup.userByEmailCall.call(
     email: abEmail,
   );
-  FFAppState().stUserCurrent = DtUserStruct(
+  FFAppState().asUserCurrent = DtUserStruct(
     id: ApiUsersGroup.userByEmailCall.id(
       (resUserCurrent.jsonBody ?? ''),
     ),
@@ -186,7 +186,7 @@ Future abUsersNotificationsSend(
         'isRead': false,
         'type': abType,
         'orderId': abOrderId,
-        'companyId': FFAppState().stUserCurrent.companyId,
+        'companyId': FFAppState().asUserCurrent.companyId,
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -262,17 +262,17 @@ Future abTeamUsersUpdate(
           'visitId': abVisitId,
           'userId': FFAppState().stTeamUserSelected.id,
           'isLeader': false,
-          'orderParentId': FFAppState().stUserCurrent.orderParentIdInProgress,
-          'orderId': FFAppState().stUserCurrent.orderIdInProgress,
+          'orderParentId': FFAppState().asUserCurrent.orderParentIdInProgress,
+          'orderId': FFAppState().asUserCurrent.orderIdInProgress,
         });
         await UsersTable().update(
           data: {
             'orderParentIdInProgress':
-                FFAppState().stUserCurrent.orderParentIdInProgress,
-            'orderIdInProgress': FFAppState().stUserCurrent.orderIdInProgress,
+                FFAppState().asUserCurrent.orderParentIdInProgress,
+            'orderIdInProgress': FFAppState().asUserCurrent.orderIdInProgress,
             'orderVisitIdInProgress':
-                FFAppState().stUserCurrent.orderVisitIdInProgress,
-            'orderVisitInProgressTeamLeaderId': FFAppState().stUserCurrent.id,
+                FFAppState().asUserCurrent.orderVisitIdInProgress,
+            'orderVisitInProgressTeamLeaderId': FFAppState().asUserCurrent.id,
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -284,7 +284,7 @@ Future abTeamUsersUpdate(
           matchingRows: (rows) => rows
               .eq(
                 'visitId',
-                FFAppState().stUserCurrent.orderVisitIdInProgress,
+                FFAppState().asUserCurrent.orderVisitIdInProgress,
               )
               .eq(
                 'userId',
@@ -317,7 +317,7 @@ Future abTeamUsersUpdate(
         );
         await UsersTable().update(
           data: {
-            'teamId': FFAppState().stUserCurrent.teamId,
+            'teamId': FFAppState().asUserCurrent.teamId,
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -336,7 +336,7 @@ Future abTeamUsersUpdate(
         );
         await UsersTable().update(
           data: {
-            'teamIdPrevious': FFAppState().stUserCurrent.teamId,
+            'teamIdPrevious': FFAppState().asUserCurrent.teamId,
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -631,7 +631,7 @@ Future abOrderParentEvents(
         abType: 'orderFollowers',
         abTitle: abTitle,
         abBody: abBody,
-        abUserIdFrom: FFAppState().stUserCurrent.id,
+        abUserIdFrom: FFAppState().asUserCurrent.id,
         abUserIdTo: FFAppState()
             .stOrdersFollowers[FFAppState().stCounterLoop - 1]
             .userId,
@@ -774,7 +774,7 @@ Future abOrderVisitProcessingCheck(
             data: {
               'processingId': 2,
               'reportedDate': supaSerialize<DateTime>(getCurrentTimestamp),
-              'reportedUserId': FFAppState().stUserCurrent.id,
+              'reportedUserId': FFAppState().asUserCurrent.id,
             },
             matchingRows: (rows) => rows.eq(
               'id',
@@ -846,11 +846,11 @@ Future abPermissionCheck(
 }) async {
   ApiCallResponse? apiResultdcs;
 
-  if (FFAppState().stUserCurrent.isAdminSuper) {
+  if (FFAppState().asUserCurrent.isAdminSuper) {
     FFAppState().stIsPermission = true;
     return;
   } else {
-    if (FFAppState().stUserCurrent.isAdmin) {
+    if (FFAppState().asUserCurrent.isAdmin) {
       FFAppState().stIsPermission = true;
       return;
     } else {
@@ -993,4 +993,62 @@ Future abMapOrdersUpdate(
     );
     FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
   }
+}
+
+Future abOrderVisitSelectedServices(
+  BuildContext context, {
+  required int? abOrderVisitId,
+}) async {
+  ApiCallResponse? apiResultw100;
+  ApiCallResponse? apiResultbowt;
+  ApiCallResponse? apiResultbowyy;
+
+  FFAppState().asTmpOrderVisitSelectedPricesBalance = [];
+  apiResultw100 =
+      await ApiOrdersVisitsGroup.priceServicesByOrderVisitIdCall.call(
+    orderVisitId: abOrderVisitId,
+  );
+  FFAppState().asTmpOrderVisitSelectedPricesBalance =
+      ((apiResultw100.jsonBody ?? '')
+              .toList()
+              .map<DtVOrderVisitPricesStruct?>(
+                  DtVOrderVisitPricesStruct.maybeFromMap)
+              .toList() as Iterable<DtVOrderVisitPricesStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DtVOrderVisitPricesStruct>();
+  if (FFAppState().asTmpOrderVisitSelectedPricesBalance.isNotEmpty) {
+    apiResultbowt =
+        await ApiOrdersVisitsGroup.priceServicesUpdateByOrderVisitIdCall.call(
+      orderVisitId: abOrderVisitId,
+      priceServices:
+          FFAppState().asTmpOrderVisitSelectedPricesBalance.first.priceServices,
+    );
+    FFAppState().updateStOrderVisitSelectedAtIndex(
+      0,
+      (e) => e
+        ..priceServices = FFAppState()
+            .asTmpOrderVisitSelectedPricesBalance
+            .first
+            .priceServices,
+    );
+  } else {
+    apiResultbowyy =
+        await ApiOrdersVisitsGroup.priceServicesUpdateByOrderVisitIdCall.call(
+      orderVisitId: abOrderVisitId,
+      priceServices: 0.0,
+    );
+    FFAppState().updateStOrderVisitSelectedAtIndex(
+      0,
+      (e) => e..priceServices = 0.0,
+    );
+  }
+
+  FFAppState().updateStOrderVisitSelectedAtIndex(
+    0,
+    (e) => e
+      ..priceTotal = FFAppState().stOrderVisitSelected.first.priceServices +
+          FFAppState().stOrderVisitSelected.first.priceMaterials +
+          FFAppState().stOrderVisitSelected.first.priceVehicles,
+  );
 }

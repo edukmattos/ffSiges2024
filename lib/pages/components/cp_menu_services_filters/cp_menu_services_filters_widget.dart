@@ -98,7 +98,7 @@ class _CpMenuServicesFiltersWidgetState
                         shape: BoxShape.circle,
                       ),
                       child: Image.network(
-                        '${FFAppConstants.appServerUrlStorage}${FFAppState().stUserCurrent.companyImgFilePath}${FFAppState().stUserCurrent.companyImgFileName}',
+                        '${FFAppConstants.appServerUrlStorage}${FFAppState().asUserCurrent.companyImgFilePath}${FFAppState().asUserCurrent.companyImgFileName}',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -112,11 +112,11 @@ class _CpMenuServicesFiltersWidgetState
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            FFAppState().stUserCurrent.companyCode,
+                            FFAppState().asUserCurrent.companyCode,
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
                           Text(
-                            FFAppState().stUserCurrent.companyDescription,
+                            FFAppState().asUserCurrent.companyDescription,
                             style: FlutterFlowTheme.of(context).labelSmall,
                           ),
                         ],
@@ -145,7 +145,7 @@ class _CpMenuServicesFiltersWidgetState
                       child: CpUserPicProfileWidget(
                         size: 60,
                         imgUrl:
-                            '${FFAppConstants.appServerUrlStorage}${FFAppState().stUserCurrent.imgFilePath}${FFAppState().stUserCurrent.imgFileName}',
+                            '${FFAppConstants.appServerUrlStorage}${FFAppState().asUserCurrent.imgFilePath}${FFAppState().asUserCurrent.imgFileName}',
                       ),
                     ),
                     Expanded(
@@ -157,15 +157,15 @@ class _CpMenuServicesFiltersWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              FFAppState().stUserCurrent.nameFull,
+                              FFAppState().asUserCurrent.nameFull,
                               style: FlutterFlowTheme.of(context).bodyMedium,
                             ),
                             Text(
-                              FFAppState().stUserCurrent.email,
+                              FFAppState().asUserCurrent.email,
                               style: FlutterFlowTheme.of(context).labelSmall,
                             ),
                             Text(
-                              FFAppState().stUserCurrent.teamCode,
+                              FFAppState().asUserCurrent.teamCode,
                               style: FlutterFlowTheme.of(context).labelSmall,
                             ),
                           ],
@@ -263,7 +263,7 @@ class _CpMenuServicesFiltersWidgetState
                             context,
                             abAppPageId: 4,
                             abUserProfileId: valueOrDefault<int>(
-                              FFAppState().stUserCurrent.profileId,
+                              FFAppState().asUserCurrent.profileId,
                               0,
                             ),
                           );
@@ -384,7 +384,7 @@ class _CpMenuServicesFiltersWidgetState
                             context,
                             abAppPageId: 5,
                             abUserProfileId: valueOrDefault<int>(
-                              FFAppState().stUserCurrent.profileId,
+                              FFAppState().asUserCurrent.profileId,
                               0,
                             ),
                           );

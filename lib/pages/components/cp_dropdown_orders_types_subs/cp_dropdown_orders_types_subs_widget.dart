@@ -54,7 +54,7 @@ class _CpDropdownOrdersTypesSubsWidgetState
 
     return FutureBuilder<ApiCallResponse>(
       future: ApiOrdersTypesSubGroup.ordersTypesSubsByDepartmentCall.call(
-        departmentId: FFAppState().stUserCurrent.departmentId,
+        departmentId: FFAppState().asUserCurrent.departmentId,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

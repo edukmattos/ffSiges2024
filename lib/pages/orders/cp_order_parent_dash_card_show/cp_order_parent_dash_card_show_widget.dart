@@ -290,7 +290,7 @@ class _CpOrderParentDashCardShowWidgetState
       _model.apiResultxzh =
           await ApiOrdersFollowersGroup.orderFollowedCall.call(
         orderId: widget.orderId,
-        userId: FFAppState().stUserCurrent.id,
+        userId: FFAppState().asUserCurrent.id,
       );
       if ((_model.apiResultxzh?.succeeded ?? true)) {
         if (ApiOrdersFollowersGroup.orderFollowedCall.orderId(
@@ -454,7 +454,7 @@ class _CpOrderParentDashCardShowWidgetState
                                 onPressed: () async {
                                   await OrdersFollowersTable().insert({
                                     'orderId': widget.orderId,
-                                    'userId': FFAppState().stUserCurrent.id,
+                                    'userId': FFAppState().asUserCurrent.id,
                                   });
                                   setState(() {
                                     _model.isFollowed = true;
@@ -492,7 +492,7 @@ class _CpOrderParentDashCardShowWidgetState
                                           .orderFollowedCall
                                           .call(
                                     orderId: widget.orderId,
-                                    userId: FFAppState().stUserCurrent.id,
+                                    userId: FFAppState().asUserCurrent.id,
                                   );
                                   if ((_model.apiResult6nl?.succeeded ??
                                       true)) {

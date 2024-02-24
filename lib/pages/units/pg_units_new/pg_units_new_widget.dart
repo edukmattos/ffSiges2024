@@ -14,7 +14,6 @@ import '/pages/units/cp_dropdown_units_types/cp_dropdown_units_types_widget.dart
 import '/pages/units/cp_dropdown_units_types_parent/cp_dropdown_units_types_parent_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
@@ -50,15 +49,6 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -336,9 +326,10 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
                                   unitTypeId: _model.cpDropdownUnitsTypesModel
                                       .dropdownUnitsTypesValue,
                                 );
-                                await UnitsTable().insert({
+                                _model.resUnitAdded =
+                                    await UnitsTable().insert({
                                   'companyId':
-                                      FFAppState().stUserCurrent.companyId,
+                                      FFAppState().asUserCurrent.companyId,
                                   'unitTypeId': _model
                                       .cpDropdownUnitsTypesParentModel
                                       .dropdownUnitsTypesParentValue,
@@ -358,7 +349,7 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
                                   'longitude': functions.cfGetLngFromLatLng(
                                       _model.placePickerValue.latLng),
                                   'createdUserId':
-                                      FFAppState().stUserCurrent.id,
+                                      FFAppState().asUserCurrent.id,
                                   'createdDate': supaSerialize<DateTime>(
                                       getCurrentTimestamp),
                                   'isDeleted': false,
@@ -379,6 +370,16 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
                                   'addressFull':
                                       '${_model.placePickerValue.address} ${_model.cpInputTextAddressCompModel.inputTextController.text}',
                                 });
+
+                                context.pushNamed(
+                                  'pgUnitShow',
+                                  queryParameters: {
+                                    'unitId': serializeParam(
+                                      _model.resUnitAdded?.id,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
 
                                 setState(() {});
                               },

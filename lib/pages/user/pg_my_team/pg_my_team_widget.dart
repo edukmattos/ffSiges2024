@@ -14,7 +14,6 @@ import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_my_team_model.dart';
@@ -118,15 +117,6 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -206,7 +196,7 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                   Align(
                     alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Text(
-                      FFAppState().stUserCurrent.teamCode,
+                      FFAppState().asUserCurrent.teamCode,
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).titleLarge,
                     ).animateOnPageLoad(
@@ -227,12 +217,12 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                 .eq(
                                                   'teamId',
                                                   FFAppState()
-                                                      .stUserCurrent
+                                                      .asUserCurrent
                                                       .teamId,
                                                 )
                                                 .neq(
                                                   'id',
-                                                  FFAppState().stUserCurrent.id,
+                                                  FFAppState().asUserCurrent.id,
                                                 )
                                                 .order('nameShort',
                                                     ascending: true),
@@ -448,10 +438,6 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                   updateCallback: () =>
                                                       setState(() {}),
                                                   child: const CpResultsNoFoundWidget(
-                                                    icon: Icon(
-                                                      Icons.person_off_sharp,
-                                                      size: 50.0,
-                                                    ),
                                                     title: 'Ops ...',
                                                     body:
                                                         'Não há registros de integrantes na sua Equipe.',
@@ -474,7 +460,7 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                 .neq(
                                                   'teamId',
                                                   FFAppState()
-                                                      .stUserCurrent
+                                                      .asUserCurrent
                                                       .teamId,
                                                 )
                                                 .order('nameShort',
@@ -755,7 +741,7 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                   .neq(
                                                     'userId',
                                                     FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .id,
                                                   )
                                                   .order('nameShort',
@@ -983,10 +969,6 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                         setState(() {}),
                                                     child:
                                                         const CpResultsNoFoundWidget(
-                                                      icon: Icon(
-                                                        Icons.person_off_sharp,
-                                                        size: 50.0,
-                                                      ),
                                                       title: 'Ops ...',
                                                       body:
                                                           'Não há registros de integrantes nesta Visita.',
@@ -1009,13 +991,13 @@ class _PgMyTeamWidgetState extends State<PgMyTeamWidget>
                                                   .eq(
                                                     'departmentId',
                                                     FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .departmentId,
                                                   )
                                                   .neq(
                                                     'id',
                                                     FFAppState()
-                                                        .stUserCurrent
+                                                        .asUserCurrent
                                                         .id,
                                                   )
                                                   .is_(

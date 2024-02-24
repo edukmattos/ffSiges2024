@@ -16,7 +16,6 @@ import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -216,15 +215,6 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -524,314 +514,339 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            wrapWithModel(
-                              model: _model.cpUnitCardShowModel,
-                              updateCallback: () => setState(() {}),
-                              child: CpUnitCardShowWidget(
-                                unitId: _model.lpsvUnitId,
-                              ),
-                            ),
-                            Form(
-                              key: _model.formKey,
-                              autovalidateMode: AutovalidateMode.always,
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 24.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                wrapWithModel(
+                                  model: _model.cpUnitCardShowModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: CpUnitCardShowWidget(
+                                    unitId: _model.lpsvUnitId,
+                                  ),
+                                ),
+                                Form(
+                                  key: _model.formKey,
+                                  autovalidateMode: AutovalidateMode.always,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 24.0),
+                                    child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 0.0, 0.0, 4.0),
-                                          child: Text(
-                                            'Qual o Setor ?',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation2']!),
-                                        ),
-                                        wrapWithModel(
-                                          model:
-                                              _model.cpDropdownAssetsTagsModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: const CpDropdownAssetsTagsWidget(),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 0.0, 0.0, 4.0),
-                                          child: Text(
-                                            'Qual o problema ?',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation3']!),
-                                        ),
-                                        wrapWithModel(
-                                          model:
-                                              _model.cpInputTexMultilineModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: const CpInputTexMultilineWidget(
-                                            readOnly: false,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 0.0, 0.0, 4.0),
-                                          child: Text(
-                                            'Qual tipo de serviço ?',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation4']!),
-                                        ),
-                                        wrapWithModel(
-                                          model:
-                                              _model.cpDropdownOrdersTypesModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: const CpDropdownOrdersTypesWidget(),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 0.0, 0.0, 4.0),
-                                          child: Text(
-                                            'Qual a prioridade ?',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation5']!),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 12.0),
-                                          child: FutureBuilder<
-                                              List<OrdersPrioritiesRow>>(
-                                            future: OrdersPrioritiesTable()
-                                                .queryRows(
-                                              queryFn: (q) => q.order('id'),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Qual o Setor ?',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<OrdersPrioritiesRow>
-                                                  choiceChipsOrdersPrioritiesRowList =
-                                                  snapshot.data!;
-                                              return FlutterFlowChoiceChips(
-                                                options:
-                                                    choiceChipsOrdersPrioritiesRowList
-                                                        .map((e) =>
-                                                            e.description)
-                                                        .withoutNulls
-                                                        .toList()
-                                                        .map((label) =>
-                                                            ChipData(label))
-                                                        .toList(),
-                                                onChanged: (val) => setState(
-                                                    () => _model
-                                                            .choiceChipsValue =
-                                                        val?.firstOrNull),
-                                                selectedChipStyle: ChipStyle(
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color:
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation2']!),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model
+                                                  .cpDropdownAssetsTagsModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child:
+                                                  const CpDropdownAssetsTagsWidget(),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Qual o problema ?',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation3']!),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model
+                                                  .cpInputTexMultilineModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: const CpInputTexMultilineWidget(
+                                                readOnly: false,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Qual tipo de serviço ?',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation4']!),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model
+                                                  .cpDropdownOrdersTypesModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child:
+                                                  const CpDropdownOrdersTypesWidget(),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Qual a prioridade ?',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'textOnPageLoadAnimation5']!),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 12.0),
+                                              child: FutureBuilder<
+                                                  List<OrdersPrioritiesRow>>(
+                                                future: OrdersPrioritiesTable()
+                                                    .queryRows(
+                                                  queryFn: (q) => q.order('id'),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          valueColor:
+                                                              AlwaysStoppedAnimation<
+                                                                  Color>(
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
+                                                          ),
+                                                        ),
                                                       ),
-                                                  iconColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  iconSize: 18.0,
-                                                  labelPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(12.0, 4.0,
-                                                              12.0, 4.0),
-                                                  elevation: 0.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  borderWidth: 2.0,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                unselectedChipStyle: ChipStyle(
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                      ),
-                                                  iconColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryText,
-                                                  iconSize: 18.0,
-                                                  labelPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(12.0, 4.0,
-                                                              12.0, 4.0),
-                                                  elevation: 0.0,
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  borderWidth: 2.0,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                chipSpacing: 8.0,
-                                                rowSpacing: 8.0,
-                                                multiselect: false,
-                                                initialized:
-                                                    _model.choiceChipsValue !=
+                                                    );
+                                                  }
+                                                  List<OrdersPrioritiesRow>
+                                                      choiceChipsOrdersPrioritiesRowList =
+                                                      snapshot.data!;
+                                                  return FlutterFlowChoiceChips(
+                                                    options:
+                                                        choiceChipsOrdersPrioritiesRowList
+                                                            .map((e) =>
+                                                                e.description)
+                                                            .withoutNulls
+                                                            .toList()
+                                                            .map((label) =>
+                                                                ChipData(label))
+                                                            .toList(),
+                                                    onChanged: (val) =>
+                                                        setState(() => _model
+                                                                .choiceChipsValue =
+                                                            val?.firstOrNull),
+                                                    selectedChipStyle:
+                                                        ChipStyle(
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                      iconColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      iconSize: 18.0,
+                                                      labelPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12.0,
+                                                                  4.0,
+                                                                  12.0,
+                                                                  4.0),
+                                                      elevation: 0.0,
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      borderWidth: 2.0,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    unselectedChipStyle:
+                                                        ChipStyle(
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBackground,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                      iconColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      iconSize: 18.0,
+                                                      labelPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12.0,
+                                                                  4.0,
+                                                                  12.0,
+                                                                  4.0),
+                                                      elevation: 0.0,
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      borderWidth: 2.0,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    chipSpacing: 8.0,
+                                                    rowSpacing: 8.0,
+                                                    multiselect: false,
+                                                    initialized: _model
+                                                            .choiceChipsValue !=
                                                         null,
-                                                alignment: WrapAlignment.start,
-                                                controller: _model
-                                                        .choiceChipsValueController ??=
-                                                    FormFieldController<
-                                                        List<String>>(
-                                                  ['1'],
-                                                ),
-                                                wrapped: false,
+                                                    alignment:
+                                                        WrapAlignment.start,
+                                                    controller: _model
+                                                            .choiceChipsValueController ??=
+                                                        FormFieldController<
+                                                            List<String>>(
+                                                      ['1'],
+                                                    ),
+                                                    wrapped: false,
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'choiceChipsOnPageLoadAnimation']!);
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 0.0, 0.0, 4.0),
+                                              child: Text(
+                                                'Ramal/Celular ',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
                                               ).animateOnPageLoad(animationsMap[
-                                                  'choiceChipsOnPageLoadAnimation']!);
-                                            },
-                                          ),
+                                                  'textOnPageLoadAnimation6']!),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model.cpInputTextModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: const CpInputTextWidget(
+                                                isReadOnly: false,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ].divide(const SizedBox(height: 12.0)),
                                     ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  2.0, 0.0, 0.0, 4.0),
-                                          child: Text(
-                                            'Ramal/Celular ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation6']!),
-                                        ),
-                                        wrapWithModel(
-                                          model: _model.cpInputTextModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: const CpInputTextWidget(
-                                            isReadOnly: false,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ].divide(const SizedBox(height: 12.0)),
+                                  ),
                                 ),
-                              ),
+                              ].divide(const SizedBox(height: 12.0)),
                             ),
-                          ].divide(const SizedBox(height: 12.0)),
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -881,7 +896,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                             .currentCounterCall
                                             .call(
                                       companyId:
-                                          FFAppState().stUserCurrent.companyId,
+                                          FFAppState().asUserCurrent.companyId,
                                       year: functions
                                           .cfDateGetYear(getCurrentTimestamp),
                                     );
@@ -907,7 +922,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                       _model.resOrderCounterAdded =
                                           await OrdersCounterTable().insert({
                                         'companyId': FFAppState()
-                                            .stUserCurrent
+                                            .asUserCurrent
                                             .companyId,
                                         'year': functions
                                             .cfDateGetYear(getCurrentTimestamp)
@@ -935,7 +950,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                           .eq(
                                             'companyId',
                                             FFAppState()
-                                                .stUserCurrent
+                                                .asUserCurrent
                                                 .companyId,
                                           )
                                           .eq(
@@ -954,9 +969,9 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                     _model.resOrderParentAdded =
                                         await OrdersTable().insert({
                                       'companyId':
-                                          FFAppState().stUserCurrent.companyId,
+                                          FFAppState().asUserCurrent.companyId,
                                       'departmentId': FFAppState()
-                                          .stUserCurrent
+                                          .asUserCurrent
                                           .departmentId,
                                       'typeId': _model
                                           .cpDropdownOrdersTypesModel
@@ -985,13 +1000,13 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                             ''),
                                       ),
                                       'requesterName':
-                                          FFAppState().stUserCurrent.nameShort,
+                                          FFAppState().asUserCurrent.nameShort,
                                       'requesterTeamId':
-                                          FFAppState().stUserCurrent.teamId,
+                                          FFAppState().asUserCurrent.teamId,
                                       'requesterPhone': _model.cpInputTextModel
                                           .inputTextController.text,
                                       'createdUserId':
-                                          FFAppState().stUserCurrent.id,
+                                          FFAppState().asUserCurrent.id,
                                       'createdDate': supaSerialize<DateTime>(
                                           getCurrentTimestamp),
                                       'requestedServices': _model
@@ -1037,12 +1052,12 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                               supaSerialize<DateTime>(
                                                   getCurrentTimestamp),
                                           'createdUserId':
-                                              FFAppState().stUserCurrent.id,
+                                              FFAppState().asUserCurrent.id,
                                           'createdDate':
                                               supaSerialize<DateTime>(
                                                   getCurrentTimestamp),
                                           'companyId':
-                                              FFAppState().stUserCurrent.id,
+                                              FFAppState().asUserCurrent.id,
                                           'departmentId': 1,
                                         });
                                       }(),

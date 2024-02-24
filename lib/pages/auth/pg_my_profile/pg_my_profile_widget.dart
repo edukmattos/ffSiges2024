@@ -7,7 +7,6 @@ import '/flutter_flow/upload_data.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'pg_my_profile_model.dart';
 export 'pg_my_profile_model.dart';
@@ -48,15 +47,6 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -171,9 +161,9 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                                 if (confirmDialogResponse) {
                                   setState(() {
                                     _model.lpsvFilePath =
-                                        'companies/${FFAppState().stUserCurrent.companyId.toString()}/users/${FFAppState().stUserCurrent.id.toString()}/';
+                                        'companies/${FFAppState().asUserCurrent.companyId.toString()}/users/${FFAppState().asUserCurrent.id.toString()}/';
                                     _model.lpsvFileName =
-                                        '${FFAppState().stUserCurrent.id.toString()}_${getCurrentTimestamp.secondsSinceEpoch.toString()}.png';
+                                        '${FFAppState().asUserCurrent.id.toString()}_${getCurrentTimestamp.secondsSinceEpoch.toString()}.png';
                                   });
                                   final selectedMedia = await selectMedia(
                                     maxWidth: 120.00,
@@ -230,8 +220,8 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                                       .call(
                                     fileUrl: _model.uploadedLocalFile,
                                     companyId:
-                                        FFAppState().stUserCurrent.companyId,
-                                    userId: FFAppState().stUserCurrent.id,
+                                        FFAppState().asUserCurrent.companyId,
+                                    userId: FFAppState().asUserCurrent.id,
                                     fileName: _model.lpsvFileName,
                                   );
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -273,7 +263,7 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                                                   .deleteFileCall
                                                   .call(
                                             fileUrl:
-                                                '${FFAppState().stUserCurrent.imgFilePath}${FFAppState().stUserCurrent.imgFileName}',
+                                                '${FFAppState().asUserCurrent.imgFilePath}${FFAppState().asUserCurrent.imgFileName}',
                                           );
                                         }(),
                                       );
@@ -284,11 +274,11 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'id',
-                                          FFAppState().stUserCurrent.id,
+                                          FFAppState().asUserCurrent.id,
                                         ),
                                       );
                                       setState(() {
-                                        FFAppState().updateStUserCurrentStruct(
+                                        FFAppState().updateAsUserCurrentStruct(
                                           (e) => e
                                             ..imgFilePath = _model.lpsvFilePath
                                             ..imgFileName = _model.lpsvFileName,
@@ -332,7 +322,7 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
                                 child: Image.network(
-                                  '${FFAppConstants.appServerUrlStorage}${FFAppState().stUserCurrent.imgFilePath}${FFAppState().stUserCurrent.imgFileName}',
+                                  '${FFAppConstants.appServerUrlStorage}${FFAppState().asUserCurrent.imgFilePath}${FFAppState().asUserCurrent.imgFileName}',
                                   width: 60.0,
                                   height: 60.0,
                                   fit: BoxFit.cover,
@@ -351,7 +341,7 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  FFAppState().stUserCurrent.nameFull,
+                                  FFAppState().asUserCurrent.nameFull,
                                   style:
                                       FlutterFlowTheme.of(context).titleLarge,
                                 ),
@@ -359,13 +349,13 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    FFAppState().stUserCurrent.email,
+                                    FFAppState().asUserCurrent.email,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium,
                                   ),
                                 ),
                                 Text(
-                                  FFAppState().stUserCurrent.teamCode,
+                                  FFAppState().asUserCurrent.teamCode,
                                   style:
                                       FlutterFlowTheme.of(context).labelMedium,
                                 ),

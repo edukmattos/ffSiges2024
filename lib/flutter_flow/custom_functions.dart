@@ -72,3 +72,30 @@ DateTime cfConvDateStringToDatetime(String dateRef) {
 
   return dateDateTime;
 }
+
+String? cfConvStringToNumber(
+  String? stringNumber,
+  String locale,
+  String symbol,
+) {
+  try {
+    stringNumber = stringNumber?.replaceAll(',', '.');
+    if (stringNumber != null) {
+      var number = double.parse(stringNumber);
+
+      return NumberFormat.compactCurrency(locale: locale, symbol: symbol)
+          .format(number);
+    }
+  } catch (e) {
+    print(e);
+    return '0';
+  }
+}
+
+double? cfOrderVisitServiceOrVehicleTotal(
+  double amount,
+  double priceUnit,
+  double discount,
+) {
+  return amount * priceUnit * ((100 - discount) / 100);
+}

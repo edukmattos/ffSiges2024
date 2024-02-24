@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/cp_input_email/cp_input_email_widget.dart';
 import '/pages/components/cp_input_password/cp_input_password_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'pg_signup_email_password_model.dart';
@@ -83,15 +82,6 @@ class _PgSignupEmailPasswordWidgetState
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -292,7 +282,7 @@ class _PgSignupEmailPasswordWidgetState
                                           });
                                           shouldSetState = true;
                                           setState(() {
-                                            FFAppState().stUserCurrent =
+                                            FFAppState().asUserCurrent =
                                                 DtUserStruct(
                                               accessToken:
                                                   ApiAuthGroup.authSignupCall

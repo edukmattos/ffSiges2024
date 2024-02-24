@@ -56,14 +56,6 @@ class _CpDropdownAssetsTagsWidgetState
       future: AssetsTagsTable().queryRows(
         queryFn: (q) => q
             .eq(
-              'companyId',
-              FFAppState().stUserCurrent.companyId,
-            )
-            .eq(
-              'departmentId',
-              FFAppState().stUserCurrent.departmentId,
-            )
-            .eq(
               'isAvailable',
               true,
             )

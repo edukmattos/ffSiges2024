@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
@@ -39,6 +40,8 @@ class PgUnitsNewModel extends FlutterFlowModel<PgUnitsNewWidget> {
   final googleMapsController = Completer<GoogleMapController>();
   // Stores action output result for [Backend Call - API (unitTypeById)] action in Button widget.
   ApiCallResponse? resUnitType;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  UnitsRow? resUnitAdded;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
 

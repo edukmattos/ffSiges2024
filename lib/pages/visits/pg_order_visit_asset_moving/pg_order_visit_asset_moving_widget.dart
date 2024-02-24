@@ -11,7 +11,6 @@ import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_l
 import '/actions/actions.dart' as action_blocks;
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_asset_moving_model.dart';
 export 'pg_order_visit_asset_moving_model.dart';
@@ -47,15 +46,6 @@ class _PgOrderVisitAssetMovingWidgetState
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(

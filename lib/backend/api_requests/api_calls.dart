@@ -1681,17 +1681,24 @@ class ApiContractsGroup {
     'Content-Type': 'application/json',
   };
   static ContractByIdCall contractByIdCall = ContractByIdCall();
+  static ServicesBycontractIdCall servicesBycontractIdCall =
+      ServicesBycontractIdCall();
 }
 
 class ContractByIdCall {
   Future<ApiCallResponse> call({
     int? contractId,
   }) async {
+    const ffApiRequestBody = '''
+{
+  "serach_contract_id": <search_contract_id>,
+  "search_terms": "<search_terms>"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'contractById',
       apiUrl:
           '${ApiContractsGroup.baseUrl}v_contracts?id=eq.$contractId&select=\'*\'',
-      callType: ApiCallType.GET,
+      callType: ApiCallType.POST,
       headers: {
         'apiKey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
@@ -1700,6 +1707,41 @@ class ContractByIdCall {
         'Content-Type': 'application/json',
       },
       params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ServicesBycontractIdCall {
+  Future<ApiCallResponse> call({
+    String? searchTerms = '',
+    int? searchContractId,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "search_terms": "$searchTerms",
+  "search_contract_id": $searchContractId
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'servicesBycontractId',
+      apiUrl: '${ApiContractsGroup.baseUrl}rpc/fc_contracts_services_search',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3191,6 +3233,13 @@ class ApiOrdersVisitsGroup {
     'Content-Type': 'application/json',
   };
   static OrderVisitByIdCall orderVisitByIdCall = OrderVisitByIdCall();
+  static ServicesByOrderVisitIdCall servicesByOrderVisitIdCall =
+      ServicesByOrderVisitIdCall();
+  static PriceServicesByOrderVisitIdCall priceServicesByOrderVisitIdCall =
+      PriceServicesByOrderVisitIdCall();
+  static PriceServicesUpdateByOrderVisitIdCall
+      priceServicesUpdateByOrderVisitIdCall =
+      PriceServicesUpdateByOrderVisitIdCall();
 }
 
 class OrderVisitByIdCall {
@@ -3210,6 +3259,92 @@ class OrderVisitByIdCall {
         'Content-Type': 'application/json',
       },
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ServicesByOrderVisitIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'servicesByOrderVisitId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits_services?orderVisitId=eq.$orderVisitId',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class PriceServicesByOrderVisitIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'priceServicesByOrderVisitId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits_services_price_total?orderVisitId=eq.$orderVisitId',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class PriceServicesUpdateByOrderVisitIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId,
+    double? priceServices,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "id": $orderVisitId,
+  "priceServices": $priceServices
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'priceServicesUpdateByOrderVisitId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}ordersVisits?id=eq.$orderVisitId',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
