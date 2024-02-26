@@ -12,6 +12,9 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   DtVOrderVisitStruct({
     int? id,
     int? orderId,
+    String? orderMask,
+    String? orderTypeCode,
+    String? orderTypeSubCode,
     int? orderParentId,
     double? durationHours,
     int? statusId,
@@ -46,9 +49,19 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     double? priceMaterials,
     double? priceVehicles,
     double? priceTotal,
+    String? systemParentCode,
+    String? systemCode,
+    String? unitTypeParentCode,
+    String? assetTagDescription,
+    String? requestedServices,
+    String? unitDescription,
+    String? contractDescription,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderId = orderId,
+        _orderMask = orderMask,
+        _orderTypeCode = orderTypeCode,
+        _orderTypeSubCode = orderTypeSubCode,
         _orderParentId = orderParentId,
         _durationHours = durationHours,
         _statusId = statusId,
@@ -83,6 +96,13 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         _priceMaterials = priceMaterials,
         _priceVehicles = priceVehicles,
         _priceTotal = priceTotal,
+        _systemParentCode = systemParentCode,
+        _systemCode = systemCode,
+        _unitTypeParentCode = unitTypeParentCode,
+        _assetTagDescription = assetTagDescription,
+        _requestedServices = requestedServices,
+        _unitDescription = unitDescription,
+        _contractDescription = contractDescription,
         super(firestoreUtilData);
 
   // "id" field.
@@ -98,6 +118,24 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   set orderId(int? val) => _orderId = val;
   void incrementOrderId(int amount) => _orderId = orderId + amount;
   bool hasOrderId() => _orderId != null;
+
+  // "orderMask" field.
+  String? _orderMask;
+  String get orderMask => _orderMask ?? '';
+  set orderMask(String? val) => _orderMask = val;
+  bool hasOrderMask() => _orderMask != null;
+
+  // "orderTypeCode" field.
+  String? _orderTypeCode;
+  String get orderTypeCode => _orderTypeCode ?? '';
+  set orderTypeCode(String? val) => _orderTypeCode = val;
+  bool hasOrderTypeCode() => _orderTypeCode != null;
+
+  // "orderTypeSubCode" field.
+  String? _orderTypeSubCode;
+  String get orderTypeSubCode => _orderTypeSubCode ?? '';
+  set orderTypeSubCode(String? val) => _orderTypeSubCode = val;
+  bool hasOrderTypeSubCode() => _orderTypeSubCode != null;
 
   // "orderParentId" field.
   int? _orderParentId;
@@ -332,10 +370,55 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   void incrementPriceTotal(double amount) => _priceTotal = priceTotal + amount;
   bool hasPriceTotal() => _priceTotal != null;
 
+  // "systemParentCode" field.
+  String? _systemParentCode;
+  String get systemParentCode => _systemParentCode ?? '';
+  set systemParentCode(String? val) => _systemParentCode = val;
+  bool hasSystemParentCode() => _systemParentCode != null;
+
+  // "systemCode" field.
+  String? _systemCode;
+  String get systemCode => _systemCode ?? '';
+  set systemCode(String? val) => _systemCode = val;
+  bool hasSystemCode() => _systemCode != null;
+
+  // "unitTypeParentCode" field.
+  String? _unitTypeParentCode;
+  String get unitTypeParentCode => _unitTypeParentCode ?? '';
+  set unitTypeParentCode(String? val) => _unitTypeParentCode = val;
+  bool hasUnitTypeParentCode() => _unitTypeParentCode != null;
+
+  // "assetTagDescription" field.
+  String? _assetTagDescription;
+  String get assetTagDescription => _assetTagDescription ?? '';
+  set assetTagDescription(String? val) => _assetTagDescription = val;
+  bool hasAssetTagDescription() => _assetTagDescription != null;
+
+  // "requestedServices" field.
+  String? _requestedServices;
+  String get requestedServices => _requestedServices ?? '';
+  set requestedServices(String? val) => _requestedServices = val;
+  bool hasRequestedServices() => _requestedServices != null;
+
+  // "unitDescription" field.
+  String? _unitDescription;
+  String get unitDescription => _unitDescription ?? '';
+  set unitDescription(String? val) => _unitDescription = val;
+  bool hasUnitDescription() => _unitDescription != null;
+
+  // "contractDescription" field.
+  String? _contractDescription;
+  String get contractDescription => _contractDescription ?? '';
+  set contractDescription(String? val) => _contractDescription = val;
+  bool hasContractDescription() => _contractDescription != null;
+
   static DtVOrderVisitStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitStruct(
         id: castToType<int>(data['id']),
         orderId: castToType<int>(data['orderId']),
+        orderMask: data['orderMask'] as String?,
+        orderTypeCode: data['orderTypeCode'] as String?,
+        orderTypeSubCode: data['orderTypeSubCode'] as String?,
         orderParentId: castToType<int>(data['orderParentId']),
         durationHours: castToType<double>(data['durationHours']),
         statusId: castToType<int>(data['statusId']),
@@ -371,6 +454,13 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         priceMaterials: castToType<double>(data['priceMaterials']),
         priceVehicles: castToType<double>(data['priceVehicles']),
         priceTotal: castToType<double>(data['priceTotal']),
+        systemParentCode: data['systemParentCode'] as String?,
+        systemCode: data['systemCode'] as String?,
+        unitTypeParentCode: data['unitTypeParentCode'] as String?,
+        assetTagDescription: data['assetTagDescription'] as String?,
+        requestedServices: data['requestedServices'] as String?,
+        unitDescription: data['unitDescription'] as String?,
+        contractDescription: data['contractDescription'] as String?,
       );
 
   static DtVOrderVisitStruct? maybeFromMap(dynamic data) => data is Map
@@ -380,6 +470,9 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'orderId': _orderId,
+        'orderMask': _orderMask,
+        'orderTypeCode': _orderTypeCode,
+        'orderTypeSubCode': _orderTypeSubCode,
         'orderParentId': _orderParentId,
         'durationHours': _durationHours,
         'statusId': _statusId,
@@ -414,6 +507,13 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'priceMaterials': _priceMaterials,
         'priceVehicles': _priceVehicles,
         'priceTotal': _priceTotal,
+        'systemParentCode': _systemParentCode,
+        'systemCode': _systemCode,
+        'unitTypeParentCode': _unitTypeParentCode,
+        'assetTagDescription': _assetTagDescription,
+        'requestedServices': _requestedServices,
+        'unitDescription': _unitDescription,
+        'contractDescription': _contractDescription,
       }.withoutNulls;
 
   @override
@@ -425,6 +525,18 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'orderId': serializeParam(
           _orderId,
           ParamType.int,
+        ),
+        'orderMask': serializeParam(
+          _orderMask,
+          ParamType.String,
+        ),
+        'orderTypeCode': serializeParam(
+          _orderTypeCode,
+          ParamType.String,
+        ),
+        'orderTypeSubCode': serializeParam(
+          _orderTypeSubCode,
+          ParamType.String,
         ),
         'orderParentId': serializeParam(
           _orderParentId,
@@ -562,6 +674,34 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
           _priceTotal,
           ParamType.double,
         ),
+        'systemParentCode': serializeParam(
+          _systemParentCode,
+          ParamType.String,
+        ),
+        'systemCode': serializeParam(
+          _systemCode,
+          ParamType.String,
+        ),
+        'unitTypeParentCode': serializeParam(
+          _unitTypeParentCode,
+          ParamType.String,
+        ),
+        'assetTagDescription': serializeParam(
+          _assetTagDescription,
+          ParamType.String,
+        ),
+        'requestedServices': serializeParam(
+          _requestedServices,
+          ParamType.String,
+        ),
+        'unitDescription': serializeParam(
+          _unitDescription,
+          ParamType.String,
+        ),
+        'contractDescription': serializeParam(
+          _contractDescription,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
   static DtVOrderVisitStruct fromSerializableMap(Map<String, dynamic> data) =>
@@ -574,6 +714,21 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         orderId: deserializeParam(
           data['orderId'],
           ParamType.int,
+          false,
+        ),
+        orderMask: deserializeParam(
+          data['orderMask'],
+          ParamType.String,
+          false,
+        ),
+        orderTypeCode: deserializeParam(
+          data['orderTypeCode'],
+          ParamType.String,
+          false,
+        ),
+        orderTypeSubCode: deserializeParam(
+          data['orderTypeSubCode'],
+          ParamType.String,
           false,
         ),
         orderParentId: deserializeParam(
@@ -746,6 +901,41 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
           ParamType.double,
           false,
         ),
+        systemParentCode: deserializeParam(
+          data['systemParentCode'],
+          ParamType.String,
+          false,
+        ),
+        systemCode: deserializeParam(
+          data['systemCode'],
+          ParamType.String,
+          false,
+        ),
+        unitTypeParentCode: deserializeParam(
+          data['unitTypeParentCode'],
+          ParamType.String,
+          false,
+        ),
+        assetTagDescription: deserializeParam(
+          data['assetTagDescription'],
+          ParamType.String,
+          false,
+        ),
+        requestedServices: deserializeParam(
+          data['requestedServices'],
+          ParamType.String,
+          false,
+        ),
+        unitDescription: deserializeParam(
+          data['unitDescription'],
+          ParamType.String,
+          false,
+        ),
+        contractDescription: deserializeParam(
+          data['contractDescription'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -756,6 +946,9 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     return other is DtVOrderVisitStruct &&
         id == other.id &&
         orderId == other.orderId &&
+        orderMask == other.orderMask &&
+        orderTypeCode == other.orderTypeCode &&
+        orderTypeSubCode == other.orderTypeSubCode &&
         orderParentId == other.orderParentId &&
         durationHours == other.durationHours &&
         statusId == other.statusId &&
@@ -789,13 +982,23 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         priceServices == other.priceServices &&
         priceMaterials == other.priceMaterials &&
         priceVehicles == other.priceVehicles &&
-        priceTotal == other.priceTotal;
+        priceTotal == other.priceTotal &&
+        systemParentCode == other.systemParentCode &&
+        systemCode == other.systemCode &&
+        unitTypeParentCode == other.unitTypeParentCode &&
+        assetTagDescription == other.assetTagDescription &&
+        requestedServices == other.requestedServices &&
+        unitDescription == other.unitDescription &&
+        contractDescription == other.contractDescription;
   }
 
   @override
   int get hashCode => const ListEquality().hash([
         id,
         orderId,
+        orderMask,
+        orderTypeCode,
+        orderTypeSubCode,
         orderParentId,
         durationHours,
         statusId,
@@ -829,13 +1032,23 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         priceServices,
         priceMaterials,
         priceVehicles,
-        priceTotal
+        priceTotal,
+        systemParentCode,
+        systemCode,
+        unitTypeParentCode,
+        assetTagDescription,
+        requestedServices,
+        unitDescription,
+        contractDescription
       ]);
 }
 
 DtVOrderVisitStruct createDtVOrderVisitStruct({
   int? id,
   int? orderId,
+  String? orderMask,
+  String? orderTypeCode,
+  String? orderTypeSubCode,
   int? orderParentId,
   double? durationHours,
   int? statusId,
@@ -870,6 +1083,13 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
   double? priceMaterials,
   double? priceVehicles,
   double? priceTotal,
+  String? systemParentCode,
+  String? systemCode,
+  String? unitTypeParentCode,
+  String? assetTagDescription,
+  String? requestedServices,
+  String? unitDescription,
+  String? contractDescription,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -878,6 +1098,9 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
     DtVOrderVisitStruct(
       id: id,
       orderId: orderId,
+      orderMask: orderMask,
+      orderTypeCode: orderTypeCode,
+      orderTypeSubCode: orderTypeSubCode,
       orderParentId: orderParentId,
       durationHours: durationHours,
       statusId: statusId,
@@ -912,6 +1135,13 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
       priceMaterials: priceMaterials,
       priceVehicles: priceVehicles,
       priceTotal: priceTotal,
+      systemParentCode: systemParentCode,
+      systemCode: systemCode,
+      unitTypeParentCode: unitTypeParentCode,
+      assetTagDescription: assetTagDescription,
+      requestedServices: requestedServices,
+      unitDescription: unitDescription,
+      contractDescription: contractDescription,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

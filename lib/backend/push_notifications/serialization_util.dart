@@ -166,6 +166,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
             json.decode(param) as Map<String, dynamic>) as T;
       case LogsRow:
         return LogsRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersVisitsSearchFiltersRow:
+        return VOrdersVisitsSearchFiltersRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case OrdersVisitsProcessingRow:
         return OrdersVisitsProcessingRow(
             json.decode(param) as Map<String, dynamic>) as T;

@@ -120,11 +120,13 @@ class _MdOrderVisitContractServiceAddWidgetState
       ),
       child: Align(
         alignment: const AlignmentDirectional(0.0, 1.0),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-          child: SingleChildScrollView(
+        child: Container(
+          width: 400.0,
+          decoration: const BoxDecoration(),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Align(
@@ -161,7 +163,6 @@ class _MdOrderVisitContractServiceAddWidgetState
                     ),
                   ),
                   child: Container(
-                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: const BorderRadius.only(

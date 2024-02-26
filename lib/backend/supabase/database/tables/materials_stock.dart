@@ -18,8 +18,8 @@ class MaterialsStockRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  int get material => getField<int>('material')!;
-  set material(int value) => setField<int>('material', value);
+  int get materialId => getField<int>('materialId')!;
+  set materialId(int value) => setField<int>('materialId', value);
 
   int get warehouse => getField<int>('warehouse')!;
   set warehouse(int value) => setField<int>('warehouse', value);

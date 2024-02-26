@@ -48,131 +48,145 @@ class _CpOrderVisitProcessingWidgetState
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<OrdersVisitsProcessingRow>>(
-      future: OrdersVisitsProcessingTable().querySingleRow(
-        queryFn: (q) => q.eq(
-          'id',
-          widget.processingId,
+    return Align(
+      alignment: const AlignmentDirectional(-1.0, 0.0),
+      child: FutureBuilder<List<OrdersVisitsProcessingRow>>(
+        future: OrdersVisitsProcessingTable().querySingleRow(
+          queryFn: (q) => q.eq(
+            'id',
+            widget.processingId,
+          ),
         ),
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50.0,
-              height: 50.0,
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  FlutterFlowTheme.of(context).primary,
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
                 ),
+              ),
+            );
+          }
+          List<OrdersVisitsProcessingRow>
+              containerOrdersVisitsProcessingRowList = snapshot.data!;
+          final containerOrdersVisitsProcessingRow =
+              containerOrdersVisitsProcessingRowList.isNotEmpty
+                  ? containerOrdersVisitsProcessingRowList.first
+                  : null;
+          return Container(
+            width: double.infinity,
+            height: 40.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            alignment: const AlignmentDirectional(-1.0, 0.0),
+            child: Align(
+              alignment: const AlignmentDirectional(-1.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Builder(
+                      builder: (context) {
+                        if (widget.processingId == 1) {
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context).error,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 2.0, 8.0, 2.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerOrdersVisitsProcessingRow
+                                      ?.description,
+                                  'description1',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                              ),
+                            ),
+                          );
+                        } else if (widget.processingId == 2) {
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 2.0, 8.0, 2.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerOrdersVisitsProcessingRow
+                                      ?.description,
+                                  'description1',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context).primary,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 2.0, 8.0, 2.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerOrdersVisitsProcessingRow
+                                      ?.description,
+                                  'description1',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           );
-        }
-        List<OrdersVisitsProcessingRow> containerOrdersVisitsProcessingRowList =
-            snapshot.data!;
-        final containerOrdersVisitsProcessingRow =
-            containerOrdersVisitsProcessingRowList.isNotEmpty
-                ? containerOrdersVisitsProcessingRowList.first
-                : null;
-        return Container(
-          height: 40.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Builder(
-                builder: (context) {
-                  if (widget.processingId == 1) {
-                    return Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).error,
-                      elevation: 4.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 2.0, 8.0, 2.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            containerOrdersVisitsProcessingRow?.description,
-                            'description1',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                              ),
-                        ),
-                      ),
-                    );
-                  } else if (widget.processingId == 2) {
-                    return Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 2.0, 8.0, 2.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              containerOrdersVisitsProcessingRow?.description,
-                              'description',
-                            ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
-                        ),
-                      ),
-                    );
-                  } else {
-                    return Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).success,
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 2.0, 8.0, 2.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              containerOrdersVisitsProcessingRow?.description,
-                              'description1',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }

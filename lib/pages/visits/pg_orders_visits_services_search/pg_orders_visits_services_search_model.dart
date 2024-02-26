@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
+import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import 'pg_orders_visits_services_search_widget.dart'
     show PgOrdersVisitsServicesSearchWidget;
 import 'package:flutter/material.dart';
@@ -33,6 +34,8 @@ class PgOrdersVisitsServicesSearchModel
   late CpInputTextModel cpInputTextSearchModel;
   // Stores action output result for [Backend Call - API (servicesBycontractId)] action in IconButton widget.
   ApiCallResponse? resContractsServices;
+  // Model for cpOrderVisitServicesList component.
+  late CpOrderVisitServicesListModel cpOrderVisitServicesListModel;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
 
@@ -41,6 +44,8 @@ class PgOrdersVisitsServicesSearchModel
   @override
   void initState(BuildContext context) {
     cpInputTextSearchModel = createModel(context, () => CpInputTextModel());
+    cpOrderVisitServicesListModel =
+        createModel(context, () => CpOrderVisitServicesListModel());
     cpMenuModel = createModel(context, () => CpMenuModel());
   }
 
@@ -48,6 +53,7 @@ class PgOrdersVisitsServicesSearchModel
   void dispose() {
     unfocusNode.dispose();
     cpInputTextSearchModel.dispose();
+    cpOrderVisitServicesListModel.dispose();
     cpMenuModel.dispose();
   }
 

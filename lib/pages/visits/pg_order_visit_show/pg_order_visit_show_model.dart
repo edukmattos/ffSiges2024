@@ -5,6 +5,7 @@ import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
 import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget.dart';
+import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import 'dart:async';
 import 'pg_order_visit_show_widget.dart' show PgOrderVisitShowWidget;
 import 'package:flutter/material.dart';
@@ -13,8 +14,7 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  Completer<List<VOrdersVisitsRow>>? requestCompleter1;
-  Completer<List<VOrdersVisitsServicesRow>>? requestCompleter2;
+  Completer<List<VOrdersVisitsRow>>? requestCompleter;
   // Model for cpNotificationsIcon component.
   late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpMenu component.
@@ -26,6 +26,8 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
   // Model for cpOrderVisitAssetShowBottomNavBar component.
   late CpOrderVisitAssetShowBottomNavBarModel
       cpOrderVisitAssetShowBottomNavBarModel;
+  // Model for cpOrderVisitServicesList component.
+  late CpOrderVisitServicesListModel cpOrderVisitServicesListModel;
 
   /// Initialization and disposal methods.
 
@@ -39,6 +41,8 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
         createModel(context, () => CpOrderVisitCard2ShowModel());
     cpOrderVisitAssetShowBottomNavBarModel =
         createModel(context, () => CpOrderVisitAssetShowBottomNavBarModel());
+    cpOrderVisitServicesListModel =
+        createModel(context, () => CpOrderVisitServicesListModel());
   }
 
   @override
@@ -49,13 +53,14 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
     cpOrderCardShowModel.dispose();
     cpOrderVisitCard2ShowModel.dispose();
     cpOrderVisitAssetShowBottomNavBarModel.dispose();
+    cpOrderVisitServicesListModel.dispose();
   }
 
   /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 
-  Future waitForRequestCompleted1({
+  Future waitForRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -63,22 +68,7 @@ class PgOrderVisitShowModel extends FlutterFlowModel<PgOrderVisitShowWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter1?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted2({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      final requestComplete = requestCompleter?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

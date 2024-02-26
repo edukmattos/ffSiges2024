@@ -32,6 +32,7 @@ Future abUserUpdate(
   required String? abAccessToken,
 }) async {
   ApiCallResponse? resUserCurrent;
+  ApiCallResponse? apiResultyjy;
 
   resUserCurrent = await ApiUsersGroup.userByEmailCall.call(
     email: abEmail,
@@ -125,6 +126,32 @@ Future abUserUpdate(
       (resUserCurrent.jsonBody ?? ''),
     ),
   );
+  apiResultyjy = await ApiProfilesPermissionsGroup.isPermissionCall.call(
+    profileId: FFAppState().asUserCurrent.profileId,
+  );
+  if ((apiResultyjy.succeeded ?? true)) {
+    FFAppState().asUserPermissions = ((apiResultyjy.jsonBody ?? '')
+            .toList()
+            .map<DtVUserPermissionsStruct?>(
+                DtVUserPermissionsStruct.maybeFromMap)
+            .toList() as Iterable<DtVUserPermissionsStruct?>)
+        .withoutNulls
+        .toList()
+        .cast<DtVUserPermissionsStruct>();
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Opps ... Permissões de acesso NÃO localizados.',
+          style: TextStyle(
+            color: FlutterFlowTheme.of(context).primaryBtnText,
+          ),
+        ),
+        duration: const Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
+    );
+  }
 }
 
 Future abUsersNotificationsSend(
@@ -1024,31 +1051,37 @@ Future abOrderVisitSelectedServices(
       priceServices:
           FFAppState().asTmpOrderVisitSelectedPricesBalance.first.priceServices,
     );
-    FFAppState().updateStOrderVisitSelectedAtIndex(
-      0,
-      (e) => e
-        ..priceServices = FFAppState()
-            .asTmpOrderVisitSelectedPricesBalance
-            .first
-            .priceServices,
-    );
+    FFAppState().update(() {
+      FFAppState().updateStOrderVisitSelectedAtIndex(
+        0,
+        (e) => e
+          ..priceServices = FFAppState()
+              .asTmpOrderVisitSelectedPricesBalance
+              .first
+              .priceServices,
+      );
+    });
   } else {
     apiResultbowyy =
         await ApiOrdersVisitsGroup.priceServicesUpdateByOrderVisitIdCall.call(
       orderVisitId: abOrderVisitId,
       priceServices: 0.0,
     );
-    FFAppState().updateStOrderVisitSelectedAtIndex(
-      0,
-      (e) => e..priceServices = 0.0,
-    );
+    FFAppState().update(() {
+      FFAppState().updateStOrderVisitSelectedAtIndex(
+        0,
+        (e) => e..priceServices = 0.0,
+      );
+    });
   }
 
-  FFAppState().updateStOrderVisitSelectedAtIndex(
-    0,
-    (e) => e
-      ..priceTotal = FFAppState().stOrderVisitSelected.first.priceServices +
-          FFAppState().stOrderVisitSelected.first.priceMaterials +
-          FFAppState().stOrderVisitSelected.first.priceVehicles,
-  );
+  FFAppState().update(() {
+    FFAppState().updateStOrderVisitSelectedAtIndex(
+      0,
+      (e) => e
+        ..priceTotal = FFAppState().stOrderVisitSelected.first.priceServices +
+            FFAppState().stOrderVisitSelected.first.priceMaterials +
+            FFAppState().stOrderVisitSelected.first.priceVehicles,
+    );
+  });
 }

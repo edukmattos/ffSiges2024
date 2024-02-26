@@ -55,6 +55,22 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _asUserPermissions = prefs
+              .getStringList('ff_asUserPermissions')
+              ?.map((x) {
+                try {
+                  return DtVUserPermissionsStruct.fromSerializableMap(
+                      jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _asUserPermissions;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -726,6 +742,48 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAsTmpOrderVisitSelectedPricesBalance(
       int index, DtVOrderVisitPricesStruct value) {
     _asTmpOrderVisitSelectedPricesBalance.insert(index, value);
+  }
+
+  List<DtVUserPermissionsStruct> _asUserPermissions = [];
+  List<DtVUserPermissionsStruct> get asUserPermissions => _asUserPermissions;
+  set asUserPermissions(List<DtVUserPermissionsStruct> value) {
+    _asUserPermissions = value;
+    prefs.setStringList(
+        'ff_asUserPermissions', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAsUserPermissions(DtVUserPermissionsStruct value) {
+    _asUserPermissions.add(value);
+    prefs.setStringList('ff_asUserPermissions',
+        _asUserPermissions.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAsUserPermissions(DtVUserPermissionsStruct value) {
+    _asUserPermissions.remove(value);
+    prefs.setStringList('ff_asUserPermissions',
+        _asUserPermissions.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAsUserPermissions(int index) {
+    _asUserPermissions.removeAt(index);
+    prefs.setStringList('ff_asUserPermissions',
+        _asUserPermissions.map((x) => x.serialize()).toList());
+  }
+
+  void updateAsUserPermissionsAtIndex(
+    int index,
+    DtVUserPermissionsStruct Function(DtVUserPermissionsStruct) updateFn,
+  ) {
+    _asUserPermissions[index] = updateFn(_asUserPermissions[index]);
+    prefs.setStringList('ff_asUserPermissions',
+        _asUserPermissions.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAsUserPermissions(
+      int index, DtVUserPermissionsStruct value) {
+    _asUserPermissions.insert(index, value);
+    prefs.setStringList('ff_asUserPermissions',
+        _asUserPermissions.map((x) => x.serialize()).toList());
   }
 }
 

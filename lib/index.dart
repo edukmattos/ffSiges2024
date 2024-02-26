@@ -80,3 +80,9 @@ export '/pages/user/pg_dashboard_user_orders/pg_dashboard_user_orders_widget.dar
     show PgDashboardUserOrdersWidget;
 export '/pages/visits/pg_orders_visits_services_search/pg_orders_visits_services_search_widget.dart'
     show PgOrdersVisitsServicesSearchWidget;
+export '/pg_orders_visits_search/pg_orders_visits_search_widget.dart'
+    show PgOrdersVisitsSearchWidget;
+export '/details03_transactions_summary/details03_transactions_summary_widget.dart'
+    show Details03TransactionsSummaryWidget;
+export '/details43_workout_summary/details43_workout_summary_widget.dart'
+    show Details43WorkoutSummaryWidget;

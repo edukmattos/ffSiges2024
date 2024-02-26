@@ -8,13 +8,12 @@ import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dar
 import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
 import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
 import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget.dart';
+import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_show_model.dart';
 export 'pg_order_visit_show_model.dart';
@@ -24,10 +23,12 @@ class PgOrderVisitShowWidget extends StatefulWidget {
     super.key,
     required this.visitId,
     required this.orderId,
-  });
+    int? appPageId009,
+  }) : appPageId009 = appPageId009 ?? 9;
 
   final int? visitId;
   final int? orderId;
+  final int appPageId009;
 
   @override
   State<PgOrderVisitShowWidget> createState() => _PgOrderVisitShowWidgetState();
@@ -64,8 +65,8 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
       await actions.caSupabaseConnect(
         'ordersVisits',
         () async {
-          setState(() => _model.requestCompleter1 = null);
-          await _model.waitForRequestCompleted1();
+          setState(() => _model.requestCompleter = null);
+          await _model.waitForRequestCompleted();
         },
       );
       await actions.caSupabaseDisconnect(
@@ -74,10 +75,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
       await Future.delayed(const Duration(milliseconds: 2000));
       await actions.caSupabaseConnect(
         'ordersVisitsServices',
-        () async {
-          setState(() => _model.requestCompleter2 = null);
-          await _model.waitForRequestCompleted2();
-        },
+        () async {},
       );
     });
 
@@ -160,7 +158,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
               height: double.infinity,
               decoration: const BoxDecoration(),
               child: FutureBuilder<List<VOrdersVisitsRow>>(
-                future: (_model.requestCompleter1 ??=
+                future: (_model.requestCompleter ??=
                         Completer<List<VOrdersVisitsRow>>()
                           ..complete(VOrdersVisitsTable().querySingleRow(
                             queryFn: (q) => q.eq(
@@ -450,398 +448,46 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                 .headlineSmall,
                                           ),
                                         ),
-                                        if (valueOrDefault<int>(
-                                              FFAppState()
-                                                  .stOrderVisitSelected
-                                                  .first
-                                                  .processingId,
-                                              1,
-                                            ) !=
-                                            4)
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onLongPress: () async {},
-                                            child: FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 255.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 50.0,
-                                              fillColor:
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onLongPress: () async {},
+                                          child: FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 255.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 50.0,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            icon: Icon(
+                                              Icons.add,
+                                              color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              icon: Icon(
-                                                Icons.add,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
-                                                size: 24.0,
-                                              ),
-                                              showLoadingIndicator: true,
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                    'pgOrdersVisitsServicesSearch');
-                                              },
+                                                      .primaryBtnText,
+                                              size: 24.0,
                                             ),
+                                            showLoadingIndicator: true,
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                  'pgOrdersVisitsServicesSearch');
+                                            },
                                           ),
+                                        ),
                                       ],
                                     ),
-                                    FutureBuilder<
-                                        List<VOrdersVisitsServicesRow>>(
-                                      future: (_model.requestCompleter2 ??=
-                                              Completer<
-                                                  List<
-                                                      VOrdersVisitsServicesRow>>()
-                                                ..complete(
-                                                    VOrdersVisitsServicesTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'orderVisitId',
-                                                    FFAppState()
-                                                        .stOrderVisitSelected
-                                                        .first
-                                                        .id,
-                                                  ),
-                                                )))
-                                          .future,
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<VOrdersVisitsServicesRow>
-                                            listViewServicesSelectedVOrdersVisitsServicesRowList =
-                                            snapshot.data!;
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              listViewServicesSelectedVOrdersVisitsServicesRowList
-                                                  .length,
-                                          itemBuilder: (context,
-                                              listViewServicesSelectedIndex) {
-                                            final listViewServicesSelectedVOrdersVisitsServicesRow =
-                                                listViewServicesSelectedVOrdersVisitsServicesRowList[
-                                                    listViewServicesSelectedIndex];
-                                            return Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 0.0, 12.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                height: 70.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                      blurRadius: 4.0,
-                                                      color: Color(0x32000000),
-                                                      offset: Offset(0.0, 2.0),
-                                                    )
-                                                  ],
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 0.0, 8.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      4.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                      .serviceDescription,
-                                                                  'serviceDescription',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                              ),
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Text(
-                                                                    'Qte: ${formatNumber(
-                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                          .amount,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .custom,
-                                                                      format:
-                                                                          '#.00',
-                                                                      locale:
-                                                                          'pt_BR',
-                                                                    )}${listViewServicesSelectedVOrdersVisitsServicesRow.serviceUnit} | Vlr.Unit.: ${formatNumber(
-                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                          .priceUnit,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .custom,
-                                                                      currency:
-                                                                          'R\$ ',
-                                                                      format:
-                                                                          '#,###.00',
-                                                                      locale:
-                                                                          'pt_BR',
-                                                                    )} | Desc:  ${formatNumber(
-                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                          .discount,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .custom,
-                                                                      format:
-                                                                          '###.00',
-                                                                      locale:
-                                                                          'pt_BR',
-                                                                    )}%',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                        ),
-                                                                  ),
-                                                                  Text(
-                                                                    formatNumber(
-                                                                      listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                          .total!,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .custom,
-                                                                      currency:
-                                                                          'R\$ ',
-                                                                      format:
-                                                                          '#,###.00',
-                                                                      locale:
-                                                                          'pt_BR',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                height: 8.0)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            AlignedTooltip(
-                                                              content: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                              4.0),
-                                                                  child: Text(
-                                                                    'Adicionar',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyLarge,
-                                                                  )),
-                                                              offset: 4.0,
-                                                              preferredDirection:
-                                                                  AxisDirection
-                                                                      .down,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              elevation: 4.0,
-                                                              tailBaseWidth:
-                                                                  24.0,
-                                                              tailLength: 12.0,
-                                                              waitDuration:
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          100),
-                                                              showDuration:
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          1500),
-                                                              triggerMode:
-                                                                  TooltipTriggerMode
-                                                                      .tap,
-                                                              child:
-                                                                  FlutterFlowIconButton(
-                                                                borderColor: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    12.0,
-                                                                buttonSize:
-                                                                    50.0,
-                                                                fillColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                icon: FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .trashAlt,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBtnText,
-                                                                  size: 24.0,
-                                                                ),
-                                                                showLoadingIndicator:
-                                                                    true,
-                                                                onPressed:
-                                                                    () async {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: const Text('Ops ...'),
-                                                                                content: const Text('Deseja realmente EXCLUIR ?'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: const Text('Cancelar'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: const Text('Confirmar'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    await OrdersVisitsServicesTable()
-                                                                        .delete(
-                                                                      matchingRows:
-                                                                          (rows) =>
-                                                                              rows.eq(
-                                                                        'id',
-                                                                        listViewServicesSelectedVOrdersVisitsServicesRow
-                                                                            .id,
-                                                                      ),
-                                                                    );
-                                                                    await action_blocks
-                                                                        .abOrderVisitSelectedServices(
-                                                                      context,
-                                                                      abOrderVisitId: FFAppState()
-                                                                          .stOrderVisitSelected
-                                                                          .first
-                                                                          .id,
-                                                                    );
-                                                                    setState(
-                                                                        () {});
-                                                                    setState(() =>
-                                                                        _model.requestCompleter1 =
-                                                                            null);
-                                                                    await _model
-                                                                        .waitForRequestCompleted1();
-                                                                  }
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
+                                    wrapWithModel(
+                                      model:
+                                          _model.cpOrderVisitServicesListModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: CpOrderVisitServicesListWidget(
+                                        orderVisitId: FFAppState()
+                                            .stOrderVisitSelected
+                                            .first
+                                            .id,
+                                      ),
                                     ),
                                   ].divide(const SizedBox(height: 12.0)),
                                 ),

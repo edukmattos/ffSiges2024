@@ -1624,47 +1624,6 @@ class UnitsAllCall {
       alwaysAllowBody: false,
     );
   }
-
-  int? id(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].id''',
-      ));
-  int? companyId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].companyId''',
-      ));
-  int? unitTypeId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitTypeId''',
-      ));
-  String? code(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].code''',
-      ));
-  double? latitude(dynamic response) => castToType<double>(getJsonField(
-        response,
-        r'''$[:].latitude''',
-      ));
-  double? longitude(dynamic response) => castToType<double>(getJsonField(
-        response,
-        r'''$[:].longitude''',
-      ));
-  String? descriptionFull(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].descriptionFull''',
-      ));
-  int? unitTypeParentId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitTypeParentId''',
-      ));
-  int? systemParentId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].systemParentId''',
-      ));
-  int? systemId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].systemId''',
-      ));
 }
 
 /// End apiUnits Group Code
@@ -3240,6 +3199,7 @@ class ApiOrdersVisitsGroup {
   static PriceServicesUpdateByOrderVisitIdCall
       priceServicesUpdateByOrderVisitIdCall =
       PriceServicesUpdateByOrderVisitIdCall();
+  static SearchFiltersCall searchFiltersCall = SearchFiltersCall();
 }
 
 class OrderVisitByIdCall {
@@ -3335,6 +3295,46 @@ class PriceServicesUpdateByOrderVisitIdCall {
       apiUrl:
           '${ApiOrdersVisitsGroup.baseUrl}ordersVisits?id=eq.$orderVisitId',
       callType: ApiCallType.PATCH,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SearchFiltersCall {
+  Future<ApiCallResponse> call({
+    List<int>? ordersTypesIdsList,
+    List<int>? processingIdsList,
+    List<int>? unitsIdsList,
+  }) async {
+    final ordersTypesIds = _serializeList(ordersTypesIdsList);
+    final processingIds = _serializeList(processingIdsList);
+    final unitsIds = _serializeList(unitsIdsList);
+
+    final ffApiRequestBody = '''
+{
+  "orders_types_ids": $ordersTypesIds,
+  "processing_ids": $processingIds,
+  "units_ids": $unitsIds
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'searchFilters',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}rpc/fc_orders_visits_search_filters',
+      callType: ApiCallType.POST,
       headers: {
         'apiKey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',

@@ -21,8 +21,150 @@ class VOrdersVisitsRow extends SupabaseDataRow {
   int? get orderId => getField<int>('orderId');
   set orderId(int? value) => setField<int>('orderId', value);
 
-  int? get orderParentId => getField<int>('orderParentId');
-  set orderParentId(int? value) => setField<int>('orderParentId', value);
+  int? get parentId => getField<int>('parentId');
+  set parentId(int? value) => setField<int>('parentId', value);
+
+  int? get companyId => getField<int>('companyId');
+  set companyId(int? value) => setField<int>('companyId', value);
+
+  String? get companydescription => getField<String>('companydescription');
+  set companydescription(String? value) =>
+      setField<String>('companydescription', value);
+
+  int? get departmentId => getField<int>('departmentId');
+  set departmentId(int? value) => setField<int>('departmentId', value);
+
+  int? get contractId => getField<int>('contractId');
+  set contractId(int? value) => setField<int>('contractId', value);
+
+  String? get contractDescription => getField<String>('contractDescription');
+  set contractDescription(String? value) =>
+      setField<String>('contractDescription', value);
+
+  String? get orderMask => getField<String>('orderMask');
+  set orderMask(String? value) => setField<String>('orderMask', value);
+
+  int? get typeId => getField<int>('typeId');
+  set typeId(int? value) => setField<int>('typeId', value);
+
+  String? get orderTypeCode => getField<String>('orderTypeCode');
+  set orderTypeCode(String? value) => setField<String>('orderTypeCode', value);
+
+  int? get typeSubId => getField<int>('typeSubId');
+  set typeSubId(int? value) => setField<int>('typeSubId', value);
+
+  String? get orderTypeSubCode => getField<String>('orderTypeSubCode');
+  set orderTypeSubCode(String? value) =>
+      setField<String>('orderTypeSubCode', value);
+
+  int? get systemParentId => getField<int>('systemParentId');
+  set systemParentId(int? value) => setField<int>('systemParentId', value);
+
+  String? get systemParentDescription =>
+      getField<String>('systemParentDescription');
+  set systemParentDescription(String? value) =>
+      setField<String>('systemParentDescription', value);
+
+  String? get systemParentCode => getField<String>('systemParentCode');
+  set systemParentCode(String? value) =>
+      setField<String>('systemParentCode', value);
+
+  int? get systemId => getField<int>('systemId');
+  set systemId(int? value) => setField<int>('systemId', value);
+
+  String? get systemDescription => getField<String>('systemDescription');
+  set systemDescription(String? value) =>
+      setField<String>('systemDescription', value);
+
+  String? get systemCode => getField<String>('systemCode');
+  set systemCode(String? value) => setField<String>('systemCode', value);
+
+  int? get unitTypeParentId => getField<int>('unitTypeParentId');
+  set unitTypeParentId(int? value) => setField<int>('unitTypeParentId', value);
+
+  String? get unitTypeParentDescription =>
+      getField<String>('unitTypeParentDescription');
+  set unitTypeParentDescription(String? value) =>
+      setField<String>('unitTypeParentDescription', value);
+
+  String? get unitTypeParentCode => getField<String>('unitTypeParentCode');
+  set unitTypeParentCode(String? value) =>
+      setField<String>('unitTypeParentCode', value);
+
+  int? get unitTypeId => getField<int>('unitTypeId');
+  set unitTypeId(int? value) => setField<int>('unitTypeId', value);
+
+  String? get unitTypeDescription => getField<String>('unitTypeDescription');
+  set unitTypeDescription(String? value) =>
+      setField<String>('unitTypeDescription', value);
+
+  String? get unitTypeCode => getField<String>('unitTypeCode');
+  set unitTypeCode(String? value) => setField<String>('unitTypeCode', value);
+
+  int? get unitId => getField<int>('unitId');
+  set unitId(int? value) => setField<int>('unitId', value);
+
+  String? get unitDescription => getField<String>('unitDescription');
+  set unitDescription(String? value) =>
+      setField<String>('unitDescription', value);
+
+  String? get unitAddress => getField<String>('unitAddress');
+  set unitAddress(String? value) => setField<String>('unitAddress', value);
+
+  double? get unitLatitude => getField<double>('unitLatitude');
+  set unitLatitude(double? value) => setField<double>('unitLatitude', value);
+
+  double? get unitLongitude => getField<double>('unitLongitude');
+  set unitLongitude(double? value) => setField<double>('unitLongitude', value);
+
+  int? get priorityId => getField<int>('priorityId');
+  set priorityId(int? value) => setField<int>('priorityId', value);
+
+  String? get priorityCode => getField<String>('priorityCode');
+  set priorityCode(String? value) => setField<String>('priorityCode', value);
+
+  String? get priorityDescription => getField<String>('priorityDescription');
+  set priorityDescription(String? value) =>
+      setField<String>('priorityDescription', value);
+
+  String? get requesterName => getField<String>('requesterName');
+  set requesterName(String? value) => setField<String>('requesterName', value);
+
+  String? get requesterPhone => getField<String>('requesterPhone');
+  set requesterPhone(String? value) =>
+      setField<String>('requesterPhone', value);
+
+  int? get requesterTeamId => getField<int>('requesterTeamId');
+  set requesterTeamId(int? value) => setField<int>('requesterTeamId', value);
+
+  String? get requesterTeamCode => getField<String>('requesterTeamCode');
+  set requesterTeamCode(String? value) =>
+      setField<String>('requesterTeamCode', value);
+
+  DateTime? get requesterDate => getField<DateTime>('requesterDate');
+  set requesterDate(DateTime? value) =>
+      setField<DateTime>('requesterDate', value);
+
+  String? get requestedServices => getField<String>('requestedServices');
+  set requestedServices(String? value) =>
+      setField<String>('requestedServices', value);
+
+  int? get assetTagId => getField<int>('assetTagId');
+  set assetTagId(int? value) => setField<int>('assetTagId', value);
+
+  String? get assetTagDescription => getField<String>('assetTagDescription');
+  set assetTagDescription(String? value) =>
+      setField<String>('assetTagDescription', value);
+
+  int? get teamId => getField<int>('teamId');
+  set teamId(int? value) => setField<int>('teamId', value);
+
+  String? get teamCode => getField<String>('teamCode');
+  set teamCode(String? value) => setField<String>('teamCode', value);
+
+  String? get teamDescription => getField<String>('teamDescription');
+  set teamDescription(String? value) =>
+      setField<String>('teamDescription', value);
 
   DateTime? get dateStart => getField<DateTime>('dateStart');
   set dateStart(DateTime? value) => setField<DateTime>('dateStart', value);
@@ -48,57 +190,12 @@ class VOrdersVisitsRow extends SupabaseDataRow {
   set processingDescription(String? value) =>
       setField<String>('processingDescription', value);
 
-  int? get reportedUserId => getField<int>('reportedUserId');
-  set reportedUserId(int? value) => setField<int>('reportedUserId', value);
-
-  String? get reportedUserNameShort =>
-      getField<String>('reportedUserNameShort');
-  set reportedUserNameShort(String? value) =>
-      setField<String>('reportedUserNameShort', value);
-
-  DateTime? get reportedDate => getField<DateTime>('reportedDate');
-  set reportedDate(DateTime? value) =>
-      setField<DateTime>('reportedDate', value);
-
-  int? get disapprovedUserId => getField<int>('disapprovedUserId');
-  set disapprovedUserId(int? value) =>
-      setField<int>('disapprovedUserId', value);
-
-  String? get disapprovedUserNameShort =>
-      getField<String>('disapprovedUserNameShort');
-  set disapprovedUserNameShort(String? value) =>
-      setField<String>('disapprovedUserNameShort', value);
-
-  DateTime? get disapprovedDate => getField<DateTime>('disapprovedDate');
-  set disapprovedDate(DateTime? value) =>
-      setField<DateTime>('disapprovedDate', value);
-
-  String? get disapprovedComments => getField<String>('disapprovedComments');
-  set disapprovedComments(String? value) =>
-      setField<String>('disapprovedComments', value);
-
-  int? get approvedUserId => getField<int>('approvedUserId');
-  set approvedUserId(int? value) => setField<int>('approvedUserId', value);
-
-  String? get approvedUserNameShort =>
-      getField<String>('approvedUserNameShort');
-  set approvedUserNameShort(String? value) =>
-      setField<String>('approvedUserNameShort', value);
-
-  DateTime? get approvedDate => getField<DateTime>('approvedDate');
-  set approvedDate(DateTime? value) =>
-      setField<DateTime>('approvedDate', value);
-
   int? get teamLeaderId => getField<int>('teamLeaderId');
   set teamLeaderId(int? value) => setField<int>('teamLeaderId', value);
 
   String? get teamLeaderNameShort => getField<String>('teamLeaderNameShort');
   set teamLeaderNameShort(String? value) =>
       setField<String>('teamLeaderNameShort', value);
-
-  int? get orderVisitAssetsAmount => getField<int>('orderVisitAssetsAmount');
-  set orderVisitAssetsAmount(int? value) =>
-      setField<int>('orderVisitAssetsAmount', value);
 
   bool? get isCanceled => getField<bool>('isCanceled');
   set isCanceled(bool? value) => setField<bool>('isCanceled', value);

@@ -13,6 +13,7 @@ export 'tables/v_orders_followers.dart';
 export 'tables/v_dash_user_orders_status_5.dart';
 export 'tables/v_dash_admin_orders_status_6.dart';
 export 'tables/logs.dart';
+export 'tables/v_orders_visits_search_filters.dart';
 export 'tables/orders_visits_processing.dart';
 export 'tables/orders_types_subs.dart';
 export 'tables/v_assets_statuses.dart';

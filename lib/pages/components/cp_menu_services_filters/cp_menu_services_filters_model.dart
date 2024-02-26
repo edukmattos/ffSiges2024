@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dark_light_switch_small/cp_dark_light_switch_small_widget.dart';
 import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
 import 'cp_menu_services_filters_widget.dart' show CpMenuServicesFiltersWidget;
@@ -10,6 +11,12 @@ class CpMenuServicesFiltersModel
 
   // Model for cpUserPicProfile component.
   late CpUserPicProfileModel cpUserPicProfileModel;
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
   // Model for cpDarkLightSwitchSmall component.
   late CpDarkLightSwitchSmallModel cpDarkLightSwitchSmallModel;
 

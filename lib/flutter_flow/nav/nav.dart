@@ -211,6 +211,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgOrderVisitShowWidget(
             visitId: params.getParam('visitId', ParamType.int),
             orderId: params.getParam('orderId', ParamType.int),
+            appPageId009: params.getParam('appPageId009', ParamType.int),
           ),
         ),
         FFRoute(
@@ -368,6 +369,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'pgOrdersVisitsServicesSearch')
               : const PgOrdersVisitsServicesSearchWidget(),
+        ),
+        FFRoute(
+          name: 'pgOrdersVisitsSearch',
+          path: '/pgOrdersVisitsSearch',
+          requireAuth: true,
+          builder: (context, params) => const PgOrdersVisitsSearchWidget(),
+        ),
+        FFRoute(
+          name: 'Details03TransactionsSummary',
+          path: '/details03TransactionsSummary',
+          builder: (context, params) => const Details03TransactionsSummaryWidget(),
+        ),
+        FFRoute(
+          name: 'Details43WorkoutSummary',
+          path: '/details43WorkoutSummary',
+          builder: (context, params) => const Details43WorkoutSummaryWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

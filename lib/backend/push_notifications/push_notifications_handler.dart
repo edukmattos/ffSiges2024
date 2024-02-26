@@ -148,6 +148,7 @@ final parametersBuilderMap =
         allParams: {
           'visitId': getParameter<int>(data, 'visitId'),
           'orderId': getParameter<int>(data, 'orderId'),
+          'appPageId009': getParameter<int>(data, 'appPageId009'),
         },
       ),
   'pgOrderVisitAsset1Search': (data) async => ParameterData(
@@ -192,6 +193,9 @@ final parametersBuilderMap =
       ),
   'pgDashboardUserOrders': ParameterData.none(),
   'pgOrdersVisitsServicesSearch': ParameterData.none(),
+  'pgOrdersVisitsSearch': ParameterData.none(),
+  'Details03TransactionsSummary': ParameterData.none(),
+  'Details43WorkoutSummary': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

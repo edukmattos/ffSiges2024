@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
+import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import '/pages/visits/md_order_visit_contract_service_add/md_order_visit_contract_service_add_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -174,229 +175,287 @@ class _PgOrdersVisitsServicesSearchWidgetState
                 decoration: const BoxDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: wrapWithModel(
-                            model: _model.cpInputTextSearchModel,
-                            updateCallback: () => setState(() {}),
-                            child: const CpInputTextWidget(
-                              labelText: 'Pesquisar',
-                              isReadOnly: false,
-                            ),
-                          ),
-                        ),
-                        FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primary,
-                          borderRadius: 23.0,
-                          borderWidth: 1.0,
-                          buttonSize: 46.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.search_sharp,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 24.0,
-                          ),
-                          showLoadingIndicator: true,
-                          onPressed: () async {
-                            _model.resContractsServices =
-                                await ApiContractsGroup.servicesBycontractIdCall
-                                    .call(
-                              searchTerms: _model.cpInputTextSearchModel
-                                  .inputTextController.text,
-                              searchContractId:
-                                  FFAppState().stOrderSelected.first.contractId,
-                            );
-                            if ((_model.resContractsServices?.succeeded ??
-                                true)) {
-                              setState(() {
-                                _model.lpsvContractServices = ((_model
-                                                    .resContractsServices
-                                                    ?.jsonBody ??
-                                                '')
-                                            .toList()
-                                            .map<DtVContractServicesStruct?>(
-                                                DtVContractServicesStruct
-                                                    .maybeFromMap)
-                                            .toList()
-                                        as Iterable<DtVContractServicesStruct?>)
-                                    .withoutNulls
-                                    .toList()
-                                    .cast<DtVContractServicesStruct>();
-                              });
-                            }
-
-                            setState(() {});
-                          },
-                        ),
-                      ].divide(const SizedBox(width: 8.0)),
-                    ),
                     Container(
                       decoration: const BoxDecoration(),
-                      child: Builder(
-                        builder: (context) {
-                          final gcContractServices = _model.lpsvContractServices
-                              .map((e) => e)
-                              .toList();
-                          return ListView.separated(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: gcContractServices.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 12.0),
-                            itemBuilder: (context, gcContractServicesIndex) {
-                              final gcContractServicesItem =
-                                  gcContractServices[gcContractServicesIndex];
-                              return Container(
-                                width: double.infinity,
-                                constraints: const BoxConstraints(
-                                  minHeight: 0.0,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: wrapWithModel(
+                                  model: _model.cpInputTextSearchModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const CpInputTextWidget(
+                                    labelText: 'Pesquisar',
+                                    isReadOnly: false,
+                                  ),
                                 ),
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 4.0,
-                                      color: Color(0x1F000000),
-                                      offset: Offset(0.0, 2.0),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 23.0,
+                                borderWidth: 1.0,
+                                buttonSize: 46.0,
+                                fillColor: FlutterFlowTheme.of(context).primary,
+                                icon: Icon(
+                                  Icons.search_sharp,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  size: 24.0,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 12.0, 12.0, 12.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              gcContractServicesItem
-                                                  .serviceDescription,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                showLoadingIndicator: true,
+                                onPressed: () async {
+                                  _model.resContractsServices =
+                                      await ApiContractsGroup
+                                          .servicesBycontractIdCall
+                                          .call(
+                                    searchTerms: _model.cpInputTextSearchModel
+                                        .inputTextController.text,
+                                    searchContractId: FFAppState()
+                                        .stOrderSelected
+                                        .first
+                                        .contractId,
+                                  );
+                                  if ((_model.resContractsServices?.succeeded ??
+                                      true)) {
+                                    setState(() {
+                                      _model.lpsvContractServices = ((_model
+                                                          .resContractsServices
+                                                          ?.jsonBody ??
+                                                      '')
+                                                  .toList()
+                                                  .map<DtVContractServicesStruct?>(
+                                                      DtVContractServicesStruct
+                                                          .maybeFromMap)
+                                                  .toList()
+                                              as Iterable<
+                                                  DtVContractServicesStruct?>)
+                                          .withoutNulls
+                                          .toList()
+                                          .cast<DtVContractServicesStruct>();
+                                    });
+                                  }
+
+                                  setState(() {});
+                                },
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                          Builder(
+                            builder: (context) {
+                              final gcContractServices = _model
+                                  .lpsvContractServices
+                                  .map((e) => e)
+                                  .toList();
+                              return ListView.separated(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: gcContractServices.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 12.0),
+                                itemBuilder:
+                                    (context, gcContractServicesIndex) {
+                                  final gcContractServicesItem =
+                                      gcContractServices[
+                                          gcContractServicesIndex];
+                                  return Container(
+                                    width: double.infinity,
+                                    constraints: const BoxConstraints(
+                                      minHeight: 0.0,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 4.0,
+                                          color: Color(0x1F000000),
+                                          offset: Offset(0.0, 2.0),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 12.0, 12.0, 12.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  gcContractServicesItem
+                                                      .serviceDescription,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .headlineMedium
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color: Colors.white,
                                                         fontSize: 20.0,
                                                       ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'textOnPageLoadAnimation1']!),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    '${formatNumber(
-                                                      gcContractServicesItem
-                                                          .servicePriceUnit,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .commaDecimal,
-                                                      currency: 'R\$ ',
-                                                    )}/${gcContractServicesItem.serviceUnit}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              const Color(0x9AFFFFFF),
-                                                        ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'textOnPageLoadAnimation2']!),
-                                                ),
-                                              ],
-                                            ),
-                                          ].divide(const SizedBox(height: 8.0)),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderRadius: 25.0,
-                                            buttonSize: 50.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .tertiary,
-                                            icon: FaIcon(
-                                              FontAwesomeIcons
-                                                  .solidArrowAltCircleUp,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 26.0,
-                                            ),
-                                            showLoadingIndicator: true,
-                                            onPressed: () async {
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          MdOrderVisitContractServiceAddWidget(
-                                                        serviceId:
-                                                            gcContractServicesItem
-                                                                .serviceId,
-                                                        priceUnit:
-                                                            gcContractServicesItem
-                                                                .servicePriceUnit,
-                                                      ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'textOnPageLoadAnimation1']!),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        '${formatNumber(
+                                                          gcContractServicesItem
+                                                              .servicePriceUnit,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                          currency: 'R\$ ',
+                                                        )}/${gcContractServicesItem.serviceUnit}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: const Color(
+                                                                      0x9AFFFFFF),
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation2']!),
                                                     ),
-                                                  );
+                                                  ],
+                                                ),
+                                              ].divide(const SizedBox(height: 8.0)),
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              FlutterFlowIconButton(
+                                                borderColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                borderRadius: 25.0,
+                                                buttonSize: 50.0,
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                icon: FaIcon(
+                                                  FontAwesomeIcons
+                                                      .solidArrowAltCircleUp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 26.0,
+                                                ),
+                                                showLoadingIndicator: true,
+                                                onPressed: () async {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    enableDrag: false,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              MdOrderVisitContractServiceAddWidget(
+                                                            serviceId:
+                                                                gcContractServicesItem
+                                                                    .serviceId,
+                                                            priceUnit:
+                                                                gcContractServicesItem
+                                                                    .servicePriceUnit,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() {}));
                                                 },
-                                              ).then((value) =>
-                                                  safeSetState(() {}));
-                                            },
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                                  'containerOnPageLoadAnimation']!);
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'containerOnPageLoadAnimation']!);
+                                },
+                              );
                             },
-                          );
-                        },
+                          ),
+                        ].divide(const SizedBox(height: 12.0)),
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          wrapWithModel(
+                            model: _model.cpOrderVisitServicesListModel,
+                            updateCallback: () => setState(() {}),
+                            child: CpOrderVisitServicesListWidget(
+                              orderVisitId:
+                                  FFAppState().stOrderVisitSelected.first.id,
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                formatNumber(
+                                  FFAppState()
+                                      .stOrderVisitSelected
+                                      .first
+                                      .priceServices,
+                                  formatType: FormatType.custom,
+                                  currency: 'R\$ ',
+                                  format: '#,##0.00',
+                                  locale: 'pt_BR',
+                                ),
+                                style: FlutterFlowTheme.of(context).titleLarge,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ].divide(const SizedBox(height: 8.0)),

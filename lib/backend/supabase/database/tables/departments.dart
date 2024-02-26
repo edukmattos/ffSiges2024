@@ -23,9 +23,9 @@ class DepartmentsRow extends SupabaseDataRow {
   String get description => getField<String>('description')!;
   set description(String value) => setField<String>('description', value);
 
-  int? get parentId => getField<int>('parent_id');
-  set parentId(int? value) => setField<int>('parent_id', value);
+  int? get parentId => getField<int>('parentId');
+  set parentId(int? value) => setField<int>('parentId', value);
 
-  int? get companyId => getField<int>('company_id');
-  set companyId(int? value) => setField<int>('company_id', value);
+  int? get companyId => getField<int>('companyId');
+  set companyId(int? value) => setField<int>('companyId', value);
 }

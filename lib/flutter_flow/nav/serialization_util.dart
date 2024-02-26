@@ -265,6 +265,8 @@ dynamic deserializeParam<T>(
             return VDashAdminOrdersStatus6Row(data);
           case LogsRow:
             return LogsRow(data);
+          case VOrdersVisitsSearchFiltersRow:
+            return VOrdersVisitsSearchFiltersRow(data);
           case OrdersVisitsProcessingRow:
             return OrdersVisitsProcessingRow(data);
           case OrdersTypesSubsRow:
