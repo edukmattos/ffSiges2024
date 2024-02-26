@@ -14,9 +14,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
     DateTime? dateEnd,
     List<int>? systemsParents,
     List<int>? systems,
+    List<int>? unitsTypesParent,
     List<int>? ordersTypes,
-    List<int>? ordersPriorities,
     List<int>? ordersTypesSubs,
+    List<int>? ordersPriorities,
     List<int>? companies,
     List<int>? contracts,
     List<int>? ordersVisitsProcessing,
@@ -26,9 +27,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
         _dateEnd = dateEnd,
         _systemsParents = systemsParents,
         _systems = systems,
+        _unitsTypesParent = unitsTypesParent,
         _ordersTypes = ordersTypes,
-        _ordersPriorities = ordersPriorities,
         _ordersTypesSubs = ordersTypesSubs,
+        _ordersPriorities = ordersPriorities,
         _companies = companies,
         _contracts = contracts,
         _ordersVisitsProcessing = ordersVisitsProcessing,
@@ -62,6 +64,14 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
   void updateSystems(Function(List<int>) updateFn) => updateFn(_systems ??= []);
   bool hasSystems() => _systems != null;
 
+  // "unitsTypesParent" field.
+  List<int>? _unitsTypesParent;
+  List<int> get unitsTypesParent => _unitsTypesParent ?? const [];
+  set unitsTypesParent(List<int>? val) => _unitsTypesParent = val;
+  void updateUnitsTypesParent(Function(List<int>) updateFn) =>
+      updateFn(_unitsTypesParent ??= []);
+  bool hasUnitsTypesParent() => _unitsTypesParent != null;
+
   // "ordersTypes" field.
   List<int>? _ordersTypes;
   List<int> get ordersTypes => _ordersTypes ?? const [];
@@ -70,14 +80,6 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
       updateFn(_ordersTypes ??= []);
   bool hasOrdersTypes() => _ordersTypes != null;
 
-  // "ordersPriorities" field.
-  List<int>? _ordersPriorities;
-  List<int> get ordersPriorities => _ordersPriorities ?? const [];
-  set ordersPriorities(List<int>? val) => _ordersPriorities = val;
-  void updateOrdersPriorities(Function(List<int>) updateFn) =>
-      updateFn(_ordersPriorities ??= []);
-  bool hasOrdersPriorities() => _ordersPriorities != null;
-
   // "ordersTypesSubs" field.
   List<int>? _ordersTypesSubs;
   List<int> get ordersTypesSubs => _ordersTypesSubs ?? const [];
@@ -85,6 +87,14 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
   void updateOrdersTypesSubs(Function(List<int>) updateFn) =>
       updateFn(_ordersTypesSubs ??= []);
   bool hasOrdersTypesSubs() => _ordersTypesSubs != null;
+
+  // "ordersPriorities" field.
+  List<int>? _ordersPriorities;
+  List<int> get ordersPriorities => _ordersPriorities ?? const [];
+  set ordersPriorities(List<int>? val) => _ordersPriorities = val;
+  void updateOrdersPriorities(Function(List<int>) updateFn) =>
+      updateFn(_ordersPriorities ??= []);
+  bool hasOrdersPriorities() => _ordersPriorities != null;
 
   // "companies" field.
   List<int>? _companies;
@@ -123,9 +133,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
         dateEnd: data['dateEnd'] as DateTime?,
         systemsParents: getDataList(data['systemsParents']),
         systems: getDataList(data['systems']),
+        unitsTypesParent: getDataList(data['unitsTypesParent']),
         ordersTypes: getDataList(data['ordersTypes']),
-        ordersPriorities: getDataList(data['ordersPriorities']),
         ordersTypesSubs: getDataList(data['ordersTypesSubs']),
+        ordersPriorities: getDataList(data['ordersPriorities']),
         companies: getDataList(data['companies']),
         contracts: getDataList(data['contracts']),
         ordersVisitsProcessing: getDataList(data['ordersVisitsProcessing']),
@@ -141,9 +152,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
         'dateEnd': _dateEnd,
         'systemsParents': _systemsParents,
         'systems': _systems,
+        'unitsTypesParent': _unitsTypesParent,
         'ordersTypes': _ordersTypes,
-        'ordersPriorities': _ordersPriorities,
         'ordersTypesSubs': _ordersTypesSubs,
+        'ordersPriorities': _ordersPriorities,
         'companies': _companies,
         'contracts': _contracts,
         'ordersVisitsProcessing': _ordersVisitsProcessing,
@@ -170,18 +182,23 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
           ParamType.int,
           true,
         ),
+        'unitsTypesParent': serializeParam(
+          _unitsTypesParent,
+          ParamType.int,
+          true,
+        ),
         'ordersTypes': serializeParam(
           _ordersTypes,
           ParamType.int,
           true,
         ),
-        'ordersPriorities': serializeParam(
-          _ordersPriorities,
+        'ordersTypesSubs': serializeParam(
+          _ordersTypesSubs,
           ParamType.int,
           true,
         ),
-        'ordersTypesSubs': serializeParam(
-          _ordersTypesSubs,
+        'ordersPriorities': serializeParam(
+          _ordersPriorities,
           ParamType.int,
           true,
         ),
@@ -230,18 +247,23 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
           ParamType.int,
           true,
         ),
+        unitsTypesParent: deserializeParam<int>(
+          data['unitsTypesParent'],
+          ParamType.int,
+          true,
+        ),
         ordersTypes: deserializeParam<int>(
           data['ordersTypes'],
           ParamType.int,
           true,
         ),
-        ordersPriorities: deserializeParam<int>(
-          data['ordersPriorities'],
+        ordersTypesSubs: deserializeParam<int>(
+          data['ordersTypesSubs'],
           ParamType.int,
           true,
         ),
-        ordersTypesSubs: deserializeParam<int>(
-          data['ordersTypesSubs'],
+        ordersPriorities: deserializeParam<int>(
+          data['ordersPriorities'],
           ParamType.int,
           true,
         ),
@@ -278,9 +300,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
         dateEnd == other.dateEnd &&
         listEquality.equals(systemsParents, other.systemsParents) &&
         listEquality.equals(systems, other.systems) &&
+        listEquality.equals(unitsTypesParent, other.unitsTypesParent) &&
         listEquality.equals(ordersTypes, other.ordersTypes) &&
-        listEquality.equals(ordersPriorities, other.ordersPriorities) &&
         listEquality.equals(ordersTypesSubs, other.ordersTypesSubs) &&
+        listEquality.equals(ordersPriorities, other.ordersPriorities) &&
         listEquality.equals(companies, other.companies) &&
         listEquality.equals(contracts, other.contracts) &&
         listEquality.equals(
@@ -294,9 +317,10 @@ class DtFiltersServicesStruct extends FFFirebaseStruct {
         dateEnd,
         systemsParents,
         systems,
+        unitsTypesParent,
         ordersTypes,
-        ordersPriorities,
         ordersTypesSubs,
+        ordersPriorities,
         companies,
         contracts,
         ordersVisitsProcessing,

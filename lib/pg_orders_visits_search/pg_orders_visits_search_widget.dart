@@ -2,17 +2,21 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_types/cp_dropdown_filters_orders_types_widget.dart';
+import '/pages/components/filters/cp_dropdown_filters_orders_types_subs/cp_dropdown_filters_orders_types_subs_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_visits_processing/cp_dropdown_filters_orders_visits_processing_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_systems/cp_dropdown_filters_systems_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_systems_parents/cp_dropdown_filters_systems_parents_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_units/cp_dropdown_filters_units_widget.dart';
+import '/pages/components/filters/cp_dropdown_filters_units_types_parent/cp_dropdown_filters_units_types_parent_widget.dart';
 import '/pages/components/filters/md_orders_visits_services_detalis/md_orders_visits_services_detalis_widget.dart';
 import '/pages/orders/cp_order_visit_processing/cp_order_visit_processing_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -74,12 +78,27 @@ class _PgOrdersVisitsSearchWidgetState
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
           title: Text(
-            'Page Title',
+            'Atendimentos',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
                   fontSize: 28.0,
+                  fontWeight: FontWeight.w600,
                 ),
           ),
           actions: const [],
@@ -111,10 +130,24 @@ class _PgOrdersVisitsSearchWidgetState
                     ),
                   ),
                   wrapWithModel(
+                    model: _model.cpDropdownFiltersUnitsTypesParentModel,
+                    updateCallback: () => setState(() {}),
+                    child: const CpDropdownFiltersUnitsTypesParentWidget(
+                      hintText: 'Tipos Unidade',
+                    ),
+                  ),
+                  wrapWithModel(
                     model: _model.cpDropdownFiltersOrdersTypesModel,
                     updateCallback: () => setState(() {}),
                     child: const CpDropdownFiltersOrdersTypesWidget(
                       hintText: 'Tipos OS',
+                    ),
+                  ),
+                  wrapWithModel(
+                    model: _model.cpDropdownFiltersOrdersTypesSubsModel,
+                    updateCallback: () => setState(() {}),
+                    child: const CpDropdownFiltersOrdersTypesSubsWidget(
+                      hintText: 'Sub Tipo OS',
                     ),
                   ),
                   wrapWithModel(
@@ -149,6 +182,12 @@ class _PgOrdersVisitsSearchWidgetState
                               .dropdownFiltersSystemsValue,
                           units: _model.cpDropdownFiltersUnitsModel
                               .dropdownFiltersUnitsValue,
+                          ordersTypesSubs: _model
+                              .cpDropdownFiltersOrdersTypesSubsModel
+                              .dropdownFiltersOrdersTypesSubsValue,
+                          unitsTypesParent: _model
+                              .cpDropdownFiltersUnitsTypesParentModel
+                              .dropdownFiltersUnitsTypesParentValue,
                         );
                       });
                       _model.resOrdersVisits =
@@ -161,6 +200,17 @@ class _PgOrdersVisitsSearchWidgetState
                             .dropdownOrdersVisitsProcessingValue,
                         unitsIdsList: _model.cpDropdownFiltersUnitsModel
                             .dropdownFiltersUnitsValue,
+                        ordersTypesSubsIdsList: _model
+                            .cpDropdownFiltersOrdersTypesSubsModel
+                            .dropdownFiltersOrdersTypesSubsValue,
+                        systemsParentsIdsList: _model
+                            .cpDropdownFiltersSystemsParentsModel
+                            .dropdownSystemsParentValue,
+                        systemsIdsList: _model.cpDropdownFiltersSystemsModel
+                            .dropdownFiltersSystemsValue,
+                        unitsTypesParentsIdsList: _model
+                            .cpDropdownFiltersUnitsTypesParentModel
+                            .dropdownFiltersUnitsTypesParentValue,
                       );
                       if ((_model.resOrdersVisits?.succeeded ?? true)) {
                         setState(() {
@@ -213,6 +263,20 @@ class _PgOrdersVisitsSearchWidgetState
                                         .lpsvOrdersVisits[
                                             FFAppState().stCounterLoop]
                                         .priceTotal;
+                            _model.updateLpsvOrdersVisitsAtIndex(
+                              FFAppState().stCounterLoop,
+                              (e) => e
+                                ..dateStartDatetime =
+                                    functions.cfConvDateStringToDatetime(_model
+                                        .lpsvOrdersVisits[
+                                            FFAppState().stCounterLoop]
+                                        .dateStart)
+                                ..dateEndDatetime =
+                                    functions.cfConvDateStringToDatetime(_model
+                                        .lpsvOrdersVisits[
+                                            FFAppState().stCounterLoop]
+                                        .dateEnd),
+                            );
                           });
                           setState(() {
                             FFAppState().stCounterLoop =
@@ -453,7 +517,10 @@ class _PgOrdersVisitsSearchWidgetState
                                             if (gcOrdersVisitsItem.statusId ==
                                                 2)
                                               Text(
-                                                '${gcOrdersVisitsItem.dateEndDatetime?.toString()}h',
+                                                dateTimeFormat(
+                                                    'd/M H:mm',
+                                                    gcOrdersVisitsItem
+                                                        .dateEndDatetime!),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,

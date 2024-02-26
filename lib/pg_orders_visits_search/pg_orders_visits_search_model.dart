@@ -4,10 +4,12 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_types/cp_dropdown_filters_orders_types_widget.dart';
+import '/pages/components/filters/cp_dropdown_filters_orders_types_subs/cp_dropdown_filters_orders_types_subs_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_visits_processing/cp_dropdown_filters_orders_visits_processing_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_systems/cp_dropdown_filters_systems_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_systems_parents/cp_dropdown_filters_systems_parents_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_units/cp_dropdown_filters_units_widget.dart';
+import '/pages/components/filters/cp_dropdown_filters_units_types_parent/cp_dropdown_filters_units_types_parent_widget.dart';
 import 'pg_orders_visits_search_widget.dart' show PgOrdersVisitsSearchWidget;
 import 'package:flutter/material.dart';
 
@@ -44,8 +46,14 @@ class PgOrdersVisitsSearchModel
       cpDropdownFiltersSystemsParentsModel;
   // Model for cpDropdownFiltersSystems component.
   late CpDropdownFiltersSystemsModel cpDropdownFiltersSystemsModel;
+  // Model for cpDropdownFiltersUnitsTypesParent component.
+  late CpDropdownFiltersUnitsTypesParentModel
+      cpDropdownFiltersUnitsTypesParentModel;
   // Model for cpDropdownFiltersOrdersTypes component.
   late CpDropdownFiltersOrdersTypesModel cpDropdownFiltersOrdersTypesModel;
+  // Model for cpDropdownFiltersOrdersTypesSubs component.
+  late CpDropdownFiltersOrdersTypesSubsModel
+      cpDropdownFiltersOrdersTypesSubsModel;
   // Model for cpDropdownFiltersOrdersVisitsProcessing component.
   late CpDropdownFiltersOrdersVisitsProcessingModel
       cpDropdownFiltersOrdersVisitsProcessingModel;
@@ -65,8 +73,12 @@ class PgOrdersVisitsSearchModel
         createModel(context, () => CpDropdownFiltersSystemsParentsModel());
     cpDropdownFiltersSystemsModel =
         createModel(context, () => CpDropdownFiltersSystemsModel());
+    cpDropdownFiltersUnitsTypesParentModel =
+        createModel(context, () => CpDropdownFiltersUnitsTypesParentModel());
     cpDropdownFiltersOrdersTypesModel =
         createModel(context, () => CpDropdownFiltersOrdersTypesModel());
+    cpDropdownFiltersOrdersTypesSubsModel =
+        createModel(context, () => CpDropdownFiltersOrdersTypesSubsModel());
     cpDropdownFiltersOrdersVisitsProcessingModel = createModel(
         context, () => CpDropdownFiltersOrdersVisitsProcessingModel());
     cpDropdownFiltersUnitsModel =
@@ -78,7 +90,9 @@ class PgOrdersVisitsSearchModel
     unfocusNode.dispose();
     cpDropdownFiltersSystemsParentsModel.dispose();
     cpDropdownFiltersSystemsModel.dispose();
+    cpDropdownFiltersUnitsTypesParentModel.dispose();
     cpDropdownFiltersOrdersTypesModel.dispose();
+    cpDropdownFiltersOrdersTypesSubsModel.dispose();
     cpDropdownFiltersOrdersVisitsProcessingModel.dispose();
     cpDropdownFiltersUnitsModel.dispose();
   }

@@ -35,8 +35,8 @@ class VOrdersVisitsSearchFiltersRow extends SupabaseDataRow {
   int? get departmentId => getField<int>('departmentId');
   set departmentId(int? value) => setField<int>('departmentId', value);
 
-  int? get contractId => getField<int>('contractId');
-  set contractId(int? value) => setField<int>('contractId', value);
+  int? get contractId => getField<int>('contract_id');
+  set contractId(int? value) => setField<int>('contract_id', value);
 
   String? get contractDescription => getField<String>('contractDescription');
   set contractDescription(String? value) =>
@@ -51,15 +51,15 @@ class VOrdersVisitsSearchFiltersRow extends SupabaseDataRow {
   String? get orderTypeCode => getField<String>('orderTypeCode');
   set orderTypeCode(String? value) => setField<String>('orderTypeCode', value);
 
-  int? get typeSubId => getField<int>('typeSubId');
-  set typeSubId(int? value) => setField<int>('typeSubId', value);
+  int? get orderTypeSubId => getField<int>('order_type_sub_id');
+  set orderTypeSubId(int? value) => setField<int>('order_type_sub_id', value);
 
   String? get orderTypeSubCode => getField<String>('orderTypeSubCode');
   set orderTypeSubCode(String? value) =>
       setField<String>('orderTypeSubCode', value);
 
-  int? get systemParentId => getField<int>('systemParentId');
-  set systemParentId(int? value) => setField<int>('systemParentId', value);
+  int? get systemParentId => getField<int>('system_parent_id');
+  set systemParentId(int? value) => setField<int>('system_parent_id', value);
 
   String? get systemParentDescription =>
       getField<String>('systemParentDescription');
@@ -70,8 +70,8 @@ class VOrdersVisitsSearchFiltersRow extends SupabaseDataRow {
   set systemParentCode(String? value) =>
       setField<String>('systemParentCode', value);
 
-  int? get systemId => getField<int>('systemId');
-  set systemId(int? value) => setField<int>('systemId', value);
+  int? get systemId => getField<int>('system_id');
+  set systemId(int? value) => setField<int>('system_id', value);
 
   String? get systemDescription => getField<String>('systemDescription');
   set systemDescription(String? value) =>
@@ -80,8 +80,9 @@ class VOrdersVisitsSearchFiltersRow extends SupabaseDataRow {
   String? get systemCode => getField<String>('systemCode');
   set systemCode(String? value) => setField<String>('systemCode', value);
 
-  int? get unitTypeParentId => getField<int>('unitTypeParentId');
-  set unitTypeParentId(int? value) => setField<int>('unitTypeParentId', value);
+  int? get unitTypeParentId => getField<int>('unit_type_parent_id');
+  set unitTypeParentId(int? value) =>
+      setField<int>('unit_type_parent_id', value);
 
   String? get unitTypeParentDescription =>
       getField<String>('unitTypeParentDescription');

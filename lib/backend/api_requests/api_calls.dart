@@ -3319,16 +3319,31 @@ class SearchFiltersCall {
     List<int>? ordersTypesIdsList,
     List<int>? processingIdsList,
     List<int>? unitsIdsList,
+    List<int>? ordersTypesSubsIdsList,
+    List<int>? systemsParentsIdsList,
+    List<int>? systemsIdsList,
+    List<int>? unitsTypesParentsIdsList,
+    List<int>? contractsIdsList,
   }) async {
     final ordersTypesIds = _serializeList(ordersTypesIdsList);
     final processingIds = _serializeList(processingIdsList);
     final unitsIds = _serializeList(unitsIdsList);
+    final ordersTypesSubsIds = _serializeList(ordersTypesSubsIdsList);
+    final systemsParentsIds = _serializeList(systemsParentsIdsList);
+    final systemsIds = _serializeList(systemsIdsList);
+    final unitsTypesParentsIds = _serializeList(unitsTypesParentsIdsList);
+    final contractsIds = _serializeList(contractsIdsList);
 
     final ffApiRequestBody = '''
 {
   "orders_types_ids": $ordersTypesIds,
+  "orders_types_subs_ids": $ordersTypesSubsIds,
   "processing_ids": $processingIds,
-  "units_ids": $unitsIds
+  "units_ids": $unitsIds,
+  "systems_parents_ids": $systemsParentsIds,
+  "systems_ids": $systemsIds,
+  "units_types_parents_ids": $unitsTypesParentsIds,
+  "contracts_ids": $contractsIds
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'searchFilters',
