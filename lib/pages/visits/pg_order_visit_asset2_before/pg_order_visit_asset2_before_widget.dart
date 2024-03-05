@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/pages/components/cp_input_integer/cp_input_integer_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
-import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -204,48 +203,6 @@ class _PgOrderVisitAsset2BeforeWidgetState
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, -1.0),
-                                  child: wrapWithModel(
-                                    model: _model
-                                        .cpOrderVisitAssetListItemCardModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: CpOrderVisitAssetListItemCardWidget(
-                                      code: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .code,
-                                      statusDescription: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .beforeStatusDescription,
-                                      description: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .description,
-                                      tagDescription: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .beforeTagDescription,
-                                      tagSubDescription: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .beforeTagSubDescription,
-                                      processingId: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .processingId,
-                                      isMoved: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .isMoved,
-                                      unitDescription: FFAppState()
-                                          .stOrderVisitAssetSelected
-                                          .first
-                                          .beforeUnitDescription,
-                                    ),
-                                  ),
-                                ),
                                 Align(
                                   alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(

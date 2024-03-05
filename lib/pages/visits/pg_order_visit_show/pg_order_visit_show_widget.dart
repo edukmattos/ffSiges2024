@@ -6,7 +6,7 @@ import '/pages/assets/cp_order_visit_asset_show_bottom_nav_bar/cp_order_visit_as
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
-import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
+import '/pages/visits/cp_order_visit_asset_list_card/cp_order_visit_asset_list_card_widget.dart';
 import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget.dart';
 import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -358,64 +358,51 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                             final listViewVOrdersVisitsAssetsRow =
                                                 listViewVOrdersVisitsAssetsRowList[
                                                     listViewIndex];
-                                            return InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await action_blocks
-                                                    .abOrderVisitAssetSelected(
-                                                  context,
-                                                  abOrderVisitAssetId:
-                                                      valueOrDefault<int>(
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .id,
-                                                    0,
-                                                  ),
-                                                );
-
-                                                context.pushNamed(
-                                                  'pgOrderVisitAsset2Before',
-                                                  queryParameters: {
-                                                    'operation': serializeParam(
-                                                      'before',
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              },
-                                              child:
-                                                  CpOrderVisitAssetListItemCardWidget(
-                                                key: Key(
-                                                    'Key8dc_${listViewIndex}_of_${listViewVOrdersVisitsAssetsRowList.length}'),
-                                                code:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .code!,
-                                                statusDescription:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .beforeStatusDescription!,
-                                                description:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .description!,
-                                                tagDescription:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .beforeTagDescription!,
-                                                tagSubDescription:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .beforeTagSubDescription!,
-                                                processingId:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .processingId!,
-                                                isMoved:
-                                                    listViewVOrdersVisitsAssetsRow
-                                                        .isMoved!,
-                                                unitDescription:
-                                                    valueOrDefault<String>(
-                                                  listViewVOrdersVisitsAssetsRow
-                                                      .beforeUnitDescription,
-                                                  'unitDescription',
+                                            return SizedBox(
+                                              height: 200.0,
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    'pgOrderVisitAsset2Before',
+                                                    queryParameters: {
+                                                      'operation':
+                                                          serializeParam(
+                                                        'before',
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                },
+                                                child:
+                                                    CpOrderVisitAssetListCardWidget(
+                                                  key: Key(
+                                                      'Keymi8_${listViewIndex}_of_${listViewVOrdersVisitsAssetsRowList.length}'),
+                                                  assetDescription:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .description!,
+                                                  unitDescription:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .beforeUnitDescription!,
+                                                  assetCode:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .code!,
+                                                  assetStatusDescription:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .beforeStatusDescription!,
+                                                  assetTagDescription:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .beforeTagDescription!,
+                                                  assetTagSubDescription:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .beforeTagSubDescription!,
+                                                  processingId:
+                                                      listViewVOrdersVisitsAssetsRow
+                                                          .processingId!,
                                                 ),
                                               ),
                                             );

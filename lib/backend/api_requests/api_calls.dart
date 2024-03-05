@@ -1648,16 +1648,11 @@ class ContractByIdCall {
   Future<ApiCallResponse> call({
     int? contractId,
   }) async {
-    const ffApiRequestBody = '''
-{
-  "serach_contract_id": <search_contract_id>,
-  "search_terms": "<search_terms>"
-}''';
     return ApiManager.instance.makeApiCall(
       callName: 'contractById',
       apiUrl:
           '${ApiContractsGroup.baseUrl}v_contracts?id=eq.$contractId&select=\'*\'',
-      callType: ApiCallType.POST,
+      callType: ApiCallType.GET,
       headers: {
         'apiKey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
@@ -1666,8 +1661,6 @@ class ContractByIdCall {
         'Content-Type': 'application/json',
       },
       params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -2414,6 +2407,11 @@ class ApiOrdersGroup {
   static OrdersByStatusIdAndDateCall ordersByStatusIdAndDateCall =
       OrdersByStatusIdAndDateCall();
   static FiltersCall filtersCall = FiltersCall();
+  static OrdersParentOpenDashboardFiltersCall
+      ordersParentOpenDashboardFiltersCall =
+      OrdersParentOpenDashboardFiltersCall();
+  static OrdersOpenDashboardFiltersCall ordersOpenDashboardFiltersCall =
+      OrdersOpenDashboardFiltersCall();
 }
 
 class OrderByIdCall {
@@ -2506,6 +2504,109 @@ class FiltersCall {
     return ApiManager.instance.makeApiCall(
       callName: 'filters',
       apiUrl: '${ApiOrdersGroup.baseUrl}rpc/fc_v_orders_filters',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrdersParentOpenDashboardFiltersCall {
+  Future<ApiCallResponse> call({
+    List<int>? systemsParentsIdsList,
+    List<int>? systemsIdsList,
+    List<int>? unitsTypesParentsIdsList,
+    List<int>? unitsIdsList,
+    List<int>? ordersTypesIdsList,
+    List<int>? ordersTypesSubsIdsList,
+    List<int>? contractsIdsList,
+  }) async {
+    final systemsParentsIds = _serializeList(systemsParentsIdsList);
+    final systemsIds = _serializeList(systemsIdsList);
+    final unitsTypesParentsIds = _serializeList(unitsTypesParentsIdsList);
+    final unitsIds = _serializeList(unitsIdsList);
+    final ordersTypesIds = _serializeList(ordersTypesIdsList);
+    final ordersTypesSubsIds = _serializeList(ordersTypesSubsIdsList);
+    final contractsIds = _serializeList(contractsIdsList);
+
+    final ffApiRequestBody = '''
+{
+  "systems_parents_ids": $systemsParentsIds,
+  "systems_ids": $systemsIds,
+  "units_types_parents_ids": $unitsTypesParentsIds,
+  "units_ids": $unitsIds,
+  "orders_types_ids": $ordersTypesIds,
+  "orders_types_subs_ids": $ordersTypesSubsIds,
+  "contracts_ids": $contractsIds
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ordersParentOpenDashboardFilters',
+      apiUrl:
+          '${ApiOrdersGroup.baseUrl}rpc/fc_dash_admin_orders_parent_filters_open',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrdersOpenDashboardFiltersCall {
+  Future<ApiCallResponse> call({
+    List<int>? systemsParentsIdsList,
+    List<int>? systemsIdsList,
+    List<int>? unitsTypesParentsIdsList,
+    List<int>? unitsIdsList,
+    List<int>? ordersTypesIdsList,
+    List<int>? ordersTypesSubsIdsList,
+    List<int>? contractsIdsList,
+  }) async {
+    final systemsParentsIds = _serializeList(systemsParentsIdsList);
+    final systemsIds = _serializeList(systemsIdsList);
+    final unitsTypesParentsIds = _serializeList(unitsTypesParentsIdsList);
+    final unitsIds = _serializeList(unitsIdsList);
+    final ordersTypesIds = _serializeList(ordersTypesIdsList);
+    final ordersTypesSubsIds = _serializeList(ordersTypesSubsIdsList);
+    final contractsIds = _serializeList(contractsIdsList);
+
+    final ffApiRequestBody = '''
+{
+  "systems_parents_ids": $systemsParentsIds,
+  "systems_ids": $systemsIds,
+  "units_types_parents_ids": $unitsTypesParentsIds,
+  "units_ids": $unitsIds,
+  "orders_types_ids": $ordersTypesIds,
+  "orders_types_subs_ids": $ordersTypesSubsIds,
+  "contracts_ids": $contractsIds
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ordersOpenDashboardFilters',
+      apiUrl: '${ApiOrdersGroup.baseUrl}rpc/fc_dash_admin_orders_filters_open',
       callType: ApiCallType.POST,
       headers: {
         'apiKey':

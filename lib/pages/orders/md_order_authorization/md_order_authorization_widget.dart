@@ -1,5 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/cp_dropdown_leader_teams_selected/cp_dropdown_leader_teams_selected_widget.dart';
-import '/pages/components/cp_dropdown_orders_contracts/cp_dropdown_orders_contracts_widget.dart';
 import '/pages/components/cp_dropdown_teams_department/cp_dropdown_teams_department_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
@@ -70,26 +67,6 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 100.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 100.ms,
-          duration: 400.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 100.ms,
-          duration: 400.ms,
-          begin: const Offset(-30.0, 0.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
   };
 
   @override
@@ -132,24 +109,6 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 25.0,
-                    borderWidth: 1.0,
-                    buttonSize: 50.0,
-                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                    icon: Icon(
-                      Icons.close_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 30.0,
-                    ),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
                 Material(
                   color: Colors.transparent,
                   elevation: 5.0,
@@ -162,7 +121,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                     ),
                   ),
                   child: Container(
-                    width: double.infinity,
+                    width: 600.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: const BorderRadius.only(
@@ -206,6 +165,29 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                       .headlineSmall,
                                             ),
                                           ),
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(1.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 25.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              icon: Icon(
+                                                Icons.close_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 30.0,
+                                              ),
+                                              onPressed: () async {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       const Divider(
@@ -240,7 +222,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                                   0.0,
                                                                   4.0),
                                                       child: Text(
-                                                        'Contrato',
+                                                        'Equipe responsável',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -256,66 +238,27 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                           animationsMap[
                                                               'textOnPageLoadAnimation1']!),
                                                     ),
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        setState(() {
-                                                          FFAppState()
-                                                              .stContractSelected = [];
-                                                        });
-                                                        _model.apiResultnvn =
-                                                            await ApiContractsGroup
-                                                                .contractByIdCall
-                                                                .call();
-                                                        if ((_model.apiResultnvn
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          setState(() {
-                                                            FFAppState()
-                                                                .stContractSelected = ((_model
-                                                                            .apiResultnvn
-                                                                            ?.jsonBody ??
-                                                                        '')
-                                                                    .toList()
-                                                                    .map<DtVContractStruct?>(
-                                                                        DtVContractStruct
-                                                                            .maybeFromMap)
-                                                                    .toList() as Iterable<DtVContractStruct?>)
-                                                                .withoutNulls
-                                                                .toList()
-                                                                .cast<DtVContractStruct>();
-                                                          });
-                                                        }
-                                                        await Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    2000));
-
-                                                        setState(() {});
-                                                      },
-                                                      child: wrapWithModel(
-                                                        model: _model
-                                                            .cpDropdownOrdersContractsModel,
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        updateOnChange: true,
-                                                        child:
-                                                            const CpDropdownOrdersContractsWidget(),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .cpDropdownTeamsDepartmentModel,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      updateOnChange: true,
+                                                      child:
+                                                          CpDropdownTeamsDepartmentWidget(
+                                                        departmentId: FFAppState()
+                                                            .stContractSelected
+                                                            .first
+                                                            .providerDepartmentId,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                                if (FFAppState()
-                                                    .stContractSelected
-                                                    .isNotEmpty)
-                                                  Column(
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 24.0),
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     crossAxisAlignment:
@@ -331,7 +274,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                                     0.0,
                                                                     4.0),
                                                         child: Text(
-                                                          'Equipe responsável',
+                                                          'Líder',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .labelLarge
@@ -346,81 +289,21 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                             animationsMap[
                                                                 'textOnPageLoadAnimation2']!),
                                                       ),
-                                                      if (_model
-                                                              .cpDropdownOrdersContractsModel
-                                                              .dropdownOrdersContractsValue !=
-                                                          null)
-                                                        wrapWithModel(
-                                                          model: _model
-                                                              .cpDropdownTeamsDepartmentModel,
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          updateOnChange: true,
-                                                          child:
-                                                              CpDropdownTeamsDepartmentWidget(
-                                                            departmentId: FFAppState()
-                                                                .stContractSelected
-                                                                .first
-                                                                .providerDepartmentId,
-                                                          ),
+                                                      wrapWithModel(
+                                                        model: _model
+                                                            .cpDropdownLeaderTeamsSelectedModel,
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        child:
+                                                            CpDropdownLeaderTeamsSelectedWidget(
+                                                          teamId: _model
+                                                              .cpDropdownTeamsDepartmentModel
+                                                              .dropdownTeamsDepartmentValue,
                                                         ),
+                                                      ),
                                                     ],
                                                   ),
-                                                if (_model
-                                                        .cpDropdownTeamsDepartmentModel
-                                                        .dropdownTeamsDepartmentValue !=
-                                                    null)
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 24.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      2.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0),
-                                                          child: Text(
-                                                            'Líder',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'textOnPageLoadAnimation3']!),
-                                                        ),
-                                                        wrapWithModel(
-                                                          model: _model
-                                                              .cpDropdownLeaderTeamsSelectedModel,
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          child:
-                                                              CpDropdownLeaderTeamsSelectedWidget(
-                                                            teamId: _model
-                                                                .cpDropdownTeamsDepartmentModel
-                                                                .dropdownTeamsDepartmentValue,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
+                                                ),
                                               ].divide(const SizedBox(height: 12.0)),
                                             ),
                                             Align(
@@ -430,18 +313,6 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                 onPressed: () async {
                                                   await OrdersTable().update(
                                                     data: {
-                                                      'companyId': FFAppState()
-                                                          .stContractSelected
-                                                          .first
-                                                          .providerCompanyId,
-                                                      'departmentId': FFAppState()
-                                                          .stContractSelected
-                                                          .first
-                                                          .providerDepartmentId,
-                                                      'contractId': FFAppState()
-                                                          .stContractSelected
-                                                          .first
-                                                          .id,
                                                       'teamId': _model
                                                           .cpDropdownTeamsDepartmentModel
                                                           .dropdownTeamsDepartmentValue,

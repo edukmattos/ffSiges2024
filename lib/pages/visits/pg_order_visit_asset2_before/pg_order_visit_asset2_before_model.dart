@@ -3,7 +3,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_integer/cp_input_integer_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
-import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
 import 'dart:async';
 import 'pg_order_visit_asset2_before_widget.dart'
     show PgOrderVisitAsset2BeforeWidget;
@@ -26,8 +25,6 @@ class PgOrderVisitAsset2BeforeModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for cpOrderVisitAssetListItemCard component.
-  late CpOrderVisitAssetListItemCardModel cpOrderVisitAssetListItemCardModel;
   // Stores action output result for [Backend Call - API (orderVisitAssetById)] action in IconButton widget.
   ApiCallResponse? resOrderVisitAssetSelected3;
   Completer<List<VOrdersVisitsAssetsRow>>? requestCompleter;
@@ -47,8 +44,6 @@ class PgOrderVisitAsset2BeforeModel
 
   @override
   void initState(BuildContext context) {
-    cpOrderVisitAssetListItemCardModel =
-        createModel(context, () => CpOrderVisitAssetListItemCardModel());
     cpInputIntegerModel = createModel(context, () => CpInputIntegerModel());
     cpInputTexMultilineModel =
         createModel(context, () => CpInputTexMultilineModel());
@@ -57,7 +52,6 @@ class PgOrderVisitAsset2BeforeModel
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpOrderVisitAssetListItemCardModel.dispose();
     cpInputIntegerModel.dispose();
     cpInputTexMultilineModel.dispose();
   }

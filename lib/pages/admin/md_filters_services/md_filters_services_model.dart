@@ -1,8 +1,5 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/components/filters/cp_dropdown_filters_contracts/cp_dropdown_filters_contracts_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_types/cp_dropdown_filters_orders_types_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_types_subs/cp_dropdown_filters_orders_types_subs_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_orders_visits_processing/cp_dropdown_filters_orders_visits_processing_widget.dart';
@@ -10,37 +7,13 @@ import '/pages/components/filters/cp_dropdown_filters_systems/cp_dropdown_filter
 import '/pages/components/filters/cp_dropdown_filters_systems_parents/cp_dropdown_filters_systems_parents_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_units/cp_dropdown_filters_units_widget.dart';
 import '/pages/components/filters/cp_dropdown_filters_units_types_parent/cp_dropdown_filters_units_types_parent_widget.dart';
-import 'pg_orders_visits_search_widget.dart' show PgOrdersVisitsSearchWidget;
+import 'md_filters_services_widget.dart' show MdFiltersServicesWidget;
 import 'package:flutter/material.dart';
 
-class PgOrdersVisitsSearchModel
-    extends FlutterFlowModel<PgOrdersVisitsSearchWidget> {
-  ///  Local state fields for this page.
+class MdFiltersServicesModel extends FlutterFlowModel<MdFiltersServicesWidget> {
+  ///  State fields for stateful widgets in this component.
 
-  List<DtVOrderVisitStruct> lpsvOrdersVisits = [];
-  void addToLpsvOrdersVisits(DtVOrderVisitStruct item) =>
-      lpsvOrdersVisits.add(item);
-  void removeFromLpsvOrdersVisits(DtVOrderVisitStruct item) =>
-      lpsvOrdersVisits.remove(item);
-  void removeAtIndexFromLpsvOrdersVisits(int index) =>
-      lpsvOrdersVisits.removeAt(index);
-  void insertAtIndexInLpsvOrdersVisits(int index, DtVOrderVisitStruct item) =>
-      lpsvOrdersVisits.insert(index, item);
-  void updateLpsvOrdersVisitsAtIndex(
-          int index, Function(DtVOrderVisitStruct) updateFn) =>
-      lpsvOrdersVisits[index] = updateFn(lpsvOrdersVisits[index]);
-
-  double lpsvPriceServicesSum = 0.0;
-
-  double lpsvPriceMaterialsSum = 0.0;
-
-  double lpsvPriceVehiculesSum = 0.0;
-
-  double lpsvPriceTotalSum = 0.0;
-
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
+  final formKey = GlobalKey<FormState>();
   // Model for cpDropdownFiltersSystemsParents component.
   late CpDropdownFiltersSystemsParentsModel
       cpDropdownFiltersSystemsParentsModel;
@@ -49,6 +22,8 @@ class PgOrdersVisitsSearchModel
   // Model for cpDropdownFiltersUnitsTypesParent component.
   late CpDropdownFiltersUnitsTypesParentModel
       cpDropdownFiltersUnitsTypesParentModel;
+  // Model for cpDropdownFiltersUnits component.
+  late CpDropdownFiltersUnitsModel cpDropdownFiltersUnitsModel;
   // Model for cpDropdownFiltersOrdersTypes component.
   late CpDropdownFiltersOrdersTypesModel cpDropdownFiltersOrdersTypesModel;
   // Model for cpDropdownFiltersOrdersTypesSubs component.
@@ -57,13 +32,8 @@ class PgOrdersVisitsSearchModel
   // Model for cpDropdownFiltersOrdersVisitsProcessing component.
   late CpDropdownFiltersOrdersVisitsProcessingModel
       cpDropdownFiltersOrdersVisitsProcessingModel;
-  // Model for cpDropdownFiltersUnits component.
-  late CpDropdownFiltersUnitsModel cpDropdownFiltersUnitsModel;
-  // Stores action output result for [Backend Call - API (searchFilters)] action in Button widget.
-  ApiCallResponse? resOrdersVisits;
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
-      FlutterFlowDataTableController<DtVOrderVisitStruct>();
+  // Model for cpDropdownFiltersContracts component.
+  late CpDropdownFiltersContractsModel cpDropdownFiltersContractsModel;
 
   /// Initialization and disposal methods.
 
@@ -75,26 +45,28 @@ class PgOrdersVisitsSearchModel
         createModel(context, () => CpDropdownFiltersSystemsModel());
     cpDropdownFiltersUnitsTypesParentModel =
         createModel(context, () => CpDropdownFiltersUnitsTypesParentModel());
+    cpDropdownFiltersUnitsModel =
+        createModel(context, () => CpDropdownFiltersUnitsModel());
     cpDropdownFiltersOrdersTypesModel =
         createModel(context, () => CpDropdownFiltersOrdersTypesModel());
     cpDropdownFiltersOrdersTypesSubsModel =
         createModel(context, () => CpDropdownFiltersOrdersTypesSubsModel());
     cpDropdownFiltersOrdersVisitsProcessingModel = createModel(
         context, () => CpDropdownFiltersOrdersVisitsProcessingModel());
-    cpDropdownFiltersUnitsModel =
-        createModel(context, () => CpDropdownFiltersUnitsModel());
+    cpDropdownFiltersContractsModel =
+        createModel(context, () => CpDropdownFiltersContractsModel());
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     cpDropdownFiltersSystemsParentsModel.dispose();
     cpDropdownFiltersSystemsModel.dispose();
     cpDropdownFiltersUnitsTypesParentModel.dispose();
+    cpDropdownFiltersUnitsModel.dispose();
     cpDropdownFiltersOrdersTypesModel.dispose();
     cpDropdownFiltersOrdersTypesSubsModel.dispose();
     cpDropdownFiltersOrdersVisitsProcessingModel.dispose();
-    cpDropdownFiltersUnitsModel.dispose();
+    cpDropdownFiltersContractsModel.dispose();
   }
 
   /// Action blocks are added here.

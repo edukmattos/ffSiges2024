@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/orders/cp_order_visit_processing/cp_order_visit_processing_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_order_visit_asset_list_item_card_model.dart';
 export 'cp_order_visit_asset_list_item_card_model.dart';
@@ -18,8 +15,6 @@ class CpOrderVisitAssetListItemCardWidget extends StatefulWidget {
     required this.description,
     required this.tagDescription,
     required this.tagSubDescription,
-    required this.processingId,
-    required this.isMoved,
     required this.unitDescription,
   });
 
@@ -28,8 +23,6 @@ class CpOrderVisitAssetListItemCardWidget extends StatefulWidget {
   final String? description;
   final String? tagDescription;
   final String? tagSubDescription;
-  final int? processingId;
-  final bool? isMoved;
   final String? unitDescription;
 
   @override
@@ -218,7 +211,8 @@ class _CpOrderVisitAssetListItemCardWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: double.infinity,
+      width: MediaQuery.sizeOf(context).width * 1.0,
+      height: MediaQuery.sizeOf(context).height * 1.0,
       constraints: const BoxConstraints(
         minHeight: 0.0,
       ),
@@ -241,92 +235,13 @@ class _CpOrderVisitAssetListItemCardWidgetState
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        wrapWithModel(
-                          model: _model.cpOrderVisitProcessingModel,
-                          updateCallback: () => setState(() {}),
-                          child: CpOrderVisitProcessingWidget(
-                            processingId: valueOrDefault<int>(
-                              widget.processingId,
-                              1,
-                            ),
-                          ),
-                        ),
-                        if (widget.isMoved ?? true)
-                          FaIcon(
-                            FontAwesomeIcons.mapMarkerAlt,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 26.0,
-                          ),
-                        if (widget.processingId != 4)
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 12.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).error,
-                            icon: FaIcon(
-                              FontAwesomeIcons.trashAlt,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              size: 20.0,
-                            ),
-                            showLoadingIndicator: true,
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Excluir ATIVO ?'),
-                                            content: const Text(
-                                                'Ao confirmar, as informações serão excluídas DEFINITIVAMENTE.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Sim'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Não'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('erer'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                          ),
-                      ],
-                    ),
+                  const Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [],
                   ),
                   Text(
                     valueOrDefault<String>(

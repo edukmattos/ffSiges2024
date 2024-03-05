@@ -723,7 +723,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                             Text(
                               valueOrDefault<String>(
                                 containerVOrdersRow.teamLeaderNameShort,
-                                '.',
+                                'teamLeaderNameShort',
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
@@ -736,7 +736,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                             Text(
                               valueOrDefault<String>(
                                 containerVOrdersRow.teamCode,
-                                '.',
+                                'teamCode',
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall

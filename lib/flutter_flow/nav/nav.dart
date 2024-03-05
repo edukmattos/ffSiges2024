@@ -371,12 +371,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const PgOrdersVisitsServicesSearchWidget(),
         ),
         FFRoute(
-          name: 'pgOrdersVisitsSearch',
-          path: '/pgOrdersVisitsSearch',
-          requireAuth: true,
-          builder: (context, params) => const PgOrdersVisitsSearchWidget(),
-        ),
-        FFRoute(
           name: 'Details03TransactionsSummary',
           path: '/details03TransactionsSummary',
           builder: (context, params) => const Details03TransactionsSummaryWidget(),

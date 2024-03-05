@@ -193,7 +193,6 @@ final parametersBuilderMap =
       ),
   'pgDashboardUserOrders': ParameterData.none(),
   'pgOrdersVisitsServicesSearch': ParameterData.none(),
-  'pgOrdersVisitsSearch': ParameterData.none(),
   'Details03TransactionsSummary': ParameterData.none(),
   'Details43WorkoutSummary': ParameterData.none(),
 };

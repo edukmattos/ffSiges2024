@@ -94,7 +94,7 @@ class _CpDropdownFiltersSystemsWidgetState
               _model.dropdownFiltersSystemsValueController ??=
                   FormFieldController<List<int>>(
                       _model.dropdownFiltersSystemsValue ??= List<int>.from(
-            FFAppState().stFiltersServices.systems,
+            FFAppState().asFiltersServices.systems,
           )),
           options: List<int>.from(
               dropdownFiltersSystemsSystemsRowList.map((e) => e.id).toList()),

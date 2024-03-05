@@ -80,7 +80,7 @@ class _CpDropdownFiltersOrdersVisitsProcessingWidgetState
                   .dropdownOrdersVisitsProcessingValueController ??=
               FormFieldController<List<int>>(
                   _model.dropdownOrdersVisitsProcessingValue ??= List<int>.from(
-            FFAppState().stFiltersServices.ordersVisitsProcessing,
+            FFAppState().asFiltersServices.ordersVisitsProcessing,
           )),
           options: List<int>.from(
               dropdownOrdersVisitsProcessingOrdersVisitsProcessingRowList

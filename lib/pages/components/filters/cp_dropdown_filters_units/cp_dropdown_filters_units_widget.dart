@@ -76,7 +76,7 @@ class _CpDropdownFiltersUnitsWidgetState
           multiSelectController: _model.dropdownFiltersUnitsValueController ??=
               FormFieldController<List<int>>(
                   _model.dropdownFiltersUnitsValue ??= List<int>.from(
-            FFAppState().stFiltersServices.units,
+            FFAppState().asFiltersServices.units,
           )),
           options: List<int>.from(dropdownFiltersUnitsVUnitsRowList
               .map((e) => e.id)

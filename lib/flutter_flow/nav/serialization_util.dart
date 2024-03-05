@@ -251,8 +251,6 @@ dynamic deserializeParam<T>(
         switch (T) {
           case UnitsTypesRow:
             return UnitsTypesRow(data);
-          case VDashAdminOrdersParentStatus3Row:
-            return VDashAdminOrdersParentStatus3Row(data);
           case VOrdersCountByTeamsStatusesRow:
             return VOrdersCountByTeamsStatusesRow(data);
           case AppRow:
@@ -261,8 +259,6 @@ dynamic deserializeParam<T>(
             return VOrdersFollowersRow(data);
           case VDashUserOrdersStatus5Row:
             return VDashUserOrdersStatus5Row(data);
-          case VDashAdminOrdersStatus6Row:
-            return VDashAdminOrdersStatus6Row(data);
           case LogsRow:
             return LogsRow(data);
           case VOrdersVisitsSearchFiltersRow:
@@ -279,14 +275,14 @@ dynamic deserializeParam<T>(
             return VOrdersUnscheduleRow(data);
           case AssetsTagsRow:
             return AssetsTagsRow(data);
+          case VDashAdminOrdersParentFiltersOpenRow:
+            return VDashAdminOrdersParentFiltersOpenRow(data);
           case VOrdersCountByTeamLeadersStatus4Row:
             return VOrdersCountByTeamLeadersStatus4Row(data);
           case VProfilesPermissionsRow:
             return VProfilesPermissionsRow(data);
           case VOrdersOpenStatus6Row:
             return VOrdersOpenStatus6Row(data);
-          case VDashAdminOrdersParentStatus4Row:
-            return VDashAdminOrdersParentStatus4Row(data);
           case UsersStatusesRow:
             return UsersStatusesRow(data);
           case VUnitsTypesRow:
@@ -297,8 +293,6 @@ dynamic deserializeParam<T>(
             return VOrdersOpenStatus3Row(data);
           case CompaniesRow:
             return CompaniesRow(data);
-          case VDashAdminOrdersParentStatus1Row:
-            return VDashAdminOrdersParentStatus1Row(data);
           case OrdersVisitsAssetsRow:
             return OrdersVisitsAssetsRow(data);
           case UsersNotificationsRow:
@@ -319,8 +313,6 @@ dynamic deserializeParam<T>(
             return VOrdersVisitsServicesRow(data);
           case VDashUserOrdersStatus6Row:
             return VDashUserOrdersStatus6Row(data);
-          case VDashAdminOrdersStatus5Row:
-            return VDashAdminOrdersStatus5Row(data);
           case VOrdersOpenRow:
             return VOrdersOpenRow(data);
           case VOrdersCountByUnitsParentsStatusesRow:
@@ -361,8 +353,6 @@ dynamic deserializeParam<T>(
             return AssetsStatusessRow(data);
           case OrdersTypesRow:
             return OrdersTypesRow(data);
-          case VDashAdminOrdersStatus2Row:
-            return VDashAdminOrdersStatus2Row(data);
           case VUsersNotificationsCountRow:
             return VUsersNotificationsCountRow(data);
           case UsersTracksRow:
@@ -373,6 +363,8 @@ dynamic deserializeParam<T>(
             return MaterialsStockRow(data);
           case VAssetsRow:
             return VAssetsRow(data);
+          case VDashAdminOrdersFiltersOpenRow:
+            return VDashAdminOrdersFiltersOpenRow(data);
           case OrdersTypesActivitiesRow:
             return OrdersTypesActivitiesRow(data);
           case VOrdersAuthorizedRow:
@@ -401,8 +393,6 @@ dynamic deserializeParam<T>(
             return VOrdersOpenParentStatus1Row(data);
           case OrdersStatusesLogsRow:
             return OrdersStatusesLogsRow(data);
-          case VDashAdminOrdersParentStatus5Row:
-            return VDashAdminOrdersParentStatus5Row(data);
           case VUsersCountByOrdersVisitsRow:
             return VUsersCountByOrdersVisitsRow(data);
           case ServicesRow:
@@ -411,8 +401,6 @@ dynamic deserializeParam<T>(
             return DepartmentsRow(data);
           case VOrdersCountByUnitsParentsOpenRow:
             return VOrdersCountByUnitsParentsOpenRow(data);
-          case VDashAdminOrdersParentStatus2Row:
-            return VDashAdminOrdersParentStatus2Row(data);
           case VOrdersCountByUnitsOpenRow:
             return VOrdersCountByUnitsOpenRow(data);
           case VOrdersRow:
@@ -451,12 +439,8 @@ dynamic deserializeParam<T>(
             return MaterialsRow(data);
           case VOrdersSuspendedRow:
             return VOrdersSuspendedRow(data);
-          case VDashAdminOrdersStatus3Row:
-            return VDashAdminOrdersStatus3Row(data);
           case TeamsRow:
             return TeamsRow(data);
-          case VDashAdminOrdersStatus4Row:
-            return VDashAdminOrdersStatus4Row(data);
           case AppPagesRow:
             return AppPagesRow(data);
           case AssetsTypesRow:
@@ -479,8 +463,6 @@ dynamic deserializeParam<T>(
             return VOrdersOpenStatus4Row(data);
           case OrdersVisitsAssetsMaterialsRow:
             return OrdersVisitsAssetsMaterialsRow(data);
-          case VDashAdminOrdersParentStatus6Row:
-            return VDashAdminOrdersParentStatus6Row(data);
           case UsersProfilesRow:
             return UsersProfilesRow(data);
           default:

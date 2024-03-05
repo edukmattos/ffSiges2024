@@ -1,5 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -98,26 +96,8 @@ class _CpDropdownOrdersContractsWidgetState
                     'contractDescription',
                   ))
               .toList(),
-          onChanged: (val) async {
-            setState(() => _model.dropdownOrdersContractsValue = val);
-            _model.apiResultgzo = await ApiContractsGroup.contractByIdCall.call(
-              contractId: _model.dropdownOrdersContractsValue,
-            );
-            if ((_model.apiResultgzo?.succeeded ?? true)) {
-              setState(() {
-                FFAppState()
-                    .stContractSelected = ((_model.apiResultgzo?.jsonBody ?? '')
-                        .toList()
-                        .map<DtVContractStruct?>(DtVContractStruct.maybeFromMap)
-                        .toList() as Iterable<DtVContractStruct?>)
-                    .withoutNulls
-                    .toList()
-                    .cast<DtVContractStruct>();
-              });
-            }
-
-            setState(() {});
-          },
+          onChanged: (val) =>
+              setState(() => _model.dropdownOrdersContractsValue = val),
           width: double.infinity,
           height: 48.0,
           searchHintTextStyle: FlutterFlowTheme.of(context).bodyLarge,

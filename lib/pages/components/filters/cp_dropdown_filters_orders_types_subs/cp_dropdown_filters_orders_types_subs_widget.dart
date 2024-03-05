@@ -79,7 +79,7 @@ class _CpDropdownFiltersOrdersTypesSubsWidgetState
                   .dropdownFiltersOrdersTypesSubsValueController ??=
               FormFieldController<List<int>>(
                   _model.dropdownFiltersOrdersTypesSubsValue ??= List<int>.from(
-            FFAppState().stFiltersServices.ordersTypesSubs,
+            FFAppState().asFiltersServices.ordersTypesSubs,
           )),
           options: List<int>.from(
               ApiOrdersTypesSubGroup.ordersTypesSubsByDepartmentCall.id(

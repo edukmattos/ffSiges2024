@@ -1,31 +1,29 @@
-import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'cp_dropdown_filters_orders_types_model.dart';
-export 'cp_dropdown_filters_orders_types_model.dart';
+import 'cp_dropdown_filters_contracts_model.dart';
+export 'cp_dropdown_filters_contracts_model.dart';
 
-class CpDropdownFiltersOrdersTypesWidget extends StatefulWidget {
-  const CpDropdownFiltersOrdersTypesWidget({
+class CpDropdownFiltersContractsWidget extends StatefulWidget {
+  const CpDropdownFiltersContractsWidget({
     super.key,
     this.hintText,
-    this.initialValue,
   });
 
   final String? hintText;
-  final int? initialValue;
 
   @override
-  State<CpDropdownFiltersOrdersTypesWidget> createState() =>
-      _CpDropdownFiltersOrdersTypesWidgetState();
+  State<CpDropdownFiltersContractsWidget> createState() =>
+      _CpDropdownFiltersContractsWidgetState();
 }
 
-class _CpDropdownFiltersOrdersTypesWidgetState
-    extends State<CpDropdownFiltersOrdersTypesWidget> {
-  late CpDropdownFiltersOrdersTypesModel _model;
+class _CpDropdownFiltersContractsWidgetState
+    extends State<CpDropdownFiltersContractsWidget> {
+  late CpDropdownFiltersContractsModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +34,7 @@ class _CpDropdownFiltersOrdersTypesWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CpDropdownFiltersOrdersTypesModel());
+    _model = createModel(context, () => CpDropdownFiltersContractsModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -52,9 +50,17 @@ class _CpDropdownFiltersOrdersTypesWidgetState
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<ApiCallResponse>(
-      future: ApiOrdersTypesGroup.ordersTypesByDepartmentCall.call(
-        departmentId: 1,
+    return FutureBuilder<List<VContractsRow>>(
+      future: VContractsTable().queryRows(
+        queryFn: (q) => q
+            .eq(
+              'clientDepartmentId',
+              valueOrDefault<int>(
+                FFAppState().asUserCurrent.departmentId,
+                1,
+              ),
+            )
+            .order('providerCompanyDescription', ascending: true),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -71,28 +77,26 @@ class _CpDropdownFiltersOrdersTypesWidgetState
             ),
           );
         }
-        final dropdownFiltersOrdersTypesOrdersTypesByDepartmentResponse =
+        List<VContractsRow> dropdownOrdersContractsVContractsRowList =
             snapshot.data!;
         return FlutterFlowDropDown<int>(
           multiSelectController:
-              _model.dropdownFiltersOrdersTypesValueController ??=
+              _model.dropdownOrdersContractsValueController ??=
                   FormFieldController<List<int>>(
-                      _model.dropdownFiltersOrdersTypesValue ??= List<int>.from(
-            FFAppState().asFiltersServices.ordersTypes,
+                      _model.dropdownOrdersContractsValue ??= List<int>.from(
+            FFAppState().asFiltersServices.contracts,
           )),
-          options:
-              List<int>.from(ApiOrdersTypesGroup.ordersTypesByDepartmentCall
-                  .id(
-                    dropdownFiltersOrdersTypesOrdersTypesByDepartmentResponse
-                        .jsonBody,
-                  )!
-                  .cast<int>()),
-          optionLabels: ApiOrdersTypesGroup.ordersTypesByDepartmentCall
-              .description(
-                dropdownFiltersOrdersTypesOrdersTypesByDepartmentResponse
-                    .jsonBody,
-              )!
-              .map((e) => e.toString())
+          options: List<int>.from(dropdownOrdersContractsVContractsRowList
+              .map((e) => valueOrDefault<int>(
+                    e.id,
+                    1,
+                  ))
+              .toList()),
+          optionLabels: dropdownOrdersContractsVContractsRowList
+              .map((e) => valueOrDefault<String>(
+                    e.description,
+                    'contractDescription',
+                  ))
               .toList(),
           width: double.infinity,
           height: 48.0,
@@ -117,7 +121,7 @@ class _CpDropdownFiltersOrdersTypesWidgetState
           isSearchable: true,
           isMultiSelect: true,
           onMultiSelectChanged: (val) =>
-              setState(() => _model.dropdownFiltersOrdersTypesValue = val),
+              setState(() => _model.dropdownOrdersContractsValue = val),
         );
       },
     );

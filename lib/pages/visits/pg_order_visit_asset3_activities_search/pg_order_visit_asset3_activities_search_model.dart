@@ -4,7 +4,6 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_dropdown_orders_types_activities/cp_dropdown_orders_types_activities_widget.dart';
-import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
 import 'dart:async';
 import 'pg_order_visit_asset3_activities_search_widget.dart'
     show PgOrderVisitAsset3ActivitiesSearchWidget;
@@ -33,8 +32,6 @@ class PgOrderVisitAsset3ActivitiesSearchModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for cpOrderVisitAssetListItemCard component.
-  late CpOrderVisitAssetListItemCardModel cpOrderVisitAssetListItemCardModel;
   Completer<List<VOrdersVisitsAssetsActivitiesRow>>? requestCompleter;
   // Model for cpDropdownOrdersTypesActivities component.
   late CpDropdownOrdersTypesActivitiesModel
@@ -48,8 +45,6 @@ class PgOrderVisitAsset3ActivitiesSearchModel
 
   @override
   void initState(BuildContext context) {
-    cpOrderVisitAssetListItemCardModel =
-        createModel(context, () => CpOrderVisitAssetListItemCardModel());
     cpDropdownOrdersTypesActivitiesModel =
         createModel(context, () => CpDropdownOrdersTypesActivitiesModel());
   }
@@ -57,7 +52,6 @@ class PgOrderVisitAsset3ActivitiesSearchModel
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpOrderVisitAssetListItemCardModel.dispose();
     cpDropdownOrdersTypesActivitiesModel.dispose();
   }
 

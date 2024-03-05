@@ -44,18 +44,6 @@ class FFAppState extends ChangeNotifier {
               _stMapOrdersCenterSelected;
     });
     _safeInit(() {
-      if (prefs.containsKey('ff_stFiltersServices')) {
-        try {
-          final serializedData =
-              prefs.getString('ff_stFiltersServices') ?? '{}';
-          _stFiltersServices = DtFiltersServicesStruct.fromSerializableMap(
-              jsonDecode(serializedData));
-        } catch (e) {
-          print("Can't decode persisted data type. Error: $e.");
-        }
-      }
-    });
-    _safeInit(() {
       _asUserPermissions = prefs
               .getStringList('ff_asUserPermissions')
               ?.map((x) {
@@ -70,6 +58,48 @@ class FFAppState extends ChangeNotifier {
               .withoutNulls
               .toList() ??
           _asUserPermissions;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_asFiltersServices')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_asFiltersServices') ?? '{}';
+          _asFiltersServices = DtFiltersServicesStruct.fromSerializableMap(
+              jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
+    _safeInit(() {
+      _asDashAdminOrdersParentFilters = prefs
+              .getStringList('ff_asDashAdminOrdersParentFilters')
+              ?.map((x) {
+                try {
+                  return DtVOrderStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _asDashAdminOrdersParentFilters;
+    });
+    _safeInit(() {
+      _asDashAdminOrdersFilters = prefs
+              .getStringList('ff_asDashAdminOrdersFilters')
+              ?.map((x) {
+                try {
+                  return DtVOrderStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _asDashAdminOrdersFilters;
     });
   }
 
@@ -628,19 +658,6 @@ class FFAppState extends ChangeNotifier {
     _stContractSelected.insert(index, value);
   }
 
-  DtFiltersServicesStruct _stFiltersServices = DtFiltersServicesStruct();
-  DtFiltersServicesStruct get stFiltersServices => _stFiltersServices;
-  set stFiltersServices(DtFiltersServicesStruct value) {
-    _stFiltersServices = value;
-    prefs.setString('ff_stFiltersServices', value.serialize());
-  }
-
-  void updateStFiltersServicesStruct(
-      Function(DtFiltersServicesStruct) updateFn) {
-    updateFn(_stFiltersServices);
-    prefs.setString('ff_stFiltersServices', _stFiltersServices.serialize());
-  }
-
   String _asCwOrderVisitServiceAmountFormatted = '';
   String get asCwOrderVisitServiceAmountFormatted =>
       _asCwOrderVisitServiceAmountFormatted;
@@ -784,6 +801,107 @@ class FFAppState extends ChangeNotifier {
     _asUserPermissions.insert(index, value);
     prefs.setStringList('ff_asUserPermissions',
         _asUserPermissions.map((x) => x.serialize()).toList());
+  }
+
+  DtFiltersServicesStruct _asFiltersServices = DtFiltersServicesStruct();
+  DtFiltersServicesStruct get asFiltersServices => _asFiltersServices;
+  set asFiltersServices(DtFiltersServicesStruct value) {
+    _asFiltersServices = value;
+    prefs.setString('ff_asFiltersServices', value.serialize());
+  }
+
+  void updateAsFiltersServicesStruct(
+      Function(DtFiltersServicesStruct) updateFn) {
+    updateFn(_asFiltersServices);
+    prefs.setString('ff_asFiltersServices', _asFiltersServices.serialize());
+  }
+
+  List<DtVOrderStruct> _asDashAdminOrdersParentFilters = [];
+  List<DtVOrderStruct> get asDashAdminOrdersParentFilters =>
+      _asDashAdminOrdersParentFilters;
+  set asDashAdminOrdersParentFilters(List<DtVOrderStruct> value) {
+    _asDashAdminOrdersParentFilters = value;
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAsDashAdminOrdersParentFilters(DtVOrderStruct value) {
+    _asDashAdminOrdersParentFilters.add(value);
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        _asDashAdminOrdersParentFilters.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAsDashAdminOrdersParentFilters(DtVOrderStruct value) {
+    _asDashAdminOrdersParentFilters.remove(value);
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        _asDashAdminOrdersParentFilters.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAsDashAdminOrdersParentFilters(int index) {
+    _asDashAdminOrdersParentFilters.removeAt(index);
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        _asDashAdminOrdersParentFilters.map((x) => x.serialize()).toList());
+  }
+
+  void updateAsDashAdminOrdersParentFiltersAtIndex(
+    int index,
+    DtVOrderStruct Function(DtVOrderStruct) updateFn,
+  ) {
+    _asDashAdminOrdersParentFilters[index] =
+        updateFn(_asDashAdminOrdersParentFilters[index]);
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        _asDashAdminOrdersParentFilters.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAsDashAdminOrdersParentFilters(
+      int index, DtVOrderStruct value) {
+    _asDashAdminOrdersParentFilters.insert(index, value);
+    prefs.setStringList('ff_asDashAdminOrdersParentFilters',
+        _asDashAdminOrdersParentFilters.map((x) => x.serialize()).toList());
+  }
+
+  List<DtVOrderStruct> _asDashAdminOrdersFilters = [];
+  List<DtVOrderStruct> get asDashAdminOrdersFilters =>
+      _asDashAdminOrdersFilters;
+  set asDashAdminOrdersFilters(List<DtVOrderStruct> value) {
+    _asDashAdminOrdersFilters = value;
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAsDashAdminOrdersFilters(DtVOrderStruct value) {
+    _asDashAdminOrdersFilters.add(value);
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        _asDashAdminOrdersFilters.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAsDashAdminOrdersFilters(DtVOrderStruct value) {
+    _asDashAdminOrdersFilters.remove(value);
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        _asDashAdminOrdersFilters.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAsDashAdminOrdersFilters(int index) {
+    _asDashAdminOrdersFilters.removeAt(index);
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        _asDashAdminOrdersFilters.map((x) => x.serialize()).toList());
+  }
+
+  void updateAsDashAdminOrdersFiltersAtIndex(
+    int index,
+    DtVOrderStruct Function(DtVOrderStruct) updateFn,
+  ) {
+    _asDashAdminOrdersFilters[index] =
+        updateFn(_asDashAdminOrdersFilters[index]);
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        _asDashAdminOrdersFilters.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAsDashAdminOrdersFilters(
+      int index, DtVOrderStruct value) {
+    _asDashAdminOrdersFilters.insert(index, value);
+    prefs.setStringList('ff_asDashAdminOrdersFilters',
+        _asDashAdminOrdersFilters.map((x) => x.serialize()).toList());
   }
 }
 

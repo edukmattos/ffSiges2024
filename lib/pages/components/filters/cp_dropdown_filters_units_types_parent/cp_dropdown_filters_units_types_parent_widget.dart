@@ -86,7 +86,7 @@ class _CpDropdownFiltersUnitsTypesParentWidgetState
               _model.dropdownFiltersUnitsTypesParentValueController ??=
                   FormFieldController<List<int>>(_model
                       .dropdownFiltersUnitsTypesParentValue ??= List<int>.from(
-            FFAppState().stFiltersServices.unitsTypesParent,
+            FFAppState().asFiltersServices.unitsTypesParent,
           )),
           options: List<int>.from(
               dropdownFiltersUnitsTypesParentUnitsTypesRowList

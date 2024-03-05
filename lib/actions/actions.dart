@@ -1085,3 +1085,94 @@ Future abOrderVisitSelectedServices(
     );
   });
 }
+
+Future abDashAdminOrdersFilters(
+  BuildContext context, {
+  List<int>? abOrdersTypes,
+  List<int>? abSystemsParent,
+  List<int>? abSystems,
+  List<int>? abUnits,
+  List<int>? abOrdersTypesSubs,
+  List<int>? abUnitsTypesParent,
+  List<int>? abContracts,
+}) async {
+  ApiCallResponse? apiResulthfuT;
+  ApiCallResponse? apiResulthfuToo;
+  ApiCallResponse? apiResulthfu;
+
+  apiResulthfuT =
+      await ApiOrdersGroup.ordersParentOpenDashboardFiltersCall.call(
+    systemsParentsIdsList: abSystemsParent,
+    systemsIdsList: abSystems,
+    unitsTypesParentsIdsList: abUnitsTypesParent,
+    unitsIdsList: abUnits,
+    ordersTypesIdsList: abOrdersTypes,
+    ordersTypesSubsIdsList: abOrdersTypesSubs,
+    contractsIdsList: abContracts,
+  );
+  if ((apiResulthfuT.succeeded ?? true)) {
+    FFAppState().update(() {
+      FFAppState().asDashAdminOrdersParentFilters =
+          ((apiResulthfuT?.jsonBody ?? '')
+                  .toList()
+                  .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
+                  .toList() as Iterable<DtVOrderStruct?>)
+              .withoutNulls
+              .toList()
+              .cast<DtVOrderStruct>();
+    });
+    apiResulthfuToo = await ApiOrdersGroup.ordersOpenDashboardFiltersCall.call(
+      systemsParentsIdsList: abSystemsParent,
+      systemsIdsList: abSystems,
+      unitsTypesParentsIdsList: abUnitsTypesParent,
+      unitsIdsList: abUnits,
+      ordersTypesIdsList: abOrdersTypes,
+      ordersTypesSubsIdsList: abOrdersTypesSubs,
+      contractsIdsList: abContracts,
+    );
+    if ((apiResulthfuToo.succeeded ?? true)) {
+      FFAppState().update(() {
+        FFAppState().asDashAdminOrdersFilters =
+            ((apiResulthfuToo?.jsonBody ?? '')
+                    .toList()
+                    .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
+                    .toList() as Iterable<DtVOrderStruct?>)
+                .withoutNulls
+                .toList()
+                .cast<DtVOrderStruct>();
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text(
+            'Não foi possivel filtrar as OS\'s.',
+            style: TextStyle(),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).error,
+        ),
+      );
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text(
+          'Não foi possivel filtrar as SS\'s.',
+          style: TextStyle(),
+        ),
+        duration: const Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
+    );
+  }
+
+  apiResulthfu = await ApiOrdersGroup.ordersParentOpenDashboardFiltersCall.call(
+    systemsParentsIdsList: abSystemsParent,
+    systemsIdsList: abSystems,
+    unitsTypesParentsIdsList: abUnitsTypesParent,
+    unitsIdsList: abUnits,
+    ordersTypesIdsList: abOrdersTypes,
+    ordersTypesSubsIdsList: abOrdersTypesSubs,
+    contractsIdsList: abContracts,
+  );
+}

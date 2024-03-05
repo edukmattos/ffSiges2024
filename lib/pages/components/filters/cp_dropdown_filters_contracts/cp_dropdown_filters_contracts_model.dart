@@ -1,16 +1,16 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'cp_dropdown_orders_contracts_widget.dart'
-    show CpDropdownOrdersContractsWidget;
+import 'cp_dropdown_filters_contracts_widget.dart'
+    show CpDropdownFiltersContractsWidget;
 import 'package:flutter/material.dart';
 
-class CpDropdownOrdersContractsModel
-    extends FlutterFlowModel<CpDropdownOrdersContractsWidget> {
+class CpDropdownFiltersContractsModel
+    extends FlutterFlowModel<CpDropdownFiltersContractsWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for DropdownOrdersContracts widget.
-  int? dropdownOrdersContractsValue;
-  FormFieldController<int>? dropdownOrdersContractsValueController;
+  List<int>? dropdownOrdersContractsValue;
+  FormFieldController<List<int>>? dropdownOrdersContractsValueController;
 
   /// Initialization and disposal methods.
 

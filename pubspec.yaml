@@ -30,6 +30,7 @@ dependencies:
   auto_size_text: 3.0.0
   badges: 2.0.2
   cached_network_image: 3.2.1
+  calendar_date_picker2: ^0.5.3
   carousel_slider: 4.2.1
   cloud_firestore: 4.13.1
   cloud_firestore_platform_interface: 6.0.5
@@ -39,7 +40,6 @@ dependencies:
   cloud_functions_web: 4.6.11
   collection: 1.17.2
   currency_text_input_formatter: ^2.1.10
-  data_table_2: 2.5.10
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5
@@ -116,7 +116,6 @@ dependencies:
   provider: 6.0.5
   realtime_client: 1.4.0
   rxdart: 0.27.7
-  scrollable_clean_calendar: ^1.5.0
   shared_preferences: 2.2.2
   shared_preferences_android: 2.2.1
   shared_preferences_foundation: 2.3.4

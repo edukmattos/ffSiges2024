@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/cp_dropdown_orders_types_activities/cp_dropdown_orders_types_activities_widget.dart';
-import '/pages/orders/cp_order_visit_asset_list_item_card/cp_order_visit_asset_list_item_card_widget.dart';
 import 'dart:async';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -124,45 +123,6 @@ class _PgOrderVisitAsset3ActivitiesSearchWidgetState
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              wrapWithModel(
-                                model:
-                                    _model.cpOrderVisitAssetListItemCardModel,
-                                updateCallback: () => setState(() {}),
-                                child: CpOrderVisitAssetListItemCardWidget(
-                                  code: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .code,
-                                  statusDescription: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .beforeStatusDescription,
-                                  description: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .description,
-                                  tagDescription: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .beforeTagDescription,
-                                  tagSubDescription: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .beforeTagSubDescription,
-                                  processingId: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .processingId,
-                                  isMoved: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .isMoved,
-                                  unitDescription: FFAppState()
-                                      .stOrderVisitAssetSelected
-                                      .first
-                                      .beforeUnitDescription,
-                                ),
-                              ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

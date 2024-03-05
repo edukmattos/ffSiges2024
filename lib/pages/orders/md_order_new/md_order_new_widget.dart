@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -7,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
+import '/pages/components/cp_dropdown_orders_contracts/cp_dropdown_orders_contracts_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
@@ -155,6 +158,26 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
         ),
       ],
     ),
+    'textOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -292,375 +315,365 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                             AutovalidateMode.always,
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
                                           children: [
                                             Column(
-                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  2.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  4.0),
-                                                      child: Text(
-                                                        'Serviços a serem realizados',
-                                                        style:
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Serviços a serem realizados',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation1']!),
+                                                ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .cpInputTexMultilineModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child:
+                                                      const CpInputTexMultilineWidget(
+                                                    readOnly: false,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Setor',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation2']!),
+                                                ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .cpDropdownAssetsTagsModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child:
+                                                      CpDropdownAssetsTagsWidget(
+                                                    initialValue: FFAppState()
+                                                        .stOrderParentSelected
+                                                        .first
+                                                        .assetTagId,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Tipo Serviço',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation3']!),
+                                                ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .cpDropdownOrdersTypesModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child:
+                                                      const CpDropdownOrdersTypesWidget(),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Sub Tipo Serviço',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation4']!),
+                                                ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .cpDropdownOrdersTypesSubsModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child:
+                                                      const CpDropdownOrdersTypesSubsWidget(),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Prioridade',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation5']!),
+                                                ),
+                                                FutureBuilder<
+                                                    List<OrdersPrioritiesRow>>(
+                                                  future:
+                                                      OrdersPrioritiesTable()
+                                                          .queryRows(
+                                                    queryFn: (q) =>
+                                                        q.order('id'),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    List<OrdersPrioritiesRow>
+                                                        choiceChipsOrdersPrioritiesRowList =
+                                                        snapshot.data!;
+                                                    return FlutterFlowChoiceChips(
+                                                      options:
+                                                          choiceChipsOrdersPrioritiesRowList
+                                                              .map((e) =>
+                                                                  e.description)
+                                                              .withoutNulls
+                                                              .toList()
+                                                              .map((label) =>
+                                                                  ChipData(
+                                                                      label))
+                                                              .toList(),
+                                                      onChanged: (val) =>
+                                                          setState(() => _model
+                                                                  .choiceChipsValue =
+                                                              val?.firstOrNull),
+                                                      selectedChipStyle:
+                                                          ChipStyle(
+                                                        backgroundColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelLarge
+                                                                .secondaryBackground,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .primary,
                                                                 ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'textOnPageLoadAnimation1']!),
-                                                    ),
-                                                    wrapWithModel(
-                                                      model: _model
-                                                          .cpInputTexMultilineModel,
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child:
-                                                          const CpInputTexMultilineWidget(
-                                                        readOnly: false,
+                                                        iconColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        iconSize: 18.0,
+                                                        labelPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    4.0,
+                                                                    12.0,
+                                                                    4.0),
+                                                        elevation: 0.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        borderWidth: 2.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  2.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  4.0),
-                                                      child: Text(
-                                                        'Setor',
-                                                        style:
+                                                      unselectedChipStyle:
+                                                          ChipStyle(
+                                                        backgroundColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelLarge
+                                                                .primaryBackground,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .secondaryText,
                                                                 ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'textOnPageLoadAnimation2']!),
-                                                    ),
-                                                    wrapWithModel(
-                                                      model: _model
-                                                          .cpDropdownAssetsTagsModel,
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child:
-                                                          CpDropdownAssetsTagsWidget(
-                                                        initialValue: FFAppState()
-                                                            .stOrderParentSelected
-                                                            .first
-                                                            .assetTagId,
+                                                        iconColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        iconSize: 18.0,
+                                                        labelPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    4.0,
+                                                                    12.0,
+                                                                    4.0),
+                                                        elevation: 0.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        borderWidth: 2.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      chipSpacing: 8.0,
+                                                      rowSpacing: 8.0,
+                                                      multiselect: false,
+                                                      initialized: _model
+                                                              .choiceChipsValue !=
+                                                          null,
+                                                      alignment:
+                                                          WrapAlignment.start,
+                                                      controller: _model
+                                                              .choiceChipsValueController ??=
+                                                          FormFieldController<
+                                                              List<String>>(
+                                                        ['1'],
+                                                      ),
+                                                      wrapped: false,
+                                                    ).animateOnPageLoad(
+                                                        animationsMap[
+                                                            'choiceChipsOnPageLoadAnimation']!);
+                                                  },
                                                 ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  2.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  4.0),
-                                                      child: Text(
-                                                        'Tipo Serviço',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'textOnPageLoadAnimation3']!),
-                                                    ),
-                                                    wrapWithModel(
-                                                      model: _model
-                                                          .cpDropdownOrdersTypesModel,
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child:
-                                                          const CpDropdownOrdersTypesWidget(),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  2.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  4.0),
-                                                      child: Text(
-                                                        'Sub Tipo Serviço',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'textOnPageLoadAnimation4']!),
-                                                    ),
-                                                    wrapWithModel(
-                                                      model: _model
-                                                          .cpDropdownOrdersTypesSubsModel,
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child:
-                                                          const CpDropdownOrdersTypesSubsWidget(),
-                                                    ),
-                                                  ],
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Contrato',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation6']!),
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 24.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    2.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    4.0),
-                                                        child: Text(
-                                                          'Prioridade',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                        ).animateOnPageLoad(
-                                                            animationsMap[
-                                                                'textOnPageLoadAnimation5']!),
-                                                      ),
-                                                      FutureBuilder<
-                                                          List<
-                                                              OrdersPrioritiesRow>>(
-                                                        future:
-                                                            OrdersPrioritiesTable()
-                                                                .queryRows(
-                                                          queryFn: (q) =>
-                                                              q.order('id'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  valueColor:
-                                                                      AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<OrdersPrioritiesRow>
-                                                              choiceChipsOrdersPrioritiesRowList =
-                                                              snapshot.data!;
-                                                          return FlutterFlowChoiceChips(
-                                                            options: choiceChipsOrdersPrioritiesRowList
-                                                                .map((e) => e
-                                                                    .description)
-                                                                .withoutNulls
-                                                                .toList()
-                                                                .map((label) =>
-                                                                    ChipData(
-                                                                        label))
-                                                                .toList(),
-                                                            onChanged: (val) =>
-                                                                setState(() => _model
-                                                                        .choiceChipsValue =
-                                                                    val?.firstOrNull),
-                                                            selectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                      ),
-                                                              iconColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          4.0,
-                                                                          12.0,
-                                                                          4.0),
-                                                              elevation: 0.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            unselectedChipStyle:
-                                                                ChipStyle(
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                      ),
-                                                              iconColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              iconSize: 18.0,
-                                                              labelPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          4.0,
-                                                                          12.0,
-                                                                          4.0),
-                                                              elevation: 0.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                              borderWidth: 2.0,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            chipSpacing: 8.0,
-                                                            rowSpacing: 8.0,
-                                                            multiselect: false,
-                                                            initialized: _model
-                                                                    .choiceChipsValue !=
-                                                                null,
-                                                            alignment:
-                                                                WrapAlignment
-                                                                    .start,
-                                                            controller: _model
-                                                                    .choiceChipsValueController ??=
-                                                                FormFieldController<
-                                                                    List<
-                                                                        String>>(
-                                                              ['1'],
-                                                            ),
-                                                            wrapped: false,
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'choiceChipsOnPageLoadAnimation']!);
-                                                        },
-                                                      ),
-                                                    ],
+                                                  child: wrapWithModel(
+                                                    model: _model
+                                                        .cpDropdownOrdersContractsModel,
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child:
+                                                        const CpDropdownOrdersContractsWidget(),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 12.0)),
+                                              ],
                                             ),
                                             Align(
                                               alignment: const AlignmentDirectional(
                                                   1.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
+                                                  var shouldSetState = false;
                                                   if (_model.formKey
                                                               .currentState ==
                                                           null ||
@@ -753,6 +766,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     abPriorityDescription:
                                                         _model.choiceChipsValue,
                                                   );
+                                                  shouldSetState = true;
                                                   if (_model
                                                           .resAbOrderPriorityId !=
                                                       0) {
@@ -778,121 +792,189 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                             .id,
                                                       ),
                                                     );
-                                                    _model.resOrderAdded =
-                                                        await OrdersTable()
-                                                            .insert({
-                                                      'companyId': FFAppState()
-                                                          .asUserCurrent
-                                                          .companyId,
-                                                      'departmentId':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .departmentId,
-                                                      'parentId':
-                                                          widget.orderParentId,
-                                                      'typeId': _model
-                                                          .cpDropdownOrdersTypesModel
-                                                          .dropdownOrdersTypesValue,
-                                                      'typeSubId': _model
-                                                          .cpDropdownOrdersTypesSubsModel
-                                                          .dropdownOrdersTypesSubsValue,
-                                                      'unitId': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitId,
-                                                      'systemParentId': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .systemParentId,
-                                                      'systemId': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .systemId,
-                                                      'unitTypeParentId':
-                                                          FFAppState()
-                                                              .stOrderParentSelected
-                                                              .first
-                                                              .unitTypeParentId,
-                                                      'unitTypeId': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitTypeId,
-                                                      'requesterName':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .nameShort,
-                                                      'requesterTeamId':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .teamId,
-                                                      'createdUserId':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .id,
-                                                      'createdDate': supaSerialize<
-                                                              DateTime>(
-                                                          getCurrentTimestamp),
-                                                      'requestedServices': _model
-                                                          .cpInputTexMultilineModel
-                                                          .inputTextMultineController
-                                                          .text,
-                                                      'year': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .year,
-                                                      'orderMask':
-                                                          '${FFAppState().stOrderParentSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOrderParentSelected.first.year.toString()}',
-                                                      'requesterDate':
-                                                          supaSerialize<
-                                                                  DateTime>(
-                                                              getCurrentTimestamp),
-                                                      'statusId': 2,
-                                                      'statusDate': supaSerialize<
-                                                              DateTime>(
-                                                          getCurrentTimestamp),
-                                                      'priorityId': _model
-                                                          .resAbOrderPriorityId,
-                                                      'unitLatitude': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitLatitude,
-                                                      'unitLongitude': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitLongitude,
-                                                      'counterParent': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .counterParent,
-                                                      'counterChild': _model
-                                                          .lcsvOrderChildCounter,
-                                                      'assetTagId': _model
-                                                          .cpDropdownAssetsTagsModel
-                                                          .dropdownAssetsTagsValue,
-                                                    });
-                                                    if (FFAppState()
+                                                    _model.resContractSelected =
+                                                        await ApiContractsGroup
+                                                            .contractByIdCall
+                                                            .call(
+                                                      contractId: _model
+                                                          .cpDropdownOrdersContractsModel
+                                                          .dropdownOrdersContractsValue,
+                                                    );
+                                                    shouldSetState = true;
+                                                    if ((_model
+                                                            .resContractSelected
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      setState(() {
+                                                        FFAppState()
+                                                            .stContractSelected = ((_model
+                                                                        .resContractSelected
+                                                                        ?.jsonBody ??
+                                                                    '')
+                                                                .toList()
+                                                                .map<DtVContractStruct?>(
+                                                                    DtVContractStruct
+                                                                        .maybeFromMap)
+                                                                .toList() as Iterable<DtVContractStruct?>)
+                                                            .withoutNulls
+                                                            .toList()
+                                                            .cast<DtVContractStruct>();
+                                                      });
+                                                      _model.resOrderAdded =
+                                                          await OrdersTable()
+                                                              .insert({
+                                                        'companyId': FFAppState()
+                                                            .stContractSelected
+                                                            .first
+                                                            .providerCompanyId,
+                                                        'departmentId': FFAppState()
+                                                            .stContractSelected
+                                                            .first
+                                                            .providerDepartmentId,
+                                                        'parentId': widget
+                                                            .orderParentId,
+                                                        'typeId': _model
+                                                            .cpDropdownOrdersTypesModel
+                                                            .dropdownOrdersTypesValue,
+                                                        'typeSubId': _model
+                                                            .cpDropdownOrdersTypesSubsModel
+                                                            .dropdownOrdersTypesSubsValue,
+                                                        'unitId': FFAppState()
                                                             .stOrderParentSelected
                                                             .first
-                                                            .statusId ==
-                                                        1) {
-                                                      await OrdersTable()
-                                                          .update(
-                                                        data: {
-                                                          'statusId': 2,
-                                                          'statusDate':
-                                                              supaSerialize<
-                                                                      DateTime>(
-                                                                  getCurrentTimestamp),
-                                                        },
-                                                        matchingRows: (rows) =>
-                                                            rows.eq(
-                                                          'id',
-                                                          FFAppState()
+                                                            .unitId,
+                                                        'systemParentId':
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .systemParentId,
+                                                        'systemId': FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .systemId,
+                                                        'unitTypeParentId':
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .unitTypeParentId,
+                                                        'unitTypeId': FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .unitTypeId,
+                                                        'requesterName':
+                                                            FFAppState()
+                                                                .asUserCurrent
+                                                                .nameShort,
+                                                        'requesterTeamId':
+                                                            FFAppState()
+                                                                .asUserCurrent
+                                                                .teamId,
+                                                        'createdUserId':
+                                                            FFAppState()
+                                                                .asUserCurrent
+                                                                .id,
+                                                        'createdDate':
+                                                            supaSerialize<
+                                                                    DateTime>(
+                                                                getCurrentTimestamp),
+                                                        'requestedServices': _model
+                                                            .cpInputTexMultilineModel
+                                                            .inputTextMultineController
+                                                            .text,
+                                                        'year': FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .year,
+                                                        'orderMask':
+                                                            '${FFAppState().stOrderParentSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOrderParentSelected.first.year.toString()}',
+                                                        'requesterDate':
+                                                            supaSerialize<
+                                                                    DateTime>(
+                                                                getCurrentTimestamp),
+                                                        'statusId': 2,
+                                                        'statusDate': supaSerialize<
+                                                                DateTime>(
+                                                            getCurrentTimestamp),
+                                                        'priorityId': _model
+                                                            .resAbOrderPriorityId,
+                                                        'unitLatitude': FFAppState()
+                                                            .stOrderParentSelected
+                                                            .first
+                                                            .unitLatitude,
+                                                        'unitLongitude':
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .unitLongitude,
+                                                        'counterParent':
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .counterParent,
+                                                        'counterChild': _model
+                                                            .lcsvOrderChildCounter,
+                                                        'assetTagId': _model
+                                                            .cpDropdownAssetsTagsModel
+                                                            .dropdownAssetsTagsValue,
+                                                      });
+                                                      shouldSetState = true;
+                                                      if (FFAppState()
                                                               .stOrderParentSelected
                                                               .first
-                                                              .id,
-                                                        ),
-                                                      );
+                                                              .statusId ==
+                                                          1) {
+                                                        await OrdersTable()
+                                                            .update(
+                                                          data: {
+                                                            'statusId': 2,
+                                                            'statusDate':
+                                                                supaSerialize<
+                                                                        DateTime>(
+                                                                    getCurrentTimestamp),
+                                                          },
+                                                          matchingRows:
+                                                              (rows) => rows.eq(
+                                                            'id',
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .id,
+                                                          ),
+                                                        );
+                                                        unawaited(
+                                                          () async {
+                                                            await OrdersStatusesLogsTable()
+                                                                .insert({
+                                                              'orderParentId':
+                                                                  FFAppState()
+                                                                      .stOrderParentSelected
+                                                                      .first
+                                                                      .id,
+                                                              'orderStatusId':
+                                                                  2,
+                                                              'orderStatusDate':
+                                                                  supaSerialize<
+                                                                          DateTime>(
+                                                                      _model
+                                                                          .resOrderAdded
+                                                                          ?.createdDate),
+                                                              'createdUserId':
+                                                                  FFAppState()
+                                                                      .asUserCurrent
+                                                                      .id,
+                                                              'createdDate':
+                                                                  supaSerialize<
+                                                                          DateTime>(
+                                                                      getCurrentTimestamp),
+                                                              'companyId':
+                                                                  FFAppState()
+                                                                      .asUserCurrent
+                                                                      .id,
+                                                              'departmentId': 1,
+                                                            });
+                                                          }(),
+                                                        );
+                                                      }
                                                       unawaited(
                                                         () async {
                                                           await OrdersStatusesLogsTable()
@@ -902,7 +984,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                     .stOrderParentSelected
                                                                     .first
                                                                     .id,
-                                                            'orderStatusId': 2,
+                                                            'orderStatusId': 3,
                                                             'orderStatusDate':
                                                                 supaSerialize<
                                                                         DateTime>(
@@ -922,77 +1004,72 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                     .asUserCurrent
                                                                     .id,
                                                             'departmentId': 1,
+                                                            'orderId': _model
+                                                                .resOrderAdded
+                                                                ?.id,
                                                           });
                                                         }(),
                                                       );
-                                                    }
-                                                    unawaited(
-                                                      () async {
-                                                        await OrdersStatusesLogsTable()
-                                                            .insert({
-                                                          'orderParentId':
-                                                              FFAppState()
-                                                                  .stOrderParentSelected
-                                                                  .first
-                                                                  .id,
-                                                          'orderStatusId': 3,
-                                                          'orderStatusDate':
-                                                              supaSerialize<
-                                                                      DateTime>(
-                                                                  _model
-                                                                      .resOrderAdded
-                                                                      ?.createdDate),
-                                                          'createdUserId':
-                                                              FFAppState()
-                                                                  .asUserCurrent
-                                                                  .id,
-                                                          'createdDate':
-                                                              supaSerialize<
-                                                                      DateTime>(
-                                                                  getCurrentTimestamp),
-                                                          'companyId':
-                                                              FFAppState()
-                                                                  .asUserCurrent
-                                                                  .id,
-                                                          'departmentId': 1,
-                                                          'orderId': _model
-                                                              .resOrderAdded
-                                                              ?.id,
-                                                        });
-                                                      }(),
-                                                    );
-                                                    await action_blocks
-                                                        .abOrderParentEvents(
-                                                      context,
-                                                      abOrderParentId: FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .id,
-                                                      abTitle:
-                                                          'OS ${_model.resOrderAdded?.orderMask}: Em Avaliação',
-                                                      abBody:
-                                                          '${FFAppState().stOrderParentSelected.first.unitDescription}${_model.resOrderAdded?.requestedServices}\\n',
-                                                    );
-                                                    Navigator.pop(context);
+                                                      await action_blocks
+                                                          .abOrderParentEvents(
+                                                        context,
+                                                        abOrderParentId:
+                                                            FFAppState()
+                                                                .stOrderParentSelected
+                                                                .first
+                                                                .id,
+                                                        abTitle:
+                                                            'OS ${_model.resOrderAdded?.orderMask}: Em Avaliação',
+                                                        abBody:
+                                                            '${FFAppState().stOrderParentSelected.first.unitDescription}${_model.resOrderAdded?.requestedServices}\\n',
+                                                      );
+                                                      Navigator.pop(context);
 
-                                                    context.pushNamed(
-                                                      'pgOrderShow',
-                                                      queryParameters: {
-                                                        'orderId':
-                                                            serializeParam(
-                                                          _model.resOrderAdded
-                                                              ?.id,
-                                                          ParamType.int,
+                                                      context.pushNamed(
+                                                        'pgOrderShow',
+                                                        queryParameters: {
+                                                          'orderId':
+                                                              serializeParam(
+                                                            _model.resOrderAdded
+                                                                ?.id,
+                                                            ParamType.int,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+
+                                                      await action_blocks
+                                                          .abOrderSelected(
+                                                        context,
+                                                        abOrderId: _model
+                                                            .resOrderAdded?.id,
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Ops ... Não foi possivel identificar o contrato.',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
                                                         ),
-                                                      }.withoutNulls,
-                                                    );
-
-                                                    await action_blocks
-                                                        .abOrderSelected(
-                                                      context,
-                                                      abOrderId: _model
-                                                          .resOrderAdded?.id,
-                                                    );
+                                                      );
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
+                                                      return;
+                                                    }
                                                   } else {
                                                     await showDialog(
                                                       context: context,
@@ -1016,7 +1093,9 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     );
                                                   }
 
-                                                  setState(() {});
+                                                  if (shouldSetState) {
+                                                    setState(() {});
+                                                  }
                                                 },
                                                 text: 'Criar OS',
                                                 options: FFButtonOptions(
@@ -1051,7 +1130,11 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].addToEnd(const SizedBox(height: 24.0)),
+                                          ]
+                                              .divide(const SizedBox(height: 12.0))
+                                              .addToStart(
+                                                  const SizedBox(height: 12.0))
+                                              .addToEnd(const SizedBox(height: 24.0)),
                                         ),
                                       ),
                                     ].divide(const SizedBox(height: 8.0)),
