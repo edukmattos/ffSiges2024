@@ -129,10 +129,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const PgUnitsNewWidget(),
         ),
         FFRoute(
-          name: 'pgDashboardAdmin',
-          path: '/pgDashboardAdmin',
+          name: 'pgDBAdmin',
+          path: '/pgDBAdmin',
           requireAuth: true,
-          builder: (context, params) => const PgDashboardAdminWidget(),
+          builder: (context, params) => const PgDBAdminWidget(),
         ),
         FFRoute(
           name: 'pgSettingsDepartment',
@@ -147,12 +147,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const PgSettingUsersWidget(),
         ),
         FFRoute(
-          name: 'pgDashboardUserVisits',
-          path: '/pgDashboardUserVisits',
+          name: 'pgDBUserVisits',
+          path: '/pgDBUserVisits',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'pgDashboardUserVisits')
-              : const PgDashboardUserVisitsWidget(),
+              ? const NavBarPage(initialPage: 'pgDBUserVisits')
+              : const PgDBUserVisitsWidget(),
         ),
         FFRoute(
           name: 'pgOrderParentShow',
@@ -215,10 +215,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'pgOrderVisitAsset1Search',
-          path: '/pgOrderVisitAsset1Search',
+          name: 'pgOVAsset1Search',
+          path: '/pgOVAsset1Search',
           requireAuth: true,
-          builder: (context, params) => PgOrderVisitAsset1SearchWidget(
+          builder: (context, params) => PgOVAsset1SearchWidget(
             visitId: params.getParam('visitId', ParamType.int),
           ),
         ),
@@ -228,11 +228,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const List11MessagesWidget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitAsset3ActivitiesSearch',
-          path: '/pgOrderVisitAsset3ActivitiesSearch',
+          name: 'pgOVAsset3ActivitiesSearch',
+          path: '/pgOVAsset3ActivitiesSearch',
           requireAuth: true,
-          builder: (context, params) =>
-              const PgOrderVisitAsset3ActivitiesSearchWidget(),
+          builder: (context, params) => const PgOVAsset3ActivitiesSearchWidget(),
         ),
         FFRoute(
           name: 'pgOrderVisitAsset2Before',
@@ -358,17 +357,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'pgDashboardUserOrders',
           path: '/pgDashboardUserOrders',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'pgDashboardUserOrders')
-              : const PgDashboardUserOrdersWidget(),
+          builder: (context, params) => const PgDashboardUserOrdersWidget(),
         ),
         FFRoute(
-          name: 'pgOrdersVisitsServicesSearch',
+          name: 'pgOVServicesSearch',
           path: '/pgOrdersVisitsServicesSearch',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'pgOrdersVisitsServicesSearch')
-              : const PgOrdersVisitsServicesSearchWidget(),
+          builder: (context, params) => const PgOVServicesSearchWidget(),
         ),
         FFRoute(
           name: 'Details03TransactionsSummary',
@@ -379,6 +374,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Details43WorkoutSummary',
           path: '/details43WorkoutSummary',
           builder: (context, params) => const Details43WorkoutSummaryWidget(),
+        ),
+        FFRoute(
+          name: 'pgOVSearch',
+          path: '/pgOVSearch',
+          requireAuth: true,
+          builder: (context, params) => const PgOVSearchWidget(),
+        ),
+        FFRoute(
+          name: 'Details03TransactionsSummary1',
+          path: '/details03TransactionsSummary1',
+          builder: (context, params) => const Details03TransactionsSummary1Widget(),
+        ),
+        FFRoute(
+          name: 'qwerty',
+          path: '/qwerty',
+          builder: (context, params) => const QwertyWidget(),
+        ),
+        FFRoute(
+          name: 'pgDBUserOrders',
+          path: '/pgDBUserOrders',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'pgDBUserOrders')
+              : const PgDBUserOrdersWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -560,7 +579,7 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).backgroundComponents,
+                  color: FlutterFlowTheme.of(context).primary,
                   child: Center(
                     child: Image.asset(
                       'assets/images/67.jpeg',

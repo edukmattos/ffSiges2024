@@ -25,7 +25,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     String? reportedUserNameShort,
     int? disapprovedUserId,
     String? disapprovedUserNameShort,
-    String? disapprovedComments,
     int? approvedUserId,
     String? approvedUserNameShort,
     int? teamLeaderId,
@@ -56,6 +55,7 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     String? requestedServices,
     String? unitDescription,
     String? contractDescription,
+    String? disapprovedNotes,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderId = orderId,
@@ -72,7 +72,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         _reportedUserNameShort = reportedUserNameShort,
         _disapprovedUserId = disapprovedUserId,
         _disapprovedUserNameShort = disapprovedUserNameShort,
-        _disapprovedComments = disapprovedComments,
         _approvedUserId = approvedUserId,
         _approvedUserNameShort = approvedUserNameShort,
         _teamLeaderId = teamLeaderId,
@@ -103,6 +102,7 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         _requestedServices = requestedServices,
         _unitDescription = unitDescription,
         _contractDescription = contractDescription,
+        _disapprovedNotes = disapprovedNotes,
         super(firestoreUtilData);
 
   // "id" field.
@@ -207,12 +207,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   String get disapprovedUserNameShort => _disapprovedUserNameShort ?? '';
   set disapprovedUserNameShort(String? val) => _disapprovedUserNameShort = val;
   bool hasDisapprovedUserNameShort() => _disapprovedUserNameShort != null;
-
-  // "disapprovedComments" field.
-  String? _disapprovedComments;
-  String get disapprovedComments => _disapprovedComments ?? '';
-  set disapprovedComments(String? val) => _disapprovedComments = val;
-  bool hasDisapprovedComments() => _disapprovedComments != null;
 
   // "approvedUserId" field.
   int? _approvedUserId;
@@ -412,6 +406,12 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   set contractDescription(String? val) => _contractDescription = val;
   bool hasContractDescription() => _contractDescription != null;
 
+  // "disapprovedNotes" field.
+  String? _disapprovedNotes;
+  String get disapprovedNotes => _disapprovedNotes ?? '';
+  set disapprovedNotes(String? val) => _disapprovedNotes = val;
+  bool hasDisapprovedNotes() => _disapprovedNotes != null;
+
   static DtVOrderVisitStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitStruct(
         id: castToType<int>(data['id']),
@@ -429,7 +429,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         reportedUserNameShort: data['reportedUserNameShort'] as String?,
         disapprovedUserId: castToType<int>(data['disapprovedUserId']),
         disapprovedUserNameShort: data['disapprovedUserNameShort'] as String?,
-        disapprovedComments: data['disapprovedComments'] as String?,
         approvedUserId: castToType<int>(data['approvedUserId']),
         approvedUserNameShort: data['approvedUserNameShort'] as String?,
         teamLeaderId: castToType<int>(data['teamLeaderId']),
@@ -461,6 +460,7 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         requestedServices: data['requestedServices'] as String?,
         unitDescription: data['unitDescription'] as String?,
         contractDescription: data['contractDescription'] as String?,
+        disapprovedNotes: data['disapprovedNotes'] as String?,
       );
 
   static DtVOrderVisitStruct? maybeFromMap(dynamic data) => data is Map
@@ -483,7 +483,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'reportedUserNameShort': _reportedUserNameShort,
         'disapprovedUserId': _disapprovedUserId,
         'disapprovedUserNameShort': _disapprovedUserNameShort,
-        'disapprovedComments': _disapprovedComments,
         'approvedUserId': _approvedUserId,
         'approvedUserNameShort': _approvedUserNameShort,
         'teamLeaderId': _teamLeaderId,
@@ -514,6 +513,7 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'requestedServices': _requestedServices,
         'unitDescription': _unitDescription,
         'contractDescription': _contractDescription,
+        'disapprovedNotes': _disapprovedNotes,
       }.withoutNulls;
 
   @override
@@ -576,10 +576,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         ),
         'disapprovedUserNameShort': serializeParam(
           _disapprovedUserNameShort,
-          ParamType.String,
-        ),
-        'disapprovedComments': serializeParam(
-          _disapprovedComments,
           ParamType.String,
         ),
         'approvedUserId': serializeParam(
@@ -702,6 +698,10 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
           _contractDescription,
           ParamType.String,
         ),
+        'disapprovedNotes': serializeParam(
+          _disapprovedNotes,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
   static DtVOrderVisitStruct fromSerializableMap(Map<String, dynamic> data) =>
@@ -778,11 +778,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         ),
         disapprovedUserNameShort: deserializeParam(
           data['disapprovedUserNameShort'],
-          ParamType.String,
-          false,
-        ),
-        disapprovedComments: deserializeParam(
-          data['disapprovedComments'],
           ParamType.String,
           false,
         ),
@@ -936,6 +931,11 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        disapprovedNotes: deserializeParam(
+          data['disapprovedNotes'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -959,7 +959,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         reportedUserNameShort == other.reportedUserNameShort &&
         disapprovedUserId == other.disapprovedUserId &&
         disapprovedUserNameShort == other.disapprovedUserNameShort &&
-        disapprovedComments == other.disapprovedComments &&
         approvedUserId == other.approvedUserId &&
         approvedUserNameShort == other.approvedUserNameShort &&
         teamLeaderId == other.teamLeaderId &&
@@ -989,7 +988,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         assetTagDescription == other.assetTagDescription &&
         requestedServices == other.requestedServices &&
         unitDescription == other.unitDescription &&
-        contractDescription == other.contractDescription;
+        contractDescription == other.contractDescription &&
+        disapprovedNotes == other.disapprovedNotes;
   }
 
   @override
@@ -1009,7 +1009,6 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         reportedUserNameShort,
         disapprovedUserId,
         disapprovedUserNameShort,
-        disapprovedComments,
         approvedUserId,
         approvedUserNameShort,
         teamLeaderId,
@@ -1039,7 +1038,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         assetTagDescription,
         requestedServices,
         unitDescription,
-        contractDescription
+        contractDescription,
+        disapprovedNotes
       ]);
 }
 
@@ -1059,7 +1059,6 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
   String? reportedUserNameShort,
   int? disapprovedUserId,
   String? disapprovedUserNameShort,
-  String? disapprovedComments,
   int? approvedUserId,
   String? approvedUserNameShort,
   int? teamLeaderId,
@@ -1090,6 +1089,7 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
   String? requestedServices,
   String? unitDescription,
   String? contractDescription,
+  String? disapprovedNotes,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -1111,7 +1111,6 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
       reportedUserNameShort: reportedUserNameShort,
       disapprovedUserId: disapprovedUserId,
       disapprovedUserNameShort: disapprovedUserNameShort,
-      disapprovedComments: disapprovedComments,
       approvedUserId: approvedUserId,
       approvedUserNameShort: approvedUserNameShort,
       teamLeaderId: teamLeaderId,
@@ -1142,6 +1141,7 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
       requestedServices: requestedServices,
       unitDescription: unitDescription,
       contractDescription: contractDescription,
+      disapprovedNotes: disapprovedNotes,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

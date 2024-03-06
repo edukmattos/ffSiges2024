@@ -282,8 +282,7 @@ class _PgOrderParentNewWidgetState extends State<PgOrderParentNewWidget>
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       setState(() {
-                                        FFAppState()
-                                            .updateStOrderParentNewStruct(
+                                        FFAppState().updateStOPNewStruct(
                                           (e) => e
                                             ..stepForm = 2
                                             ..unitId = getJsonField(

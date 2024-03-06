@@ -91,7 +91,7 @@ class _MdOrderMenuOptionsWidgetState extends State<MdOrderMenuOptionsWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if (FFAppState().stOrderSelected.first.statusId == 2)
+                  if (FFAppState().stOSelected.first.statusId == 2)
                     FFButtonWidget(
                       onPressed: () async {
                         Navigator.pop(context);

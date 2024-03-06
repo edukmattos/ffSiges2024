@@ -87,7 +87,7 @@ class _CpUnitShowBottomNavBarWidgetState
                     badgeContent: Text(
                       valueOrDefault<String>(
                         FFAppState()
-                            .stOrderVisitSelected
+                            .stOVSelected
                             .first
                             .orderVisitAssetsAmount
                             .toString(),
@@ -100,7 +100,7 @@ class _CpUnitShowBottomNavBarWidgetState
                     ),
                     showBadge: valueOrDefault<int>(
                           FFAppState()
-                              .stOrderVisitSelected
+                              .stOVSelected
                               .first
                               .orderVisitAssetsAmount,
                           1,
@@ -120,14 +120,12 @@ class _CpUnitShowBottomNavBarWidgetState
                         borderColor: Colors.transparent,
                         borderRadius: 12.0,
                         buttonSize: 50.0,
-                        fillColor: FFAppState().stOrderVisitShowNavBarOption ==
-                                'assets'
+                        fillColor: FFAppState().stOVShowNavBarOption == 'assets'
                             ? FlutterFlowTheme.of(context).primary
                             : const Color(0x00FFFFFF),
                         icon: FaIcon(
                           FontAwesomeIcons.city,
-                          color: FFAppState().stOrderVisitShowNavBarOption ==
-                                  'assets'
+                          color: FFAppState().stOVShowNavBarOption == 'assets'
                               ? FlutterFlowTheme.of(context).primaryBtnText
                               : const Color(0xFF585858),
                           size: 16.0,
@@ -135,8 +133,7 @@ class _CpUnitShowBottomNavBarWidgetState
                         showLoadingIndicator: true,
                         onPressed: () async {
                           _model.updatePage(() {
-                            FFAppState().stOrderVisitShowNavBarOption =
-                                'assets';
+                            FFAppState().stOVShowNavBarOption = 'assets';
                           });
                         },
                       ),
@@ -187,14 +184,12 @@ class _CpUnitShowBottomNavBarWidgetState
                         borderColor: Colors.transparent,
                         borderRadius: 12.0,
                         buttonSize: 50.0,
-                        fillColor:
-                            FFAppState().stOrderVisitShowNavBarOption == 'chat'
-                                ? FlutterFlowTheme.of(context).primary
-                                : const Color(0x00FFFFFF),
+                        fillColor: FFAppState().stOVShowNavBarOption == 'chat'
+                            ? FlutterFlowTheme.of(context).primary
+                            : const Color(0x00FFFFFF),
                         icon: Icon(
                           Icons.wechat_sharp,
-                          color: FFAppState().stOrderVisitShowNavBarOption ==
-                                  'chat'
+                          color: FFAppState().stOVShowNavBarOption == 'chat'
                               ? FlutterFlowTheme.of(context).primaryBtnText
                               : const Color(0xFF585858),
                           size: 26.0,
@@ -202,7 +197,7 @@ class _CpUnitShowBottomNavBarWidgetState
                         showLoadingIndicator: true,
                         onPressed: () async {
                           _model.updatePage(() {
-                            FFAppState().stOrderVisitShowNavBarOption = 'chat';
+                            FFAppState().stOVShowNavBarOption = 'chat';
                           });
                         },
                       ),
@@ -234,14 +229,12 @@ class _CpUnitShowBottomNavBarWidgetState
                     borderColor: Colors.transparent,
                     borderRadius: 12.0,
                     buttonSize: 50.0,
-                    fillColor:
-                        FFAppState().stOrderVisitShowNavBarOption == 'services'
-                            ? FlutterFlowTheme.of(context).primary
-                            : const Color(0x00FFFFFF),
+                    fillColor: FFAppState().stOVShowNavBarOption == 'services'
+                        ? FlutterFlowTheme.of(context).primary
+                        : const Color(0x00FFFFFF),
                     icon: FaIcon(
                       FontAwesomeIcons.tools,
-                      color: FFAppState().stOrderVisitShowNavBarOption ==
-                              'services'
+                      color: FFAppState().stOVShowNavBarOption == 'services'
                           ? FlutterFlowTheme.of(context).primaryBtnText
                           : const Color(0xFF585858),
                       size: 20.0,
@@ -249,7 +242,7 @@ class _CpUnitShowBottomNavBarWidgetState
                     showLoadingIndicator: true,
                     onPressed: () async {
                       _model.updatePage(() {
-                        FFAppState().stOrderVisitShowNavBarOption = 'services';
+                        FFAppState().stOVShowNavBarOption = 'services';
                       });
                     },
                   ),
@@ -279,14 +272,12 @@ class _CpUnitShowBottomNavBarWidgetState
                     borderColor: Colors.transparent,
                     borderRadius: 12.0,
                     buttonSize: 50.0,
-                    fillColor:
-                        FFAppState().stOrderVisitShowNavBarOption == 'vehicles'
-                            ? FlutterFlowTheme.of(context).primary
-                            : const Color(0x00FFFFFF),
+                    fillColor: FFAppState().stOVShowNavBarOption == 'vehicles'
+                        ? FlutterFlowTheme.of(context).primary
+                        : const Color(0x00FFFFFF),
                     icon: FaIcon(
                       FontAwesomeIcons.shuttleVan,
-                      color: FFAppState().stOrderVisitShowNavBarOption ==
-                              'vehicles'
+                      color: FFAppState().stOVShowNavBarOption == 'vehicles'
                           ? FlutterFlowTheme.of(context).primaryBtnText
                           : const Color(0xFF585858),
                       size: 20.0,
@@ -294,7 +285,7 @@ class _CpUnitShowBottomNavBarWidgetState
                     showLoadingIndicator: true,
                     onPressed: () async {
                       _model.updatePage(() {
-                        FFAppState().stOrderVisitShowNavBarOption = 'vehicles';
+                        FFAppState().stOVShowNavBarOption = 'vehicles';
                       });
                     },
                   ),

@@ -51,6 +51,19 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
     double? afterLongitude,
     int? processingId,
     String? processingDescription,
+    int? reportedUserId,
+    String? reportedUserNameShort,
+    String? reportedDate,
+    DateTime? reportedDateDateTime,
+    int? disapprovedUserId,
+    String? disapprovedUserNameShort,
+    String? disapprovedDate,
+    DateTime? disapprovedDateDateTime,
+    String? disapprovedNotes,
+    int? approvedUserId,
+    String? approvedUserNameShort,
+    String? approvedDate,
+    DateTime? approvedDateDateTime,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderVisitId = orderVisitId,
@@ -93,6 +106,19 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         _afterLongitude = afterLongitude,
         _processingId = processingId,
         _processingDescription = processingDescription,
+        _reportedUserId = reportedUserId,
+        _reportedUserNameShort = reportedUserNameShort,
+        _reportedDate = reportedDate,
+        _reportedDateDateTime = reportedDateDateTime,
+        _disapprovedUserId = disapprovedUserId,
+        _disapprovedUserNameShort = disapprovedUserNameShort,
+        _disapprovedDate = disapprovedDate,
+        _disapprovedDateDateTime = disapprovedDateDateTime,
+        _disapprovedNotes = disapprovedNotes,
+        _approvedUserId = approvedUserId,
+        _approvedUserNameShort = approvedUserNameShort,
+        _approvedDate = approvedDate,
+        _approvedDateDateTime = approvedDateDateTime,
         super(firestoreUtilData);
 
   // "id" field.
@@ -379,6 +405,90 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   set processingDescription(String? val) => _processingDescription = val;
   bool hasProcessingDescription() => _processingDescription != null;
 
+  // "reportedUserId" field.
+  int? _reportedUserId;
+  int get reportedUserId => _reportedUserId ?? 0;
+  set reportedUserId(int? val) => _reportedUserId = val;
+  void incrementReportedUserId(int amount) =>
+      _reportedUserId = reportedUserId + amount;
+  bool hasReportedUserId() => _reportedUserId != null;
+
+  // "reportedUserNameShort" field.
+  String? _reportedUserNameShort;
+  String get reportedUserNameShort => _reportedUserNameShort ?? '';
+  set reportedUserNameShort(String? val) => _reportedUserNameShort = val;
+  bool hasReportedUserNameShort() => _reportedUserNameShort != null;
+
+  // "reportedDate" field.
+  String? _reportedDate;
+  String get reportedDate => _reportedDate ?? '';
+  set reportedDate(String? val) => _reportedDate = val;
+  bool hasReportedDate() => _reportedDate != null;
+
+  // "reportedDateDateTime" field.
+  DateTime? _reportedDateDateTime;
+  DateTime? get reportedDateDateTime => _reportedDateDateTime;
+  set reportedDateDateTime(DateTime? val) => _reportedDateDateTime = val;
+  bool hasReportedDateDateTime() => _reportedDateDateTime != null;
+
+  // "disapprovedUserId" field.
+  int? _disapprovedUserId;
+  int get disapprovedUserId => _disapprovedUserId ?? 0;
+  set disapprovedUserId(int? val) => _disapprovedUserId = val;
+  void incrementDisapprovedUserId(int amount) =>
+      _disapprovedUserId = disapprovedUserId + amount;
+  bool hasDisapprovedUserId() => _disapprovedUserId != null;
+
+  // "disapprovedUserNameShort" field.
+  String? _disapprovedUserNameShort;
+  String get disapprovedUserNameShort => _disapprovedUserNameShort ?? '';
+  set disapprovedUserNameShort(String? val) => _disapprovedUserNameShort = val;
+  bool hasDisapprovedUserNameShort() => _disapprovedUserNameShort != null;
+
+  // "disapprovedDate" field.
+  String? _disapprovedDate;
+  String get disapprovedDate => _disapprovedDate ?? '';
+  set disapprovedDate(String? val) => _disapprovedDate = val;
+  bool hasDisapprovedDate() => _disapprovedDate != null;
+
+  // "disapprovedDateDateTime" field.
+  DateTime? _disapprovedDateDateTime;
+  DateTime? get disapprovedDateDateTime => _disapprovedDateDateTime;
+  set disapprovedDateDateTime(DateTime? val) => _disapprovedDateDateTime = val;
+  bool hasDisapprovedDateDateTime() => _disapprovedDateDateTime != null;
+
+  // "disapprovedNotes" field.
+  String? _disapprovedNotes;
+  String get disapprovedNotes => _disapprovedNotes ?? '';
+  set disapprovedNotes(String? val) => _disapprovedNotes = val;
+  bool hasDisapprovedNotes() => _disapprovedNotes != null;
+
+  // "approvedUserId" field.
+  int? _approvedUserId;
+  int get approvedUserId => _approvedUserId ?? 0;
+  set approvedUserId(int? val) => _approvedUserId = val;
+  void incrementApprovedUserId(int amount) =>
+      _approvedUserId = approvedUserId + amount;
+  bool hasApprovedUserId() => _approvedUserId != null;
+
+  // "approvedUserNameShort" field.
+  String? _approvedUserNameShort;
+  String get approvedUserNameShort => _approvedUserNameShort ?? '';
+  set approvedUserNameShort(String? val) => _approvedUserNameShort = val;
+  bool hasApprovedUserNameShort() => _approvedUserNameShort != null;
+
+  // "approvedDate" field.
+  String? _approvedDate;
+  String get approvedDate => _approvedDate ?? '';
+  set approvedDate(String? val) => _approvedDate = val;
+  bool hasApprovedDate() => _approvedDate != null;
+
+  // "approvedDateDateTime" field.
+  DateTime? _approvedDateDateTime;
+  DateTime? get approvedDateDateTime => _approvedDateDateTime;
+  set approvedDateDateTime(DateTime? val) => _approvedDateDateTime = val;
+  bool hasApprovedDateDateTime() => _approvedDateDateTime != null;
+
   static DtVOrderVisitAssetsStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitAssetsStruct(
         id: castToType<int>(data['id']),
@@ -422,6 +532,19 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         afterLongitude: castToType<double>(data['afterLongitude']),
         processingId: castToType<int>(data['processingId']),
         processingDescription: data['processingDescription'] as String?,
+        reportedUserId: castToType<int>(data['reportedUserId']),
+        reportedUserNameShort: data['reportedUserNameShort'] as String?,
+        reportedDate: data['reportedDate'] as String?,
+        reportedDateDateTime: data['reportedDateDateTime'] as DateTime?,
+        disapprovedUserId: castToType<int>(data['disapprovedUserId']),
+        disapprovedUserNameShort: data['disapprovedUserNameShort'] as String?,
+        disapprovedDate: data['disapprovedDate'] as String?,
+        disapprovedDateDateTime: data['disapprovedDateDateTime'] as DateTime?,
+        disapprovedNotes: data['disapprovedNotes'] as String?,
+        approvedUserId: castToType<int>(data['approvedUserId']),
+        approvedUserNameShort: data['approvedUserNameShort'] as String?,
+        approvedDate: data['approvedDate'] as String?,
+        approvedDateDateTime: data['approvedDateDateTime'] as DateTime?,
       );
 
   static DtVOrderVisitAssetsStruct? maybeFromMap(dynamic data) => data is Map
@@ -470,6 +593,19 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         'afterLongitude': _afterLongitude,
         'processingId': _processingId,
         'processingDescription': _processingDescription,
+        'reportedUserId': _reportedUserId,
+        'reportedUserNameShort': _reportedUserNameShort,
+        'reportedDate': _reportedDate,
+        'reportedDateDateTime': _reportedDateDateTime,
+        'disapprovedUserId': _disapprovedUserId,
+        'disapprovedUserNameShort': _disapprovedUserNameShort,
+        'disapprovedDate': _disapprovedDate,
+        'disapprovedDateDateTime': _disapprovedDateDateTime,
+        'disapprovedNotes': _disapprovedNotes,
+        'approvedUserId': _approvedUserId,
+        'approvedUserNameShort': _approvedUserNameShort,
+        'approvedDate': _approvedDate,
+        'approvedDateDateTime': _approvedDateDateTime,
       }.withoutNulls;
 
   @override
@@ -637,6 +773,58 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         'processingDescription': serializeParam(
           _processingDescription,
           ParamType.String,
+        ),
+        'reportedUserId': serializeParam(
+          _reportedUserId,
+          ParamType.int,
+        ),
+        'reportedUserNameShort': serializeParam(
+          _reportedUserNameShort,
+          ParamType.String,
+        ),
+        'reportedDate': serializeParam(
+          _reportedDate,
+          ParamType.String,
+        ),
+        'reportedDateDateTime': serializeParam(
+          _reportedDateDateTime,
+          ParamType.DateTime,
+        ),
+        'disapprovedUserId': serializeParam(
+          _disapprovedUserId,
+          ParamType.int,
+        ),
+        'disapprovedUserNameShort': serializeParam(
+          _disapprovedUserNameShort,
+          ParamType.String,
+        ),
+        'disapprovedDate': serializeParam(
+          _disapprovedDate,
+          ParamType.String,
+        ),
+        'disapprovedDateDateTime': serializeParam(
+          _disapprovedDateDateTime,
+          ParamType.DateTime,
+        ),
+        'disapprovedNotes': serializeParam(
+          _disapprovedNotes,
+          ParamType.String,
+        ),
+        'approvedUserId': serializeParam(
+          _approvedUserId,
+          ParamType.int,
+        ),
+        'approvedUserNameShort': serializeParam(
+          _approvedUserNameShort,
+          ParamType.String,
+        ),
+        'approvedDate': serializeParam(
+          _approvedDate,
+          ParamType.String,
+        ),
+        'approvedDateDateTime': serializeParam(
+          _approvedDateDateTime,
+          ParamType.DateTime,
         ),
       }.withoutNulls;
 
@@ -848,6 +1036,71 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        reportedUserId: deserializeParam(
+          data['reportedUserId'],
+          ParamType.int,
+          false,
+        ),
+        reportedUserNameShort: deserializeParam(
+          data['reportedUserNameShort'],
+          ParamType.String,
+          false,
+        ),
+        reportedDate: deserializeParam(
+          data['reportedDate'],
+          ParamType.String,
+          false,
+        ),
+        reportedDateDateTime: deserializeParam(
+          data['reportedDateDateTime'],
+          ParamType.DateTime,
+          false,
+        ),
+        disapprovedUserId: deserializeParam(
+          data['disapprovedUserId'],
+          ParamType.int,
+          false,
+        ),
+        disapprovedUserNameShort: deserializeParam(
+          data['disapprovedUserNameShort'],
+          ParamType.String,
+          false,
+        ),
+        disapprovedDate: deserializeParam(
+          data['disapprovedDate'],
+          ParamType.String,
+          false,
+        ),
+        disapprovedDateDateTime: deserializeParam(
+          data['disapprovedDateDateTime'],
+          ParamType.DateTime,
+          false,
+        ),
+        disapprovedNotes: deserializeParam(
+          data['disapprovedNotes'],
+          ParamType.String,
+          false,
+        ),
+        approvedUserId: deserializeParam(
+          data['approvedUserId'],
+          ParamType.int,
+          false,
+        ),
+        approvedUserNameShort: deserializeParam(
+          data['approvedUserNameShort'],
+          ParamType.String,
+          false,
+        ),
+        approvedDate: deserializeParam(
+          data['approvedDate'],
+          ParamType.String,
+          false,
+        ),
+        approvedDateDateTime: deserializeParam(
+          data['approvedDateDateTime'],
+          ParamType.DateTime,
+          false,
+        ),
       );
 
   @override
@@ -896,7 +1149,20 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         afterLatitude == other.afterLatitude &&
         afterLongitude == other.afterLongitude &&
         processingId == other.processingId &&
-        processingDescription == other.processingDescription;
+        processingDescription == other.processingDescription &&
+        reportedUserId == other.reportedUserId &&
+        reportedUserNameShort == other.reportedUserNameShort &&
+        reportedDate == other.reportedDate &&
+        reportedDateDateTime == other.reportedDateDateTime &&
+        disapprovedUserId == other.disapprovedUserId &&
+        disapprovedUserNameShort == other.disapprovedUserNameShort &&
+        disapprovedDate == other.disapprovedDate &&
+        disapprovedDateDateTime == other.disapprovedDateDateTime &&
+        disapprovedNotes == other.disapprovedNotes &&
+        approvedUserId == other.approvedUserId &&
+        approvedUserNameShort == other.approvedUserNameShort &&
+        approvedDate == other.approvedDate &&
+        approvedDateDateTime == other.approvedDateDateTime;
   }
 
   @override
@@ -941,7 +1207,20 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
         afterLatitude,
         afterLongitude,
         processingId,
-        processingDescription
+        processingDescription,
+        reportedUserId,
+        reportedUserNameShort,
+        reportedDate,
+        reportedDateDateTime,
+        disapprovedUserId,
+        disapprovedUserNameShort,
+        disapprovedDate,
+        disapprovedDateDateTime,
+        disapprovedNotes,
+        approvedUserId,
+        approvedUserNameShort,
+        approvedDate,
+        approvedDateDateTime
       ]);
 }
 
@@ -987,6 +1266,19 @@ DtVOrderVisitAssetsStruct createDtVOrderVisitAssetsStruct({
   double? afterLongitude,
   int? processingId,
   String? processingDescription,
+  int? reportedUserId,
+  String? reportedUserNameShort,
+  String? reportedDate,
+  DateTime? reportedDateDateTime,
+  int? disapprovedUserId,
+  String? disapprovedUserNameShort,
+  String? disapprovedDate,
+  DateTime? disapprovedDateDateTime,
+  String? disapprovedNotes,
+  int? approvedUserId,
+  String? approvedUserNameShort,
+  String? approvedDate,
+  DateTime? approvedDateDateTime,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -1034,6 +1326,19 @@ DtVOrderVisitAssetsStruct createDtVOrderVisitAssetsStruct({
       afterLongitude: afterLongitude,
       processingId: processingId,
       processingDescription: processingDescription,
+      reportedUserId: reportedUserId,
+      reportedUserNameShort: reportedUserNameShort,
+      reportedDate: reportedDate,
+      reportedDateDateTime: reportedDateDateTime,
+      disapprovedUserId: disapprovedUserId,
+      disapprovedUserNameShort: disapprovedUserNameShort,
+      disapprovedDate: disapprovedDate,
+      disapprovedDateDateTime: disapprovedDateDateTime,
+      disapprovedNotes: disapprovedNotes,
+      approvedUserId: approvedUserId,
+      approvedUserNameShort: approvedUserNameShort,
+      approvedDate: approvedDate,
+      approvedDateDateTime: approvedDateDateTime,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

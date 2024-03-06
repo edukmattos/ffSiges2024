@@ -309,7 +309,7 @@ class _PgOrderParentShowWidgetState extends State<PgOrderParentShowWidget>
                     'pgOrderProgramming',
                     queryParameters: {
                       'orderId': serializeParam(
-                        FFAppState().stOrderParentSelected.first.id,
+                        FFAppState().stOPSelected.first.id,
                         ParamType.int,
                       ),
                     }.withoutNulls,
@@ -448,11 +448,11 @@ class _PgOrderParentShowWidgetState extends State<PgOrderParentShowWidget>
                                             MediaQuery.viewInsetsOf(context),
                                         child: MdOrderParentMenuOptionsWidget(
                                           statusId: FFAppState()
-                                              .stOrderParentSelected
+                                              .stOPSelected
                                               .first
                                               .statusId,
                                           orderId: FFAppState()
-                                              .stOrderParentSelected
+                                              .stOPSelected
                                               .first
                                               .id,
                                         ),

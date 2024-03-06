@@ -328,7 +328,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                         rows.eq(
                                                       'id',
                                                       FFAppState()
-                                                          .stOrderSelected
+                                                          .stOSelected
                                                           .first
                                                           .id,
                                                     ),
@@ -337,7 +337,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                       .abOrderSelected(
                                                     context,
                                                     abOrderId: FFAppState()
-                                                        .stOrderSelected
+                                                        .stOSelected
                                                         .first
                                                         .id,
                                                   );
@@ -345,12 +345,12 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                       .abOrderParentSelected(
                                                     context,
                                                     abOrderId: FFAppState()
-                                                        .stOrderSelected
+                                                        .stOSelected
                                                         .first
                                                         .parentId,
                                                   );
                                                   if (FFAppState()
-                                                          .stOrderParentSelected
+                                                          .stOPSelected
                                                           .first
                                                           .statusId ==
                                                       2) {
@@ -365,7 +365,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                           rows.eq(
                                                         'id',
                                                         FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .id,
                                                       ),
@@ -376,7 +376,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                             .insert({
                                                           'orderParentId':
                                                               FFAppState()
-                                                                  .stOrderParentSelected
+                                                                  .stOPSelected
                                                                   .first
                                                                   .id,
                                                           'orderStatusId': 3,
@@ -408,7 +408,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                     abTitle:
                                                         'Serviço Autorizado',
                                                     abBody:
-                                                        'OS ${FFAppState().stOrderSelected.first.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${FFAppState().stOrderSelected.first.requestedServices}',
+                                                        'OS ${FFAppState().stOSelected.first.orderMask}\\n${FFAppState().stOPSelected.first.unitDescription}\\n${FFAppState().stOSelected.first.requestedServices}',
                                                     abUserIdFrom: FFAppState()
                                                         .asUserCurrent
                                                         .id,
@@ -416,21 +416,22 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                         .cpDropdownLeaderTeamsSelectedModel
                                                         .dropdownLeaderTeamsSelectedValue,
                                                     abOrderId: FFAppState()
-                                                        .stOrderSelected
+                                                        .stOSelected
                                                         .first
                                                         .id,
                                                   );
                                                   await action_blocks
                                                       .abOrderParentEvents(
                                                     context,
-                                                    abOrderParentId: FFAppState()
-                                                        .stOrderParentSelected
-                                                        .first
-                                                        .id,
+                                                    abOrderParentId:
+                                                        FFAppState()
+                                                            .stOPSelected
+                                                            .first
+                                                            .id,
                                                     abTitle:
-                                                        'OS ${FFAppState().stOrderSelected.first.orderMask}: Autorizada.',
+                                                        'OS ${FFAppState().stOSelected.first.orderMask}: Autorizada.',
                                                     abBody:
-                                                        '${FFAppState().stOrderParentSelected.first.unitDescription}${FFAppState().stOrderSelected.first.orderMask}\\n${FFAppState().stOrderSelected.first.requestedServices}',
+                                                        '${FFAppState().stOPSelected.first.unitDescription}\\n${FFAppState().stOSelected.first.requestedServices}',
                                                   );
                                                   Navigator.pop(context);
 
@@ -439,7 +440,7 @@ class _MdOrderAuthorizationWidgetState extends State<MdOrderAuthorizationWidget>
                                                     queryParameters: {
                                                       'orderId': serializeParam(
                                                         FFAppState()
-                                                            .stOrderSelected
+                                                            .stOSelected
                                                             .first
                                                             .id,
                                                         ParamType.int,

@@ -232,7 +232,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                     ),
                   ),
                   child: Container(
-                    width: double.infinity,
+                    width: 600.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: const BorderRadius.only(
@@ -384,7 +384,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                   child:
                                                       CpDropdownAssetsTagsWidget(
                                                     initialValue: FFAppState()
-                                                        .stOrderParentSelected
+                                                        .stOPSelected
                                                         .first
                                                         .assetTagId,
                                                   ),
@@ -773,7 +773,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                     setState(() {
                                                       _model.lcsvOrderChildCounter =
                                                           FFAppState()
-                                                                  .stOrderParentSelected
+                                                                  .stOPSelected
                                                                   .first
                                                                   .counterChild +
                                                               1;
@@ -787,7 +787,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                           rows.eq(
                                                         'id',
                                                         FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .id,
                                                       ),
@@ -840,27 +840,28 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                             .cpDropdownOrdersTypesSubsModel
                                                             .dropdownOrdersTypesSubsValue,
                                                         'unitId': FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .unitId,
                                                         'systemParentId':
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .systemParentId,
                                                         'systemId': FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .systemId,
                                                         'unitTypeParentId':
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .unitTypeParentId,
-                                                        'unitTypeId': FFAppState()
-                                                            .stOrderParentSelected
-                                                            .first
-                                                            .unitTypeId,
+                                                        'unitTypeId':
+                                                            FFAppState()
+                                                                .stOPSelected
+                                                                .first
+                                                                .unitTypeId,
                                                         'requesterName':
                                                             FFAppState()
                                                                 .asUserCurrent
@@ -882,11 +883,11 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                             .inputTextMultineController
                                                             .text,
                                                         'year': FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .year,
                                                         'orderMask':
-                                                            '${FFAppState().stOrderParentSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOrderParentSelected.first.year.toString()}',
+                                                            '${FFAppState().stOPSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOPSelected.first.year.toString()}',
                                                         'requesterDate':
                                                             supaSerialize<
                                                                     DateTime>(
@@ -897,18 +898,19 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                             getCurrentTimestamp),
                                                         'priorityId': _model
                                                             .resAbOrderPriorityId,
-                                                        'unitLatitude': FFAppState()
-                                                            .stOrderParentSelected
-                                                            .first
-                                                            .unitLatitude,
+                                                        'unitLatitude':
+                                                            FFAppState()
+                                                                .stOPSelected
+                                                                .first
+                                                                .unitLatitude,
                                                         'unitLongitude':
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .unitLongitude,
                                                         'counterParent':
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .counterParent,
                                                         'counterChild': _model
@@ -919,7 +921,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       });
                                                       shouldSetState = true;
                                                       if (FFAppState()
-                                                              .stOrderParentSelected
+                                                              .stOPSelected
                                                               .first
                                                               .statusId ==
                                                           1) {
@@ -936,7 +938,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                               (rows) => rows.eq(
                                                             'id',
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .id,
                                                           ),
@@ -947,7 +949,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                 .insert({
                                                               'orderParentId':
                                                                   FFAppState()
-                                                                      .stOrderParentSelected
+                                                                      .stOPSelected
                                                                       .first
                                                                       .id,
                                                               'orderStatusId':
@@ -981,7 +983,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                               .insert({
                                                             'orderParentId':
                                                                 FFAppState()
-                                                                    .stOrderParentSelected
+                                                                    .stOPSelected
                                                                     .first
                                                                     .id,
                                                             'orderStatusId': 3,
@@ -1015,13 +1017,13 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                         context,
                                                         abOrderParentId:
                                                             FFAppState()
-                                                                .stOrderParentSelected
+                                                                .stOPSelected
                                                                 .first
                                                                 .id,
                                                         abTitle:
                                                             'OS ${_model.resOrderAdded?.orderMask}: Em Avaliação',
                                                         abBody:
-                                                            '${FFAppState().stOrderParentSelected.first.unitDescription}${_model.resOrderAdded?.requestedServices}\\n',
+                                                            '${FFAppState().stOPSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}',
                                                       );
                                                       Navigator.pop(context);
 

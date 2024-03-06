@@ -12,9 +12,11 @@ class CpDropdownVisitOrdersStatusesWidget extends StatefulWidget {
   const CpDropdownVisitOrdersStatusesWidget({
     super.key,
     this.hintText,
+    this.initialValue,
   });
 
   final String? hintText;
+  final int? initialValue;
 
   @override
   State<CpDropdownVisitOrdersStatusesWidget> createState() =>
@@ -71,7 +73,7 @@ class _CpDropdownVisitOrdersStatusesWidgetState
         return FlutterFlowDropDown<int>(
           controller: _model.dropdownOrdersStatusesValueController ??=
               FormFieldController<int>(
-            _model.dropdownOrdersStatusesValue ??= 0,
+            _model.dropdownOrdersStatusesValue ??= widget.initialValue,
           ),
           options:
               List<int>.from(ApiOrdersStatusesGroup.statusesOrderVisitCall.id(

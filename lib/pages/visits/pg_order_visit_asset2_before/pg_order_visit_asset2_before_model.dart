@@ -1,8 +1,8 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_integer/cp_input_integer_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
+import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import 'dart:async';
 import 'pg_order_visit_asset2_before_widget.dart'
     show PgOrderVisitAsset2BeforeWidget;
@@ -25,8 +25,8 @@ class PgOrderVisitAsset2BeforeModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (orderVisitAssetById)] action in IconButton widget.
-  ApiCallResponse? resOrderVisitAssetSelected3;
+  // Model for cpOVAssetListCard component.
+  late CpOVAssetListCardModel cpOVAssetListCardModel;
   Completer<List<VOrdersVisitsAssetsRow>>? requestCompleter;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
@@ -44,6 +44,8 @@ class PgOrderVisitAsset2BeforeModel
 
   @override
   void initState(BuildContext context) {
+    cpOVAssetListCardModel =
+        createModel(context, () => CpOVAssetListCardModel());
     cpInputIntegerModel = createModel(context, () => CpInputIntegerModel());
     cpInputTexMultilineModel =
         createModel(context, () => CpInputTexMultilineModel());
@@ -52,6 +54,7 @@ class PgOrderVisitAsset2BeforeModel
   @override
   void dispose() {
     unfocusNode.dispose();
+    cpOVAssetListCardModel.dispose();
     cpInputIntegerModel.dispose();
     cpInputTexMultilineModel.dispose();
   }

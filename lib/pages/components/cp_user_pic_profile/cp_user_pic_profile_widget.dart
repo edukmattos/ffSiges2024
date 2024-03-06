@@ -52,23 +52,16 @@ class _CpUserPicProfileWidgetState extends State<CpUserPicProfileWidget> {
       height: widget.size?.toDouble(),
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).accent2,
-        borderRadius: BorderRadius.circular(12.0),
-        shape: BoxShape.rectangle,
-        border: Border.all(
-          color: FlutterFlowTheme.of(context).secondary,
-          width: 2.0,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12.0),
-          child: Image.network(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: Image.network(
             widget.imgUrl!,
-            width: 60.0,
-            height: 60.0,
-            fit: BoxFit.cover,
-          ),
+          ).image,
+        ),
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: FlutterFlowTheme.of(context).primaryBtnText,
+          width: 4.0,
         ),
       ),
     );

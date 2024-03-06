@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/pages/components/cp_input_integer/cp_input_integer_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
+import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -114,7 +115,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
             automaticallyImplyLeading: false,
             leading: Visibility(
               visible: valueOrDefault<int>(
-                    FFAppState().stOrderVisitSelected.first.processingId,
+                    FFAppState().stOVSelected.first.processingId,
                     1,
                   ) ==
                   4,
@@ -129,7 +130,19 @@ class _PgOrderVisitAsset2BeforeWidgetState
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  context.pushNamed(
+                    'pgOrderVisitShow',
+                    queryParameters: {
+                      'visitId': serializeParam(
+                        FFAppState().stOVSelected.first.id,
+                        ParamType.int,
+                      ),
+                      'orderId': serializeParam(
+                        FFAppState().stOVSelected.first.orderId,
+                        ParamType.int,
+                      ),
+                    }.withoutNulls,
+                  );
                 },
               ),
             ),
@@ -162,7 +175,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                           ..complete(VOrdersVisitsAssetsTable().querySingleRow(
                             queryFn: (q) => q.eq(
                               'id',
-                              FFAppState().stOrderVisitAssetSelected.first.id,
+                              FFAppState().stOVAssetSelected.first.id,
                             ),
                           )))
                     .future,
@@ -203,6 +216,43 @@ class _PgOrderVisitAsset2BeforeWidgetState
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Container(
+                                  decoration: const BoxDecoration(),
+                                  child: wrapWithModel(
+                                    model: _model.cpOVAssetListCardModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: CpOVAssetListCardWidget(
+                                      assetDescription: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .description,
+                                      unitDescription: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .beforeUnitDescription,
+                                      assetCode: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .code,
+                                      assetStatusDescription: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .beforeStatusDescription,
+                                      assetTagDescription: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .beforeTagDescription,
+                                      assetTagSubDescription: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .beforeTagSubDescription,
+                                      processingId: FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .processingId,
+                                    ),
+                                  ),
+                                ),
                                 Align(
                                   alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
@@ -420,7 +470,14 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     ),
                                                   ),
                                                   if (() {
-                                                    if ((widget.operation ==
+                                                    if (FFAppState()
+                                                            .stOVAssetSelected
+                                                            .first
+                                                            .processingId !=
+                                                        4) {
+                                                      return true;
+                                                    } else if ((widget
+                                                                .operation ==
                                                             'before') &&
                                                         (containerVOrdersVisitsAssetsRow
                                                                     ?.beforeImgFileName !=
@@ -468,506 +525,418 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                           showLoadingIndicator:
                                                               true,
                                                           onPressed: () async {
-                                                            var shouldSetState =
-                                                                false;
-                                                            _model.resOrderVisitAssetSelected3 =
-                                                                await ApiOrdersVisitsAssetsGroup
-                                                                    .orderVisitAssetByIdCall
-                                                                    .call(
-                                                              orderVisitAssetId:
-                                                                  containerVOrdersVisitsAssetsRow
-                                                                      ?.id,
-                                                            );
-                                                            shouldSetState =
-                                                                true;
-                                                            if ((_model
-                                                                    .resOrderVisitAssetSelected3
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              if (widget
-                                                                      .operation ==
-                                                                  'before') {
-                                                                if (FFAppState()
-                                                                            .stOrderVisitAssetSelected
-                                                                            .first
-                                                                            .beforeImgFileName !=
-                                                                        '') {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: const Text('Ops ...'),
-                                                                                content: const Text('Não será possivel recuperar a imagem após a exclusão.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: const Text('Cancelar'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: const Text('Confirmar'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    await ApiStorageGroup
-                                                                        .deleteFileCall
-                                                                        .call(
-                                                                      fileUrl:
-                                                                          '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFilePath(
-                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
-                                                                            ''),
-                                                                      )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.beforeImgFileName(
-                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
-                                                                            ''),
-                                                                      )}',
-                                                                    );
-                                                                    await OrdersVisitsAssetsTable()
-                                                                        .update(
-                                                                      data: {
-                                                                        'beforeImgFilePath':
-                                                                            null,
-                                                                        'beforeImgFileName':
-                                                                            null,
-                                                                      },
-                                                                      matchingRows:
-                                                                          (rows) =>
-                                                                              rows.eq(
-                                                                        'id',
-                                                                        FFAppState()
-                                                                            .stOrderVisitAssetSelected
-                                                                            .first
-                                                                            .id,
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                } else {
-                                                                  if (shouldSetState) {
-                                                                    setState(
-                                                                        () {});
-                                                                  }
-                                                                  return;
+                                                            if (widget
+                                                                    .operation ==
+                                                                'before') {
+                                                              if (FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .beforeImgFileName !=
+                                                                      '') {
+                                                                var confirmDialogResponse =
+                                                                    await showDialog<
+                                                                            bool>(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: const Text('Ops ...'),
+                                                                              content: const Text('Não será possivel recuperar a imagem após a exclusão.'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                  child: const Text('Cancelar'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                  child: const Text('Confirmar'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        ) ??
+                                                                        false;
+                                                                if (confirmDialogResponse) {
+                                                                  await ApiStorageGroup
+                                                                      .deleteFileCall
+                                                                      .call(
+                                                                    fileUrl:
+                                                                        '${FFAppState().stOVAssetSelected.first.beforeImgFilePath}${FFAppState().stOVAssetSelected.first.beforeImgFileName}',
+                                                                  );
+                                                                  await OrdersVisitsAssetsTable()
+                                                                      .update(
+                                                                    data: {
+                                                                      'beforeImgFilePath':
+                                                                          null,
+                                                                      'beforeImgFileName':
+                                                                          null,
+                                                                    },
+                                                                    matchingRows:
+                                                                        (rows) =>
+                                                                            rows.eq(
+                                                                      'id',
+                                                                      FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .id,
+                                                                    ),
+                                                                  );
                                                                 }
                                                               } else {
-                                                                if (FFAppState()
-                                                                            .stOrderVisitAssetSelected
-                                                                            .first
-                                                                            .afterImgFileName !=
-                                                                        '') {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: const Text('Ops ...'),
-                                                                                content: const Text('Não será possivel recuperar a imagem após a excleusão.'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: const Text('Cancelar'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: const Text('Confirmar'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    await ApiStorageGroup
-                                                                        .deleteFileCall
-                                                                        .call(
-                                                                      fileUrl:
-                                                                          '${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFilePath(
-                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
-                                                                            ''),
-                                                                      )}${ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.afterImgFileName(
-                                                                        (_model.resOrderVisitAssetSelected3?.jsonBody ??
-                                                                            ''),
-                                                                      )}',
-                                                                    );
-                                                                    await OrdersVisitsAssetsTable()
-                                                                        .update(
-                                                                      data: {
-                                                                        'afterImgFilePath':
-                                                                            null,
-                                                                        'afterImgFileName':
-                                                                            null,
-                                                                      },
-                                                                      matchingRows:
-                                                                          (rows) =>
-                                                                              rows.eq(
-                                                                        'id',
-                                                                        FFAppState()
-                                                                            .stOrderVisitAssetSelected
-                                                                            .first
-                                                                            .id,
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                } else {
-                                                                  if (shouldSetState) {
-                                                                    setState(
-                                                                        () {});
-                                                                  }
-                                                                  return;
-                                                                }
+                                                                return;
                                                               }
-
-                                                              setState(() =>
-                                                                  _model.requestCompleter =
-                                                                      null);
-                                                              await _model
-                                                                  .waitForRequestCompleted();
-                                                              await action_blocks
-                                                                  .abOrderVisitAssetSelected(
-                                                                context,
-                                                                abOrderVisitAssetId:
-                                                                    FFAppState()
-                                                                        .stOrderVisitAssetSelected
-                                                                        .first
-                                                                        .id,
-                                                              );
                                                             } else {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: const Text(
-                                                                        '222'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: const Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                              if (FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .afterImgFileName !=
+                                                                      '') {
+                                                                var confirmDialogResponse =
+                                                                    await showDialog<
+                                                                            bool>(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: const Text('Ops ...'),
+                                                                              content: const Text('Não será possivel recuperar a imagem após a excleusão.'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                  child: const Text('Cancelar'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                  child: const Text('Confirmar'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        ) ??
+                                                                        false;
+                                                                if (confirmDialogResponse) {
+                                                                  await ApiStorageGroup
+                                                                      .deleteFileCall
+                                                                      .call(
+                                                                    fileUrl:
+                                                                        '${FFAppState().stOVAssetSelected.first.afterImgFilePath}${FFAppState().stOVAssetSelected.first.afterImgFileName}',
                                                                   );
-                                                                },
-                                                              );
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Ops .. Erro ao identificar a imagem a ser excluida.',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBtnText,
+                                                                  await OrdersVisitsAssetsTable()
+                                                                      .update(
+                                                                    data: {
+                                                                      'afterImgFilePath':
+                                                                          null,
+                                                                      'afterImgFileName':
+                                                                          null,
+                                                                    },
+                                                                    matchingRows:
+                                                                        (rows) =>
+                                                                            rows.eq(
+                                                                      'id',
+                                                                      FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .id,
                                                                     ),
-                                                                  ),
-                                                                  duration: const Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                ),
-                                                              );
-                                                              if (shouldSetState) {
-                                                                setState(() {});
+                                                                  );
+                                                                }
+                                                              } else {
+                                                                return;
                                                               }
-                                                              return;
                                                             }
 
-                                                            if (shouldSetState) {
-                                                              setState(() {});
-                                                            }
+                                                            setState(() => _model
+                                                                    .requestCompleter =
+                                                                null);
+                                                            await _model
+                                                                .waitForRequestCompleted();
+                                                            await action_blocks
+                                                                .abOrderVisitAssetSelected(
+                                                              context,
+                                                              abOrderVisitAssetId:
+                                                                  FFAppState()
+                                                                      .stOVAssetSelected
+                                                                      .first
+                                                                      .id,
+                                                            );
                                                           },
                                                         ),
                                                       ),
                                                     ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, -1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(12.0),
-                                                      child:
-                                                          FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 25.0,
-                                                        buttonSize: 50.0,
-                                                        fillColor:
-                                                            const Color(0xFF9E9E9E),
-                                                        icon: Icon(
-                                                          Icons
-                                                              .linked_camera_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 32.0,
-                                                        ),
-                                                        showLoadingIndicator:
-                                                            true,
-                                                        onPressed: () async {
-                                                          setState(() {
-                                                            _model.lpsvFilePath =
-                                                                'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}';
-                                                          });
-                                                          if (widget
-                                                                  .operation ==
-                                                              'before') {
-                                                            if (FFAppState()
-                                                                        .stOrderVisitAssetSelected
-                                                                        .first
-                                                                        .beforeImgFileName ==
-                                                                    '') {
-                                                              // Dont Exist
-                                                              setState(() {
-                                                                _model.lpsvIsThereFileName =
-                                                                    false;
-                                                              });
+                                                  if (FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .processingId !=
+                                                      4)
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              -1.0, -1.0),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(
+                                                            12.0),
+                                                        child:
+                                                            FlutterFlowIconButton(
+                                                          borderColor: Colors
+                                                              .transparent,
+                                                          borderRadius: 25.0,
+                                                          buttonSize: 50.0,
+                                                          fillColor:
+                                                              const Color(0xFF9E9E9E),
+                                                          icon: Icon(
+                                                            Icons
+                                                                .linked_camera_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 32.0,
+                                                          ),
+                                                          showLoadingIndicator:
+                                                              true,
+                                                          onPressed: () async {
+                                                            setState(() {
+                                                              _model.lpsvFilePath =
+                                                                  'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOVAssetSelected.first.assetId.toString()}';
+                                                            });
+                                                            if (widget
+                                                                    .operation ==
+                                                                'before') {
+                                                              if (FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .beforeImgFileName ==
+                                                                      '') {
+                                                                // Dont Exist
+                                                                setState(() {
+                                                                  _model.lpsvIsThereFileName =
+                                                                      false;
+                                                                });
+                                                              } else {
+                                                                // Exist
+                                                                setState(() {
+                                                                  _model.lpsvIsThereFileName =
+                                                                      true;
+                                                                  _model.lpsvFileNameToDelete =
+                                                                      containerVOrdersVisitsAssetsRow!
+                                                                          .beforeImgFileName!;
+                                                                });
+                                                              }
                                                             } else {
-                                                              // Exist
-                                                              setState(() {
-                                                                _model.lpsvIsThereFileName =
-                                                                    true;
-                                                                _model.lpsvFileNameToDelete =
-                                                                    containerVOrdersVisitsAssetsRow!
-                                                                        .beforeImgFileName!;
-                                                              });
+                                                              if (FFAppState()
+                                                                          .stOVAssetSelected
+                                                                          .first
+                                                                          .afterImgFileName ==
+                                                                      '') {
+                                                                // Dont Exist
+                                                                setState(() {
+                                                                  _model.lpsvIsThereFileName =
+                                                                      false;
+                                                                });
+                                                              } else {
+                                                                // Exist
+                                                                setState(() {
+                                                                  _model.lpsvIsThereFileName =
+                                                                      true;
+                                                                  _model.lpsvFileNameToDelete =
+                                                                      containerVOrdersVisitsAssetsRow!
+                                                                          .afterImgFileName!;
+                                                                });
+                                                              }
                                                             }
-                                                          } else {
-                                                            if (FFAppState()
-                                                                        .stOrderVisitAssetSelected
-                                                                        .first
-                                                                        .afterImgFileName ==
-                                                                    '') {
-                                                              // Dont Exist
-                                                              setState(() {
-                                                                _model.lpsvIsThereFileName =
-                                                                    false;
-                                                              });
-                                                            } else {
-                                                              // Exist
-                                                              setState(() {
-                                                                _model.lpsvIsThereFileName =
-                                                                    true;
-                                                                _model.lpsvFileNameToDelete =
-                                                                    containerVOrdersVisitsAssetsRow!
-                                                                        .afterImgFileName!;
-                                                              });
-                                                            }
-                                                          }
 
-                                                          if (_model
-                                                              .lpsvIsThereFileName) {
-                                                            var confirmDialogResponse =
-                                                                await showDialog<
-                                                                        bool>(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              const Text('Ops ...'),
-                                                                          content:
-                                                                              const Text('Deseja alterar imagem ? Caso confirme, não será possivel recuperar imagem.'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: const Text('Cancelar'),
-                                                                            ),
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: const Text('Confirmar'),
-                                                                            ),
-                                                                          ],
-                                                                        );
-                                                                      },
-                                                                    ) ??
+                                                            if (_model
+                                                                .lpsvIsThereFileName) {
+                                                              var confirmDialogResponse =
+                                                                  await showDialog<
+                                                                          bool>(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (alertDialogContext) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                const Text('Ops ...'),
+                                                                            content:
+                                                                                const Text('Deseja alterar imagem ? Caso confirme, não será possivel recuperar imagem.'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                child: const Text('Cancelar'),
+                                                                              ),
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                child: const Text('Confirmar'),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      ) ??
+                                                                      false;
+                                                              if (confirmDialogResponse) {
+                                                                await ApiStorageGroup
+                                                                    .deleteFileCall
+                                                                    .call(
+                                                                  fileUrl:
+                                                                      'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSeleted.first.id.toString()}/${_model.lpsvFileNameToDelete}',
+                                                                );
+                                                              } else {
+                                                                return;
+                                                              }
+                                                            }
+                                                            final selectedMedia =
+                                                                await selectMediaWithSourceBottomSheet(
+                                                              context: context,
+                                                              storageFolderPath:
+                                                                  'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOVAssetSelected.first.assetId.toString()}',
+                                                              maxWidth: 500.00,
+                                                              maxHeight: 500.00,
+                                                              imageQuality: 100,
+                                                              allowPhoto: true,
+                                                            );
+                                                            if (selectedMedia !=
+                                                                    null &&
+                                                                selectedMedia.every((m) =>
+                                                                    validateFileFormat(
+                                                                        m.storagePath,
+                                                                        context))) {
+                                                              setState(() =>
+                                                                  _model.isDataUploading =
+                                                                      true);
+                                                              var selectedUploadedFiles =
+                                                                  <FFUploadedFile>[];
+
+                                                              var downloadUrls =
+                                                                  <String>[];
+                                                              try {
+                                                                showUploadMessage(
+                                                                  context,
+                                                                  'Uploading file...',
+                                                                  showLoading:
+                                                                      true,
+                                                                );
+                                                                selectedUploadedFiles =
+                                                                    selectedMedia
+                                                                        .map((m) =>
+                                                                            FFUploadedFile(
+                                                                              name: m.storagePath.split('/').last,
+                                                                              bytes: m.bytes,
+                                                                              height: m.dimensions?.height,
+                                                                              width: m.dimensions?.width,
+                                                                              blurHash: m.blurHash,
+                                                                            ))
+                                                                        .toList();
+
+                                                                downloadUrls =
+                                                                    await uploadSupabaseStorageFiles(
+                                                                  bucketName:
+                                                                      FFAppConstants
+                                                                          .appStorageBucket,
+                                                                  selectedFiles:
+                                                                      selectedMedia,
+                                                                );
+                                                              } finally {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .hideCurrentSnackBar();
+                                                                _model.isDataUploading =
                                                                     false;
-                                                            if (confirmDialogResponse) {
-                                                              await ApiStorageGroup
-                                                                  .deleteFileCall
-                                                                  .call(
-                                                                fileUrl:
-                                                                    'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stAssetSeleted.first.id.toString()}/${_model.lpsvFileNameToDelete}',
+                                                              }
+                                                              if (selectedUploadedFiles
+                                                                          .length ==
+                                                                      selectedMedia
+                                                                          .length &&
+                                                                  downloadUrls
+                                                                          .length ==
+                                                                      selectedMedia
+                                                                          .length) {
+                                                                setState(() {
+                                                                  _model.uploadedLocalFile =
+                                                                      selectedUploadedFiles
+                                                                          .first;
+                                                                  _model.uploadedFileUrl =
+                                                                      downloadUrls
+                                                                          .first;
+                                                                });
+                                                                showUploadMessage(
+                                                                    context,
+                                                                    'Success!');
+                                                              } else {
+                                                                setState(() {});
+                                                                showUploadMessage(
+                                                                    context,
+                                                                    'Failed to upload data');
+                                                                return;
+                                                              }
+                                                            }
+
+                                                            if (widget
+                                                                    .operation ==
+                                                                'before') {
+                                                              await OrdersVisitsAssetsTable()
+                                                                  .update(
+                                                                data: {
+                                                                  'beforeImgFilePath':
+                                                                      '${_model.lpsvFilePath}/',
+                                                                  'beforeImgFileName':
+                                                                      functions.cfGetFileNameFromFileUrlUploaded(
+                                                                          _model
+                                                                              .uploadedFileUrl,
+                                                                          '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOVAssetSelected.first.assetId.toString()}'}/'),
+                                                                },
+                                                                matchingRows:
+                                                                    (rows) =>
+                                                                        rows.eq(
+                                                                  'id',
+                                                                  FFAppState()
+                                                                      .stOVAssetSelected
+                                                                      .first
+                                                                      .id,
+                                                                ),
                                                               );
                                                             } else {
-                                                              return;
+                                                              await OrdersVisitsAssetsTable()
+                                                                  .update(
+                                                                data: {
+                                                                  'afterImgFilePath':
+                                                                      '${_model.lpsvFilePath}/',
+                                                                  'afterImgFileName':
+                                                                      functions.cfGetFileNameFromFileUrlUploaded(
+                                                                          _model
+                                                                              .uploadedFileUrl,
+                                                                          '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOVAssetSelected.first.assetId.toString()}'}/'),
+                                                                },
+                                                                matchingRows:
+                                                                    (rows) =>
+                                                                        rows.eq(
+                                                                  'id',
+                                                                  FFAppState()
+                                                                      .stOVAssetSelected
+                                                                      .first
+                                                                      .id,
+                                                                ),
+                                                              );
                                                             }
-                                                          }
-                                                          final selectedMedia =
-                                                              await selectMediaWithSourceBottomSheet(
-                                                            context: context,
-                                                            storageFolderPath:
-                                                                'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}',
-                                                            maxWidth: 500.00,
-                                                            maxHeight: 500.00,
-                                                            imageQuality: 100,
-                                                            allowPhoto: true,
-                                                          );
-                                                          if (selectedMedia !=
-                                                                  null &&
-                                                              selectedMedia.every((m) =>
-                                                                  validateFileFormat(
-                                                                      m.storagePath,
-                                                                      context))) {
+
+                                                            await action_blocks
+                                                                .abOrderVisitAssetSelected(
+                                                              context,
+                                                              abOrderVisitAssetId:
+                                                                  FFAppState()
+                                                                      .stOVAssetSelected
+                                                                      .first
+                                                                      .id,
+                                                            );
                                                             setState(() => _model
-                                                                    .isDataUploading =
-                                                                true);
-                                                            var selectedUploadedFiles =
-                                                                <FFUploadedFile>[];
-
-                                                            var downloadUrls =
-                                                                <String>[];
-                                                            try {
-                                                              showUploadMessage(
-                                                                context,
-                                                                'Uploading file...',
-                                                                showLoading:
-                                                                    true,
-                                                              );
-                                                              selectedUploadedFiles =
-                                                                  selectedMedia
-                                                                      .map((m) =>
-                                                                          FFUploadedFile(
-                                                                            name:
-                                                                                m.storagePath.split('/').last,
-                                                                            bytes:
-                                                                                m.bytes,
-                                                                            height:
-                                                                                m.dimensions?.height,
-                                                                            width:
-                                                                                m.dimensions?.width,
-                                                                            blurHash:
-                                                                                m.blurHash,
-                                                                          ))
-                                                                      .toList();
-
-                                                              downloadUrls =
-                                                                  await uploadSupabaseStorageFiles(
-                                                                bucketName:
-                                                                    FFAppConstants
-                                                                        .appStorageBucket,
-                                                                selectedFiles:
-                                                                    selectedMedia,
-                                                              );
-                                                            } finally {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .hideCurrentSnackBar();
-                                                              _model.isDataUploading =
-                                                                  false;
-                                                            }
-                                                            if (selectedUploadedFiles
-                                                                        .length ==
-                                                                    selectedMedia
-                                                                        .length &&
-                                                                downloadUrls
-                                                                        .length ==
-                                                                    selectedMedia
-                                                                        .length) {
-                                                              setState(() {
-                                                                _model.uploadedLocalFile =
-                                                                    selectedUploadedFiles
-                                                                        .first;
-                                                                _model.uploadedFileUrl =
-                                                                    downloadUrls
-                                                                        .first;
-                                                              });
-                                                              showUploadMessage(
-                                                                  context,
-                                                                  'Success!');
-                                                            } else {
-                                                              setState(() {});
-                                                              showUploadMessage(
-                                                                  context,
-                                                                  'Failed to upload data');
-                                                              return;
-                                                            }
-                                                          }
-
-                                                          if (widget
-                                                                  .operation ==
-                                                              'before') {
-                                                            await OrdersVisitsAssetsTable()
-                                                                .update(
-                                                              data: {
-                                                                'beforeImgFilePath':
-                                                                    '${_model.lpsvFilePath}/',
-                                                                'beforeImgFileName':
-                                                                    functions.cfGetFileNameFromFileUrlUploaded(
-                                                                        _model
-                                                                            .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
-                                                              },
-                                                              matchingRows:
-                                                                  (rows) =>
-                                                                      rows.eq(
-                                                                'id',
-                                                                FFAppState()
-                                                                    .stOrderVisitAssetSelected
-                                                                    .first
-                                                                    .id,
-                                                              ),
-                                                            );
-                                                          } else {
-                                                            await OrdersVisitsAssetsTable()
-                                                                .update(
-                                                              data: {
-                                                                'afterImgFilePath':
-                                                                    '${_model.lpsvFilePath}/',
-                                                                'afterImgFileName':
-                                                                    functions.cfGetFileNameFromFileUrlUploaded(
-                                                                        _model
-                                                                            .uploadedFileUrl,
-                                                                        '${FFAppConstants.appServerUrlStorage}${'companies/${FFAppState().asUserCurrent.companyId.toString()}/assets/${FFAppState().stOrderVisitAssetSelected.first.assetId.toString()}'}/'),
-                                                              },
-                                                              matchingRows:
-                                                                  (rows) =>
-                                                                      rows.eq(
-                                                                'id',
-                                                                FFAppState()
-                                                                    .stOrderVisitAssetSelected
-                                                                    .first
-                                                                    .id,
-                                                              ),
-                                                            );
-                                                          }
-
-                                                          await action_blocks
-                                                              .abOrderVisitAssetSelected(
-                                                            context,
-                                                            abOrderVisitAssetId:
-                                                                FFAppState()
-                                                                    .stOrderVisitAssetSelected
-                                                                    .first
-                                                                    .id,
-                                                          );
-                                                          setState(() => _model
-                                                                  .requestCompleter =
-                                                              null);
-                                                          await _model
-                                                              .waitForRequestCompleted();
-                                                        },
+                                                                    .requestCompleter =
+                                                                null);
+                                                            await _model
+                                                                .waitForRequestCompleted();
+                                                          },
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
                                                 ],
                                               ),
                                             ).animateOnPageLoad(animationsMap[
@@ -1166,7 +1135,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                       rows.eq(
                                                     'id',
                                                     FFAppState()
-                                                        .stOrderVisitAssetSelected
+                                                        .stOVAssetSelected
                                                         .first
                                                         .id,
                                                   ),
@@ -1174,15 +1143,16 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                 await action_blocks
                                                     .abOrderVisitAssetSelected(
                                                   context,
-                                                  abOrderVisitAssetId: FFAppState()
-                                                      .stOrderVisitAssetSelected
-                                                      .first
-                                                      .id,
+                                                  abOrderVisitAssetId:
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
                                                 );
                                                 setState(() {});
 
                                                 context.goNamed(
-                                                    'pgOrderVisitAsset3ActivitiesSearch');
+                                                    'pgOVAsset3ActivitiesSearch');
                                               } else {
                                                 await OrdersVisitsAssetsTable()
                                                     .update(
@@ -1196,7 +1166,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                       rows.eq(
                                                     'id',
                                                     FFAppState()
-                                                        .stOrderVisitAssetSelected
+                                                        .stOVAssetSelected
                                                         .first
                                                         .id,
                                                   ),
@@ -1204,10 +1174,11 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                 await action_blocks
                                                     .abOrderVisitAssetSelected(
                                                   context,
-                                                  abOrderVisitAssetId: FFAppState()
-                                                      .stOrderVisitAssetSelected
-                                                      .first
-                                                      .id,
+                                                  abOrderVisitAssetId:
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
                                                 );
                                                 setState(() {});
                                               }
@@ -1223,94 +1194,201 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: const Text(
-                                                                'Atividade'),
-                                                            content: const Text(
-                                                                'Deseja Reportar ?'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: const Text(
-                                                                    'Cancelar'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child: const Text(
-                                                                    'Confirmar'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      ) ??
-                                                      false;
-                                              if (confirmDialogResponse) {
-                                                await OrdersVisitsAssetsTable()
-                                                    .update(
-                                                  data: {
-                                                    'processingId': 2,
-                                                    'reportedUserId':
+                                      if (FFAppState()
+                                              .stOVAssetSelected
+                                              .first
+                                              .processingId ==
+                                          1)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Atividade'),
+                                                              content: const Text(
+                                                                  'Deseja Reportar ?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Cancelar'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Confirmar'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await OrdersVisitsAssetsTable()
+                                                      .update(
+                                                    data: {
+                                                      'processingId': 2,
+                                                      'reportedUserId':
+                                                          FFAppState()
+                                                              .asUserCurrent
+                                                              .id,
+                                                      'reportedDate':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              getCurrentTimestamp),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
+                                                    ),
+                                                  );
+                                                  await action_blocks
+                                                      .abOrderVisitAssetSelected(
+                                                    context,
+                                                    abOrderVisitAssetId:
                                                         FFAppState()
-                                                            .asUserCurrent
+                                                            .stOVAssetSelected
+                                                            .first
                                                             .id,
-                                                    'reportedDate':
-                                                        supaSerialize<DateTime>(
-                                                            getCurrentTimestamp),
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
-                                                    FFAppState()
-                                                        .stOrderVisitAssetSelected
+                                                  );
+                                                  await action_blocks
+                                                      .abOrderVisitProcessingCheck(
+                                                    context,
+                                                    abOrderVisitId: FFAppState()
+                                                        .stOVAssetSelected
                                                         .first
-                                                        .id,
-                                                  ),
-                                                );
-                                                await action_blocks
-                                                    .abOrderVisitProcessingCheck(
-                                                  context,
-                                                  abOrderVisitId:
-                                                      valueOrDefault<int>(
-                                                    FFAppState()
-                                                        .stOrderVisitSelected
+                                                        .orderVisitId,
+                                                  );
+                                                  setState(() {});
+                                                  await action_blocks
+                                                      .abOrderVisitSelected(
+                                                    context,
+                                                    abOrderVisitId: FFAppState()
+                                                        .stOVAssetSelected
                                                         .first
-                                                        .id,
-                                                    1,
-                                                  ),
-                                                );
-                                                setState(() {});
-                                                await action_blocks
-                                                    .abOrderVisitSelected(
-                                                  context,
-                                                  abOrderVisitId:
-                                                      valueOrDefault<int>(
-                                                    FFAppState()
-                                                        .stOrderVisitSelected
-                                                        .first
-                                                        .id,
-                                                    1,
-                                                  ),
-                                                );
+                                                        .orderVisitId,
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'pgOrderVisitShow',
+                                                    queryParameters: {
+                                                      'visitId': serializeParam(
+                                                        valueOrDefault<int>(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .id,
+                                                          1,
+                                                        ),
+                                                        ParamType.int,
+                                                      ),
+                                                      'orderId': serializeParam(
+                                                        valueOrDefault<int>(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .orderId,
+                                                          1,
+                                                        ),
+                                                        ParamType.int,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                }
+                                              },
+                                              text: 'REPORTAR',
+                                              options: FFButtonOptions(
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .backgroundComponents,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                if (widget.operation ==
+                                                    'before') {
+                                                  await OrdersVisitsAssetsTable()
+                                                      .update(
+                                                    data: {
+                                                      'beforeComments': _model
+                                                          .cpInputTexMultilineModel
+                                                          .inputTextMultineController
+                                                          .text,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
+                                                    ),
+                                                  );
+                                                } else {
+                                                  await OrdersVisitsAssetsTable()
+                                                      .update(
+                                                    data: {
+                                                      'afterComments': _model
+                                                          .cpInputTexMultilineModel
+                                                          .inputTextMultineController
+                                                          .text,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
+                                                    ),
+                                                  );
+                                                }
 
                                                 context.pushNamed(
                                                   'pgOrderVisitShow',
@@ -1318,7 +1396,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'visitId': serializeParam(
                                                       valueOrDefault<int>(
                                                         FFAppState()
-                                                            .stOrderVisitSelected
+                                                            .stOVSelected
                                                             .first
                                                             .id,
                                                         1,
@@ -1328,7 +1406,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     'orderId': serializeParam(
                                                       valueOrDefault<int>(
                                                         FFAppState()
-                                                            .stOrderVisitSelected
+                                                            .stOVSelected
                                                             .first
                                                             .orderId,
                                                         1,
@@ -1337,134 +1415,322 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                     ),
                                                   }.withoutNulls,
                                                 );
-                                              }
-                                            },
-                                            text: 'REPORTAR',
-                                            options: FFButtonOptions(
-                                              height: 50.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .backgroundComponents,
-                                                  ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                              },
+                                              text: 'Manter RASCUNHO',
+                                              options: FFButtonOptions(
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
                                             ),
-                                          ),
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              if (widget.operation ==
-                                                  'before') {
-                                                await OrdersVisitsAssetsTable()
-                                                    .update(
-                                                  data: {
-                                                    'beforeComments': _model
-                                                        .cpInputTexMultilineModel
-                                                        .inputTextMultineController
-                                                        .text,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
-                                                    FFAppState()
-                                                        .stOrderVisitAssetSelected
-                                                        .first
-                                                        .id,
-                                                  ),
-                                                );
-                                              } else {
-                                                await OrdersVisitsAssetsTable()
-                                                    .update(
-                                                  data: {
-                                                    'afterComments': _model
-                                                        .cpInputTexMultilineModel
-                                                        .inputTextMultineController
-                                                        .text,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
-                                                    FFAppState()
-                                                        .stOrderVisitAssetSelected
-                                                        .first
-                                                        .id,
-                                                  ),
-                                                );
-                                              }
-
-                                              context.pushNamed(
-                                                'pgOrderVisitShow',
-                                                queryParameters: {
-                                                  'visitId': serializeParam(
-                                                    valueOrDefault<int>(
+                                          ],
+                                        ),
+                                      if (FFAppState()
+                                              .stOVAssetSelected
+                                              .first
+                                              .processingId ==
+                                          2)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Atividade'),
+                                                              content: const Text(
+                                                                  'Deseja Reportar ?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Cancelar'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Confirmar'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await OrdersVisitsAssetsTable()
+                                                      .update(
+                                                    data: {
+                                                      'processingId': 2,
+                                                      'reportedUserId':
+                                                          FFAppState()
+                                                              .asUserCurrent
+                                                              .id,
+                                                      'reportedDate':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              getCurrentTimestamp),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
+                                                    ),
+                                                  );
+                                                  await action_blocks
+                                                      .abOrderVisitProcessingCheck(
+                                                    context,
+                                                    abOrderVisitId:
+                                                        valueOrDefault<int>(
+                                                      FFAppState()
+                                                          .stOVSelected
                                                           .first
                                                           .id,
                                                       1,
                                                     ),
-                                                    ParamType.int,
-                                                  ),
-                                                  'orderId': serializeParam(
-                                                    valueOrDefault<int>(
+                                                  );
+                                                  setState(() {});
+                                                  await action_blocks
+                                                      .abOrderVisitSelected(
+                                                    context,
+                                                    abOrderVisitId:
+                                                        valueOrDefault<int>(
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
-                                                          .orderId,
+                                                          .id,
                                                       1,
                                                     ),
-                                                    ParamType.int,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
-                                            },
-                                            text: 'Manter RASCUNHO',
-                                            options: FFButtonOptions(
-                                              height: 50.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.white,
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'pgOrderVisitShow',
+                                                    queryParameters: {
+                                                      'visitId': serializeParam(
+                                                        valueOrDefault<int>(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .id,
+                                                          1,
+                                                        ),
+                                                        ParamType.int,
                                                       ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                                      'orderId': serializeParam(
+                                                        valueOrDefault<int>(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .orderId,
+                                                          1,
+                                                        ),
+                                                        ParamType.int,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                }
+                                              },
+                                              text: 'RECUSAR',
+                                              options: FFButtonOptions(
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBtnText,
+                                                    ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Atividade'),
+                                                              content: const Text(
+                                                                  'Deseja realmente APROVAR ?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Cancelar'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Confirmar'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await OrdersVisitsAssetsTable()
+                                                      .update(
+                                                    data: {
+                                                      'approvedUserId':
+                                                          FFAppState()
+                                                              .asUserCurrent
+                                                              .id,
+                                                      'approvedDate':
+                                                          supaSerialize<
+                                                                  DateTime>(
+                                                              getCurrentTimestamp),
+                                                      'processingId': 4,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      FFAppState()
+                                                          .stOVAssetSelected
+                                                          .first
+                                                          .id,
+                                                    ),
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'pgOrderVisitShow',
+                                                    queryParameters: {
+                                                      'visitId': serializeParam(
+                                                        FFAppState()
+                                                            .stOVSelected
+                                                            .first
+                                                            .id,
+                                                        ParamType.int,
+                                                      ),
+                                                      'orderId': serializeParam(
+                                                        FFAppState()
+                                                            .stOVSelected
+                                                            .first
+                                                            .orderId,
+                                                        ParamType.int,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                }
+                                              },
+                                              text: 'APROVAR',
+                                              options: FFButtonOptions(
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .success,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      if (containerVOrdersVisitsAssetsRow
+                                              ?.processingId ==
+                                          4)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'APROVADO POR ${FFAppState().stOVAssetSelected.first.approvedUserNameShort}em ${dateTimeFormat('d/M/y H:mm', FFAppState().stOVAssetSelected.first.approvedDateDateTime)} h',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ],
+                                        ),
                                     ].divide(const SizedBox(height: 8.0)),
                                   ),
                               ],

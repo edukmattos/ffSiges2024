@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/md_order_visit_to_approve_copy/md_order_visit_to_approve_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -387,7 +388,7 @@ Future abOrderSelected(
     orderId: abOrderId,
   );
   if ((resOrderSelected.succeeded ?? true)) {
-    FFAppState().stOrderSelected = ((resOrderSelected.jsonBody ?? '')
+    FFAppState().stOSelected = ((resOrderSelected.jsonBody ?? '')
             .toList()
             .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
             .toList() as Iterable<DtVOrderStruct?>)
@@ -424,7 +425,7 @@ Future abOrderVisitSelected(
     orderVisitId: abOrderVisitId,
   );
   if ((resOrderVisitSelected.succeeded ?? true)) {
-    FFAppState().stOrderVisitSelected = ((resOrderVisitSelected.jsonBody ?? '')
+    FFAppState().stOVSelected = ((resOrderVisitSelected.jsonBody ?? '')
             .toList()
             .map<DtVOrderVisitStruct?>(DtVOrderVisitStruct.maybeFromMap)
             .toList() as Iterable<DtVOrderVisitStruct?>)
@@ -432,24 +433,20 @@ Future abOrderVisitSelected(
         .toList()
         .cast<DtVOrderVisitStruct>();
     FFAppState().stCounterLoop = 0;
-    FFAppState().stCounterLoopFinal = FFAppState().stOrderVisitSelected.length;
+    FFAppState().stCounterLoopFinal = FFAppState().stOVSelected.length;
     while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
-      if (FFAppState()
-                  .stOrderVisitSelected[FFAppState().stCounterLoop]
-                  .dateStart !=
+      if (FFAppState().stOVSelected[FFAppState().stCounterLoop].dateStart !=
               '') {
-        FFAppState().updateStOrderVisitSelectedAtIndex(
+        FFAppState().updateStOVSelectedAtIndex(
           FFAppState().stCounterLoop,
           (e) => e
             ..dateStartDatetime = functions.cfConvDateStringToDatetime(
                 FFAppState()
-                    .stOrderVisitSelected[FFAppState().stCounterLoop]
+                    .stOVSelected[FFAppState().stCounterLoop]
                     .dateStart),
         );
       } else {
-        if (FFAppState()
-                    .stOrderVisitSelected[FFAppState().stCounterLoop]
-                    .dateEnd !=
+        if (FFAppState().stOVSelected[FFAppState().stCounterLoop].dateEnd !=
                 '') {
           var confirmDialogResponse = await showDialog<bool>(
                 context: context,
@@ -472,12 +469,12 @@ Future abOrderVisitSelected(
                 },
               ) ??
               false;
-          FFAppState().updateStOrderVisitSelectedAtIndex(
+          FFAppState().updateStOVSelectedAtIndex(
             FFAppState().stCounterLoop,
             (e) => e
               ..dateEndDatetime = functions.cfConvDateStringToDatetime(
                   FFAppState()
-                      .stOrderVisitSelected[FFAppState().stCounterLoop]
+                      .stOVSelected[FFAppState().stCounterLoop]
                       .dateEnd),
           );
           confirmDialogResponse = await showDialog<bool>(
@@ -486,7 +483,7 @@ Future abOrderVisitSelected(
                   return AlertDialog(
                     title: const Text('dateEndDatetime'),
                     content: Text(FFAppState()
-                        .stOrderVisitSelected[FFAppState().stCounterLoop]
+                        .stOVSelected[FFAppState().stCounterLoop]
                         .dateEndDatetime!
                         .toString()),
                     actions: [
@@ -532,6 +529,14 @@ Future abOrderVisitSelected(
 
       FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
     }
+    await action_blocks.abOrderSelected(
+      context,
+      abOrderId: FFAppState().stOVSelected.first.orderId,
+    );
+    await action_blocks.abOrderParentSelected(
+      context,
+      abOrderId: FFAppState().stOSelected.first.parentId,
+    );
   } else {
     await showDialog(
       context: context,
@@ -581,7 +586,7 @@ Future abOrderVisitAssetSelected(
     orderVisitAssetId: abOrderVisitAssetId,
   );
   if ((resOrderVisitAssetSelected.succeeded ?? true)) {
-    FFAppState().stOrderVisitAssetSelected =
+    FFAppState().stOVAssetSelected =
         ((resOrderVisitAssetSelected.jsonBody ?? '')
                 .toList()
                 .map<DtVOrderVisitAssetsStruct?>(
@@ -590,6 +595,26 @@ Future abOrderVisitAssetSelected(
             .withoutNulls
             .toList()
             .cast<DtVOrderVisitAssetsStruct>();
+    await action_blocks.abOrderVisitSelected(
+      context,
+      abOrderVisitId: FFAppState().stOVAssetSelected.first.orderVisitId,
+    );
+  } else {
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return AlertDialog(
+          title: const Text('Ops ...'),
+          content: const Text('Ocorreu um erro em selecionar o Ativo.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: const Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -603,14 +628,13 @@ Future abOrderParentSelected(
     orderId: abOrderId,
   );
   if ((resOrderParentSelected.succeeded ?? true)) {
-    FFAppState().stOrderParentSelected =
-        ((resOrderParentSelected.jsonBody ?? '')
-                .toList()
-                .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
-                .toList() as Iterable<DtVOrderStruct?>)
-            .withoutNulls
+    FFAppState().stOPSelected = ((resOrderParentSelected.jsonBody ?? '')
             .toList()
-            .cast<DtVOrderStruct>();
+            .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
+            .toList() as Iterable<DtVOrderStruct?>)
+        .withoutNulls
+        .toList()
+        .cast<DtVOrderStruct>();
   } else {
     await showDialog(
       context: context,
@@ -642,8 +666,7 @@ Future abOrderParentEvents(
     orderId: abOrderParentId,
   );
   if ((resOrderParentSelected111.succeeded ?? true)) {
-    FFAppState().stOrdersFollowers = ((resOrderParentSelected111.jsonBody ??
-                '')
+    FFAppState().stOFollowers = ((resOrderParentSelected111.jsonBody ?? '')
             .toList()
             .map<DtVOrderFollowerStruct?>(DtVOrderFollowerStruct.maybeFromMap)
             .toList() as Iterable<DtVOrderFollowerStruct?>)
@@ -651,7 +674,7 @@ Future abOrderParentEvents(
         .toList()
         .cast<DtVOrderFollowerStruct>();
     FFAppState().stCounterLoop = 1;
-    FFAppState().stCounterLoopFinal = FFAppState().stOrdersFollowers.length;
+    FFAppState().stCounterLoopFinal = FFAppState().stOFollowers.length;
     while (FFAppState().stCounterLoop <= FFAppState().stCounterLoopFinal) {
       await action_blocks.abUsersNotificationsSend(
         context,
@@ -659,9 +682,8 @@ Future abOrderParentEvents(
         abTitle: abTitle,
         abBody: abBody,
         abUserIdFrom: FFAppState().asUserCurrent.id,
-        abUserIdTo: FFAppState()
-            .stOrdersFollowers[FFAppState().stCounterLoop - 1]
-            .userId,
+        abUserIdTo:
+            FFAppState().stOFollowers[FFAppState().stCounterLoop - 1].userId,
         abOrderId: abOrderParentId,
       );
       FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
@@ -675,16 +697,11 @@ Future abOrderVisitProcessingCheck(
 }) async {
   ApiCallResponse? apiResultojo;
 
-  await action_blocks.abOrderVisitSelected(
-    context,
-    abOrderVisitId: abOrderVisitId,
-  );
   apiResultojo = await ApiOrdersVisitsAssetsGroup.assetsByOrderVisitIdCall.call(
     orderVisitId: abOrderVisitId,
   );
   if ((apiResultojo.succeeded ?? true)) {
-    FFAppState().stOrderVisitAssets = [];
-    FFAppState().stOrderVisitAssets = ((apiResultojo.jsonBody ?? '')
+    FFAppState().stOVAssets = ((apiResultojo.jsonBody ?? '')
             .toList()
             .map<DtVOrderVisitAssetsStruct?>(
                 DtVOrderVisitAssetsStruct.maybeFromMap)
@@ -692,43 +709,39 @@ Future abOrderVisitProcessingCheck(
         .withoutNulls
         .toList()
         .cast<DtVOrderVisitAssetsStruct>();
-    FFAppState().stCounterLoop = 1;
+    FFAppState().stCounterLoop = 0;
     FFAppState().stCounterLoopFinal = valueOrDefault<int>(
-      FFAppState().stOrderVisitAssets.length,
+      FFAppState().stOVAssets.length,
       0,
     );
-    FFAppState().stOrderVisitAssetsDraftAmount = 0;
-    FFAppState().stOrderVisitAssetsReportedAmount = 0;
-    FFAppState().stOrdervisitAssetsDisapprovedAmount = 0;
-    FFAppState().stOrderVisitAssetsApprovedAmount = 0;
-    while (FFAppState().stCounterLoop <= FFAppState().stCounterLoopFinal) {
-      if (FFAppState()
-              .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
-              .processingId ==
+    FFAppState().stOVAssetsDraftAmount = 0;
+    FFAppState().stOVAssetsReportedAmount = 0;
+    FFAppState().stOVAssetsDisapprovedAmount = 0;
+    FFAppState().stOVAssetsApprovedAmount = 0;
+    while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+      if (FFAppState().stOVAssets[FFAppState().stCounterLoop].processingId ==
           1) {
-        FFAppState().stOrderVisitAssetsDraftAmount =
-            FFAppState().stOrderVisitAssetsDraftAmount + 1;
+        FFAppState().stOVAssetsDraftAmount =
+            FFAppState().stOVAssetsDraftAmount + 1;
       } else {
-        if (FFAppState()
-                .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
-                .processingId ==
+        if (FFAppState().stOVAssets[FFAppState().stCounterLoop].processingId ==
             2) {
-          FFAppState().stOrderVisitAssetsReportedAmount =
-              FFAppState().stOrderVisitAssetsReportedAmount + 1;
+          FFAppState().stOVAssetsReportedAmount =
+              FFAppState().stOVAssetsReportedAmount + 1;
         } else {
           if (FFAppState()
-                  .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
+                  .stOVAssets[FFAppState().stCounterLoop]
                   .processingId ==
               3) {
-            FFAppState().stOrdervisitAssetsDisapprovedAmount =
-                FFAppState().stOrdervisitAssetsDisapprovedAmount + 1;
+            FFAppState().stOVAssetsDisapprovedAmount =
+                FFAppState().stOVAssetsDisapprovedAmount + 1;
           } else {
             if (FFAppState()
-                    .stOrderVisitAssets[FFAppState().stCounterLoop - 1]
+                    .stOVAssets[FFAppState().stCounterLoop]
                     .processingId ==
                 4) {
-              FFAppState().stOrderVisitAssetsApprovedAmount =
-                  FFAppState().stOrderVisitAssetsApprovedAmount + 1;
+              FFAppState().stOVAssetsApprovedAmount =
+                  FFAppState().stOVAssetsApprovedAmount + 1;
             }
           }
         }
@@ -739,33 +752,30 @@ Future abOrderVisitProcessingCheck(
     await OrdersVisitsTable().update(
       data: {
         'orderVisitAssetsAmount': FFAppState().stCounterLoopFinal,
-        'orderVisitAssetsDraftAmount':
-            FFAppState().stOrderVisitAssetsDraftAmount,
-        'orderVisitAssetsReportedAmount':
-            FFAppState().stOrderVisitAssetsReportedAmount,
+        'orderVisitAssetsDraftAmount': FFAppState().stOVAssetsDraftAmount,
+        'orderVisitAssetsReportedAmount': FFAppState().stOVAssetsReportedAmount,
         'orderVisitAssetsDisapprovedAmount':
-            FFAppState().stOrdervisitAssetsDisapprovedAmount,
-        'orderVisitAssetsApprovedAmount':
-            FFAppState().stOrderVisitAssetsApprovedAmount,
+            FFAppState().stOVAssetsDisapprovedAmount,
+        'orderVisitAssetsApprovedAmount': FFAppState().stOVAssetsApprovedAmount,
       },
       matchingRows: (rows) => rows.eq(
         'id',
         valueOrDefault<int>(
-          FFAppState().stOrderVisitSelected.first.id,
+          FFAppState().stOVSelected.first.id,
           1,
         ),
       ),
     );
-    if (FFAppState().stOrderVisitSelected.first.statusId == 2) {
+    if (FFAppState().stOVSelected.first.statusId == 2) {
       if ((FFAppState().stCounterLoopFinal ==
-              FFAppState().stOrderVisitAssetsReportedAmount) &&
-          (FFAppState().stOrderVisitSelected.first.processingId != 2) &&
+              FFAppState().stOVAssetsReportedAmount) &&
+          (FFAppState().stOVSelected.first.processingId != 2) &&
           (FFAppState().stCounterLoopFinal > 0)) {
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  title: const Text('Reportar VISITA ?'),
+                  title: const Text('Reportar ATENDIMENTO ?'),
                   content: const Text('TODAS atividades estão reportadas.'),
                   actions: [
                     TextButton(
@@ -786,8 +796,8 @@ Future abOrderVisitProcessingCheck(
             context: context,
             builder: (alertDialogContext) {
               return AlertDialog(
-                title: const Text('Visita'),
-                content: const Text('Reportada com sucesso.'),
+                title: const Text('Atendimento'),
+                content: const Text('Reportado com sucesso.'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext),
@@ -806,10 +816,48 @@ Future abOrderVisitProcessingCheck(
             matchingRows: (rows) => rows.eq(
               'id',
               valueOrDefault<int>(
-                FFAppState().stOrderVisitSelected.first.id,
+                FFAppState().stOVSelected.first.id,
                 1,
               ),
             ),
+          );
+        }
+      } else if ((FFAppState().stCounterLoopFinal ==
+              FFAppState().stOVAssetsApprovedAmount) &&
+          (FFAppState().stOVSelected.first.processingId != 4) &&
+          (FFAppState().stCounterLoopFinal > 0)) {
+        var confirmDialogResponse = await showDialog<bool>(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: const Text('APROVAR atendimento ?'),
+                  content: const Text('TODAS atividades estão aprovadas'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                      child: const Text('Cancelar'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                      child: const Text('Confirmar'),
+                    ),
+                  ],
+                );
+              },
+            ) ??
+            false;
+        if (confirmDialogResponse) {
+          await showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            enableDrag: false,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: const MdOrderVisitToApproveCopyWidget(),
+              );
+            },
           );
         }
       }
@@ -844,7 +892,7 @@ Future<bool> abOrderVisitAssetIsExist(
   resOrderVisitAssetCheck =
       await ApiOrdersVisitsAssetsGroup.idByvisitIdNassetIdCall.call(
     orderVisitId: valueOrDefault<int>(
-      FFAppState().stOrderVisitSelected.first.id,
+      FFAppState().stOVSelected.first.id,
       1,
     ),
     assetId: FFAppState().stAssetSeleted.first.id,
@@ -1052,7 +1100,7 @@ Future abOrderVisitSelectedServices(
           FFAppState().asTmpOrderVisitSelectedPricesBalance.first.priceServices,
     );
     FFAppState().update(() {
-      FFAppState().updateStOrderVisitSelectedAtIndex(
+      FFAppState().updateStOVSelectedAtIndex(
         0,
         (e) => e
           ..priceServices = FFAppState()
@@ -1068,7 +1116,7 @@ Future abOrderVisitSelectedServices(
       priceServices: 0.0,
     );
     FFAppState().update(() {
-      FFAppState().updateStOrderVisitSelectedAtIndex(
+      FFAppState().updateStOVSelectedAtIndex(
         0,
         (e) => e..priceServices = 0.0,
       );
@@ -1076,12 +1124,12 @@ Future abOrderVisitSelectedServices(
   }
 
   FFAppState().update(() {
-    FFAppState().updateStOrderVisitSelectedAtIndex(
+    FFAppState().updateStOVSelectedAtIndex(
       0,
       (e) => e
-        ..priceTotal = FFAppState().stOrderVisitSelected.first.priceServices +
-            FFAppState().stOrderVisitSelected.first.priceMaterials +
-            FFAppState().stOrderVisitSelected.first.priceVehicles,
+        ..priceTotal = FFAppState().stOVSelected.first.priceServices +
+            FFAppState().stOVSelected.first.priceMaterials +
+            FFAppState().stOVSelected.first.priceVehicles,
     );
   });
 }
@@ -1175,4 +1223,148 @@ Future abDashAdminOrdersFilters(
     ordersTypesSubsIdsList: abOrdersTypesSubs,
     contractsIdsList: abContracts,
   );
+}
+
+Future abOrdersVisitsSearchFilters(
+  BuildContext context, {
+  List<int>? abSystemsParent,
+  List<int>? abSystems,
+  List<int>? abUnitsTypesParent,
+  List<int>? abUnits,
+  List<int>? abOrdersTypes,
+  List<int>? abOrdersTypesSubs,
+  List<int>? abOrdersVisitsProcessing,
+  List<int>? abContracts,
+}) async {
+  ApiCallResponse? resOrdersVisits;
+
+  resOrdersVisits = await ApiOrdersVisitsGroup.searchFiltersCall.call(
+    ordersTypesIdsList: abOrdersTypes,
+    processingIdsList: abOrdersVisitsProcessing,
+    unitsIdsList: abUnits,
+    ordersTypesSubsIdsList: abOrdersTypesSubs,
+    systemsParentsIdsList: abSystemsParent,
+    systemsIdsList: abSystems,
+    unitsTypesParentsIdsList: abUnitsTypesParent,
+    contractsIdsList: abContracts,
+  );
+  if ((resOrdersVisits.succeeded ?? true)) {
+    FFAppState().update(() {
+      FFAppState().asOVSearchResults = ((resOrdersVisits?.jsonBody ?? '')
+              .toList()
+              .map<DtVOrderVisitStruct?>(DtVOrderVisitStruct.maybeFromMap)
+              .toList() as Iterable<DtVOrderVisitStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DtVOrderVisitStruct>();
+    });
+    FFAppState().stCounterLoop = 0;
+    FFAppState().stCounterLoopFinal = FFAppState().asOVSearchResults.length;
+    FFAppState().update(() {
+      FFAppState().stTmpOVFiltersSumPrices =
+          DtTmpOrdersVisitsFiltersSumPricesStruct(
+        sumPriceServices: 0.0,
+        sumPriceMaterials: 0.0,
+        sumPriceVehicles: 0.0,
+        sumPriceTotal: 0.0,
+      );
+    });
+    while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+      FFAppState().updateAsOVSearchResultsAtIndex(
+        FFAppState().stCounterLoop,
+        (e) => e
+          ..dateStartDatetime = functions.cfConvDateStringToDatetime(
+              FFAppState()
+                  .asOVSearchResults[FFAppState().stCounterLoop]
+                  .dateStart)
+          ..dateEndDatetime = functions.cfConvDateStringToDatetime(FFAppState()
+              .asOVSearchResults[FFAppState().stCounterLoop]
+              .dateEnd),
+      );
+      FFAppState().update(() {
+        FFAppState().stTmpOVFiltersSumPrices =
+            DtTmpOrdersVisitsFiltersSumPricesStruct(
+          sumPriceServices:
+              FFAppState().stTmpOVFiltersSumPrices.sumPriceServices +
+                  FFAppState()
+                      .asOVSearchResults[FFAppState().stCounterLoop]
+                      .priceServices,
+          sumPriceMaterials:
+              FFAppState().stTmpOVFiltersSumPrices.sumPriceMaterials +
+                  FFAppState()
+                      .asOVSearchResults[FFAppState().stCounterLoop]
+                      .priceMaterials,
+          sumPriceVehicles:
+              FFAppState().stTmpOVFiltersSumPrices.sumPriceVehicles +
+                  FFAppState()
+                      .asOVSearchResults[FFAppState().stCounterLoop]
+                      .priceVehicles,
+          sumPriceTotal: FFAppState().stTmpOVFiltersSumPrices.sumPriceTotal +
+              FFAppState()
+                  .asOVSearchResults[FFAppState().stCounterLoop]
+                  .priceTotal,
+        );
+      });
+      FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text(
+          'Não foi possivel filtrar os Atendimentos.',
+          style: TextStyle(),
+        ),
+        duration: const Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
+    );
+    return;
+  }
+}
+
+Future abUserOrdersOpenUpdate(
+  BuildContext context, {
+  required int? abLeaderId,
+}) async {
+  ApiCallResponse? resUserOrdersOpen;
+
+  resUserOrdersOpen = await ApiOrdersGroup.ordersOpenByLeaderIdCall.call(
+    userId: abLeaderId,
+  );
+  if ((resUserOrdersOpen.succeeded ?? true)) {
+    FFAppState().update(() {
+      FFAppState().stUserOOpen = ((resUserOrdersOpen?.jsonBody ?? '')
+              .toList()
+              .map<DtVOrderStruct?>(DtVOrderStruct.maybeFromMap)
+              .toList() as Iterable<DtVOrderStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DtVOrderStruct>();
+    });
+  }
+}
+
+Future abOVAssetActivitiesUpdate(
+  BuildContext context, {
+  required int? abOVAssetId,
+}) async {
+  ApiCallResponse? resOVAssetActivities;
+
+  resOVAssetActivities = await ApiOrdersVisitsAssetsActivitiesGroup
+      .activitiesByOrderVisitAssetIdCall
+      .call(
+    orderVisitAssetId: abOVAssetId,
+  );
+  if ((resOVAssetActivities.succeeded ?? true)) {
+    FFAppState().update(() {
+      FFAppState().stOVAssetActivities = ((resOVAssetActivities?.jsonBody ?? '')
+              .toList()
+              .map<DtVOrderVisitAssetActivityStruct?>(
+                  DtVOrderVisitAssetActivityStruct.maybeFromMap)
+              .toList() as Iterable<DtVOrderVisitAssetActivityStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DtVOrderVisitAssetActivityStruct>();
+    });
+  }
 }

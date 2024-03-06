@@ -93,8 +93,8 @@ class _MdOrderVisitContractServiceAddWidgetState
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        FFAppState().asCwOrderVisitServiceAmountDouble = 0.0;
-        FFAppState().asCwOrderVisitServiceDiscountDouble = 0.0;
+        FFAppState().asCwOVServiceAmountDouble = 0.0;
+        FFAppState().asCwOVServiceDiscountDouble = 0.0;
       });
     });
 
@@ -253,7 +253,7 @@ class _MdOrderVisitContractServiceAddWidgetState
                                                   width: double.infinity,
                                                   height: 50.0,
                                                   child: custom_widgets
-                                                      .CwOrderVisitServiceAmount(
+                                                      .CwOVServiceAmount(
                                                     width: double.infinity,
                                                     height: 50.0,
                                                     value: '0',
@@ -302,7 +302,7 @@ class _MdOrderVisitContractServiceAddWidgetState
                                                   width: double.infinity,
                                                   height: 50.0,
                                                   child: custom_widgets
-                                                      .CwOrderVisitServiceDiscount(
+                                                      .CwOVServiceDiscount(
                                                     width: double.infinity,
                                                     height: 50.0,
                                                     value: '0,00',
@@ -331,16 +331,16 @@ class _MdOrderVisitContractServiceAddWidgetState
                                                 FFButtonWidget(
                                                   onPressed: () async {
                                                     if (FFAppState()
-                                                            .asCwOrderVisitServiceAmountDouble >
+                                                            .asCwOVServiceAmountDouble >
                                                         0.0) {
                                                       if (FFAppState()
-                                                              .asCwOrderVisitServiceDiscountDouble >=
+                                                              .asCwOVServiceDiscountDouble >=
                                                           0.0) {
                                                         await OrdersVisitsServicesTable()
                                                             .insert({
                                                           'orderVisitId':
                                                               FFAppState()
-                                                                  .stOrderVisitSelected
+                                                                  .stOVSelected
                                                                   .first
                                                                   .id,
                                                           'serviceId':
@@ -348,24 +348,24 @@ class _MdOrderVisitContractServiceAddWidgetState
                                                           'priceUnit':
                                                               widget.priceUnit,
                                                           'amount': FFAppState()
-                                                              .asCwOrderVisitServiceAmountDouble,
+                                                              .asCwOVServiceAmountDouble,
                                                           'discount': FFAppState()
-                                                              .asCwOrderVisitServiceDiscountDouble,
+                                                              .asCwOVServiceDiscountDouble,
                                                           'total': functions
                                                               .cfOrderVisitServiceOrVehicleTotal(
                                                                   FFAppState()
-                                                                      .asCwOrderVisitServiceAmountDouble,
+                                                                      .asCwOVServiceAmountDouble,
                                                                   widget
                                                                       .priceUnit!,
                                                                   FFAppState()
-                                                                      .asCwOrderVisitServiceDiscountDouble),
+                                                                      .asCwOVServiceDiscountDouble),
                                                         });
                                                         await action_blocks
                                                             .abOrderVisitSelectedServices(
                                                           context,
                                                           abOrderVisitId:
                                                               FFAppState()
-                                                                  .stOrderVisitSelected
+                                                                  .stOVSelected
                                                                   .first
                                                                   .id,
                                                         );

@@ -76,7 +76,7 @@ class _CpDropdownOrdersTypesSubsWidgetState
         return FlutterFlowDropDown<int>(
           controller: _model.dropdownOrdersTypesSubsValueController ??=
               FormFieldController<int>(
-            _model.dropdownOrdersTypesSubsValue ??= 0,
+            _model.dropdownOrdersTypesSubsValue ??= widget.initialValue,
           ),
           options: List<int>.from(
               ApiOrdersTypesSubGroup.ordersTypesSubsByDepartmentCall.id(

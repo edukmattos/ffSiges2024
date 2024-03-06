@@ -288,6 +288,32 @@ class _MdDashAdminFiltersWidgetState extends State<MdDashAdminFiltersWidget> {
                                                   .cpDropdownFiltersContractsModel
                                                   .dropdownOrdersContractsValue,
                                             );
+                                            await action_blocks
+                                                .abOrdersVisitsSearchFilters(
+                                              context,
+                                              abSystemsParent: _model
+                                                  .cpDropdownFiltersSystemsParentsModel
+                                                  .dropdownSystemsParentValue,
+                                              abSystems: _model
+                                                  .cpDropdownFiltersSystemsModel
+                                                  .dropdownFiltersSystemsValue,
+                                              abUnitsTypesParent: _model
+                                                  .cpDropdownFiltersUnitsTypesParentModel
+                                                  .dropdownFiltersUnitsTypesParentValue,
+                                              abUnits: _model
+                                                  .cpDropdownFiltersUnitsModel
+                                                  .dropdownFiltersUnitsValue,
+                                              abOrdersTypes: _model
+                                                  .cpDropdownFiltersOrdersTypesModel
+                                                  .dropdownFiltersOrdersTypesValue,
+                                              abOrdersTypesSubs: _model
+                                                  .cpDropdownFiltersOrdersTypesSubsModel
+                                                  .dropdownFiltersOrdersTypesSubsValue,
+                                              abOrdersVisitsProcessing: [],
+                                              abContracts: _model
+                                                  .cpDropdownFiltersContractsModel
+                                                  .dropdownOrdersContractsValue,
+                                            );
                                             Navigator.pop(context);
                                           },
                                           text: 'Aplicar',

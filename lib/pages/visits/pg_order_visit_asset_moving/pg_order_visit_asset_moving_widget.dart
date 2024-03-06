@@ -7,6 +7,7 @@ import '/pages/components/cp_dropdown_assets_statuses/cp_dropdown_assets_statuse
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
 import '/pages/components/cp_dropdown_units/cp_dropdown_units_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
+import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _PgOrderVisitAssetMovingWidgetState
             automaticallyImplyLeading: false,
             leading: Visibility(
               visible: valueOrDefault<int>(
-                    FFAppState().stOrderVisitSelected.first.processingId,
+                    FFAppState().stOVSelected.first.processingId,
                     1,
                   ) ==
                   4,
@@ -76,7 +77,19 @@ class _PgOrderVisitAssetMovingWidgetState
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  context.pushNamed(
+                    'pgOrderVisitShow',
+                    queryParameters: {
+                      'visitId': serializeParam(
+                        FFAppState().stOVSelected.first.id,
+                        ParamType.int,
+                      ),
+                      'orderId': serializeParam(
+                        FFAppState().stOVSelected.first.orderId,
+                        ParamType.int,
+                      ),
+                    }.withoutNulls,
+                  );
                 },
               ),
             ),
@@ -103,7 +116,7 @@ class _PgOrderVisitAssetMovingWidgetState
                           ..complete(OrdersVisitsAssetsTable().querySingleRow(
                             queryFn: (q) => q.eq(
                               'id',
-                              FFAppState().stOrderVisitAssetSelected.first.id,
+                              FFAppState().stOVAssetSelected.first.id,
                             ),
                           )))
                     .future,
@@ -140,6 +153,43 @@ class _PgOrderVisitAssetMovingWidgetState
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: wrapWithModel(
+                                  model: _model.cpOVAssetListCardModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: CpOVAssetListCardWidget(
+                                    assetDescription: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .description,
+                                    unitDescription: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .beforeUnitDescription,
+                                    assetCode: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .code,
+                                    assetStatusDescription: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .beforeStatusDescription,
+                                    assetTagDescription: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .beforeTagDescription,
+                                    assetTagSubDescription: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .beforeTagSubDescription,
+                                    processingId: FFAppState()
+                                        .stOVAssetSelected
+                                        .first
+                                        .processingId,
+                                  ),
+                                ),
+                              ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -211,20 +261,33 @@ class _PgOrderVisitAssetMovingWidgetState
                                                 'afterStatusId':
                                                     containerOrdersVisitsAssetsRow
                                                         ?.beforeStatusId,
-                                                'isMoved': false,
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'id',
-                                                containerOrdersVisitsAssetsRow
-                                                    ?.id,
+                                                FFAppState()
+                                                    .stOVAssetSelected
+                                                    .first
+                                                    .id,
                                               ),
                                             );
-                                            setState(() =>
-                                                _model.requestCompleter = null);
-                                            await _model
-                                                .waitForRequestCompleted(
-                                                    minWait: 1000,
-                                                    maxWait: 10000);
+                                            await action_blocks
+                                                .abOrderVisitAssetSelected(
+                                              context,
+                                              abOrderVisitAssetId: FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .id,
+                                            );
+
+                                            context.pushNamed(
+                                              'pgOrderVisitAsset2Before',
+                                              queryParameters: {
+                                                'operation': serializeParam(
+                                                  'after',
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -300,7 +363,7 @@ class _PgOrderVisitAssetMovingWidgetState
                                               matchingRows: (rows) => rows.eq(
                                                 'id',
                                                 FFAppState()
-                                                    .stOrderVisitAssetSelected
+                                                    .stOVAssetSelected
                                                     .first
                                                     .id,
                                               ),
@@ -706,86 +769,6 @@ class _PgOrderVisitAssetMovingWidgetState
                               ),
                             ].divide(const SizedBox(height: 12.0)),
                           ),
-                          if (!containerOrdersVisitsAssetsRow!.isMoved!)
-                            Align(
-                              alignment: const AlignmentDirectional(1.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Align(
-                                    alignment: const AlignmentDirectional(1.0, 1.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        FlutterFlowIconButton(
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          borderRadius: 25.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 50.0,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          icon: Icon(
-                                            Icons.arrow_forward,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            size: 30.0,
-                                          ),
-                                          onPressed: () async {
-                                            await OrdersVisitsAssetsTable()
-                                                .update(
-                                              data: {
-                                                'afterUnitId':
-                                                    containerOrdersVisitsAssetsRow
-                                                        .beforeUnitId,
-                                                'afterTagId':
-                                                    containerOrdersVisitsAssetsRow
-                                                        .beforeTagId,
-                                                'afterTagSubId':
-                                                    containerOrdersVisitsAssetsRow
-                                                        .beforeTagSubId,
-                                                'afterStatusId':
-                                                    containerOrdersVisitsAssetsRow
-                                                        .beforeStatusId,
-                                              },
-                                              matchingRows: (rows) => rows.eq(
-                                                'id',
-                                                FFAppState()
-                                                    .stOrderVisitAssetSelected
-                                                    .first
-                                                    .id,
-                                              ),
-                                            );
-                                            await action_blocks
-                                                .abOrderVisitAssetSelected(
-                                              context,
-                                              abOrderVisitAssetId: FFAppState()
-                                                  .stOrderVisitAssetSelected
-                                                  .first
-                                                  .id,
-                                            );
-
-                                            context.pushNamed(
-                                              'pgOrderVisitAsset2Before',
-                                              queryParameters: {
-                                                'operation': serializeParam(
-                                                  'after',
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                         ].divide(const SizedBox(height: 12.0)),
                       ),
                     ),

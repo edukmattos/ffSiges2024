@@ -184,8 +184,8 @@ class VOrdersVisitsSearchFiltersRow extends SupabaseDataRow {
   set statusDescription(String? value) =>
       setField<String>('statusDescription', value);
 
-  int? get processingId => getField<int>('processing_id');
-  set processingId(int? value) => setField<int>('processing_id', value);
+  int? get processingId => getField<int>('processingId');
+  set processingId(int? value) => setField<int>('processingId', value);
 
   String? get processingDescription =>
       getField<String>('processingDescription');

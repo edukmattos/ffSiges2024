@@ -7,8 +7,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/components/cp_dropdown_orders_cancel_reasons/cp_dropdown_orders_cancel_reasons_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
+import '/pages/orders/cp_dropdown_orders_cancel_reasons/cp_dropdown_orders_cancel_reasons_widget.dart';
 import '/pages/orders/cp_dropdown_visit_orders_statuses/cp_dropdown_visit_orders_statuses_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
@@ -417,7 +417,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                         rows.eq(
                                                       'id',
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
                                                           .id,
                                                     ),
@@ -429,7 +429,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                     abOrderVisitId:
                                                         valueOrDefault<int>(
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
                                                           .id,
                                                       1,
@@ -441,7 +441,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                     abOrderId:
                                                         valueOrDefault<int>(
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
                                                           .orderId,
                                                       1,
@@ -513,7 +513,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                         rows.eq(
                                                       'id',
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
                                                           .orderId,
                                                     ),
@@ -540,7 +540,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                       'visitId': serializeParam(
                                                         valueOrDefault<int>(
                                                           FFAppState()
-                                                              .stOrderVisitSelected
+                                                              .stOVSelected
                                                               .first
                                                               .id,
                                                           1,
@@ -550,7 +550,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                       'orderId': serializeParam(
                                                         valueOrDefault<int>(
                                                           FFAppState()
-                                                              .stOrderVisitSelected
+                                                              .stOVSelected
                                                               .first
                                                               .orderId,
                                                           1,
@@ -569,7 +569,7 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                     abOrderParentId:
                                                         valueOrDefault<int>(
                                                       FFAppState()
-                                                          .stOrderVisitSelected
+                                                          .stOVSelected
                                                           .first
                                                           .orderParentId,
                                                       1,
@@ -577,13 +577,13 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                     abTitle:
                                                         'OS ${valueOrDefault<String>(
                                                       FFAppState()
-                                                          .stOrderSelected
+                                                          .stOSelected
                                                           .first
                                                           .orderMask,
                                                       'orderMask',
                                                     )} ${valueOrDefault<String>(
                                                       FFAppState()
-                                                          .stOrderSelected
+                                                          .stOSelected
                                                           .first
                                                           .statusDescription,
                                                       'statusDescription',
@@ -591,13 +591,13 @@ class _MdOrderVisitCancelWidgetState extends State<MdOrderVisitCancelWidget>
                                                     abBody:
                                                         '${FFAppState().asUserCurrent.nameShort} cancelou atendimento em ${valueOrDefault<String>(
                                                       FFAppState()
-                                                          .stOrderSelected
+                                                          .stOSelected
                                                           .first
                                                           .unitDescription,
                                                       'unitDescription',
                                                     )}\\n${valueOrDefault<String>(
                                                       FFAppState()
-                                                          .stOrderSelected
+                                                          .stOSelected
                                                           .first
                                                           .requestedServices,
                                                       'requestedServices',

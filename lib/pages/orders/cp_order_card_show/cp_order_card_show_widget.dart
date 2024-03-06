@@ -7,7 +7,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -30,6 +32,8 @@ class CpOrderCardShowWidget extends StatefulWidget {
 class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
     with TickerProviderStateMixin {
   late CpOrderCardShowModel _model;
+
+  LatLng? currentUserLocationValue;
 
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
@@ -415,9 +419,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: containerVOrdersRow?.statusId == 5
-                ? FlutterFlowTheme.of(context).success
-                : const Color(0xFF384147),
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
@@ -477,7 +479,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .override(
                                       fontFamily: 'Outfit',
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
+                                          .primaryText,
+                                      fontWeight: FontWeight.w600,
                                     ),
                               ),
                             ).animateOnPageLoad(
@@ -495,7 +498,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation2']!),
@@ -527,7 +530,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation3']!),
@@ -583,8 +587,10 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .headlineMedium
                                     .override(
                                       fontFamily: 'Outfit',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
                                     ),
                               ),
                             ).animateOnPageLoad(
@@ -599,7 +605,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation5']!),
@@ -612,7 +619,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation6']!),
@@ -621,10 +629,10 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                     ),
                   ],
                 ),
-                const Divider(
+                Divider(
                   height: 12.0,
                   thickness: 1.0,
-                  color: Color(0xFF6AA3B8),
+                  color: FlutterFlowTheme.of(context).secondaryText,
                 ).animateOnPageLoad(
                     animationsMap['dividerOnPageLoadAnimation']!),
                 Column(
@@ -647,7 +655,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
+                                          .primaryText,
                                     ),
                               ),
                               Text(
@@ -659,7 +667,9 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w500,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation7']!),
@@ -672,7 +682,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation8']!),
@@ -685,7 +696,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation9']!),
@@ -699,7 +711,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation10']!),
@@ -717,7 +730,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
+                                        .primaryText,
                                   ),
                             ),
                             Text(
@@ -729,7 +742,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation11']!),
@@ -742,7 +756,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation12']!),
@@ -755,7 +770,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation13']!),
@@ -768,7 +784,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation14']!),
@@ -789,6 +806,9 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
+                            currentUserLocationValue =
+                                await getCurrentUserLocation(
+                                    defaultLocation: const LatLng(0.0, 0.0));
                             var shouldSetState = false;
                             if (!isWeb) {
                               await requestPermission(locationPermission);
@@ -860,16 +880,12 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               setState(() {
                                 FFAppState().updateAsUserCurrentStruct(
                                   (e) => e
-                                    ..orderVisitIdInProgress = FFAppState()
-                                        .stOrderVisitSelected
-                                        .first
-                                        .id
-                                    ..orderIdInProgress = FFAppState()
-                                        .stOrderVisitSelected
-                                        .first
-                                        .orderId
+                                    ..orderVisitIdInProgress =
+                                        FFAppState().stOVSelected.first.id
+                                    ..orderIdInProgress =
+                                        FFAppState().stOVSelected.first.orderId
                                     ..orderParentIdInProgress = FFAppState()
-                                        .stOrderVisitSelected
+                                        .stOVSelected
                                         .first
                                         .orderParentId
                                     ..orderVisitInProgressTeamLeaderId =
@@ -882,8 +898,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               );
                               shouldSetState = true;
                               setState(() {
-                                FFAppState()
-                                    .stOrderVisitOpenTeamUsers = ((_model
+                                FFAppState().stOVOpenTeamUsers = ((_model
                                                     .resUsersTeamCurrent
                                                     ?.jsonBody ??
                                                 '')
@@ -901,14 +916,13 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               });
                               setState(() {
                                 FFAppState().stCounterLoop = 1;
-                                FFAppState().stCounterLoopFinal = FFAppState()
-                                    .stOrderVisitOpenTeamUsers
-                                    .length;
+                                FFAppState().stCounterLoopFinal =
+                                    FFAppState().stOVOpenTeamUsers.length;
                               });
                               while (FFAppState().stCounterLoop <=
                                   FFAppState().stCounterLoopFinal) {
                                 if (FFAppState().asUserCurrent.id ==
-                                    FFAppState().stOrderVisitOpenTeamUsers[
+                                    FFAppState().stOVOpenTeamUsers[
                                         FFAppState().stCounterLoop - 1]) {
                                   await OrdersVisitsTeamsTable().insert({
                                     'visitId': _model.resVisitAdded?.id,
@@ -921,9 +935,8 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 } else {
                                   await OrdersVisitsTeamsTable().insert({
                                     'visitId': _model.resVisitAdded?.id,
-                                    'userId':
-                                        FFAppState().stOrderVisitOpenTeamUsers[
-                                            FFAppState().stCounterLoop - 1],
+                                    'userId': FFAppState().stOVOpenTeamUsers[
+                                        FFAppState().stCounterLoop - 1],
                                     'isLeader': false,
                                     'orderParentId':
                                         containerVOrdersRow.parentId,
@@ -944,7 +957,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
-                                    FFAppState().stOrderVisitOpenTeamUsers[
+                                    FFAppState().stOVOpenTeamUsers[
                                         FFAppState().stCounterLoop - 1],
                                   ),
                                 );
@@ -954,7 +967,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 });
                               }
                               setState(() {
-                                FFAppState().stOrderVisitOpenTeamUsers = [];
+                                FFAppState().stOVOpenTeamUsers = [];
                               });
                               await OrdersTable().update(
                                 data: {
@@ -965,10 +978,7 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 matchingRows: (rows) => rows.eq(
                                   'id',
                                   valueOrDefault<int>(
-                                    FFAppState()
-                                        .stOrderVisitSelected
-                                        .first
-                                        .orderId,
+                                    FFAppState().stOVSelected.first.orderId,
                                     1,
                                   ),
                                 ),
@@ -976,33 +986,27 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                               await action_blocks.abOrderSelected(
                                 context,
                                 abOrderId: valueOrDefault<int>(
-                                  FFAppState()
-                                      .stOrderVisitSelected
-                                      .first
-                                      .orderId,
+                                  FFAppState().stOVSelected.first.orderId,
                                   1,
                                 ),
                               );
 
-                              context.pushNamed('pgDashboardUserOrders');
+                              context.pushNamed('pgDBUserOrders');
 
                               await Future.delayed(
                                   const Duration(milliseconds: 5000));
                               await action_blocks.abOrderParentEvents(
                                 context,
                                 abOrderParentId: valueOrDefault<int>(
-                                  FFAppState()
-                                      .stOrderVisitSelected
-                                      .first
-                                      .orderParentId,
+                                  FFAppState().stOVSelected.first.orderParentId,
                                   1,
                                 ),
                                 abTitle: 'OS ${valueOrDefault<String>(
-                                  FFAppState().stOrderSelected.first.orderMask,
+                                  FFAppState().stOSelected.first.orderMask,
                                   'orderMask',
                                 )} ${valueOrDefault<String>(
                                   FFAppState()
-                                      .stOrderSelected
+                                      .stOSelected
                                       .first
                                       .statusDescription,
                                   'statusDescription',
@@ -1010,17 +1014,39 @@ class _CpOrderCardShowWidgetState extends State<CpOrderCardShowWidget>
                                 abBody:
                                     '${FFAppState().asUserCurrent.nameShort} iniciou atendimento em ${valueOrDefault<String>(
                                   FFAppState()
-                                      .stOrderSelected
+                                      .stOSelected
                                       .first
                                       .unitDescription,
                                   'unitDescription',
                                 )}\\n${valueOrDefault<String>(
                                   FFAppState()
-                                      .stOrderSelected
+                                      .stOSelected
                                       .first
                                       .requestedServices,
                                   'requestedServices',
                                 )}',
+                              );
+                              _model.instantTimerOVStart =
+                                  InstantTimer.periodic(
+                                duration: const Duration(milliseconds: 10000),
+                                callback: (timer) async {
+                                  currentUserLocationValue =
+                                      await getCurrentUserLocation(
+                                          defaultLocation: const LatLng(0.0, 0.0));
+                                  await ApiOrdersVisitsGroup
+                                      .orderVisitAddTrackerCall
+                                      .call(
+                                    userId: FFAppState().asUserCurrent.id,
+                                    orderVisitId: FFAppState()
+                                        .asUserCurrent
+                                        .orderVisitIdInProgress,
+                                    latitude: functions.cfGetLatFromLatLng(
+                                        currentUserLocationValue!),
+                                    longitude: functions.cfGetLngFromLatLng(
+                                        currentUserLocationValue!),
+                                  );
+                                },
+                                startImmediately: true,
                               );
                             } else {
                               if (shouldSetState) setState(() {});

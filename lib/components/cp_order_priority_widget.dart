@@ -114,7 +114,7 @@ class _CpOrderPriorityWidgetState extends State<CpOrderPriorityWidget>
                 padding: const EdgeInsets.all(4.0),
                 child: FaIcon(
                   FontAwesomeIcons.thermometerQuarter,
-                  color: FlutterFlowTheme.of(context).secondary,
+                  color: FlutterFlowTheme.of(context).primaryBtnText,
                   size: 30.0,
                 ),
               );

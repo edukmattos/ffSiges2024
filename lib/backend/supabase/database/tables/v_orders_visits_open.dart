@@ -30,8 +30,8 @@ class VOrdersVisitsOpenRow extends SupabaseDataRow {
   int? get teamLeaderId => getField<int>('teamLeaderId');
   set teamLeaderId(int? value) => setField<int>('teamLeaderId', value);
 
-  int? get visitId => getField<int>('visitId');
-  set visitId(int? value) => setField<int>('visitId', value);
+  int? get id => getField<int>('id');
+  set id(int? value) => setField<int>('id', value);
 
   int? get orderId => getField<int>('orderId');
   set orderId(int? value) => setField<int>('orderId', value);

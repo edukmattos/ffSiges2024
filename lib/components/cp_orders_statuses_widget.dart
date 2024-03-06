@@ -5,7 +5,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'cp_orders_statuses_model.dart';
 export 'cp_orders_statuses_model.dart';
@@ -133,6 +132,86 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
         ),
       ],
     ),
+    'containerOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation7': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation8': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation9': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.8, 0.8),
+          end: const Offset(1.0, 1.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -145,13 +224,6 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => CpOrdersStatusesModel());
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -168,9 +240,11 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
     context.watch<FFAppState>();
 
     return Container(
-      width: 50.0,
-      height: 50.0,
-      decoration: const BoxDecoration(),
+      width: 55.0,
+      height: 55.0,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+      ),
       child: Builder(
         builder: (context) {
           if (widget.cpStatusId == 1) {
@@ -179,13 +253,13 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
               children: [
                 Expanded(
                   child: Container(
-                    width: 60.0,
-                    height: 60.0,
+                    width: 55.0,
+                    height: 55.0,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).tertiary,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).info,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         width: 6.0,
                       ),
                     ),
@@ -226,18 +300,20 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
                         position: badges.BadgePosition.topEnd(),
                         animationType: badges.BadgeAnimationType.scale,
                         toAnimate: true,
-                        child: const Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: FaIcon(
-                            FontAwesomeIcons.whmcs,
-                            color: Colors.white,
-                            size: 30.0,
-                          ),
+                        child: Text(
+                          'NP',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                         ),
                       ),
                     ),
                   ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation1']!),
+                      animationsMap['containerOnPageLoadAnimation2']!),
                 ),
               ],
             );
@@ -245,246 +321,495 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).info,
-                      width: 6.0,
-                    ),
-                  ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: AlignedTooltip(
-                    content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          widget.cpStatusDescription,
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        )),
-                    offset: 4.0,
-                    preferredDirection: AxisDirection.down,
-                    borderRadius: BorderRadius.circular(8.0),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 4.0,
-                    tailBaseWidth: 24.0,
-                    tailLength: 12.0,
-                    waitDuration: const Duration(milliseconds: 100),
-                    showDuration: const Duration(milliseconds: 1500),
-                    triggerMode: TooltipTriggerMode.tap,
-                    child: badges.Badge(
-                      badgeContent: Text(
-                        widget.cpBadge.toString(),
-                        style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                            ),
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondary,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
                       ),
-                      showBadge: widget.cpBadge > 0,
-                      shape: badges.BadgeShape.circle,
-                      badgeColor: FlutterFlowTheme.of(context).primary,
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
                       elevation: 4.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                      position: badges.BadgePosition.topEnd(),
-                      animationType: badges.BadgeAnimationType.scale,
-                      toAnimate: true,
-                      child: const Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: FaIcon(
-                          FontAwesomeIcons.whmcs,
-                          color: Colors.white,
-                          size: 30.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'AV',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                         ),
                       ),
                     ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation2']!),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation3']!),
+                ),
               ],
             );
           } else if (widget.cpStatusId == 3) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).success,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).info,
-                      width: 6.0,
-                    ),
-                  ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: AlignedTooltip(
-                    content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          widget.cpStatusDescription,
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        )),
-                    offset: 4.0,
-                    preferredDirection: AxisDirection.down,
-                    borderRadius: BorderRadius.circular(8.0),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 4.0,
-                    tailBaseWidth: 24.0,
-                    tailLength: 12.0,
-                    waitDuration: const Duration(milliseconds: 100),
-                    showDuration: const Duration(milliseconds: 1500),
-                    triggerMode: TooltipTriggerMode.tap,
-                    child: badges.Badge(
-                      badgeContent: Text(
-                        widget.cpBadge.toString(),
-                        style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                            ),
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
                       ),
-                      showBadge: widget.cpBadge > 0,
-                      shape: badges.BadgeShape.circle,
-                      badgeColor: FlutterFlowTheme.of(context).primary,
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
                       elevation: 4.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                      position: badges.BadgePosition.topEnd(),
-                      animationType: badges.BadgeAnimationType.scale,
-                      toAnimate: true,
-                      child: const Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Icon(
-                          Icons.fire_truck,
-                          color: Colors.white,
-                          size: 24.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'AU',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                         ),
                       ),
                     ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation3']!),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation4']!),
+                ),
               ],
             );
           } else if (widget.cpStatusId == 4) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).info,
-                      width: 6.0,
-                    ),
-                  ),
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: AlignedTooltip(
-                    content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          widget.cpStatusDescription,
-                          style: FlutterFlowTheme.of(context).bodyLarge,
-                        )),
-                    offset: 4.0,
-                    preferredDirection: AxisDirection.down,
-                    borderRadius: BorderRadius.circular(8.0),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).primaryBtnText,
-                    elevation: 4.0,
-                    tailBaseWidth: 24.0,
-                    tailLength: 12.0,
-                    waitDuration: const Duration(milliseconds: 100),
-                    showDuration: const Duration(milliseconds: 1500),
-                    triggerMode: TooltipTriggerMode.tap,
-                    child: badges.Badge(
-                      badgeContent: Text(
-                        widget.cpBadge.toString(),
-                        style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Readex Pro',
-                              color: Colors.white,
-                            ),
+                Expanded(
+                  child: Container(
+                    width: 60.0,
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
                       ),
-                      showBadge: widget.cpBadge > 0,
-                      shape: badges.BadgeShape.circle,
-                      badgeColor: FlutterFlowTheme.of(context).primary,
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
                       elevation: 4.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                      position: badges.BadgePosition.topEnd(),
-                      animationType: badges.BadgeAnimationType.scale,
-                      toAnimate: true,
-                      child: const Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Icon(
-                          Icons.calendar_month,
-                          color: Colors.white,
-                          size: 24.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'AG',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                         ),
                       ),
                     ),
-                  ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation4']!),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation5']!),
+                ),
               ],
             );
           } else if (widget.cpStatusId == 5) {
-            return Container(
-              width: 50.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).success,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: FlutterFlowTheme.of(context).info,
-                  width: 4.0,
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).success,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'EX',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation6']!),
                 ),
-              ),
-              alignment: const AlignmentDirectional(0.0, 0.0),
-              child: AlignedTooltip(
-                content: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text(
-                      widget.cpStatusDescription,
-                      style: FlutterFlowTheme.of(context).bodyLarge,
-                    )),
-                offset: 4.0,
-                preferredDirection: AxisDirection.down,
-                borderRadius: BorderRadius.circular(8.0),
-                backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-                elevation: 4.0,
-                tailBaseWidth: 24.0,
-                tailLength: 12.0,
-                waitDuration: const Duration(milliseconds: 100),
-                showDuration: const Duration(milliseconds: 1500),
-                triggerMode: TooltipTriggerMode.tap,
-                child: const Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: FaIcon(
-                    FontAwesomeIcons.solidFlag,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
+              ],
+            );
+          } else if (widget.cpStatusId == 6) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).accent3,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'SU',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation7']!),
                 ),
-              ),
-            ).animateOnPageLoad(
-                animationsMap['containerOnPageLoadAnimation5']!);
+              ],
+            );
+          } else if (widget.cpStatusId == 7) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).accent1,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'CO',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation8']!),
+                ),
+              ],
+            );
           } else {
-            return Text(
-              'Hello World',
-              style: FlutterFlowTheme.of(context).bodyMedium,
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: 55.0,
+                    height: 55.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).error,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        width: 6.0,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            widget.cpStatusDescription,
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          )),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: badges.Badge(
+                        badgeContent: Text(
+                          widget.cpBadge.toString(),
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: widget.cpBadge > 0,
+                        shape: badges.BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primary,
+                        elevation: 4.0,
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        position: badges.BadgePosition.topEnd(),
+                        animationType: badges.BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Text(
+                          'CA',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ).animateOnPageLoad(
+                      animationsMap['containerOnPageLoadAnimation9']!),
+                ),
+              ],
             );
           }
         },
       ),
-    );
+    ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation1']!);
   }
 }

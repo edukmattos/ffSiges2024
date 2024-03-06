@@ -11,6 +11,7 @@ import '/backend/supabase/supabase.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'index.dart';
 
 import '/backend/firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -120,7 +121,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'pgDashboardUserOrders';
+  String _currentPageName = 'pgDBUserOrders';
   late Widget? _currentPage;
 
   @override
@@ -134,9 +135,8 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'pgUnitsSearch': const PgUnitsSearchWidget(),
-      'pgDashboardUserVisits': const PgDashboardUserVisitsWidget(),
-      'pgDashboardUserOrders': const PgDashboardUserOrdersWidget(),
-      'pgOrdersVisitsServicesSearch': const PgOrdersVisitsServicesSearchWidget(),
+      'pgDBUserVisits': const PgDBUserVisitsWidget(),
+      'pgDBUserOrders': const PgDBUserOrdersWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -168,23 +168,15 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.fire_truck,
               size: 24.0,
             ),
-            label: 'Visitas',
+            label: 'Atendimentos',
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
+            icon: FaIcon(
+              FontAwesomeIcons.tools,
               size: 24.0,
             ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 24.0,
-            ),
-            label: 'UO\'s',
+            label: 'Serviços',
             tooltip: '',
           )
         ],

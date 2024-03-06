@@ -73,7 +73,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.of(context).backgroundComponents,
+          color: FlutterFlowTheme.of(context).primary,
           child: Center(
             child: Image.asset(
               'assets/images/67.jpeg',
@@ -113,10 +113,10 @@ final parametersBuilderMap =
   'pgMyProfile': ParameterData.none(),
   'pgUnitsSearch': ParameterData.none(),
   'pgUnitsNew': ParameterData.none(),
-  'pgDashboardAdmin': ParameterData.none(),
+  'pgDBAdmin': ParameterData.none(),
   'pgSettingsDepartment': ParameterData.none(),
   'pgSettingUsers': ParameterData.none(),
-  'pgDashboardUserVisits': ParameterData.none(),
+  'pgDBUserVisits': ParameterData.none(),
   'pgOrderParentShow': (data) async => ParameterData(
         allParams: {
           'orderId': getParameter<int>(data, 'orderId'),
@@ -151,13 +151,13 @@ final parametersBuilderMap =
           'appPageId009': getParameter<int>(data, 'appPageId009'),
         },
       ),
-  'pgOrderVisitAsset1Search': (data) async => ParameterData(
+  'pgOVAsset1Search': (data) async => ParameterData(
         allParams: {
           'visitId': getParameter<int>(data, 'visitId'),
         },
       ),
   'List11Messages': ParameterData.none(),
-  'pgOrderVisitAsset3ActivitiesSearch': ParameterData.none(),
+  'pgOVAsset3ActivitiesSearch': ParameterData.none(),
   'pgOrderVisitAsset2Before': (data) async => ParameterData(
         allParams: {
           'operation': getParameter<String>(data, 'operation'),
@@ -192,9 +192,13 @@ final parametersBuilderMap =
         },
       ),
   'pgDashboardUserOrders': ParameterData.none(),
-  'pgOrdersVisitsServicesSearch': ParameterData.none(),
+  'pgOVServicesSearch': ParameterData.none(),
   'Details03TransactionsSummary': ParameterData.none(),
   'Details43WorkoutSummary': ParameterData.none(),
+  'pgOVSearch': ParameterData.none(),
+  'Details03TransactionsSummary1': ParameterData.none(),
+  'qwerty': ParameterData.none(),
+  'pgDBUserOrders': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

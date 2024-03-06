@@ -215,7 +215,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
         minHeight: 0.0,
       ),
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primary,
+        color: FlutterFlowTheme.of(context).secondaryBackground,
         boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
@@ -244,8 +244,9 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                     ),
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily: 'Outfit',
-                          color: Colors.white,
+                          color: FlutterFlowTheme.of(context).primaryText,
                           fontSize: 20.0,
+                          fontWeight: FontWeight.w600,
                         ),
                   ).animateOnPageLoad(
                       animationsMap['textOnPageLoadAnimation1']!),
@@ -259,11 +260,12 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                             widget.code,
                             'code',
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),
                       ),
@@ -279,7 +281,8 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation3']!),
@@ -303,7 +306,8 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation4']!),
@@ -327,7 +331,8 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation5']!),
@@ -344,7 +349,8 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0x9AFFFFFF),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ).animateOnPageLoad(
                                 animationsMap['textOnPageLoadAnimation6']!),

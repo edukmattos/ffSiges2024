@@ -359,7 +359,7 @@ class _CpOrderParentDashCardShowWidgetState
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryText,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
@@ -381,55 +381,72 @@ class _CpOrderParentDashCardShowWidgetState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
+                    Row(
                       mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              'pgOrderParentShow',
-                              queryParameters: {
-                                'orderId': serializeParam(
-                                  widget.orderId,
-                                  ParamType.int,
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'pgOrderParentShow',
+                                  queryParameters: {
+                                    'orderId': serializeParam(
+                                      widget.orderId,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersParentRow?.orderMask,
+                                  '.',
                                 ),
-                              }.withoutNulls,
-                            );
-                          },
-                          child: Text(
-                            valueOrDefault<String>(
-                              containerVOrdersParentRow?.orderMask,
-                              '.',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                ),
-                          ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation1']!),
-                        Text(
-                          valueOrDefault<String>(
-                            containerVOrdersParentRow?.typeCode,
-                            '.',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: Colors.white,
-                                fontSize: 20.0,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation2']!),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersParentRow?.typeCode,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation2']!),
+                          ],
+                        ),
+                        wrapWithModel(
+                          model: _model.cpOrderPriorityModel,
+                          updateCallback: () => setState(() {}),
+                          child: CpOrderPriorityWidget(
+                            priorityId: containerVOrdersParentRow!.priorityId!,
+                            priorityDescription:
+                                containerVOrdersParentRow.priorityDescription!,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -531,15 +548,6 @@ class _CpOrderParentDashCardShowWidgetState
                               ),
                           ],
                         ),
-                        wrapWithModel(
-                          model: _model.cpOrderPriorityModel,
-                          updateCallback: () => setState(() {}),
-                          child: CpOrderPriorityWidget(
-                            priorityId: containerVOrdersParentRow!.priorityId!,
-                            priorityDescription:
-                                containerVOrdersParentRow.priorityDescription!,
-                          ),
-                        ),
                       ].divide(const SizedBox(width: 8.0)),
                     ),
                   ],
@@ -582,8 +590,10 @@ class _CpOrderParentDashCardShowWidgetState
                                     .headlineMedium
                                     .override(
                                       fontFamily: 'Outfit',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
                                     ),
                               ),
                             ).animateOnPageLoad(
@@ -599,7 +609,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           )).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation4']!),
@@ -613,7 +624,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           )).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation5']!),
@@ -622,16 +634,16 @@ class _CpOrderParentDashCardShowWidgetState
                     ),
                   ],
                 ),
-                const Divider(
+                Divider(
                   height: 12.0,
                   thickness: 1.0,
-                  color: Color(0xFF6AA3B8),
+                  color: FlutterFlowTheme.of(context).primaryText,
                 ).animateOnPageLoad(
                     animationsMap['dividerOnPageLoadAnimation']!),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Expanded(
                       child: Column(
@@ -645,7 +657,7 @@ class _CpOrderParentDashCardShowWidgetState
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
+                                      .secondaryText,
                                 ),
                           ),
                           Text(
@@ -657,7 +669,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation6']!),
@@ -670,7 +683,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation7']!),
@@ -683,7 +697,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation8']!),
@@ -697,7 +712,8 @@ class _CpOrderParentDashCardShowWidgetState
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: const Color(0x9AFFFFFF),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation9']!),
@@ -706,14 +722,14 @@ class _CpOrderParentDashCardShowWidgetState
                     ),
                     Expanded(
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 '${valueOrDefault<String>(
@@ -725,7 +741,8 @@ class _CpOrderParentDashCardShowWidgetState
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: const Color(0x9AFFFFFF),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation10']!),

@@ -5,8 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
-import '/pages/orders/cp_order_visit_processing/cp_order_visit_processing_widget.dart';
-import '/pages/orders/md_order_visit_close/md_order_visit_close_widget.dart';
+import '/pages/orders/cp_o_v_processing/cp_o_v_processing_widget.dart';
+import '/pages/orders/md_o_visit_close/md_o_visit_close_widget.dart';
 import '/pages/visits/md_order_visit_cancel/md_order_visit_cancel_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
@@ -252,7 +252,7 @@ class _CpOrderVisitCard2ShowWidgetState
           width: double.infinity,
           decoration: BoxDecoration(
             color: valueOrDefault<int>(
-                      FFAppState().stOrderVisitSelected.first.statusId,
+                      FFAppState().stOVSelected.first.statusId,
                       1,
                     ) ==
                     1
@@ -315,9 +315,9 @@ class _CpOrderVisitCard2ShowWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         wrapWithModel(
-                          model: _model.cpOrderVisitProcessingModel,
+                          model: _model.cpOVProcessingModel,
                           updateCallback: () => setState(() {}),
-                          child: CpOrderVisitProcessingWidget(
+                          child: CpOVProcessingWidget(
                             processingId: valueOrDefault<int>(
                               containerVOrdersVisitsRow?.processingId,
                               1,
@@ -352,7 +352,7 @@ class _CpOrderVisitCard2ShowWidgetState
                             dateTimeFormat(
                                 'd/M/yyyy H:mm',
                                 FFAppState()
-                                    .stOrderVisitSelected
+                                    .stOVSelected
                                     .first
                                     .dateStartDatetime),
                             '1',
@@ -371,7 +371,7 @@ class _CpOrderVisitCard2ShowWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (valueOrDefault<int>(
-                              FFAppState().stOrderVisitSelected.first.statusId,
+                              FFAppState().stOVSelected.first.statusId,
                               1,
                             ) ==
                             2)
@@ -394,7 +394,7 @@ class _CpOrderVisitCard2ShowWidgetState
                                   dateTimeFormat(
                                       'd/M/yyyy H:mm',
                                       FFAppState()
-                                          .stOrderVisitSelected
+                                          .stOVSelected
                                           .first
                                           .dateEndDatetime),
                                   '1',
@@ -689,13 +689,13 @@ class _CpOrderVisitCard2ShowWidgetState
                                   if ((FFAppState().asUserCurrent.id ==
                                           valueOrDefault<int>(
                                             FFAppState()
-                                                .stOrderVisitSelected
+                                                .stOVSelected
                                                 .first
                                                 .teamLeaderId,
                                             1,
                                           )) &&
                                       (FFAppState()
-                                              .stOrderVisitSelected
+                                              .stOVSelected
                                               .first
                                               .statusId ==
                                           1))
@@ -749,11 +749,11 @@ class _CpOrderVisitCard2ShowWidgetState
                                                   child:
                                                       MdOrderVisitCancelWidget(
                                                     visitId: FFAppState()
-                                                        .stOrderVisitSelected
+                                                        .stOVSelected
                                                         .first
                                                         .id,
                                                     orderId: FFAppState()
-                                                        .stOrderVisitSelected
+                                                        .stOVSelected
                                                         .first
                                                         .orderId,
                                                   ),
@@ -795,13 +795,13 @@ class _CpOrderVisitCard2ShowWidgetState
                                   if ((FFAppState().asUserCurrent.id ==
                                           valueOrDefault<int>(
                                             FFAppState()
-                                                .stOrderVisitSelected
+                                                .stOVSelected
                                                 .first
                                                 .teamLeaderId,
                                             1,
                                           )) &&
                                       (FFAppState()
-                                              .stOrderVisitSelected
+                                              .stOVSelected
                                               .first
                                               .statusId ==
                                           1))
@@ -864,12 +864,11 @@ class _CpOrderVisitCard2ShowWidgetState
                                                     padding:
                                                         MediaQuery.viewInsetsOf(
                                                             context),
-                                                    child:
-                                                        MdOrderVisitCloseWidget(
+                                                    child: MdOVisitCloseWidget(
                                                       visitId:
                                                           valueOrDefault<int>(
                                                         FFAppState()
-                                                            .stOrderVisitSelected
+                                                            .stOVSelected
                                                             .first
                                                             .id,
                                                         1,
@@ -877,7 +876,7 @@ class _CpOrderVisitCard2ShowWidgetState
                                                       orderId:
                                                           valueOrDefault<int>(
                                                         FFAppState()
-                                                            .stOrderVisitSelected
+                                                            .stOVSelected
                                                             .first
                                                             .orderId,
                                                         1,
@@ -1036,7 +1035,7 @@ class _CpOrderVisitCard2ShowWidgetState
                                                   0.0, 4.0, 0.0, 0.0),
                                           child: Text(
                                             FFAppState()
-                                                .stOrderVisitSelected
+                                                .stOVSelected
                                                 .first
                                                 .comments,
                                             style: FlutterFlowTheme.of(context)
@@ -1079,8 +1078,7 @@ class _CpOrderVisitCard2ShowWidgetState
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       _model.updatePage(() {
-                                        FFAppState()
-                                                .stOrderVisitShowNavBarOption =
+                                        FFAppState().stOVShowNavBarOption =
                                             'services';
                                       });
                                     },

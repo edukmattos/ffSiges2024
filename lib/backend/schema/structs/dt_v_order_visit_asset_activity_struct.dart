@@ -13,10 +13,12 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
     int? id,
     int? orderVisitAssetId,
     int? activityId,
+    String? activityDescription,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderVisitAssetId = orderVisitAssetId,
         _activityId = activityId,
+        _activityDescription = activityDescription,
         super(firestoreUtilData);
 
   // "id" field.
@@ -41,11 +43,18 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
   void incrementActivityId(int amount) => _activityId = activityId + amount;
   bool hasActivityId() => _activityId != null;
 
+  // "activityDescription" field.
+  String? _activityDescription;
+  String get activityDescription => _activityDescription ?? '';
+  set activityDescription(String? val) => _activityDescription = val;
+  bool hasActivityDescription() => _activityDescription != null;
+
   static DtVOrderVisitAssetActivityStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitAssetActivityStruct(
         id: castToType<int>(data['id']),
         orderVisitAssetId: castToType<int>(data['orderVisitAssetId']),
         activityId: castToType<int>(data['activityId']),
+        activityDescription: data['activityDescription'] as String?,
       );
 
   static DtVOrderVisitAssetActivityStruct? maybeFromMap(dynamic data) => data
@@ -57,6 +66,7 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
         'id': _id,
         'orderVisitAssetId': _orderVisitAssetId,
         'activityId': _activityId,
+        'activityDescription': _activityDescription,
       }.withoutNulls;
 
   @override
@@ -72,6 +82,10 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
         'activityId': serializeParam(
           _activityId,
           ParamType.int,
+        ),
+        'activityDescription': serializeParam(
+          _activityDescription,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -93,6 +107,11 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        activityDescription: deserializeParam(
+          data['activityDescription'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -103,18 +122,20 @@ class DtVOrderVisitAssetActivityStruct extends FFFirebaseStruct {
     return other is DtVOrderVisitAssetActivityStruct &&
         id == other.id &&
         orderVisitAssetId == other.orderVisitAssetId &&
-        activityId == other.activityId;
+        activityId == other.activityId &&
+        activityDescription == other.activityDescription;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, orderVisitAssetId, activityId]);
+  int get hashCode => const ListEquality()
+      .hash([id, orderVisitAssetId, activityId, activityDescription]);
 }
 
 DtVOrderVisitAssetActivityStruct createDtVOrderVisitAssetActivityStruct({
   int? id,
   int? orderVisitAssetId,
   int? activityId,
+  String? activityDescription,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -124,6 +145,7 @@ DtVOrderVisitAssetActivityStruct createDtVOrderVisitAssetActivityStruct({
       id: id,
       orderVisitAssetId: orderVisitAssetId,
       activityId: activityId,
+      activityDescription: activityDescription,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

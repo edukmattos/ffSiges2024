@@ -2404,6 +2404,8 @@ class ApiOrdersGroup {
   };
   static OrderByIdCall orderByIdCall = OrderByIdCall();
   static OrdersByStatusIdCall ordersByStatusIdCall = OrdersByStatusIdCall();
+  static OrdersOpenByLeaderIdCall ordersOpenByLeaderIdCall =
+      OrdersOpenByLeaderIdCall();
   static OrdersByStatusIdAndDateCall ordersByStatusIdAndDateCall =
       OrdersByStatusIdAndDateCall();
   static FiltersCall filtersCall = FiltersCall();
@@ -2447,6 +2449,32 @@ class OrdersByStatusIdCall {
       callName: 'ordersByStatusId',
       apiUrl:
           '${ApiOrdersGroup.baseUrl}v_orders?statusId=eq.$statusId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrdersOpenByLeaderIdCall {
+  Future<ApiCallResponse> call({
+    int? userId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ordersOpenByLeaderId',
+      apiUrl:
+          '${ApiOrdersGroup.baseUrl}v_orders_open?teamLeaderId=eq.$userId&select=\'*\'',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -2992,186 +3020,6 @@ class OrderVisitAssetByIdCall {
       alwaysAllowBody: false,
     );
   }
-
-  int? id(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].id''',
-      ));
-  int? orderVisitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].orderVisitId''',
-      ));
-  int? assetId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].assetId''',
-      ));
-  String? code(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].code''',
-      ));
-  String? description(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].description''',
-      ));
-  bool? isMoved(dynamic response) => castToType<bool>(getJsonField(
-        response,
-        r'''$[:].isMoved''',
-      ));
-  int? beforeUnitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeUnitId''',
-      ));
-  String? beforeUnitDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeUnitDescription''',
-      ));
-  int? beforeTagId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeTagId''',
-      ));
-  String? beforeTagDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeTagDescription''',
-      ));
-  int? beforeTagSubId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeTagSubId''',
-      ));
-  String? beforeTagSubDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeTagSubDescription''',
-      ));
-  int? beforeStatusId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeStatusId''',
-      ));
-  String? beforeStatusDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeStatusDescription''',
-      ));
-  String? beforeComments(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeComments''',
-      ));
-  String? beforeImgFilePath(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeImgFilePath''',
-      ));
-  String? beforeImgFileName(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].beforeImgFileName''',
-      ));
-  int? beforeRecord(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeRecord''',
-      ));
-  int? beforeLatitude(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeLatitude''',
-      ));
-  int? beforeLongitude(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].beforeLongitude''',
-      ));
-  int? afterUnitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterUnitId''',
-      ));
-  String? afterUnitDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterUnitDescription''',
-      ));
-  int? afterTagId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterTagId''',
-      ));
-  String? afterTagDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterTagDescription''',
-      ));
-  int? afterTagSubId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterTagSubId''',
-      ));
-  String? afterTagSubDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterTagSubDescription''',
-      ));
-  int? afterStatusId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterStatusId''',
-      ));
-  String? afterStatusDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterStatusDescription''',
-      ));
-  String? afterComments(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterComments''',
-      ));
-  String? afterImgFilePath(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterImgFilePath''',
-      ));
-  String? afterImgFileName(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].afterImgFileName''',
-      ));
-  int? afterRecord(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterRecord''',
-      ));
-  int? afterLatitude(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterLatitude''',
-      ));
-  int? afterLongitude(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].afterLongitude''',
-      ));
-  int? processingId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].processingId''',
-      ));
-  String? processingDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].processingDescription''',
-      ));
-  String? movedComments(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].movedComments''',
-      ));
-  double? beforeUnitLatitude(dynamic response) =>
-      castToType<double>(getJsonField(
-        response,
-        r'''$[:].beforeUnitLatitude''',
-      ));
-  double? beforeUnitLongitude(dynamic response) =>
-      castToType<double>(getJsonField(
-        response,
-        r'''$[:].beforeUnitLongitude''',
-      ));
-  double? afterUnitLatitude(dynamic response) =>
-      castToType<double>(getJsonField(
-        response,
-        r'''$[:].afterUnitLatitude''',
-      ));
-  double? afterUnitLongitude(dynamic response) =>
-      castToType<double>(getJsonField(
-        response,
-        r'''$[:].afterUnitLongitude''',
-      ));
 }
 
 class AssetsByUnitTagCall {
@@ -3249,34 +3097,6 @@ class ActivitiesByOrderVisitAssetIdCall {
       alwaysAllowBody: false,
     );
   }
-
-  List<int>? id(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].id''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  List<int>? assetId(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].assetId''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  List<int>? processingId(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].processingId''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
 }
 
 /// End apiOrdersVisitsAssetsActivities Group Code
@@ -3293,6 +3113,8 @@ class ApiOrdersVisitsGroup {
     'Content-Type': 'application/json',
   };
   static OrderVisitByIdCall orderVisitByIdCall = OrderVisitByIdCall();
+  static OrderVisitsOpenByTeamLeaderIdCall orderVisitsOpenByTeamLeaderIdCall =
+      OrderVisitsOpenByTeamLeaderIdCall();
   static ServicesByOrderVisitIdCall servicesByOrderVisitIdCall =
       ServicesByOrderVisitIdCall();
   static PriceServicesByOrderVisitIdCall priceServicesByOrderVisitIdCall =
@@ -3300,6 +3122,8 @@ class ApiOrdersVisitsGroup {
   static PriceServicesUpdateByOrderVisitIdCall
       priceServicesUpdateByOrderVisitIdCall =
       PriceServicesUpdateByOrderVisitIdCall();
+  static OrderVisitAddTrackerCall orderVisitAddTrackerCall =
+      OrderVisitAddTrackerCall();
   static SearchFiltersCall searchFiltersCall = SearchFiltersCall();
 }
 
@@ -3311,6 +3135,32 @@ class OrderVisitByIdCall {
       callName: 'orderVisitById',
       apiUrl:
           '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits?id=eq.$orderVisitId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrderVisitsOpenByTeamLeaderIdCall {
+  Future<ApiCallResponse> call({
+    int? userId = 1,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'orderVisitsOpenByTeamLeaderId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits_open?teamLeaderId=eq.$userId&select=\'*\'',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -3396,6 +3246,43 @@ class PriceServicesUpdateByOrderVisitIdCall {
       apiUrl:
           '${ApiOrdersVisitsGroup.baseUrl}ordersVisits?id=eq.$orderVisitId',
       callType: ApiCallType.PATCH,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrderVisitAddTrackerCall {
+  Future<ApiCallResponse> call({
+    int? userId,
+    int? orderVisitId,
+    double? latitude,
+    double? longitude,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "userId": $userId,
+  "orderVisitId": $orderVisitId,
+  "latitude": $latitude,
+  "longitude": $longitude
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'orderVisitAddTracker',
+      apiUrl: '${ApiOrdersVisitsGroup.baseUrl}ordersVisitsTracker',
+      callType: ApiCallType.POST,
       headers: {
         'apiKey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',

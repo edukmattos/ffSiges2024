@@ -56,7 +56,7 @@ class _CpOrderVisitServicesListWidgetState
       future: VOrdersVisitsServicesTable().queryRows(
         queryFn: (q) => q.eq(
           'orderVisitId',
-          FFAppState().stOrderVisitSelected.first.id,
+          widget.orderVisitId,
         ),
       ),
       builder: (context, snapshot) {
@@ -218,66 +218,71 @@ class _CpOrderVisitServicesListWidgetState
                               waitDuration: const Duration(milliseconds: 100),
                               showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 12.0,
-                                buttonSize: 50.0,
-                                fillColor: FlutterFlowTheme.of(context).error,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.trashAlt,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
-                                  size: 24.0,
+                              child: Visibility(
+                                visible: FFAppState()
+                                        .stOVSelected
+                                        .first
+                                        .processingId !=
+                                    4,
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 12.0,
+                                  buttonSize: 50.0,
+                                  fillColor: FlutterFlowTheme.of(context).error,
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.trashAlt,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                    size: 24.0,
+                                  ),
+                                  showLoadingIndicator: true,
+                                  onPressed: () async {
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('Ops ...'),
+                                                  content: const Text(
+                                                      'Deseja realmente EXCLUIR ?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Cancelar'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Confirmar'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      await OrdersVisitsServicesTable().delete(
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          listViewServicesSelectedVOrdersVisitsServicesRow
+                                              .id,
+                                        ),
+                                      );
+                                      await action_blocks
+                                          .abOrderVisitSelectedServices(
+                                        context,
+                                        abOrderVisitId:
+                                            FFAppState().stOVSelected.first.id,
+                                      );
+                                      setState(() {});
+                                    }
+                                  },
                                 ),
-                                showLoadingIndicator: true,
-                                onPressed: () async {
-                                  var confirmDialogResponse =
-                                      await showDialog<bool>(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text('Ops ...'),
-                                                content: const Text(
-                                                    'Deseja realmente EXCLUIR ?'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: const Text('Cancelar'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: const Text('Confirmar'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          ) ??
-                                          false;
-                                  if (confirmDialogResponse) {
-                                    await OrdersVisitsServicesTable().delete(
-                                      matchingRows: (rows) => rows.eq(
-                                        'id',
-                                        listViewServicesSelectedVOrdersVisitsServicesRow
-                                            .id,
-                                      ),
-                                    );
-                                    await action_blocks
-                                        .abOrderVisitSelectedServices(
-                                      context,
-                                      abOrderVisitId: FFAppState()
-                                          .stOrderVisitSelected
-                                          .first
-                                          .id,
-                                    );
-                                    setState(() {});
-                                  }
-                                },
                               ),
                             ),
                           ],

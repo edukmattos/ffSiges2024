@@ -164,4 +164,45 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
 
   String? get movedComments => getField<String>('movedComments');
   set movedComments(String? value) => setField<String>('movedComments', value);
+
+  int? get reportedUserId => getField<int>('reportedUserId');
+  set reportedUserId(int? value) => setField<int>('reportedUserId', value);
+
+  String? get reportedUserNameShort =>
+      getField<String>('reportedUserNameShort');
+  set reportedUserNameShort(String? value) =>
+      setField<String>('reportedUserNameShort', value);
+
+  DateTime? get reportedDate => getField<DateTime>('reportedDate');
+  set reportedDate(DateTime? value) =>
+      setField<DateTime>('reportedDate', value);
+
+  int? get disapprovedUserId => getField<int>('disapprovedUserId');
+  set disapprovedUserId(int? value) =>
+      setField<int>('disapprovedUserId', value);
+
+  String? get disapprovedUserNameShort =>
+      getField<String>('disapprovedUserNameShort');
+  set disapprovedUserNameShort(String? value) =>
+      setField<String>('disapprovedUserNameShort', value);
+
+  DateTime? get disapprovedDate => getField<DateTime>('disapprovedDate');
+  set disapprovedDate(DateTime? value) =>
+      setField<DateTime>('disapprovedDate', value);
+
+  String? get disapprovedNotes => getField<String>('disapprovedNotes');
+  set disapprovedNotes(String? value) =>
+      setField<String>('disapprovedNotes', value);
+
+  int? get approvedUserId => getField<int>('approvedUserId');
+  set approvedUserId(int? value) => setField<int>('approvedUserId', value);
+
+  String? get approvedUserNameShort =>
+      getField<String>('approvedUserNameShort');
+  set approvedUserNameShort(String? value) =>
+      setField<String>('approvedUserNameShort', value);
+
+  DateTime? get approvedDate => getField<DateTime>('approvedDate');
+  set approvedDate(DateTime? value) =>
+      setField<DateTime>('approvedDate', value);
 }

@@ -243,8 +243,7 @@ class _PgSigninWidgetState extends State<PgSigninWidget>
                                         );
 
                                         context.goNamedAuth(
-                                            'pgDashboardUserOrders',
-                                            context.mounted);
+                                            'pgDBUserOrders', context.mounted);
 
                                         setState(() {});
                                       },

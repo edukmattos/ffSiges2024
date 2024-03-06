@@ -31,7 +31,7 @@ class _PgMyProfileWidgetState extends State<PgMyProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        FFAppState().stOrderVisitSelected = [];
+        FFAppState().stOVSelected = [];
       });
     });
 

@@ -53,7 +53,7 @@ class _CpDropdownOrdersTypesActivitiesWidgetState
     return FutureBuilder<ApiCallResponse>(
       future: ApiOrdersTypesActivitiesGroup.activitiesByOrderTypeIdCall.call(
         orderTypeId: valueOrDefault<int>(
-          FFAppState().stOrderSelected.first.typeId,
+          FFAppState().stOSelected.first.typeId,
           1,
         ),
       ),

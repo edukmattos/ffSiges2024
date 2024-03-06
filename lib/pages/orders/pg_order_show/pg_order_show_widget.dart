@@ -267,7 +267,7 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                                 'pgOrderParentShow',
                                 queryParameters: {
                                   'orderId': serializeParam(
-                                    FFAppState().stOrderSelected.first.parentId,
+                                    FFAppState().stOSelected.first.parentId,
                                     ParamType.int,
                                   ),
                                 }.withoutNulls,
@@ -944,7 +944,7 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                                                           'visitId':
                                                               serializeParam(
                                                             listViewVOrdersVisitsOpenRow
-                                                                .visitId,
+                                                                .id,
                                                             ParamType.int,
                                                           ),
                                                           'orderId':
@@ -1048,7 +1048,7 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                                                           'visitId':
                                                               serializeParam(
                                                             listViewVOrdersVisitsOpenRow
-                                                                .visitId,
+                                                                .id,
                                                             ParamType.int,
                                                           ),
                                                           'orderId':
@@ -1150,7 +1150,7 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget>
                                                           'visitId':
                                                               serializeParam(
                                                             listViewVOrdersVisitsOpenRow
-                                                                .visitId,
+                                                                .id,
                                                             ParamType.int,
                                                           ),
                                                           'orderId':

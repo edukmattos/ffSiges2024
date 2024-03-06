@@ -6,7 +6,7 @@ import '/pages/assets/cp_order_visit_asset_show_bottom_nav_bar/cp_order_visit_as
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
-import '/pages/visits/cp_order_visit_asset_list_card/cp_order_visit_asset_list_card_widget.dart';
+import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import '/pages/visits/cp_order_visit_card2_show/cp_order_visit_card2_show_widget.dart';
 import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -46,18 +46,6 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await action_blocks.abOrderVisitSelected(
-        context,
-        abOrderVisitId: widget.visitId,
-      );
-      setState(() {});
-      await action_blocks.abOrderSelected(
-        context,
-        abOrderId: valueOrDefault<int>(
-          FFAppState().stOrderVisitSelected.first.orderId,
-          1,
-        ),
-      );
       await actions.caSupabaseDisconnect(
         'ordersVisits',
       );
@@ -76,6 +64,10 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
       await actions.caSupabaseConnect(
         'ordersVisitsServices',
         () async {},
+      );
+      await action_blocks.abOrderVisitProcessingCheck(
+        context,
+        abOrderVisitId: FFAppState().stOVSelected.first.id,
       );
     });
 
@@ -122,7 +114,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed('pgDashboardUserVisits');
+              context.safePop();
             },
           ),
           title: Row(
@@ -197,7 +189,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                           updateCallback: () => setState(() {}),
                           child: CpOrderCardShowWidget(
                             orderId: valueOrDefault<int>(
-                              FFAppState().stOrderVisitSelected.first.orderId,
+                              FFAppState().stOVSelected.first.orderId,
                               1,
                             ),
                           ),
@@ -209,7 +201,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                             updateCallback: () => setState(() {}),
                             child: CpOrderVisitCard2ShowWidget(
                               visitId: valueOrDefault<int>(
-                                FFAppState().stOrderVisitSelected.first.id,
+                                FFAppState().stOVSelected.first.id,
                                 1,
                               ),
                             ),
@@ -233,8 +225,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                         ),
                         Builder(
                           builder: (context) {
-                            if (FFAppState().stOrderVisitShowNavBarOption ==
-                                'assets') {
+                            if (FFAppState().stOVShowNavBarOption == 'assets') {
                               return Align(
                                 alignment: const AlignmentDirectional(0.0, -1.0),
                                 child: Column(
@@ -256,7 +247,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                         ),
                                         if (valueOrDefault<int>(
                                               FFAppState()
-                                                  .stOrderVisitSelected
+                                                  .stOVSelected
                                                   .first
                                                   .processingId,
                                               1,
@@ -293,7 +284,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                               );
                                               if (FFAppState().stIsPermission) {
                                                 context.pushNamed(
-                                                  'pgOrderVisitAsset1Search',
+                                                  'pgOVAsset1Search',
                                                   queryParameters: {
                                                     'visitId': serializeParam(
                                                       widget.visitId,
@@ -314,10 +305,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                         queryFn: (q) => q.eq(
                                           'orderVisitId',
                                           valueOrDefault<int>(
-                                            FFAppState()
-                                                .stOrderVisitSelected
-                                                .first
-                                                .id,
+                                            FFAppState().stOVSelected.first.id,
                                             1,
                                           ),
                                         ),
@@ -358,8 +346,8 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                             final listViewVOrdersVisitsAssetsRow =
                                                 listViewVOrdersVisitsAssetsRowList[
                                                     listViewIndex];
-                                            return SizedBox(
-                                              height: 200.0,
+                                            return Container(
+                                              decoration: const BoxDecoration(),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
@@ -367,6 +355,22 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  await action_blocks
+                                                      .abOrderVisitAssetSelected(
+                                                    context,
+                                                    abOrderVisitAssetId:
+                                                        listViewVOrdersVisitsAssetsRow
+                                                            .id,
+                                                  );
+                                                  await action_blocks
+                                                      .abOVAssetActivitiesUpdate(
+                                                    context,
+                                                    abOVAssetId: FFAppState()
+                                                        .stOVAssetSelected
+                                                        .first
+                                                        .id,
+                                                  );
+
                                                   context.pushNamed(
                                                     'pgOrderVisitAsset2Before',
                                                     queryParameters: {
@@ -378,8 +382,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                     }.withoutNulls,
                                                   );
                                                 },
-                                                child:
-                                                    CpOrderVisitAssetListCardWidget(
+                                                child: CpOVAssetListCardWidget(
                                                   key: Key(
                                                       'Keymi8_${listViewIndex}_of_${listViewVOrdersVisitsAssetsRowList.length}'),
                                                   assetDescription:
@@ -413,8 +416,7 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                   ].divide(const SizedBox(height: 12.0)),
                                 ),
                               );
-                            } else if (FFAppState()
-                                    .stOrderVisitShowNavBarOption ==
+                            } else if (FFAppState().stOVShowNavBarOption ==
                                 'services') {
                               return Align(
                                 alignment: const AlignmentDirectional(0.0, -1.0),
@@ -435,34 +437,39 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                                 .headlineSmall,
                                           ),
                                         ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onLongPress: () async {},
-                                          child: FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 255.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 50.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            icon: Icon(
-                                              Icons.add,
-                                              color:
+                                        if (FFAppState()
+                                                .stOVSelected
+                                                .first
+                                                .processingId !=
+                                            4)
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onLongPress: () async {},
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 255.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                              size: 24.0,
+                                                      .primary,
+                                              icon: Icon(
+                                                Icons.add,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                                size: 24.0,
+                                              ),
+                                              showLoadingIndicator: true,
+                                              onPressed: () async {
+                                                context.pushNamed(
+                                                    'pgOVServicesSearch');
+                                              },
                                             ),
-                                            showLoadingIndicator: true,
-                                            onPressed: () async {
-                                              context.pushNamed(
-                                                  'pgOrdersVisitsServicesSearch');
-                                            },
                                           ),
-                                        ),
                                       ],
                                     ),
                                     wrapWithModel(
@@ -470,10 +477,8 @@ class _PgOrderVisitShowWidgetState extends State<PgOrderVisitShowWidget> {
                                           _model.cpOrderVisitServicesListModel,
                                       updateCallback: () => setState(() {}),
                                       child: CpOrderVisitServicesListWidget(
-                                        orderVisitId: FFAppState()
-                                            .stOrderVisitSelected
-                                            .first
-                                            .id,
+                                        orderVisitId:
+                                            FFAppState().stOVSelected.first.id,
                                       ),
                                     ),
                                   ].divide(const SizedBox(height: 12.0)),

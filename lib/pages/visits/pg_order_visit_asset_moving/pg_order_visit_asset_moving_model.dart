@@ -5,6 +5,7 @@ import '/pages/components/cp_dropdown_assets_statuses/cp_dropdown_assets_statuse
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
 import '/pages/components/cp_dropdown_units/cp_dropdown_units_widget.dart';
 import '/pages/components/cp_input_tex_multiline/cp_input_tex_multiline_widget.dart';
+import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import 'dart:async';
 import 'pg_order_visit_asset_moving_widget.dart'
     show PgOrderVisitAssetMovingWidget;
@@ -20,11 +21,13 @@ class PgOrderVisitAssetMovingModel
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Model for cpOVAssetListCard component.
+  late CpOVAssetListCardModel cpOVAssetListCardModel;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered1 = false;
-  Completer<List<OrdersVisitsAssetsRow>>? requestCompleter;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered2 = false;
+  Completer<List<OrdersVisitsAssetsRow>>? requestCompleter;
   // Model for cpDropdownUnits component.
   late CpDropdownUnitsModel cpDropdownUnitsModel;
   // Model for cpDropdownAssetsTags component.
@@ -40,6 +43,8 @@ class PgOrderVisitAssetMovingModel
 
   @override
   void initState(BuildContext context) {
+    cpOVAssetListCardModel =
+        createModel(context, () => CpOVAssetListCardModel());
     cpDropdownUnitsModel = createModel(context, () => CpDropdownUnitsModel());
     cpDropdownAssetsTagsModel =
         createModel(context, () => CpDropdownAssetsTagsModel());
@@ -54,6 +59,7 @@ class PgOrderVisitAssetMovingModel
   @override
   void dispose() {
     unfocusNode.dispose();
+    cpOVAssetListCardModel.dispose();
     cpDropdownUnitsModel.dispose();
     cpDropdownAssetsTagsModel.dispose();
     cpDropdownAssetsTagsSubsModel.dispose();

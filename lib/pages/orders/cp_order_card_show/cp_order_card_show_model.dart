@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/components/cp_order_priority_widget.dart';
 import '/components/cp_orders_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/instant_timer.dart';
 import 'cp_order_card_show_widget.dart' show CpOrderCardShowWidget;
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class CpOrderCardShowModel extends FlutterFlowModel<CpOrderCardShowWidget> {
   OrdersVisitsRow? resVisitAdded;
   // Stores action output result for [Backend Call - API (usersByTeamId)] action in Button widget.
   ApiCallResponse? resUsersTeamCurrent;
+  InstantTimer? instantTimerOVStart;
 
   /// Initialization and disposal methods.
 
@@ -30,6 +32,7 @@ class CpOrderCardShowModel extends FlutterFlowModel<CpOrderCardShowWidget> {
   void dispose() {
     cpOrderPriorityModel.dispose();
     cpOrdersStatusesModel.dispose();
+    instantTimerOVStart?.cancel();
   }
 
   /// Action blocks are added here.

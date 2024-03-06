@@ -444,10 +444,11 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           setState(() {}),
                                                       child:
                                                           CpDropdownAssetsTagsWidget(
-                                                        initialValue: FFAppState()
-                                                            .stOrderParentSelected
-                                                            .first
-                                                            .assetTagId,
+                                                        initialValue:
+                                                            FFAppState()
+                                                                .stOPSelected
+                                                                .first
+                                                                .assetTagId,
                                                       ),
                                                     ),
                                                   ],
@@ -1204,7 +1205,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                     setState(() {
                                                       _model.lcsvOrderChildCounter =
                                                           FFAppState()
-                                                                  .stOrderParentSelected
+                                                                  .stOPSelected
                                                                   .first
                                                                   .counterChild +
                                                               1;
@@ -1218,7 +1219,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           rows.eq(
                                                         'id',
                                                         FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .id,
                                                       ),
@@ -1242,24 +1243,25 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           .cpDropdownOrdersTypesSubsModel
                                                           .dropdownOrdersTypesSubsValue,
                                                       'unitId': FFAppState()
-                                                          .stOrderParentSelected
+                                                          .stOPSelected
                                                           .first
                                                           .unitId,
-                                                      'systemParentId': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .systemParentId,
+                                                      'systemParentId':
+                                                          FFAppState()
+                                                              .stOPSelected
+                                                              .first
+                                                              .systemParentId,
                                                       'systemId': FFAppState()
-                                                          .stOrderParentSelected
+                                                          .stOPSelected
                                                           .first
                                                           .systemId,
                                                       'unitTypeParentId':
                                                           FFAppState()
-                                                              .stOrderParentSelected
+                                                              .stOPSelected
                                                               .first
                                                               .unitTypeParentId,
                                                       'unitTypeId': FFAppState()
-                                                          .stOrderParentSelected
+                                                          .stOPSelected
                                                           .first
                                                           .unitTypeId,
                                                       'requesterName':
@@ -1282,11 +1284,11 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           .inputTextMultineController
                                                           .text,
                                                       'year': FFAppState()
-                                                          .stOrderParentSelected
+                                                          .stOPSelected
                                                           .first
                                                           .year,
                                                       'orderMask':
-                                                          '${FFAppState().stOrderParentSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOrderParentSelected.first.year.toString()}',
+                                                          '${FFAppState().stOPSelected.first.counterParent.toString()}.${_model.lcsvOrderChildCounter?.toString()}.${FFAppState().stOPSelected.first.year.toString()}',
                                                       'requesterDate':
                                                           supaSerialize<
                                                                   DateTime>(
@@ -1305,18 +1307,21 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                                   .datePicked),
                                                       'priorityId': _model
                                                           .resAbOrderPriorityId,
-                                                      'unitLatitude': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitLatitude,
-                                                      'unitLongitude': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .unitLongitude,
-                                                      'counterParent': FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .counterParent,
+                                                      'unitLatitude':
+                                                          FFAppState()
+                                                              .stOPSelected
+                                                              .first
+                                                              .unitLatitude,
+                                                      'unitLongitude':
+                                                          FFAppState()
+                                                              .stOPSelected
+                                                              .first
+                                                              .unitLongitude,
+                                                      'counterParent':
+                                                          FFAppState()
+                                                              .stOPSelected
+                                                              .first
+                                                              .counterParent,
                                                       'counterChild': _model
                                                           .lcsvOrderChildCounter,
                                                       'assetTagId': _model
@@ -1324,7 +1329,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                           .dropdownAssetsTagsValue,
                                                     });
                                                     if (FFAppState()
-                                                            .stOrderParentSelected
+                                                            .stOPSelected
                                                             .first
                                                             .statusId ==
                                                         1) {
@@ -1341,7 +1346,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                             rows.eq(
                                                           'id',
                                                           FFAppState()
-                                                              .stOrderParentSelected
+                                                              .stOPSelected
                                                               .first
                                                               .id,
                                                         ),
@@ -1352,7 +1357,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                               .insert({
                                                             'orderParentId':
                                                                 FFAppState()
-                                                                    .stOrderParentSelected
+                                                                    .stOPSelected
                                                                     .first
                                                                     .id,
                                                             'orderStatusId': 2,
@@ -1385,7 +1390,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                             .insert({
                                                           'orderParentId':
                                                               FFAppState()
-                                                                  .stOrderParentSelected
+                                                                  .stOPSelected
                                                                   .first
                                                                   .id,
                                                           'orderStatusId': 3,
@@ -1421,7 +1426,7 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                       abTitle:
                                                           'Serviço Agendado',
                                                       abBody:
-                                                          'OS ${_model.resOrderAdded?.orderMask}\\n${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                          'OS ${_model.resOrderAdded?.orderMask}\\n${FFAppState().stOPSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                       abUserIdFrom: FFAppState()
                                                           .asUserCurrent
                                                           .id,
@@ -1434,14 +1439,15 @@ class _MdOrderNewCopyWidgetState extends State<MdOrderNewCopyWidget>
                                                     await action_blocks
                                                         .abOrderParentEvents(
                                                       context,
-                                                      abOrderParentId: FFAppState()
-                                                          .stOrderParentSelected
-                                                          .first
-                                                          .id,
+                                                      abOrderParentId:
+                                                          FFAppState()
+                                                              .stOPSelected
+                                                              .first
+                                                              .id,
                                                       abTitle:
                                                           'OS ${_model.resOrderAdded?.orderMask}: Agendada',
                                                       abBody:
-                                                          '${FFAppState().stOrderParentSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
+                                                          '${FFAppState().stOPSelected.first.unitDescription}\\n${_model.resOrderAdded?.requestedServices}\\nfoi agendada para ${dateTimeFormat('d/M H:mm', _model.lcsvExpectedDateStart)}h',
                                                     );
                                                     Navigator.pop(context);
                                                   } else {

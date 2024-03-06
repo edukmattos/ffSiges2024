@@ -130,8 +130,7 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                       child: Padding(
                         padding: MediaQuery.viewInsetsOf(context),
                         child: MdOrderNewWidget(
-                          orderParentId:
-                              FFAppState().stOrderParentSelected.first.id,
+                          orderParentId: FFAppState().stOPSelected.first.id,
                         ),
                       ),
                     );
@@ -235,10 +234,8 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                         updateCallback: () => setState(() {}),
                         child: CpDropdownAssetsTagsWidget(
                           hintText: 'Setor',
-                          initialValue: FFAppState()
-                              .stOrderParentSelected
-                              .first
-                              .assetTagId,
+                          initialValue:
+                              FFAppState().stOPSelected.first.assetTagId,
                         ),
                       ),
                     ],
@@ -283,7 +280,7 @@ class _PgOrderProgrammingWidgetState extends State<PgOrderProgrammingWidget>
                                             .assetsByUnitTagCall
                                             .call(
                                       searchUnitId: FFAppState()
-                                          .stOrderParentSelected
+                                          .stOPSelected
                                           .first
                                           .unitId,
                                       searchAssetTagId: _model
