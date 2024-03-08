@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_dropdown_leader_teams_selected_model.dart';
 export 'cp_dropdown_leader_teams_selected_model.dart';
 
@@ -50,8 +49,6 @@ class _CpDropdownLeaderTeamsSelectedWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<VUsersRow>>(
       future: VUsersTable().queryRows(
         queryFn: (q) => q

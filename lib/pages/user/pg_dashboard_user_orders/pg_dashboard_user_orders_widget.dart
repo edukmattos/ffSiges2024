@@ -97,12 +97,12 @@ class _PgDashboardUserOrdersWidgetState
         return;
       }
       if (FFAppState().asUserCurrent.orderVisitIdInProgress > 0) {
-        await action_blocks.abOrderVisitSelected(
+        await action_blocks.abOVSelected(
           context,
           abOrderVisitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
         );
         setState(() {});
-        await action_blocks.abOrderSelected(
+        await action_blocks.abOSelected(
           context,
           abOrderId: valueOrDefault<int>(
             FFAppState().stOVSelected.first.id,

@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_dark_light_switch_small_model.dart';
 export 'cp_dark_light_switch_small_model.dart';
 
@@ -65,8 +64,6 @@ class _CpDarkLightSwitchSmallWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
       child: InkWell(

@@ -9,7 +9,6 @@ import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'pg_setting_users_model.dart';
 export 'pg_setting_users_model.dart';
 
@@ -63,8 +62,6 @@ class _PgSettingUsersWidgetState extends State<PgSettingUsersWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)

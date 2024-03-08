@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_input_password_model.dart';
 export 'cp_input_password_model.dart';
 
@@ -46,8 +45,6 @@ class _CpInputPasswordWidgetState extends State<CpInputPasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return SizedBox(
       width: double.infinity,
       child: TextFormField(

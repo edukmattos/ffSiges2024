@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'post_social1_model.dart';
 export 'post_social1_model.dart';
 
@@ -38,8 +37,6 @@ class _PostSocial1WidgetState extends State<PostSocial1Widget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
       child: Container(
@@ -89,8 +86,7 @@ class _PostSocial1WidgetState extends State<PostSocial1Widget> {
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                           RichText(
-                            textScaleFactor:
-                                MediaQuery.of(context).textScaleFactor,
+                            textScaler: MediaQuery.of(context).textScaler,
                             text: TextSpan(
                               children: const [
                                 TextSpan(

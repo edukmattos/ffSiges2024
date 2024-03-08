@@ -9,7 +9,6 @@ import '/pages/components/cp_input_password/cp_input_password_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'pg_signin_model.dart';
 export 'pg_signin_model.dart';
 
@@ -80,8 +79,6 @@ class _PgSigninWidgetState extends State<PgSigninWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -303,8 +300,8 @@ class _PgSigninWidgetState extends State<PgSigninWidget>
                                     );
                                   },
                                   child: RichText(
-                                    textScaleFactor:
-                                        MediaQuery.of(context).textScaleFactor,
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
                                     text: TextSpan(
                                       children: [
                                         TextSpan(

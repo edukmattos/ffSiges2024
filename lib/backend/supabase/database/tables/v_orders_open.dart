@@ -185,4 +185,11 @@ class VOrdersOpenRow extends SupabaseDataRow {
 
   int? get counterChild => getField<int>('counterChild');
   set counterChild(int? value) => setField<int>('counterChild', value);
+
+  int? get causeId => getField<int>('causeId');
+  set causeId(int? value) => setField<int>('causeId', value);
+
+  String? get causeDescription => getField<String>('causeDescription');
+  set causeDescription(String? value) =>
+      setField<String>('causeDescription', value);
 }

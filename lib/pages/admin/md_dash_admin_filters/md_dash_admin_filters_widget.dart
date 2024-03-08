@@ -12,7 +12,6 @@ import '/pages/components/filters/cp_dropdown_filters_units/cp_dropdown_filters_
 import '/pages/components/filters/cp_dropdown_filters_units_types_parent/cp_dropdown_filters_units_types_parent_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'md_dash_admin_filters_model.dart';
 export 'md_dash_admin_filters_model.dart';
 
@@ -50,8 +49,6 @@ class _MdDashAdminFiltersWidgetState extends State<MdDashAdminFiltersWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       height: double.infinity,

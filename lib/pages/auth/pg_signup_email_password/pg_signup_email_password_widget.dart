@@ -10,7 +10,6 @@ import '/pages/components/cp_input_email/cp_input_email_widget.dart';
 import '/pages/components/cp_input_password/cp_input_password_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'pg_signup_email_password_model.dart';
 export 'pg_signup_email_password_model.dart';
 
@@ -82,8 +81,6 @@ class _PgSignupEmailPasswordWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -382,8 +379,8 @@ class _PgSignupEmailPasswordWidgetState
                                     );
                                   },
                                   child: RichText(
-                                    textScaleFactor:
-                                        MediaQuery.of(context).textScaleFactor,
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
                                     text: TextSpan(
                                       children: [
                                         const TextSpan(

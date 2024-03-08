@@ -205,10 +205,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Home13ProductivityWidget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitShow',
-          path: '/pgOrderVisitShow',
+          name: 'pgOVShow',
+          path: '/pgOVShow',
           requireAuth: true,
-          builder: (context, params) => PgOrderVisitShowWidget(
+          builder: (context, params) => PgOVShowWidget(
             visitId: params.getParam('visitId', ParamType.int),
             orderId: params.getParam('orderId', ParamType.int),
             appPageId009: params.getParam('appPageId009', ParamType.int),
@@ -398,6 +398,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'pgDBUserOrders')
               : const PgDBUserOrdersWidget(),
+        ),
+        FFRoute(
+          name: 'Details19TransactionBudget',
+          path: '/details19TransactionBudget',
+          builder: (context, params) => const Details19TransactionBudgetWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'cp_input_integer_model.dart';
 export 'cp_input_integer_model.dart';
 
@@ -53,8 +52,6 @@ class _CpInputIntegerWidgetState extends State<CpInputIntegerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return TextFormField(
       controller: _model.inputIntegerController,
       focusNode: _model.inputIntegerFocusNode,

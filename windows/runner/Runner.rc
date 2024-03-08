@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "Siges2024" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 Siges2024. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Siges2024. All rights reserved." "\0"
             VALUE "OriginalFilename", "siges2024.exe" "\0"
             VALUE "ProductName", "Siges2024" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

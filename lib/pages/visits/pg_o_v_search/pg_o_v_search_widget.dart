@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/filters/md_orders_visits_services_detalis/md_orders_visits_services_detalis_widget.dart';
+import '/pages/components/filters/md_o_v_services_detalis/md_o_v_services_detalis_widget.dart';
 import '/pages/visits/cp_o_v_processing_card/cp_o_v_processing_card_widget.dart';
 import '/pages/visits/md_o_v_search_filters/md_o_v_search_filters_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -713,14 +713,13 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            await action_blocks
-                                                .abOrderVisitSelected(
+                                            await action_blocks.abOVSelected(
                                               context,
                                               abOrderVisitId: gcOVItem.id,
                                             );
 
                                             context.pushNamed(
-                                              'pgOrderVisitShow',
+                                              'pgOVShow',
                                               queryParameters: {
                                                 'visitId': serializeParam(
                                                   FFAppState()
@@ -890,7 +889,7 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                                                     .height *
                                                                 0.3,
                                                         child:
-                                                            MdOrdersVisitsServicesDetalisWidget(
+                                                            MdOVServicesDetalisWidget(
                                                           orderVisitId:
                                                               valueOrDefault<
                                                                   int>(

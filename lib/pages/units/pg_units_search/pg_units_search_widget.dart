@@ -152,19 +152,17 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                await action_blocks.abPermissionCheck(
-                  context,
-                  abAppPageId: 8,
-                  abUserProfileId: valueOrDefault<int>(
-                    FFAppState().asUserCurrent.profileId,
-                    0,
-                  ),
-                );
+                var shouldSetState = false;
+                _model.gu = await action_blocks.abGuardian(context);
+                shouldSetState = true;
                 if (FFAppState().stIsPermission) {
                   context.pushNamed('pgUnitsNew');
                 } else {
+                  if (shouldSetState) setState(() {});
                   return;
                 }
+
+                if (shouldSetState) setState(() {});
               },
               child: Icon(
                 Icons.add,

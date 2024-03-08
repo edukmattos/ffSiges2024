@@ -20,6 +20,8 @@ class PgUnitsSearchModel extends FlutterFlowModel<PgUnitsSearchWidget> {
   late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
+  // Stores action output result for [Action Block - abGuardian] action in Icon widget.
+  bool? gu;
 
   /// Initialization and disposal methods.
 

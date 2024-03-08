@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
+import '/pages/components/cp_dropdown_orders_causes/cp_dropdown_orders_causes_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
 import '/pages/orders/cp_dropdown_orders_cancel_reasons/cp_dropdown_orders_cancel_reasons_widget.dart';
@@ -44,6 +45,8 @@ class MdOrderVisitToApproveCopyModel
   late CpDropdownVisitOrdersStatusesModel cpDropdownVisitOrdersStatusesModel;
   // Model for cpDropdownOrdersCancelReasons component.
   late CpDropdownOrdersCancelReasonsModel cpDropdownOrdersCancelReasonsModel;
+  // Model for cpDropdownOrdersCauses component.
+  late CpDropdownOrdersCausesModel cpDropdownOrdersCausesModel;
   // Stores action output result for [Action Block - abChoicesOrdersPrioritiesId] action in Button widget.
   int? resAbOrderPriorityId;
 
@@ -61,6 +64,8 @@ class MdOrderVisitToApproveCopyModel
         createModel(context, () => CpDropdownVisitOrdersStatusesModel());
     cpDropdownOrdersCancelReasonsModel =
         createModel(context, () => CpDropdownOrdersCancelReasonsModel());
+    cpDropdownOrdersCausesModel =
+        createModel(context, () => CpDropdownOrdersCausesModel());
   }
 
   @override
@@ -70,6 +75,7 @@ class MdOrderVisitToApproveCopyModel
     cpDropdownOrdersTypesSubsModel.dispose();
     cpDropdownVisitOrdersStatusesModel.dispose();
     cpDropdownOrdersCancelReasonsModel.dispose();
+    cpDropdownOrdersCausesModel.dispose();
   }
 
   /// Action blocks are added here.

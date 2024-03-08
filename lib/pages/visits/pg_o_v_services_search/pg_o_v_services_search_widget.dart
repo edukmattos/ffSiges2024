@@ -8,7 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
-import '/pages/visits/md_order_visit_contract_service_add/md_order_visit_contract_service_add_widget.dart';
+import '/pages/visits/md_o_v_contract_service_add/md_o_v_contract_service_add_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -393,7 +393,7 @@ class _PgOVServicesSearchWidgetState extends State<PgOVServicesSearchWidget>
                                                               .viewInsetsOf(
                                                                   context),
                                                           child:
-                                                              MdOrderVisitContractServiceAddWidget(
+                                                              MdOVContractServiceAddWidget(
                                                             serviceId:
                                                                 gcContractServicesItem
                                                                     .serviceId,

@@ -5,7 +5,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_orders_statuses_model.dart';
 export 'cp_orders_statuses_model.dart';
 
@@ -237,8 +236,6 @@ class _CpOrdersStatusesWidgetState extends State<CpOrdersStatusesWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: 55.0,
       height: 55.0,

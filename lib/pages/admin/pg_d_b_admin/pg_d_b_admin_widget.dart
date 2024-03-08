@@ -575,8 +575,28 @@ class _PgDBAdminWidgetState extends State<PgDBAdminWidget>
                 setState(() {
                   _model.lpsvOrdersOrVisits = 'ordersAnalysis';
                 });
+                _model.isAllowed = await action_blocks.abGuardian(
+                  context,
+                  abPgRequestedId: 6,
+                );
+                if (_model.isAllowed!) {
+                  context.pushNamed('pgOrderParentNew');
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        FFAppConstants.msgNotAllowed,
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryBtnText,
+                        ),
+                      ),
+                      duration: const Duration(milliseconds: 4000),
+                      backgroundColor: FlutterFlowTheme.of(context).error,
+                    ),
+                  );
+                }
 
-                context.pushNamed('pgOrderParentNew');
+                setState(() {});
               },
               child: Icon(
                 Icons.add,
@@ -3493,7 +3513,7 @@ class _PgDBAdminWidgetState extends State<PgDBAdminWidget>
                                                                       .transparent,
                                                               onTap: () async {
                                                                 await action_blocks
-                                                                    .abOrderVisitSelected(
+                                                                    .abOVSelected(
                                                                   context,
                                                                   abOrderVisitId:
                                                                       gcOrdersVisitsProcessingItem
@@ -3502,7 +3522,7 @@ class _PgDBAdminWidgetState extends State<PgDBAdminWidget>
 
                                                                 context
                                                                     .pushNamed(
-                                                                  'pgOrderVisitShow',
+                                                                  'pgOVShow',
                                                                   queryParameters:
                                                                       {
                                                                     'visitId':

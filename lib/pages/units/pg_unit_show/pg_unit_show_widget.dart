@@ -8,7 +8,6 @@ import '/pages/units/cp_unit_card_show/cp_unit_card_show_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'pg_unit_show_model.dart';
 export 'pg_unit_show_model.dart';
 
@@ -70,8 +69,6 @@ class _PgUnitShowWidgetState extends State<PgUnitShowWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -91,18 +88,16 @@ class _PgUnitShowWidgetState extends State<PgUnitShowWidget>
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              await action_blocks.abPermissionCheck(
-                context,
-                abAppPageId: 6,
-                abUserProfileId: valueOrDefault<int>(
-                  FFAppState().asUserCurrent.profileId,
-                  0,
-                ),
-              );
-              if (FFAppState().stIsPermission) {
+              var shouldSetState = false;
+              _model.isAllowed = await action_blocks.abGuardian(context);
+              shouldSetState = true;
+              if (_model.isAllowed!) {
               } else {
+                if (shouldSetState) setState(() {});
                 return;
               }
+
+              if (shouldSetState) setState(() {});
             },
             child: Icon(
               Icons.add,

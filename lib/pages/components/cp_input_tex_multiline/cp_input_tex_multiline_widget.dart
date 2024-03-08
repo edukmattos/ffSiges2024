@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_input_tex_multiline_model.dart';
 export 'cp_input_tex_multiline_model.dart';
 
@@ -54,8 +53,6 @@ class _CpInputTexMultilineWidgetState extends State<CpInputTexMultilineWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return TextFormField(
       controller: _model.inputTextMultineController,
       focusNode: _model.inputTextMultineFocusNode,

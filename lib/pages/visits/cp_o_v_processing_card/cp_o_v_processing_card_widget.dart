@@ -6,7 +6,6 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'cp_o_v_processing_card_model.dart';
 export 'cp_o_v_processing_card_model.dart';
 
@@ -143,8 +142,6 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Builder(
       builder: (context) {
         if (widget.processingId == 1) {

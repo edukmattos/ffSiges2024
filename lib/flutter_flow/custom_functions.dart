@@ -64,13 +64,8 @@ DateTime cfConvUnixToDate(int datetimeUnixRef) {
 }
 
 DateTime cfConvDateStringToDatetime(String dateRef) {
-  //dateRef pode ser nulo pois podem existir mais de um campo tipo data no mesmo registro vazios
-  //Exemplo: atualização de uma lista
-
-  // Converta a string formatada para DateTime
-  DateTime dateDateTime = DateTime.parse(dateRef).toUtc();
-
-  return dateDateTime;
+  // converter string date do formato 2024-03-04 18:22:44.868 para DateTime
+  return DateTime.parse(dateRef);
 }
 
 String? cfConvStringToNumber(

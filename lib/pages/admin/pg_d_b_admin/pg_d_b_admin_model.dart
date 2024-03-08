@@ -22,6 +22,8 @@ class PgDBAdminModel extends FlutterFlowModel<PgDBAdminWidget> {
   late CpMenuModel cpMenuModel;
   // Model for cpNotificationsIcon component.
   late CpNotificationsIconModel cpNotificationsIconModel;
+  // Stores action output result for [Action Block - abGuardian] action in Icon widget.
+  bool? isAllowed;
 
   /// Initialization and disposal methods.
 

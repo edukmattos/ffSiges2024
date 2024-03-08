@@ -459,64 +459,83 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                 ),
                                               ],
                                             ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          2.0, 0.0, 0.0, 4.0),
-                                                  child: Text(
-                                                    'Prioridade',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'textOnPageLoadAnimation5']!),
-                                                ),
-                                                FutureBuilder<
-                                                    List<OrdersPrioritiesRow>>(
-                                                  future:
-                                                      OrdersPrioritiesTable()
-                                                          .queryRows(
-                                                    queryFn: (q) =>
-                                                        q.order('id'),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            -1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Prioridade',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation5']!),
+                                                    ),
                                                   ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50.0,
-                                                          height: 50.0,
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            -1.0, 0.0),
+                                                    child: FutureBuilder<
+                                                        List<
+                                                            OrdersPrioritiesRow>>(
+                                                      future:
+                                                          OrdersPrioritiesTable()
+                                                              .queryRows(
+                                                        queryFn: (q) =>
+                                                            q.order('id'),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<OrdersPrioritiesRow>
-                                                        choiceChipsOrdersPrioritiesRowList =
-                                                        snapshot.data!;
-                                                    return FlutterFlowChoiceChips(
-                                                      options:
-                                                          choiceChipsOrdersPrioritiesRowList
+                                                          );
+                                                        }
+                                                        List<OrdersPrioritiesRow>
+                                                            choiceChipsOrdersPrioritiesRowList =
+                                                            snapshot.data!;
+                                                        return FlutterFlowChoiceChips(
+                                                          options: choiceChipsOrdersPrioritiesRowList
                                                               .map((e) =>
                                                                   e.description)
                                                               .withoutNulls
@@ -525,109 +544,114 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                                   ChipData(
                                                                       label))
                                                               .toList(),
-                                                      onChanged: (val) =>
-                                                          setState(() => _model
-                                                                  .choiceChipsValue =
-                                                              val?.firstOrNull),
-                                                      selectedChipStyle:
-                                                          ChipStyle(
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryBackground,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                        iconColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        iconSize: 18.0,
-                                                        labelPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    12.0,
-                                                                    4.0,
-                                                                    12.0,
-                                                                    4.0),
-                                                        elevation: 0.0,
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        borderWidth: 2.0,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      unselectedChipStyle:
-                                                          ChipStyle(
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                ),
-                                                        iconColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        iconSize: 18.0,
-                                                        labelPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    12.0,
-                                                                    4.0,
-                                                                    12.0,
-                                                                    4.0),
-                                                        elevation: 0.0,
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        borderWidth: 2.0,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      chipSpacing: 8.0,
-                                                      rowSpacing: 8.0,
-                                                      multiselect: false,
-                                                      initialized: _model
-                                                              .choiceChipsValue !=
-                                                          null,
-                                                      alignment:
-                                                          WrapAlignment.start,
-                                                      controller: _model
-                                                              .choiceChipsValueController ??=
-                                                          FormFieldController<
-                                                              List<String>>(
-                                                        ['1'],
-                                                      ),
-                                                      wrapped: false,
-                                                    ).animateOnPageLoad(
-                                                        animationsMap[
-                                                            'choiceChipsOnPageLoadAnimation']!);
-                                                  },
-                                                ),
-                                              ],
+                                                          onChanged: (val) =>
+                                                              setState(() => _model
+                                                                      .choiceChipsValue =
+                                                                  val?.firstOrNull),
+                                                          selectedChipStyle:
+                                                              ChipStyle(
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                            iconColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            iconSize: 18.0,
+                                                            labelPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        4.0,
+                                                                        12.0,
+                                                                        4.0),
+                                                            elevation: 0.0,
+                                                            borderColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            borderWidth: 2.0,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          unselectedChipStyle:
+                                                              ChipStyle(
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                    ),
+                                                            iconColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            iconSize: 18.0,
+                                                            labelPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        4.0,
+                                                                        12.0,
+                                                                        4.0),
+                                                            elevation: 0.0,
+                                                            borderColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            borderWidth: 2.0,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          chipSpacing: 8.0,
+                                                          rowSpacing: 8.0,
+                                                          multiselect: false,
+                                                          initialized: _model
+                                                                  .choiceChipsValue !=
+                                                              null,
+                                                          alignment:
+                                                              WrapAlignment
+                                                                  .start,
+                                                          controller: _model
+                                                                  .choiceChipsValueController ??=
+                                                              FormFieldController<
+                                                                  List<String>>(
+                                                            ['1'],
+                                                          ),
+                                                          wrapped: false,
+                                                        ).animateOnPageLoad(
+                                                            animationsMap[
+                                                                'choiceChipsOnPageLoadAnimation']!);
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1040,7 +1064,7 @@ class _MdOrderNewWidgetState extends State<MdOrderNewWidget>
                                                       );
 
                                                       await action_blocks
-                                                          .abOrderSelected(
+                                                          .abOSelected(
                                                         context,
                                                         abOrderId: _model
                                                             .resOrderAdded?.id,

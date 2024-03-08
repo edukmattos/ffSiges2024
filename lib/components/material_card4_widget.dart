@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'material_card4_model.dart';
 export 'material_card4_model.dart';
 
@@ -43,8 +42,6 @@ class _MaterialCard4WidgetState extends State<MaterialCard4Widget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(

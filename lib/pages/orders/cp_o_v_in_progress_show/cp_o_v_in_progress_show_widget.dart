@@ -8,7 +8,6 @@ import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_o_v_in_progress_show_model.dart';
 export 'cp_o_v_in_progress_show_model.dart';
 
@@ -204,8 +203,6 @@ class _CpOVInProgressShowWidgetState extends State<CpOVInProgressShowWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(),
       child: Column(
@@ -292,7 +289,7 @@ class _CpOVInProgressShowWidgetState extends State<CpOVInProgressShowWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        await action_blocks.abOrderSelected(
+                                        await action_blocks.abOSelected(
                                           context,
                                           abOrderId: widget.orderId,
                                         );
@@ -381,7 +378,8 @@ class _CpOVInProgressShowWidgetState extends State<CpOVInProgressShowWidget>
                                         cpStatusId:
                                             containerVOrdersRow!.statusId!,
                                         cpStatusDescription:
-                                            containerVOrdersRow.statusDescription!,
+                                            containerVOrdersRow
+                                                .statusDescription!,
                                       ),
                                     ),
                                   ].divide(const SizedBox(width: 8.0)),

@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'home13_productivity_model.dart';
 export 'home13_productivity_model.dart';
 
@@ -44,8 +43,6 @@ class _Home13ProductivityWidgetState extends State<Home13ProductivityWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,

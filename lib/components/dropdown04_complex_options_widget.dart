@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'dropdown04_complex_options_model.dart';
 export 'dropdown04_complex_options_model.dart';
 
@@ -71,8 +70,6 @@ class _Dropdown04ComplexOptionsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(

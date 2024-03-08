@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/orders/cp_o_v_processing/cp_o_v_processing_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_o_v_asset_list_card_model.dart';
 export 'cp_o_v_asset_list_card_model.dart';
 
@@ -58,8 +57,6 @@ class _CpOVAssetListCardWidgetState extends State<CpOVAssetListCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(

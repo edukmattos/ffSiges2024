@@ -19,6 +19,8 @@ class PgOrderParentShowModel extends FlutterFlowModel<PgOrderParentShowWidget> {
   late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpOrderParentDashCardShow component.
   late CpOrderParentDashCardShowModel cpOrderParentDashCardShowModel;
+  // Stores action output result for [Action Block - abGuardian] action in Icon widget.
+  bool? isAllowed;
 
   /// Initialization and disposal methods.
 

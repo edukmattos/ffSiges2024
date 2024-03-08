@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_o_v_processing_model.dart';
 export 'cp_o_v_processing_model.dart';
 
@@ -44,8 +43,6 @@ class _CpOVProcessingWidgetState extends State<CpOVProcessingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(-1.0, 0.0),
       child: FutureBuilder<List<OrdersVisitsProcessingRow>>(

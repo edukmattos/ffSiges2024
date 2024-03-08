@@ -137,4 +137,10 @@ class OrdersRow extends SupabaseDataRow {
 
   double? get priceTotal => getField<double>('priceTotal');
   set priceTotal(double? value) => setField<double>('priceTotal', value);
+
+  int? get causeId => getField<int>('causeId');
+  set causeId(int? value) => setField<int>('causeId', value);
+
+  int? get cancelReasonId => getField<int>('cancelReasonId');
+  set cancelReasonId(int? value) => setField<int>('cancelReasonId', value);
 }

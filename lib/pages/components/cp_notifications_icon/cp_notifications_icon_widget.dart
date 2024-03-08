@@ -121,7 +121,8 @@ class _CpNotificationsIconWidgetState extends State<CpNotificationsIconWidget> {
                         fontSize: 12.0,
                       ),
                 ),
-                showBadge: containerVUsersNotificationsCountRow.countUserNotifications! >
+                showBadge: containerVUsersNotificationsCountRow
+                        .countUserNotifications! >
                     0,
                 shape: badges.BadgeShape.circle,
                 badgeColor: FlutterFlowTheme.of(context).tertiary,

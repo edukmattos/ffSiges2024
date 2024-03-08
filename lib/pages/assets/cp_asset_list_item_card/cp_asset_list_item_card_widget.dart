@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_asset_list_item_card_model.dart';
 export 'cp_asset_list_item_card_model.dart';
 
@@ -207,8 +206,6 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       constraints: const BoxConstraints(

@@ -268,7 +268,7 @@ class _MdOVisitCloseWidgetState extends State<MdOVisitCloseWidget>
                                                   returnRows: true,
                                                 );
                                                 await action_blocks
-                                                    .abOrderVisitSelected(
+                                                    .abOVSelected(
                                                   context,
                                                   abOrderVisitId:
                                                       valueOrDefault<int>(
@@ -297,8 +297,7 @@ class _MdOVisitCloseWidgetState extends State<MdOVisitCloseWidget>
                                                         .orderId,
                                                   ),
                                                 );
-                                                await action_blocks
-                                                    .abOrderSelected(
+                                                await action_blocks.abOSelected(
                                                   context,
                                                   abOrderId:
                                                       valueOrDefault<int>(
@@ -393,7 +392,7 @@ class _MdOVisitCloseWidgetState extends State<MdOVisitCloseWidget>
                                                 });
 
                                                 context.pushNamed(
-                                                  'pgOrderVisitShow',
+                                                  'pgOVShow',
                                                   queryParameters: {
                                                     'visitId': serializeParam(
                                                       valueOrDefault<int>(

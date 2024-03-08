@@ -144,7 +144,7 @@ final parametersBuilderMap =
         },
       ),
   'Home13Productivity': ParameterData.none(),
-  'pgOrderVisitShow': (data) async => ParameterData(
+  'pgOVShow': (data) async => ParameterData(
         allParams: {
           'visitId': getParameter<int>(data, 'visitId'),
           'orderId': getParameter<int>(data, 'orderId'),
@@ -199,6 +199,7 @@ final parametersBuilderMap =
   'Details03TransactionsSummary1': ParameterData.none(),
   'qwerty': ParameterData.none(),
   'pgDBUserOrders': ParameterData.none(),
+  'Details19TransactionBudget': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

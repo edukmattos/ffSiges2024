@@ -33,8 +33,7 @@ export '/xpg_order_parent_unit_show/xpg_order_parent_unit_show_widget.dart'
 export '/pages/user/pg_my_team/pg_my_team_widget.dart' show PgMyTeamWidget;
 export '/home13_productivity/home13_productivity_widget.dart'
     show Home13ProductivityWidget;
-export '/pages/visits/pg_order_visit_show/pg_order_visit_show_widget.dart'
-    show PgOrderVisitShowWidget;
+export '/pages/visits/pg_o_v_show/pg_o_v_show_widget.dart' show PgOVShowWidget;
 export '/pages/visits/pg_o_v_asset1_search/pg_o_v_asset1_search_widget.dart'
     show PgOVAsset1SearchWidget;
 export '/list11_messages/list11_messages_widget.dart' show List11MessagesWidget;
@@ -91,3 +90,5 @@ export '/details03_transactions_summary1/details03_transactions_summary1_widget.
 export '/qwerty/qwerty_widget.dart' show QwertyWidget;
 export '/pages/user/pg_d_b_user_orders/pg_d_b_user_orders_widget.dart'
     show PgDBUserOrdersWidget;
+export '/details19_transaction_budget/details19_transaction_budget_widget.dart'
+    show Details19TransactionBudgetWidget;

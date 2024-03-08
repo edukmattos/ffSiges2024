@@ -28,15 +28,22 @@ class VContractsRow extends SupabaseDataRow {
   set providerCompanyId(int? value) =>
       setField<int>('providerCompanyId', value);
 
-  int? get providerDepartmentId => getField<int>('providerDepartmentId');
-  set providerDepartmentId(int? value) =>
-      setField<int>('providerDepartmentId', value);
-
   String? get providerCompanyDescription =>
       getField<String>('providerCompanyDescription');
   set providerCompanyDescription(String? value) =>
       setField<String>('providerCompanyDescription', value);
 
-  String? get description => getField<String>('description');
-  set description(String? value) => setField<String>('description', value);
+  int? get providerDepartmentId => getField<int>('providerDepartmentId');
+  set providerDepartmentId(int? value) =>
+      setField<int>('providerDepartmentId', value);
+
+  String? get contractDescription => getField<String>('contractDescription');
+  set contractDescription(String? value) =>
+      setField<String>('contractDescription', value);
+
+  bool? get isAvailable => getField<bool>('isAvailable');
+  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
+
+  bool? get isDeleted => getField<bool>('isDeleted');
+  set isDeleted(bool? value) => setField<bool>('isDeleted', value);
 }

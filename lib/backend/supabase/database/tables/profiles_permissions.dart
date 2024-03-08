@@ -23,7 +23,4 @@ class ProfilesPermissionsRow extends SupabaseDataRow {
 
   int? get appPageId => getField<int>('appPageId');
   set appPageId(int? value) => setField<int>('appPageId', value);
-
-  bool? get isPermission => getField<bool>('isPermission');
-  set isPermission(bool? value) => setField<bool>('isPermission', value);
 }

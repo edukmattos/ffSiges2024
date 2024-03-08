@@ -6,7 +6,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_order_show_bottom_nav_bar_model.dart';
 export 'cp_order_show_bottom_nav_bar_model.dart';
 
@@ -75,8 +74,6 @@ class _CpOrderShowBottomNavBarWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(-1.0, 0.0),
       child: ClipRRect(

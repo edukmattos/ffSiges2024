@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_dropdown_assets_tags/cp_dropdown_assets_tags_widget.dart';
+import '/pages/components/cp_dropdown_orders_causes/cp_dropdown_orders_causes_widget.dart';
 import '/pages/components/cp_dropdown_orders_types/cp_dropdown_orders_types_widget.dart';
 import '/pages/components/cp_dropdown_orders_types_subs/cp_dropdown_orders_types_subs_widget.dart';
 import '/pages/orders/cp_dropdown_orders_cancel_reasons/cp_dropdown_orders_cancel_reasons_widget.dart';
@@ -153,6 +154,26 @@ class _MdOrderVisitToApproveCopyWidgetState
       ],
     ),
     'textOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 100.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 100.ms,
+          duration: 400.ms,
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation7': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 100.ms),
@@ -668,7 +689,7 @@ class _MdOrderVisitToApproveCopyWidgetState
                                                       .fromSTEB(
                                                           2.0, 0.0, 0.0, 4.0),
                                                   child: Text(
-                                                    'Motivo',
+                                                    'Motivo Suspensão',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelLarge
@@ -689,6 +710,40 @@ class _MdOrderVisitToApproveCopyWidgetState
                                                       setState(() {}),
                                                   child:
                                                       const CpDropdownOrdersCancelReasonsWidget(),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Causa do atendimento',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                  ).animateOnPageLoad(animationsMap[
+                                                      'textOnPageLoadAnimation7']!),
+                                                ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .cpDropdownOrdersCausesModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child:
+                                                      const CpDropdownOrdersCausesWidget(),
                                                 ),
                                               ].addToEnd(
                                                   const SizedBox(height: 24.0)),
@@ -831,15 +886,53 @@ class _MdOrderVisitToApproveCopyWidgetState
                                                         'statusId': _model
                                                             .cpDropdownVisitOrdersStatusesModel
                                                             .dropdownOrdersStatusesValue,
+                                                        'causeId': _model
+                                                            .cpDropdownOrdersCausesModel
+                                                            .dropdownOrdersCausesValue,
+                                                        'cancelReasonId': _model
+                                                            .cpDropdownOrdersCancelReasonsModel
+                                                            .dropdownOrdersCancelReasonsValue,
                                                       },
                                                       matchingRows: (rows) =>
                                                           rows.eq(
                                                         'id',
                                                         FFAppState()
-                                                            .stOPSelected
+                                                            .stOVSelected
                                                             .first
-                                                            .id,
+                                                            .orderId,
                                                       ),
+                                                    );
+                                                    await action_blocks
+                                                        .abOVSelected(
+                                                      context,
+                                                      abOrderVisitId:
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .id,
+                                                    );
+                                                    Navigator.pop(context);
+
+                                                    context.pushNamed(
+                                                      'pgOVShow',
+                                                      queryParameters: {
+                                                        'visitId':
+                                                            serializeParam(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .id,
+                                                          ParamType.int,
+                                                        ),
+                                                        'orderId':
+                                                            serializeParam(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .orderId,
+                                                          ParamType.int,
+                                                        ),
+                                                      }.withoutNulls,
                                                     );
                                                   } else {
                                                     await showDialog(

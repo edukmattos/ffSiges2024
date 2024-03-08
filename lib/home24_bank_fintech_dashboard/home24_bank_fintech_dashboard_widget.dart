@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'home24_bank_fintech_dashboard_model.dart';
 export 'home24_bank_fintech_dashboard_model.dart';
 
@@ -40,8 +39,6 @@ class _Home24BankFintechDashboardWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -123,8 +120,7 @@ class _Home24BankFintechDashboardWidgetState
                                   size: 24.0,
                                 ),
                                 RichText(
-                                  textScaleFactor:
-                                      MediaQuery.of(context).textScaleFactor,
+                                  textScaler: MediaQuery.of(context).textScaler,
                                   text: TextSpan(
                                     children: [
                                       TextSpan(

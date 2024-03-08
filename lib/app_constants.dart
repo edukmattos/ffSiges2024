@@ -8,4 +8,5 @@ abstract class FFAppConstants {
   static const String appImageNoUserFileName = 'noImageUser.png';
   static const String appImageNoFileName = 'noImage.png';
   static const String appStorageBucket = 'siges';
+  static const String msgNotAllowed = 'Acesso NÃO autorizado.';
 }

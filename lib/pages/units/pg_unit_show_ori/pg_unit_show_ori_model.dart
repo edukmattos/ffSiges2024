@@ -16,6 +16,8 @@ class PgUnitShowOriModel extends FlutterFlowModel<PgUnitShowOriWidget> {
   late CpMenuModel cpMenuModel;
   // Model for cpUnitCardShow component.
   late CpUnitCardShowModel cpUnitCardShowModel;
+  // Stores action output result for [Action Block - abGuardian] action in Icon widget.
+  bool? isAllowed;
 
   /// Initialization and disposal methods.
 

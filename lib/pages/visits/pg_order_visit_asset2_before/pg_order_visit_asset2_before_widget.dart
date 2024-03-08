@@ -15,6 +15,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'pg_order_visit_asset2_before_model.dart';
 export 'pg_order_visit_asset2_before_model.dart';
@@ -131,7 +132,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                 ),
                 onPressed: () async {
                   context.pushNamed(
-                    'pgOrderVisitShow',
+                    'pgOVShow',
                     queryParameters: {
                       'visitId': serializeParam(
                         FFAppState().stOVSelected.first.id,
@@ -1102,87 +1103,95 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Flexible(
-                                          child: FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderRadius: 25.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 50.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                              size: 30.0,
-                                            ),
-                                            onPressed: () async {
-                                              if (widget.operation ==
-                                                  'before') {
-                                                await OrdersVisitsAssetsTable()
-                                                    .update(
-                                                  data: {
-                                                    'beforeComments': _model
-                                                        .cpInputTexMultilineModel
-                                                        .inputTextMultineController
-                                                        .text,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
+                                        FFButtonWidget(
+                                          onPressed: () async {
+                                            if (widget.operation == 'before') {
+                                              await OrdersVisitsAssetsTable()
+                                                  .update(
+                                                data: {
+                                                  'beforeComments': _model
+                                                      .cpInputTexMultilineModel
+                                                      .inputTextMultineController
+                                                      .text,
+                                                },
+                                                matchingRows: (rows) => rows.eq(
+                                                  'id',
+                                                  FFAppState()
+                                                      .stOVAssetSelected
+                                                      .first
+                                                      .id,
+                                                ),
+                                              );
+                                              await action_blocks
+                                                  .abOrderVisitAssetSelected(
+                                                context,
+                                                abOrderVisitAssetId:
                                                     FFAppState()
                                                         .stOVAssetSelected
                                                         .first
                                                         .id,
-                                                  ),
-                                                );
-                                                await action_blocks
-                                                    .abOrderVisitAssetSelected(
-                                                  context,
-                                                  abOrderVisitAssetId:
-                                                      FFAppState()
-                                                          .stOVAssetSelected
-                                                          .first
-                                                          .id,
-                                                );
-                                                setState(() {});
+                                              );
+                                              setState(() {});
 
-                                                context.goNamed(
-                                                    'pgOVAsset3ActivitiesSearch');
-                                              } else {
-                                                await OrdersVisitsAssetsTable()
-                                                    .update(
-                                                  data: {
-                                                    'afterComments': _model
-                                                        .cpInputTexMultilineModel
-                                                        .inputTextMultineController
-                                                        .text,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
+                                              context.goNamed(
+                                                  'pgOVAsset3ActivitiesSearch');
+                                            } else {
+                                              await OrdersVisitsAssetsTable()
+                                                  .update(
+                                                data: {
+                                                  'afterComments': _model
+                                                      .cpInputTexMultilineModel
+                                                      .inputTextMultineController
+                                                      .text,
+                                                },
+                                                matchingRows: (rows) => rows.eq(
+                                                  'id',
+                                                  FFAppState()
+                                                      .stOVAssetSelected
+                                                      .first
+                                                      .id,
+                                                ),
+                                              );
+                                              await action_blocks
+                                                  .abOrderVisitAssetSelected(
+                                                context,
+                                                abOrderVisitAssetId:
                                                     FFAppState()
                                                         .stOVAssetSelected
                                                         .first
                                                         .id,
-                                                  ),
-                                                );
-                                                await action_blocks
-                                                    .abOrderVisitAssetSelected(
-                                                  context,
-                                                  abOrderVisitAssetId:
-                                                      FFAppState()
-                                                          .stOVAssetSelected
-                                                          .first
-                                                          .id,
-                                                );
-                                                setState(() {});
-                                              }
-                                            },
+                                              );
+                                              setState(() {});
+                                            }
+                                          },
+                                          text: 'Salvar',
+                                          icon: const FaIcon(
+                                            FontAwesomeIcons.arrowRight,
+                                          ),
+                                          options: FFButtonOptions(
+                                            height: 50.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.white,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
                                           ),
                                         ),
                                       ],
@@ -1282,7 +1291,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                   );
                                                   setState(() {});
                                                   await action_blocks
-                                                      .abOrderVisitSelected(
+                                                      .abOVSelected(
                                                     context,
                                                     abOrderVisitId: FFAppState()
                                                         .stOVAssetSelected
@@ -1291,7 +1300,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                   );
 
                                                   context.pushNamed(
-                                                    'pgOrderVisitShow',
+                                                    'pgOVShow',
                                                     queryParameters: {
                                                       'visitId': serializeParam(
                                                         valueOrDefault<int>(
@@ -1391,7 +1400,7 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                 }
 
                                                 context.pushNamed(
-                                                  'pgOrderVisitShow',
+                                                  'pgOVShow',
                                                   queryParameters: {
                                                     'visitId': serializeParam(
                                                       valueOrDefault<int>(
@@ -1462,113 +1471,147 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                           children: [
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: const Text(
-                                                                  'Atividade'),
-                                                              content: const Text(
-                                                                  'Deseja Reportar ?'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: const Text(
-                                                                      'Cancelar'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: const Text(
-                                                                      'Confirmar'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        ) ??
-                                                        false;
-                                                if (confirmDialogResponse) {
-                                                  await OrdersVisitsAssetsTable()
-                                                      .update(
-                                                    data: {
-                                                      'processingId': 2,
-                                                      'reportedUserId':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .id,
-                                                      'reportedDate':
-                                                          supaSerialize<
-                                                                  DateTime>(
-                                                              getCurrentTimestamp),
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows.eq(
-                                                      'id',
-                                                      FFAppState()
-                                                          .stOVAssetSelected
-                                                          .first
-                                                          .id,
-                                                    ),
-                                                  );
-                                                  await action_blocks
-                                                      .abOrderVisitProcessingCheck(
-                                                    context,
-                                                    abOrderVisitId:
-                                                        valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .id,
-                                                      1,
-                                                    ),
-                                                  );
-                                                  setState(() {});
-                                                  await action_blocks
-                                                      .abOrderVisitSelected(
-                                                    context,
-                                                    abOrderVisitId:
-                                                        valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .id,
-                                                      1,
-                                                    ),
-                                                  );
+                                                _model.isAllowedDisapprove =
+                                                    await action_blocks
+                                                        .abGuardian(
+                                                  context,
+                                                  abPgRequestedId: 11,
+                                                );
+                                                if (_model
+                                                    .isAllowedDisapprove!) {
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Atividade'),
+                                                                content: const Text(
+                                                                    'Deseja Reportar ?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: const Text(
+                                                                        'Cancelar'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: const Text(
+                                                                        'Confirmar'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    await OrdersVisitsAssetsTable()
+                                                        .update(
+                                                      data: {
+                                                        'processingId': 2,
+                                                        'reportedUserId':
+                                                            FFAppState()
+                                                                .asUserCurrent
+                                                                .id,
+                                                        'reportedDate':
+                                                            supaSerialize<
+                                                                    DateTime>(
+                                                                getCurrentTimestamp),
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eq(
+                                                        'id',
+                                                        FFAppState()
+                                                            .stOVAssetSelected
+                                                            .first
+                                                            .id,
+                                                      ),
+                                                    );
+                                                    await action_blocks
+                                                        .abOrderVisitProcessingCheck(
+                                                      context,
+                                                      abOrderVisitId:
+                                                          valueOrDefault<int>(
+                                                        FFAppState()
+                                                            .stOVSelected
+                                                            .first
+                                                            .id,
+                                                        1,
+                                                      ),
+                                                    );
+                                                    setState(() {});
+                                                    await action_blocks
+                                                        .abOVSelected(
+                                                      context,
+                                                      abOrderVisitId:
+                                                          valueOrDefault<int>(
+                                                        FFAppState()
+                                                            .stOVSelected
+                                                            .first
+                                                            .id,
+                                                        1,
+                                                      ),
+                                                    );
 
-                                                  context.pushNamed(
-                                                    'pgOrderVisitShow',
-                                                    queryParameters: {
-                                                      'visitId': serializeParam(
-                                                        valueOrDefault<int>(
-                                                          FFAppState()
-                                                              .stOVSelected
-                                                              .first
-                                                              .id,
-                                                          1,
+                                                    context.pushNamed(
+                                                      'pgOVShow',
+                                                      queryParameters: {
+                                                        'visitId':
+                                                            serializeParam(
+                                                          valueOrDefault<int>(
+                                                            FFAppState()
+                                                                .stOVSelected
+                                                                .first
+                                                                .id,
+                                                            1,
+                                                          ),
+                                                          ParamType.int,
                                                         ),
-                                                        ParamType.int,
-                                                      ),
-                                                      'orderId': serializeParam(
-                                                        valueOrDefault<int>(
-                                                          FFAppState()
-                                                              .stOVSelected
-                                                              .first
-                                                              .orderId,
-                                                          1,
+                                                        'orderId':
+                                                            serializeParam(
+                                                          valueOrDefault<int>(
+                                                            FFAppState()
+                                                                .stOVSelected
+                                                                .first
+                                                                .orderId,
+                                                            1,
+                                                          ),
+                                                          ParamType.int,
                                                         ),
-                                                        ParamType.int,
+                                                      }.withoutNulls,
+                                                    );
+                                                  }
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        FFAppConstants
+                                                            .msgNotAllowed,
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBtnText,
+                                                        ),
                                                       ),
-                                                    }.withoutNulls,
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
                                                   );
                                                 }
+
+                                                setState(() {});
                                               },
                                               text: 'RECUSAR',
                                               options: FFButtonOptions(
@@ -1604,82 +1647,115 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: const Text(
-                                                                  'Atividade'),
-                                                              content: const Text(
-                                                                  'Deseja realmente APROVAR ?'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: const Text(
-                                                                      'Cancelar'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: const Text(
-                                                                      'Confirmar'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        ) ??
-                                                        false;
-                                                if (confirmDialogResponse) {
-                                                  await OrdersVisitsAssetsTable()
-                                                      .update(
-                                                    data: {
-                                                      'approvedUserId':
-                                                          FFAppState()
-                                                              .asUserCurrent
-                                                              .id,
-                                                      'approvedDate':
-                                                          supaSerialize<
-                                                                  DateTime>(
-                                                              getCurrentTimestamp),
-                                                      'processingId': 4,
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows.eq(
-                                                      'id',
-                                                      FFAppState()
-                                                          .stOVAssetSelected
-                                                          .first
-                                                          .id,
-                                                    ),
-                                                  );
-
-                                                  context.pushNamed(
-                                                    'pgOrderVisitShow',
-                                                    queryParameters: {
-                                                      'visitId': serializeParam(
+                                                _model.isAllowedApprove =
+                                                    await action_blocks
+                                                        .abGuardian(
+                                                  context,
+                                                  abPgRequestedId: 11,
+                                                );
+                                                if (_model.isAllowedApprove!) {
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Atividade'),
+                                                                content: const Text(
+                                                                    'Deseja realmente APROVAR ?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: const Text(
+                                                                        'Cancelar'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: const Text(
+                                                                        'Confirmar'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    await OrdersVisitsAssetsTable()
+                                                        .update(
+                                                      data: {
+                                                        'approvedUserId':
+                                                            FFAppState()
+                                                                .asUserCurrent
+                                                                .id,
+                                                        'approvedDate':
+                                                            supaSerialize<
+                                                                    DateTime>(
+                                                                getCurrentTimestamp),
+                                                        'processingId': 4,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eq(
+                                                        'id',
                                                         FFAppState()
-                                                            .stOVSelected
+                                                            .stOVAssetSelected
                                                             .first
                                                             .id,
-                                                        ParamType.int,
                                                       ),
-                                                      'orderId': serializeParam(
-                                                        FFAppState()
-                                                            .stOVSelected
-                                                            .first
-                                                            .orderId,
-                                                        ParamType.int,
+                                                    );
+
+                                                    context.pushNamed(
+                                                      'pgOVShow',
+                                                      queryParameters: {
+                                                        'visitId':
+                                                            serializeParam(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .id,
+                                                          ParamType.int,
+                                                        ),
+                                                        'orderId':
+                                                            serializeParam(
+                                                          FFAppState()
+                                                              .stOVSelected
+                                                              .first
+                                                              .orderId,
+                                                          ParamType.int,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  }
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        FFAppConstants
+                                                            .msgNotAllowed,
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBtnText,
+                                                        ),
                                                       ),
-                                                    }.withoutNulls,
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                    ),
                                                   );
                                                 }
+
+                                                setState(() {});
                                               },
                                               text: 'APROVAR',
                                               options: FFButtonOptions(

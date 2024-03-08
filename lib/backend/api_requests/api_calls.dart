@@ -2668,18 +2668,17 @@ class ApiProfilesPermissionsGroup {
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
     'Content-Type': 'application/json',
   };
-  static IsPermissionCall isPermissionCall = IsPermissionCall();
+  static PermissionsCall permissionsCall = PermissionsCall();
 }
 
-class IsPermissionCall {
+class PermissionsCall {
   Future<ApiCallResponse> call({
     int? profileId,
-    int? appPageId,
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'isPermission',
+      callName: 'permissions',
       apiUrl:
-          '${ApiProfilesPermissionsGroup.baseUrl}v_profiles_permissions?profileId=eq.$profileId&appPageId=eq.$appPageId&select=\'*\'',
+          '${ApiProfilesPermissionsGroup.baseUrl}v_profiles_permissions?profileId=eq.$profileId&select=\'*\'',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':

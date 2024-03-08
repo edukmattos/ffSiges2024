@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'details43_workout_summary_model.dart';
 export 'details43_workout_summary_model.dart';
 
@@ -376,8 +375,6 @@ class _Details43WorkoutSummaryWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -515,9 +512,9 @@ class _Details43WorkoutSummaryWidgetState
                                                       const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
@@ -622,9 +619,9 @@ class _Details43WorkoutSummaryWidgetState
                                                       const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
@@ -775,9 +772,9 @@ class _Details43WorkoutSummaryWidgetState
                                                         .titleLarge,
                                                   ),
                                                   RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: const [
                                                         TextSpan(
@@ -874,9 +871,9 @@ class _Details43WorkoutSummaryWidgetState
                                                         .titleLarge,
                                                   ),
                                                   RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: const [
                                                         TextSpan(
@@ -964,9 +961,9 @@ class _Details43WorkoutSummaryWidgetState
                                                       const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
@@ -1071,9 +1068,9 @@ class _Details43WorkoutSummaryWidgetState
                                                       const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: RichText(
-                                                    textScaleFactor:
+                                                    textScaler:
                                                         MediaQuery.of(context)
-                                                            .textScaleFactor,
+                                                            .textScaler,
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
@@ -1211,9 +1208,9 @@ class _Details43WorkoutSummaryWidgetState
                                                         const AlignmentDirectional(
                                                             -1.0, 1.0),
                                                     child: RichText(
-                                                      textScaleFactor:
+                                                      textScaler:
                                                           MediaQuery.of(context)
-                                                              .textScaleFactor,
+                                                              .textScaler,
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(
@@ -1338,9 +1335,9 @@ class _Details43WorkoutSummaryWidgetState
                                                         const AlignmentDirectional(
                                                             -1.0, 1.0),
                                                     child: RichText(
-                                                      textScaleFactor:
+                                                      textScaler:
                                                           MediaQuery.of(context)
-                                                              .textScaleFactor,
+                                                              .textScaler,
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(

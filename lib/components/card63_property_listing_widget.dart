@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'card63_property_listing_model.dart';
 export 'card63_property_listing_model.dart';
 
@@ -40,8 +39,6 @@ class _Card63PropertyListingWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
       child: Container(
@@ -89,7 +86,7 @@ class _Card63PropertyListingWidgetState
                 children: [
                   Expanded(
                     child: RichText(
-                      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                      textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
                         children: const [
                           TextSpan(

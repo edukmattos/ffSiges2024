@@ -753,7 +753,8 @@ class _CpOrderParentDashCardShowWidgetState
                                   cpStatusId:
                                       containerVOrdersParentRow.statusId!,
                                   cpStatusDescription:
-                                      containerVOrdersParentRow.statusDescription!,
+                                      containerVOrdersParentRow
+                                          .statusDescription!,
                                 ),
                               ),
                             ].divide(const SizedBox(width: 8.0)),

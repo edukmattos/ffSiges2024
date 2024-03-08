@@ -17,11 +17,11 @@ class AssetsRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  int? get companyId => getField<int>('company_id');
-  set companyId(int? value) => setField<int>('company_id', value);
+  int? get companyId => getField<int>('companyId');
+  set companyId(int? value) => setField<int>('companyId', value);
 
-  int? get unitId => getField<int>('unit_id');
-  set unitId(int? value) => setField<int>('unit_id', value);
+  int? get unitId => getField<int>('unitId');
+  set unitId(int? value) => setField<int>('unitId', value);
 
   String? get code => getField<String>('code');
   set code(String? value) => setField<String>('code', value);
@@ -29,20 +29,20 @@ class AssetsRow extends SupabaseDataRow {
   String? get description => getField<String>('description');
   set description(String? value) => setField<String>('description', value);
 
-  int? get statusId => getField<int>('status_id');
-  set statusId(int? value) => setField<int>('status_id', value);
+  int? get statusId => getField<int>('statusId');
+  set statusId(int? value) => setField<int>('statusId', value);
 
-  int? get tagId => getField<int>('tag_id');
-  set tagId(int? value) => setField<int>('tag_id', value);
+  int? get tagId => getField<int>('tagId');
+  set tagId(int? value) => setField<int>('tagId', value);
 
-  int? get tagSubId => getField<int>('tag_sub_id');
-  set tagSubId(int? value) => setField<int>('tag_sub_id', value);
+  int? get tagSubId => getField<int>('tagSubId');
+  set tagSubId(int? value) => setField<int>('tagSubId', value);
 
-  DateTime? get statusdDate => getField<DateTime>('statusd_date');
-  set statusdDate(DateTime? value) => setField<DateTime>('statusd_date', value);
+  DateTime? get statusdDate => getField<DateTime>('statusdDate');
+  set statusdDate(DateTime? value) => setField<DateTime>('statusdDate', value);
 
-  int? get typeId => getField<int>('type_id');
-  set typeId(int? value) => setField<int>('type_id', value);
+  int? get typeId => getField<int>('typeId');
+  set typeId(int? value) => setField<int>('typeId', value);
 
   String? get searchable => getField<String>('searchable');
   set searchable(String? value) => setField<String>('searchable', value);

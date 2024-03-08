@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_user_pic_profile_model.dart';
 export 'cp_user_pic_profile_model.dart';
 
@@ -45,8 +44,6 @@ class _CpUserPicProfileWidgetState extends State<CpUserPicProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: widget.size?.toDouble(),
       height: widget.size?.toDouble(),

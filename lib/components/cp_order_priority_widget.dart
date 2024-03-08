@@ -5,7 +5,6 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'cp_order_priority_model.dart';
 export 'cp_order_priority_model.dart';
 
@@ -81,8 +80,6 @@ class _CpOrderPriorityWidgetState extends State<CpOrderPriorityWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: 50.0,
       height: 50.0,

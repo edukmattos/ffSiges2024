@@ -127,18 +127,17 @@ Future abUserUpdate(
       (resUserCurrent.jsonBody ?? ''),
     ),
   );
-  apiResultyjy = await ApiProfilesPermissionsGroup.isPermissionCall.call(
+  apiResultyjy = await ApiProfilesPermissionsGroup.permissionsCall.call(
     profileId: FFAppState().asUserCurrent.profileId,
   );
   if ((apiResultyjy.succeeded ?? true)) {
     FFAppState().asUserPermissions = ((apiResultyjy.jsonBody ?? '')
             .toList()
-            .map<DtVUserPermissionsStruct?>(
-                DtVUserPermissionsStruct.maybeFromMap)
-            .toList() as Iterable<DtVUserPermissionsStruct?>)
+            .map<DtUserPermissionStruct?>(DtUserPermissionStruct.maybeFromMap)
+            .toList() as Iterable<DtUserPermissionStruct?>)
         .withoutNulls
         .toList()
-        .cast<DtVUserPermissionsStruct>();
+        .cast<DtUserPermissionStruct>();
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -378,7 +377,7 @@ Future abTeamUsersUpdate(
   }
 }
 
-Future abOrderSelected(
+Future abOSelected(
   BuildContext context, {
   required int? abOrderId,
 }) async {
@@ -395,6 +394,10 @@ Future abOrderSelected(
         .withoutNulls
         .toList()
         .cast<DtVOrderStruct>();
+    await action_blocks.abOPSelected(
+      context,
+      abOrderId: FFAppState().stOSelected.first.parentId,
+    );
   } else {
     await showDialog(
       context: context,
@@ -415,7 +418,7 @@ Future abOrderSelected(
   }
 }
 
-Future abOrderVisitSelected(
+Future abOVSelected(
   BuildContext context, {
   required int? abOrderVisitId,
 }) async {
@@ -432,110 +435,23 @@ Future abOrderVisitSelected(
         .withoutNulls
         .toList()
         .cast<DtVOrderVisitStruct>();
-    FFAppState().stCounterLoop = 0;
-    FFAppState().stCounterLoopFinal = FFAppState().stOVSelected.length;
-    while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
-      if (FFAppState().stOVSelected[FFAppState().stCounterLoop].dateStart !=
-              '') {
-        FFAppState().updateStOVSelectedAtIndex(
-          FFAppState().stCounterLoop,
-          (e) => e
-            ..dateStartDatetime = functions.cfConvDateStringToDatetime(
-                FFAppState()
-                    .stOVSelected[FFAppState().stCounterLoop]
-                    .dateStart),
-        );
-      } else {
-        if (FFAppState().stOVSelected[FFAppState().stCounterLoop].dateEnd !=
-                '') {
-          var confirmDialogResponse = await showDialog<bool>(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: const Text('1'),
-                    actions: [
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, true),
-                        child: const Text('Confirm'),
-                      ),
-                    ],
-                  );
-                },
-              ) ??
-              false;
-          FFAppState().updateStOVSelectedAtIndex(
-            FFAppState().stCounterLoop,
-            (e) => e
-              ..dateEndDatetime = functions.cfConvDateStringToDatetime(
-                  FFAppState()
-                      .stOVSelected[FFAppState().stCounterLoop]
-                      .dateEnd),
-          );
-          confirmDialogResponse = await showDialog<bool>(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: const Text('dateEndDatetime'),
-                    content: Text(FFAppState()
-                        .stOVSelected[FFAppState().stCounterLoop]
-                        .dateEndDatetime!
-                        .toString()),
-                    actions: [
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, true),
-                        child: const Text('Confirm'),
-                      ),
-                    ],
-                  );
-                },
-              ) ??
-              false;
-        } else {
-          var confirmDialogResponse = await showDialog<bool>(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: const Text('2'),
-                    actions: [
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, true),
-                        child: const Text('Confirm'),
-                      ),
-                    ],
-                  );
-                },
-              ) ??
-              false;
-        }
-      }
-
-      FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+    FFAppState().updateStOVSelectedAtIndex(
+      0,
+      (e) => e
+        ..dateStartDatetime = functions.cfConvDateStringToDatetime(
+            FFAppState().stOVSelected.first.dateStart),
+    );
+    if (FFAppState().stOVSelected.first.statusId == 2) {
+      FFAppState().updateStOVSelectedAtIndex(
+        0,
+        (e) => e
+          ..dateEndDatetime = functions.cfConvDateStringToDatetime(
+              FFAppState().stOVSelected.first.dateEnd),
+      );
     }
-    await action_blocks.abOrderSelected(
+    await action_blocks.abOSelected(
       context,
       abOrderId: FFAppState().stOVSelected.first.orderId,
-    );
-    await action_blocks.abOrderParentSelected(
-      context,
-      abOrderId: FFAppState().stOSelected.first.parentId,
     );
   } else {
     await showDialog(
@@ -595,7 +511,7 @@ Future abOrderVisitAssetSelected(
             .withoutNulls
             .toList()
             .cast<DtVOrderVisitAssetsStruct>();
-    await action_blocks.abOrderVisitSelected(
+    await action_blocks.abOVSelected(
       context,
       abOrderVisitId: FFAppState().stOVAssetSelected.first.orderVisitId,
     );
@@ -618,7 +534,7 @@ Future abOrderVisitAssetSelected(
   }
 }
 
-Future abOrderParentSelected(
+Future abOPSelected(
   BuildContext context, {
   required int? abOrderId,
 }) async {
@@ -912,73 +828,6 @@ Future<bool> abOrderVisitAssetIsExist(
   }
 
   return false;
-}
-
-Future abPermissionCheck(
-  BuildContext context, {
-  required int? abAppPageId,
-  required int? abUserProfileId,
-}) async {
-  ApiCallResponse? apiResultdcs;
-
-  if (FFAppState().asUserCurrent.isAdminSuper) {
-    FFAppState().stIsPermission = true;
-    return;
-  } else {
-    if (FFAppState().asUserCurrent.isAdmin) {
-      FFAppState().stIsPermission = true;
-      return;
-    } else {
-      apiResultdcs = await ApiProfilesPermissionsGroup.isPermissionCall.call(
-        profileId: abUserProfileId,
-        appPageId: abAppPageId,
-      );
-      if ((apiResultdcs.succeeded ?? true)) {
-        if (ApiProfilesPermissionsGroup.isPermissionCall.isPermission(
-              (apiResultdcs.jsonBody ?? ''),
-            ) ==
-            true) {
-          FFAppState().stIsPermission = true;
-        } else {
-          FFAppState().stIsPermission = false;
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: const Text('Ops ...'),
-                content: const Text('O seu perfil não possui permissão de acesso.'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: const Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
-          return;
-        }
-      } else {
-        FFAppState().stIsPermission = false;
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: const Text('Ops ...'),
-              content: const Text('O seu perfil não possui permissão de acesso.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: const Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        return;
-      }
-    }
-  }
 }
 
 Future<int> abChoicesOrdersStatuses(
@@ -1367,4 +1216,29 @@ Future abOVAssetActivitiesUpdate(
           .cast<DtVOrderVisitAssetActivityStruct>();
     });
   }
+}
+
+Future<bool> abGuardian(
+  BuildContext context, {
+  int? abPgRequestedId,
+}) async {
+  if (FFAppState().asUserCurrent.isAdminSuper) {
+    return true;
+  }
+
+  if (FFAppState().asUserCurrent.isAdmin) {
+    return true;
+  }
+
+  FFAppState().stCounterLoop = 0;
+  FFAppState().stCounterLoopFinal = FFAppState().asUserPermissions.length;
+  while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+    if (FFAppState().asUserPermissions[FFAppState().stCounterLoop].appPageId ==
+        abPgRequestedId) {
+      return true;
+    }
+
+    FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+  }
+  return false;
 }

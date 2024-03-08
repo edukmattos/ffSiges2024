@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_order_mnu_action_model.dart';
 export 'cp_order_mnu_action_model.dart';
 
@@ -39,8 +38,6 @@ class _CpOrderMnuActionWidgetState extends State<CpOrderMnuActionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       height: 270.0,

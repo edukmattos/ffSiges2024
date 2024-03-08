@@ -234,12 +234,12 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
         return;
       }
       if (FFAppState().asUserCurrent.orderVisitIdInProgress > 0) {
-        await action_blocks.abOrderVisitSelected(
+        await action_blocks.abOVSelected(
           context,
           abOrderVisitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
         );
         setState(() {});
-        await action_blocks.abOrderSelected(
+        await action_blocks.abOSelected(
           context,
           abOrderId: valueOrDefault<int>(
             FFAppState().stOVSelected.first.id,
@@ -901,8 +901,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            await action_blocks
-                                                .abOrderVisitSelected(
+                                            await action_blocks.abOVSelected(
                                               context,
                                               abOrderVisitId: FFAppState()
                                                   .asUserCurrent
@@ -910,7 +909,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                             );
 
                                             context.pushNamed(
-                                              'pgOrderVisitShow',
+                                              'pgOVShow',
                                               queryParameters: {
                                                 'visitId': serializeParam(
                                                   FFAppState()

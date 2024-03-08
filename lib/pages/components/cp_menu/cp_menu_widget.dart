@@ -259,36 +259,30 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await action_blocks.abPermissionCheck(
+                          _model.isAllowed = await action_blocks.abGuardian(
                             context,
-                            abAppPageId: 4,
-                            abUserProfileId: valueOrDefault<int>(
-                              FFAppState().asUserCurrent.profileId,
-                              0,
-                            ),
+                            abPgRequestedId: 4,
                           );
-                          if (FFAppState().stIsPermission) {
+                          if (_model.isAllowed!) {
                             context.pushNamed('pgDBAdmin');
                           } else {
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: const Text('stPermission'),
-                                  content: Text(
-                                      FFAppState().stIsPermission.toString()),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: const Text('Ok'),
-                                    ),
-                                  ],
-                                );
-                              },
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  FFAppConstants.msgNotAllowed,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
+                              ),
                             );
-                            return;
                           }
+
+                          setState(() {});
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -426,15 +420,8 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await action_blocks.abPermissionCheck(
-                            context,
-                            abAppPageId: 5,
-                            abUserProfileId: valueOrDefault<int>(
-                              FFAppState().asUserCurrent.profileId,
-                              0,
-                            ),
-                          );
-                          if (FFAppState().stIsPermission) {
+                          await action_blocks.abGuardian(context);
+                          if (_model.isAllowed!) {
                             context.pushNamed('pgUnitsSearch');
                           } else {
                             return;

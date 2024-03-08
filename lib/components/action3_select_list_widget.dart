@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'action3_select_list_model.dart';
 export 'action3_select_list_model.dart';
 
@@ -39,8 +38,6 @@ class _Action3SelectListWidgetState extends State<Action3SelectListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Material(
       color: Colors.transparent,
       elevation: 5.0,

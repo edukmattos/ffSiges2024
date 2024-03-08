@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/orders/cp_order_parent_status_card/cp_order_parent_status_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'cp_order_card_show_parent_model.dart';
 export 'cp_order_card_show_parent_model.dart';
 
@@ -299,8 +298,6 @@ class _CpOrderCardShowParentWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<VOrdersRow>>(
       future: VOrdersTable().querySingleRow(
         queryFn: (q) => q.eq(

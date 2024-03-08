@@ -161,10 +161,10 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 2000));
       await actions.caSupabaseDisconnect(
         'ordersVisits',
       );
-      await Future.delayed(const Duration(milliseconds: 2000));
       await actions.caSupabaseConnect(
         'ordersVisits',
         () async {
@@ -794,7 +794,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            await action_blocks.abOrderVisitSelected(
+                            await action_blocks.abOVSelected(
                               context,
                               abOrderVisitId: FFAppState()
                                   .asUserCurrent
@@ -802,7 +802,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                             );
 
                             context.pushNamed(
-                              'pgOrderVisitShow',
+                              'pgOVShow',
                               queryParameters: {
                                 'visitId': serializeParam(
                                   FFAppState().stOVSelected.first.id,
@@ -901,7 +901,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           await action_blocks
-                                                              .abOrderVisitSelected(
+                                                              .abOVSelected(
                                                             context,
                                                             abOrderVisitId:
                                                                 gcOrdersVisitsProcessing1Item
@@ -909,7 +909,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOrderVisitShow',
+                                                            'pgOVShow',
                                                             queryParameters: {
                                                               'visitId':
                                                                   serializeParam(
@@ -1012,7 +1012,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           await action_blocks
-                                                              .abOrderVisitSelected(
+                                                              .abOVSelected(
                                                             context,
                                                             abOrderVisitId:
                                                                 gcOrdersVisitsProcessing2Item
@@ -1020,7 +1020,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOrderVisitShow',
+                                                            'pgOVShow',
                                                             queryParameters: {
                                                               'visitId':
                                                                   serializeParam(
@@ -1121,7 +1121,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           await action_blocks
-                                                              .abOrderVisitSelected(
+                                                              .abOVSelected(
                                                             context,
                                                             abOrderVisitId:
                                                                 gcOrdersVisitsProcessing3Item
@@ -1129,7 +1129,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOrderVisitShow',
+                                                            'pgOVShow',
                                                             queryParameters: {
                                                               'visitId':
                                                                   serializeParam(

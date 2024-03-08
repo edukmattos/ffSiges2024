@@ -39,6 +39,10 @@ class PgOrderVisitAsset2BeforeModel
   late CpInputIntegerModel cpInputIntegerModel;
   // Model for cpInputTexMultiline component.
   late CpInputTexMultilineModel cpInputTexMultilineModel;
+  // Stores action output result for [Action Block - abGuardian] action in Button widget.
+  bool? isAllowedDisapprove;
+  // Stores action output result for [Action Block - abGuardian] action in Button widget.
+  bool? isAllowedApprove;
 
   /// Initialization and disposal methods.
 

@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'cp_results_no_found_model.dart';
 export 'cp_results_no_found_model.dart';
 
@@ -47,8 +46,6 @@ class _CpResultsNoFoundWidgetState extends State<CpResultsNoFoundWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Material(

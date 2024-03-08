@@ -44,22 +44,6 @@ class FFAppState extends ChangeNotifier {
               _stMapOrdersCenterSelected;
     });
     _safeInit(() {
-      _asUserPermissions = prefs
-              .getStringList('ff_asUserPermissions')
-              ?.map((x) {
-                try {
-                  return DtVUserPermissionsStruct.fromSerializableMap(
-                      jsonDecode(x));
-                } catch (e) {
-                  print("Can't decode persisted data type. Error: $e.");
-                  return null;
-                }
-              })
-              .withoutNulls
-              .toList() ??
-          _asUserPermissions;
-    });
-    _safeInit(() {
       if (prefs.containsKey('ff_asFiltersServices')) {
         try {
           final serializedData =
@@ -148,6 +132,36 @@ class FFAppState extends ChangeNotifier {
   void updateAsUserCurrentStruct(Function(DtUserStruct) updateFn) {
     updateFn(_asUserCurrent);
     prefs.setString('ff_asUserCurrent', _asUserCurrent.serialize());
+  }
+
+  List<DtUserPermissionStruct> _asUserPermissions = [];
+  List<DtUserPermissionStruct> get asUserPermissions => _asUserPermissions;
+  set asUserPermissions(List<DtUserPermissionStruct> value) {
+    _asUserPermissions = value;
+  }
+
+  void addToAsUserPermissions(DtUserPermissionStruct value) {
+    _asUserPermissions.add(value);
+  }
+
+  void removeFromAsUserPermissions(DtUserPermissionStruct value) {
+    _asUserPermissions.remove(value);
+  }
+
+  void removeAtIndexFromAsUserPermissions(int index) {
+    _asUserPermissions.removeAt(index);
+  }
+
+  void updateAsUserPermissionsAtIndex(
+    int index,
+    DtUserPermissionStruct Function(DtUserPermissionStruct) updateFn,
+  ) {
+    _asUserPermissions[index] = updateFn(_asUserPermissions[index]);
+  }
+
+  void insertAtIndexInAsUserPermissions(
+      int index, DtUserPermissionStruct value) {
+    _asUserPermissions.insert(index, value);
   }
 
   DtUserStruct _stTeamUserSelected = DtUserStruct();
@@ -287,9 +301,9 @@ class FFAppState extends ChangeNotifier {
 
   List<DtVOrderFollowerStruct> _stOFollowers = [
     DtVOrderFollowerStruct.fromSerializableMap(
-        jsonDecode('{"id":"0","userId":"0","orderId":"0"}')),
+        jsonDecode('{\"id\":\"0\",\"userId\":\"0\",\"orderId\":\"0\"}')),
     DtVOrderFollowerStruct.fromSerializableMap(
-        jsonDecode('{"id":"0","userId":"0","orderId":"0"}'))
+        jsonDecode('{\"id\":\"0\",\"userId\":\"0\",\"orderId\":\"0\"}'))
   ];
   List<DtVOrderFollowerStruct> get stOFollowers => _stOFollowers;
   set stOFollowers(List<DtVOrderFollowerStruct> value) {
@@ -584,7 +598,7 @@ class FFAppState extends ChangeNotifier {
 
   List<DtVOrderVisitAssetsStruct> _stOVAssetSelected = [
     DtVOrderVisitAssetsStruct.fromSerializableMap(jsonDecode(
-        '{"id":"0","orderVisitId":"0","assetId":"0","code":"Hello World","description":"Hello World","isMoved":"false","movedComments":"Hello World","beforeUnitId":"0","beforeUnitDescription":"Hello World","beforeUnitLatitude":"0","beforeUnitLongitude":"0","beforeTagId":"0","beforeTagDescription":"Hello World","beforeTagSubId":"0","beforeTagSubDescription":"Hello World","beforeStatusId":"0","beforeStatusDescription":"Hello World","beforeComments":"Hello World","beforeImgFilePath":"Hello World","beforeImgFileName":"Hello World","beforeRecord":"0","beforeLatitude":"0","beforeLongitude":"0","afterUnitId":"0","afterUnitDescription":"Hello World","afterUnitLatitude":"0","afterUnitLongitude":"0","afterTagId":"0","afterTagDescription":"Hello World","afterTagSubId":"0","afterTagSubDescription":"Hello World","afterStatusId":"0","afterStatusDescription":"Hello World","afterComments":"Hello World","afterImgFilePath":"Hello World","afterImgFileName":"Hello World","afterRecord":"0","afterLatitude":"0","afterLongitude":"0","processingId":"0","processingDescription":"Hello World","reportedUserId":"0","reportedUserNameShort":"Hello World","reportedDate":"Hello World","reportedDateDateTime":"1709572539570","disapprovedUserId":"0","disapprovedUserNameShort":"Hello World","disapprovedDate":"Hello World","disapprovedDateDateTime":"1709572539570","disapprovedNotes":"Hello World","approvedUserId":"0","approvedUserNameShort":"Hello World","approvedDate":"Hello World","approvedDateDateTime":"1709572539570"}'))
+        '{\"id\":\"0\",\"orderVisitId\":\"0\",\"assetId\":\"0\",\"code\":\"Hello World\",\"description\":\"Hello World\",\"isMoved\":\"false\",\"movedComments\":\"Hello World\",\"beforeUnitId\":\"0\",\"beforeUnitDescription\":\"Hello World\",\"beforeUnitLatitude\":\"0\",\"beforeUnitLongitude\":\"0\",\"beforeTagId\":\"0\",\"beforeTagDescription\":\"Hello World\",\"beforeTagSubId\":\"0\",\"beforeTagSubDescription\":\"Hello World\",\"beforeStatusId\":\"0\",\"beforeStatusDescription\":\"Hello World\",\"beforeComments\":\"Hello World\",\"beforeImgFilePath\":\"Hello World\",\"beforeImgFileName\":\"Hello World\",\"beforeRecord\":\"0\",\"beforeLatitude\":\"0\",\"beforeLongitude\":\"0\",\"afterUnitId\":\"0\",\"afterUnitDescription\":\"Hello World\",\"afterUnitLatitude\":\"0\",\"afterUnitLongitude\":\"0\",\"afterTagId\":\"0\",\"afterTagDescription\":\"Hello World\",\"afterTagSubId\":\"0\",\"afterTagSubDescription\":\"Hello World\",\"afterStatusId\":\"0\",\"afterStatusDescription\":\"Hello World\",\"afterComments\":\"Hello World\",\"afterImgFilePath\":\"Hello World\",\"afterImgFileName\":\"Hello World\",\"afterRecord\":\"0\",\"afterLatitude\":\"0\",\"afterLongitude\":\"0\",\"processingId\":\"0\",\"processingDescription\":\"Hello World\",\"reportedUserId\":\"0\",\"reportedUserNameShort\":\"Hello World\",\"reportedDate\":\"Hello World\",\"reportedDateDateTime\":\"1709572539570\",\"disapprovedUserId\":\"0\",\"disapprovedUserNameShort\":\"Hello World\",\"disapprovedDate\":\"Hello World\",\"disapprovedDateDateTime\":\"1709572539570\",\"disapprovedNotes\":\"Hello World\",\"approvedUserId\":\"0\",\"approvedUserNameShort\":\"Hello World\",\"approvedDate\":\"Hello World\",\"approvedDateDateTime\":\"1709572539570\"}'))
   ];
   List<DtVOrderVisitAssetsStruct> get stOVAssetSelected => _stOVAssetSelected;
   set stOVAssetSelected(List<DtVOrderVisitAssetsStruct> value) {
@@ -770,48 +784,6 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAsTmpOrderVisitSelectedPricesBalance(
       int index, DtVOrderVisitPricesStruct value) {
     _asTmpOrderVisitSelectedPricesBalance.insert(index, value);
-  }
-
-  List<DtVUserPermissionsStruct> _asUserPermissions = [];
-  List<DtVUserPermissionsStruct> get asUserPermissions => _asUserPermissions;
-  set asUserPermissions(List<DtVUserPermissionsStruct> value) {
-    _asUserPermissions = value;
-    prefs.setStringList(
-        'ff_asUserPermissions', value.map((x) => x.serialize()).toList());
-  }
-
-  void addToAsUserPermissions(DtVUserPermissionsStruct value) {
-    _asUserPermissions.add(value);
-    prefs.setStringList('ff_asUserPermissions',
-        _asUserPermissions.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromAsUserPermissions(DtVUserPermissionsStruct value) {
-    _asUserPermissions.remove(value);
-    prefs.setStringList('ff_asUserPermissions',
-        _asUserPermissions.map((x) => x.serialize()).toList());
-  }
-
-  void removeAtIndexFromAsUserPermissions(int index) {
-    _asUserPermissions.removeAt(index);
-    prefs.setStringList('ff_asUserPermissions',
-        _asUserPermissions.map((x) => x.serialize()).toList());
-  }
-
-  void updateAsUserPermissionsAtIndex(
-    int index,
-    DtVUserPermissionsStruct Function(DtVUserPermissionsStruct) updateFn,
-  ) {
-    _asUserPermissions[index] = updateFn(_asUserPermissions[index]);
-    prefs.setStringList('ff_asUserPermissions',
-        _asUserPermissions.map((x) => x.serialize()).toList());
-  }
-
-  void insertAtIndexInAsUserPermissions(
-      int index, DtVUserPermissionsStruct value) {
-    _asUserPermissions.insert(index, value);
-    prefs.setStringList('ff_asUserPermissions',
-        _asUserPermissions.map((x) => x.serialize()).toList());
   }
 
   DtFiltersServicesStruct _asFiltersServices = DtFiltersServicesStruct();

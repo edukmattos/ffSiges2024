@@ -7,7 +7,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'cp_unit_card_show_model.dart';
 export 'cp_unit_card_show_model.dart';
 
@@ -173,8 +172,6 @@ class _CpUnitCardShowWidgetState extends State<CpUnitCardShowWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<VUnitsRow>>(
       future: VUnitsTable().querySingleRow(
         queryFn: (q) => q.eq(

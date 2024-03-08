@@ -128,7 +128,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -148,12 +148,52 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
     ),
     'textOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1600.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation7': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1600.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1600.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation8': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 1600.ms),
@@ -279,7 +319,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    await action_blocks.abOrderSelected(
+                                    await action_blocks.abOSelected(
                                       context,
                                       abOrderId: widget.orderId,
                                     );
@@ -345,21 +385,42 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  '${valueOrDefault<String>(
-                                    dateTimeFormat('d/M H:mm',
-                                        containerVOrdersRow?.statusDate),
-                                    '.',
-                                  )} h',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      '${valueOrDefault<String>(
+                                        dateTimeFormat('d/M H:mm',
+                                            containerVOrdersRow?.statusDate),
+                                        '.',
+                                      )} h',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation3']!),
+                                    Text(
+                                      valueOrDefault<String>(
+                                        containerVOrdersRow
+                                            ?.cancelReasonDescription,
+                                        '.',
                                       ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation3']!),
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation4']!),
+                                  ],
+                                ),
                                 wrapWithModel(
                                   model: _model.cpOrdersStatusesModel,
                                   updateCallback: () => setState(() {}),
@@ -419,7 +480,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                         ),
                                   ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation4']!),
+                                    animationsMap['textOnPageLoadAnimation5']!),
                               ),
                               Text(
                                 valueOrDefault<String>(
@@ -434,7 +495,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation5']!),
+                                  animationsMap['textOnPageLoadAnimation6']!),
                               Text(
                                 valueOrDefault<String>(
                                   containerVOrdersRow.requestedServices,
@@ -448,7 +509,24 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation6']!),
+                                  animationsMap['textOnPageLoadAnimation7']!),
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    containerVOrdersRow.causeDescription,
+                                    '.',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation8']!),
+                              ),
                             ],
                           ),
                         ),
@@ -494,13 +572,13 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                await action_blocks.abOrderVisitSelected(
+                await action_blocks.abOVSelected(
                   context,
                   abOrderVisitId: widget.orderVisitId,
                 );
 
                 context.pushNamed(
-                  'pgOrderVisitShow',
+                  'pgOVShow',
                   queryParameters: {
                     'visitId': serializeParam(
                       FFAppState().stOVSelected.first.id,
@@ -597,7 +675,8 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                                 containerVOrdersVisitsRow!
                                                     .processingDescription!,
                                             processingId:
-                                                containerVOrdersVisitsRow.processingId!,
+                                                containerVOrdersVisitsRow
+                                                    .processingId!,
                                           ),
                                         ),
                                       ],

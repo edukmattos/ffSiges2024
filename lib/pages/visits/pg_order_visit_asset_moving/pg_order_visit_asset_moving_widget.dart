@@ -78,7 +78,7 @@ class _PgOrderVisitAssetMovingWidgetState
                 ),
                 onPressed: () async {
                   context.pushNamed(
-                    'pgOrderVisitShow',
+                    'pgOVShow',
                     queryParameters: {
                       'visitId': serializeParam(
                         FFAppState().stOVSelected.first.id,

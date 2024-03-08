@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_dropdown_units_model.dart';
 export 'cp_dropdown_units_model.dart';
 
@@ -48,8 +47,6 @@ class _CpDropdownUnitsWidgetState extends State<CpDropdownUnitsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<VUnitsRow>>(
       future: VUnitsTable().queryRows(
         queryFn: (q) => q.order('descriptionFull', ascending: true),

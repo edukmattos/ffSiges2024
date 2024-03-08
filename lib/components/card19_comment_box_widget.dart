@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'card19_comment_box_model.dart';
 export 'card19_comment_box_model.dart';
 
@@ -44,8 +43,6 @@ class _Card19CommentBoxWidgetState extends State<Card19CommentBoxWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
       child: Container(

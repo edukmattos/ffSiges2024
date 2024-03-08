@@ -60,6 +60,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
     int? counterChild,
     int? assetTagId,
     int? contractId,
+    int? causeId,
+    String? causeDescription,
+    int? cancelReasonId,
+    String? cancelReasonDescription,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _parentId = parentId,
@@ -111,6 +115,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         _counterChild = counterChild,
         _assetTagId = assetTagId,
         _contractId = contractId,
+        _causeId = causeId,
+        _causeDescription = causeDescription,
+        _cancelReasonId = cancelReasonId,
+        _cancelReasonDescription = cancelReasonDescription,
         super(firestoreUtilData);
 
   // "id" field.
@@ -446,6 +454,33 @@ class DtVOrderStruct extends FFFirebaseStruct {
   void incrementContractId(int amount) => _contractId = contractId + amount;
   bool hasContractId() => _contractId != null;
 
+  // "causeId" field.
+  int? _causeId;
+  int get causeId => _causeId ?? 0;
+  set causeId(int? val) => _causeId = val;
+  void incrementCauseId(int amount) => _causeId = causeId + amount;
+  bool hasCauseId() => _causeId != null;
+
+  // "causeDescription" field.
+  String? _causeDescription;
+  String get causeDescription => _causeDescription ?? '';
+  set causeDescription(String? val) => _causeDescription = val;
+  bool hasCauseDescription() => _causeDescription != null;
+
+  // "cancelReasonId" field.
+  int? _cancelReasonId;
+  int get cancelReasonId => _cancelReasonId ?? 0;
+  set cancelReasonId(int? val) => _cancelReasonId = val;
+  void incrementCancelReasonId(int amount) =>
+      _cancelReasonId = cancelReasonId + amount;
+  bool hasCancelReasonId() => _cancelReasonId != null;
+
+  // "cancelReasonDescription" field.
+  String? _cancelReasonDescription;
+  String get cancelReasonDescription => _cancelReasonDescription ?? '';
+  set cancelReasonDescription(String? val) => _cancelReasonDescription = val;
+  bool hasCancelReasonDescription() => _cancelReasonDescription != null;
+
   static DtVOrderStruct fromMap(Map<String, dynamic> data) => DtVOrderStruct(
         id: castToType<int>(data['id']),
         parentId: castToType<int>(data['parentId']),
@@ -497,6 +532,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         counterChild: castToType<int>(data['counterChild']),
         assetTagId: castToType<int>(data['assetTagId']),
         contractId: castToType<int>(data['contractId']),
+        causeId: castToType<int>(data['causeId']),
+        causeDescription: data['causeDescription'] as String?,
+        cancelReasonId: castToType<int>(data['cancelReasonId']),
+        cancelReasonDescription: data['cancelReasonDescription'] as String?,
       );
 
   static DtVOrderStruct? maybeFromMap(dynamic data) =>
@@ -553,6 +592,10 @@ class DtVOrderStruct extends FFFirebaseStruct {
         'counterChild': _counterChild,
         'assetTagId': _assetTagId,
         'contractId': _contractId,
+        'causeId': _causeId,
+        'causeDescription': _causeDescription,
+        'cancelReasonId': _cancelReasonId,
+        'cancelReasonDescription': _cancelReasonDescription,
       }.withoutNulls;
 
   @override
@@ -756,6 +799,22 @@ class DtVOrderStruct extends FFFirebaseStruct {
         'contractId': serializeParam(
           _contractId,
           ParamType.int,
+        ),
+        'causeId': serializeParam(
+          _causeId,
+          ParamType.int,
+        ),
+        'causeDescription': serializeParam(
+          _causeDescription,
+          ParamType.String,
+        ),
+        'cancelReasonId': serializeParam(
+          _cancelReasonId,
+          ParamType.int,
+        ),
+        'cancelReasonDescription': serializeParam(
+          _cancelReasonDescription,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -1011,6 +1070,26 @@ class DtVOrderStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        causeId: deserializeParam(
+          data['causeId'],
+          ParamType.int,
+          false,
+        ),
+        causeDescription: deserializeParam(
+          data['causeDescription'],
+          ParamType.String,
+          false,
+        ),
+        cancelReasonId: deserializeParam(
+          data['cancelReasonId'],
+          ParamType.int,
+          false,
+        ),
+        cancelReasonDescription: deserializeParam(
+          data['cancelReasonDescription'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -1068,7 +1147,11 @@ class DtVOrderStruct extends FFFirebaseStruct {
         counterParent == other.counterParent &&
         counterChild == other.counterChild &&
         assetTagId == other.assetTagId &&
-        contractId == other.contractId;
+        contractId == other.contractId &&
+        causeId == other.causeId &&
+        causeDescription == other.causeDescription &&
+        cancelReasonId == other.cancelReasonId &&
+        cancelReasonDescription == other.cancelReasonDescription;
   }
 
   @override
@@ -1122,7 +1205,11 @@ class DtVOrderStruct extends FFFirebaseStruct {
         counterParent,
         counterChild,
         assetTagId,
-        contractId
+        contractId,
+        causeId,
+        causeDescription,
+        cancelReasonId,
+        cancelReasonDescription
       ]);
 }
 
@@ -1177,6 +1264,10 @@ DtVOrderStruct createDtVOrderStruct({
   int? counterChild,
   int? assetTagId,
   int? contractId,
+  int? causeId,
+  String? causeDescription,
+  int? cancelReasonId,
+  String? cancelReasonDescription,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -1233,6 +1324,10 @@ DtVOrderStruct createDtVOrderStruct({
       counterChild: counterChild,
       assetTagId: assetTagId,
       contractId: contractId,
+      causeId: causeId,
+      causeDescription: causeDescription,
+      cancelReasonId: cancelReasonId,
+      cancelReasonDescription: cancelReasonDescription,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

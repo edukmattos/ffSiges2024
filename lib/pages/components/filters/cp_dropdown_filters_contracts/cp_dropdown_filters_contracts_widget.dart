@@ -94,7 +94,7 @@ class _CpDropdownFiltersContractsWidgetState
               .toList()),
           optionLabels: dropdownOrdersContractsVContractsRowList
               .map((e) => valueOrDefault<String>(
-                    e.description,
+                    e.contractDescription,
                     'contractDescription',
                   ))
               .toList(),
