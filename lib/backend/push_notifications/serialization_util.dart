@@ -147,6 +147,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return uploadedFileFromString(param) as T;
       case UnitsTypesRow:
         return UnitsTypesRow(json.decode(param) as Map<String, dynamic>) as T;
+      case OrdersVisitsVehiclesRow:
+        return OrdersVisitsVehiclesRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case AppRow:
         return AppRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersFollowersRow:
@@ -154,6 +157,8 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
             as T;
       case LogsRow:
         return LogsRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VehiclesRow:
+        return VehiclesRow(json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersVisitsSearchFiltersRow:
         return VOrdersVisitsSearchFiltersRow(
             json.decode(param) as Map<String, dynamic>) as T;
@@ -252,6 +257,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
             json.decode(param) as Map<String, dynamic>) as T;
       case OrdersTypesActivitiesRow:
         return OrdersTypesActivitiesRow(
+            json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersVisitsVehiclesRow:
+        return VOrdersVisitsVehiclesRow(
             json.decode(param) as Map<String, dynamic>) as T;
       case SystemsRow:
         return SystemsRow(json.decode(param) as Map<String, dynamic>) as T;

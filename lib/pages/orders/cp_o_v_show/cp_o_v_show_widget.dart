@@ -1,3 +1,6 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -233,96 +236,97 @@ class _CpOVShowWidgetState extends State<CpOVShowWidget>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Equipe',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                            ),
-                            Row(
+                            Column(
                               mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Container(
-                                    width: 65.0,
-                                    height: 65.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: FutureBuilder<
-                                        List<VOrdersVisitsTeamsRow>>(
-                                      future:
-                                          VOrdersVisitsTeamsTable().queryRows(
-                                        queryFn: (q) => q.eq(
-                                          'visitId',
-                                          FFAppState().stOVSelected.first.id,
-                                        ),
+                                Text(
+                                  'Equipe',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                       ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: 65.0,
+                                        height: 65.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: FutureBuilder<
+                                            List<VOrdersVisitsTeamsRow>>(
+                                          future: VOrdersVisitsTeamsTable()
+                                              .queryRows(
+                                            queryFn: (q) => q.eq(
+                                              'visitId',
+                                              FFAppState()
+                                                  .stOVSelected
+                                                  .first
+                                                  .id,
                                             ),
-                                          );
-                                        }
-                                        List<VOrdersVisitsTeamsRow>
-                                            listViewVOrdersVisitsTeamsRowList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount:
-                                              listViewVOrdersVisitsTeamsRowList
-                                                  .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(width: 8.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewVOrdersVisitsTeamsRow =
-                                                listViewVOrdersVisitsTeamsRowList[
-                                                    listViewIndex];
-                                            return CpUserPicProfileWidget(
-                                              key: Key(
-                                                  'Key5pt_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
-                                              size: 60,
-                                              imgUrl:
-                                                  '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<VOrdersVisitsTeamsRow>
+                                                listViewVOrdersVisitsTeamsRowList =
+                                                snapshot.data!;
+                                            return ListView.separated(
+                                              padding: EdgeInsets.zero,
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount:
+                                                  listViewVOrdersVisitsTeamsRowList
+                                                      .length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(width: 8.0),
+                                              itemBuilder:
+                                                  (context, listViewIndex) {
+                                                final listViewVOrdersVisitsTeamsRow =
+                                                    listViewVOrdersVisitsTeamsRowList[
+                                                        listViewIndex];
+                                                return CpUserPicProfileWidget(
+                                                  key: Key(
+                                                      'Key5pt_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
+                                                  size: 60,
+                                                  imgUrl:
+                                                      '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
+                                                );
+                                              },
                                             );
                                           },
-                                        );
-                                      },
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ].divide(const SizedBox(height: 4.0)),
                             ),
-                            Text(
-                              'Transporte',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                            ),
-                          ],
+                          ].divide(const SizedBox(height: 12.0)),
                         ),
                       ),
                     ],
@@ -377,11 +381,12 @@ class _CpOVShowWidgetState extends State<CpOVShowWidget>
                               ).then((value) => safeSetState(() {}));
                             }
                           },
-                          text: 'CANCELAR',
+                          text: 'Cancelar',
                           icon: const FaIcon(
                             FontAwesomeIcons.solidThumbsDown,
                           ),
                           options: FFButtonOptions(
+                            width: 150.0,
                             height: 50.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
@@ -407,6 +412,73 @@ class _CpOVShowWidgetState extends State<CpOVShowWidget>
                           (FFAppState().stOVSelected.first.statusId == 1))
                         FFButtonWidget(
                           onPressed: () async {
+                            var shouldSetState = false;
+                            _model.resOrderVisitVehicles =
+                                await ApiOrdersVisitsVehiclesGroup
+                                    .vehiclesByOrderVisitIdCall
+                                    .call(
+                              orderVisitId: FFAppState().stOVSelected.first.id,
+                            );
+                            shouldSetState = true;
+                            if ((_model.resOrderVisitVehicles?.succeeded ??
+                                true)) {
+                              setState(() {
+                                _model.lcsvOVVehicles = ((_model
+                                                    .resOrderVisitVehicles
+                                                    ?.jsonBody ??
+                                                '')
+                                            .toList()
+                                            .map<DtVOrderVisitVehicleStruct?>(
+                                                DtVOrderVisitVehicleStruct
+                                                    .maybeFromMap)
+                                            .toList()
+                                        as Iterable<
+                                            DtVOrderVisitVehicleStruct?>)
+                                    .withoutNulls
+                                    .toList()
+                                    .cast<DtVOrderVisitVehicleStruct>();
+                              });
+                              setState(() {
+                                FFAppState().stCounterLoop = 0;
+                                FFAppState().stCounterLoopFinal =
+                                    _model.lcsvOVVehicles.length;
+                              });
+                              while (FFAppState().stCounterLoop <
+                                  FFAppState().stCounterLoopFinal) {
+                                if (_model
+                                        .lcsvOVVehicles[
+                                            FFAppState().stCounterLoop]
+                                        .recorderStart >=
+                                    _model
+                                        .lcsvOVVehicles[
+                                            FFAppState().stCounterLoop]
+                                        .recorderEnd) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Ops ...'),
+                                        content: const Text(
+                                            'Verificar os registros iniciais e finais dos tranportes utilizados.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                                setState(() {
+                                  FFAppState().stCounterLoop =
+                                      FFAppState().stCounterLoop + 1;
+                                });
+                              }
+                            }
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
@@ -448,12 +520,14 @@ class _CpOVShowWidgetState extends State<CpOVShowWidget>
                                 },
                               ).then((value) => safeSetState(() {}));
                             }
+                            if (shouldSetState) setState(() {});
                           },
-                          text: 'ENCERRAR',
+                          text: 'Encerrar',
                           icon: const FaIcon(
                             FontAwesomeIcons.solidThumbsUp,
                           ),
                           options: FFButtonOptions(
+                            width: 150.0,
                             height: 50.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),

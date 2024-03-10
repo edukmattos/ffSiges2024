@@ -213,52 +213,6 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('pgDashOrdersInProgressMap');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.space_dashboard,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Maps',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                    width: double.infinity,
-                    height: 44.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.circular(12.0),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
                           _model.isAllowed = await action_blocks.abGuardian(
                             context,
                             abPgRequestedId: 4,
@@ -374,7 +328,31 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('pgOVSearch');
+                          _model.isAllowedOrdersVisitsSearch =
+                              await action_blocks.abGuardian(
+                            context,
+                            abPgRequestedId: 10,
+                          );
+                          if (_model.isAllowedOrdersVisitsSearch!) {
+                            context.pushNamed('pgOVSearch');
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  FFAppConstants.msgNotAllowed,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
+                              ),
+                            );
+                          }
+
+                          setState(() {});
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -420,12 +398,21 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await action_blocks.abGuardian(context);
-                          if (_model.isAllowed!) {
+                          var shouldSetState = false;
+                          _model.isAllowedUnitSearch =
+                              await action_blocks.abGuardian(
+                            context,
+                            abPgRequestedId: 5,
+                          );
+                          shouldSetState = true;
+                          if (_model.isAllowedUnitSearch!) {
                             context.pushNamed('pgUnitsSearch');
                           } else {
+                            if (shouldSetState) setState(() {});
                             return;
                           }
+
+                          if (shouldSetState) setState(() {});
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -442,52 +429,6 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Unidades',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                    width: double.infinity,
-                    height: 44.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.circular(12.0),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed('pgOVSearch');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.work,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Materiais',
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),

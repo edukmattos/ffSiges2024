@@ -126,6 +126,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'pgUnitsNew',
           path: '/pgUnitsNew',
+          requireAuth: true,
           builder: (context, params) => const PgUnitsNewWidget(),
         ),
         FFRoute(
@@ -181,14 +182,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => PgUnitShowOriWidget(
             unitId: params.getParam('unitId', ParamType.int),
-          ),
-        ),
-        FFRoute(
-          name: 'XpgOrderParentUnitShow',
-          path: '/xpgOrderParentUnitShow',
-          requireAuth: true,
-          builder: (context, params) => XpgOrderParentUnitShowWidget(
-            orderId: params.getParam('orderId', ParamType.int),
           ),
         ),
         FFRoute(

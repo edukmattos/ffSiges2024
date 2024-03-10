@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
+import '/pages/visits/cp_o_v_services_list/cp_o_v_services_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'md_o_v_services_detalis_model.dart';
 export 'md_o_v_services_detalis_model.dart';
@@ -122,9 +122,9 @@ class _MdOVServicesDetalisWidgetState extends State<MdOVServicesDetalisWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               wrapWithModel(
-                                model: _model.cpOrderVisitServicesListModel,
+                                model: _model.cpOVServicesListModel,
                                 updateCallback: () => setState(() {}),
-                                child: CpOrderVisitServicesListWidget(
+                                child: CpOVServicesListWidget(
                                   orderVisitId: widget.orderVisitId,
                                 ),
                               ),

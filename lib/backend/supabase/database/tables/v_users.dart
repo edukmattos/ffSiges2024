@@ -122,4 +122,7 @@ class VUsersRow extends SupabaseDataRow {
 
   int? get profileId => getField<int>('profileId');
   set profileId(int? value) => setField<int>('profileId', value);
+
+  int? get vehicleId => getField<int>('vehicleId');
+  set vehicleId(int? value) => setField<int>('vehicleId', value);
 }

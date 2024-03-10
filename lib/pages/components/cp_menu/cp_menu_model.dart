@@ -11,6 +11,10 @@ class CpMenuModel extends FlutterFlowModel<CpMenuWidget> {
   late CpUserPicProfileModel cpUserPicProfileModel;
   // Stores action output result for [Action Block - abGuardian] action in Row widget.
   bool? isAllowed;
+  // Stores action output result for [Action Block - abGuardian] action in Row widget.
+  bool? isAllowedOrdersVisitsSearch;
+  // Stores action output result for [Action Block - abGuardian] action in Row widget.
+  bool? isAllowedUnitSearch;
   // Model for cpDarkLightSwitchSmall component.
   late CpDarkLightSwitchSmallModel cpDarkLightSwitchSmallModel;
 

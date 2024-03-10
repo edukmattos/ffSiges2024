@@ -183,22 +183,6 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                   .toList()
                   .cast<DtVOrderVisitStruct>();
             });
-            await showDialog(
-              context: context,
-              builder: (alertDialogContext) {
-                return AlertDialog(
-                  title: const Text('ordervisitsOpen'),
-                  content:
-                      Text(FFAppState().asOVSearchResults.length.toString()),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext),
-                      child: const Text('Ok'),
-                    ),
-                  ],
-                );
-              },
-            );
           }
         },
       );

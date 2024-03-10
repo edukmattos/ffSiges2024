@@ -33,6 +33,6 @@ class OrdersVisitsServicesRow extends SupabaseDataRow {
   double? get discount => getField<double>('discount');
   set discount(double? value) => setField<double>('discount', value);
 
-  double? get total => getField<double>('total');
-  set total(double? value) => setField<double>('total', value);
+  double? get priceTotal => getField<double>('priceTotal');
+  set priceTotal(double? value) => setField<double>('priceTotal', value);
 }

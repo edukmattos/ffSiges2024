@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -329,14 +328,16 @@ class _MdOVContractServiceAddWidgetState
                                               children: [
                                                 FFButtonWidget(
                                                   onPressed: () async {
+                                                    var shouldSetState = false;
                                                     if (FFAppState()
                                                             .asCwOVServiceAmountDouble >
                                                         0.0) {
                                                       if (FFAppState()
                                                               .asCwOVServiceDiscountDouble >=
                                                           0.0) {
-                                                        await OrdersVisitsServicesTable()
-                                                            .insert({
+                                                        _model.resOVServiceAdded =
+                                                            await OrdersVisitsServicesTable()
+                                                                .insert({
                                                           'orderVisitId':
                                                               FFAppState()
                                                                   .stOVSelected
@@ -350,25 +351,36 @@ class _MdOVContractServiceAddWidgetState
                                                               .asCwOVServiceAmountDouble,
                                                           'discount': FFAppState()
                                                               .asCwOVServiceDiscountDouble,
-                                                          'total': functions
-                                                              .cfOrderVisitServiceOrVehicleTotal(
-                                                                  FFAppState()
-                                                                      .asCwOVServiceAmountDouble,
-                                                                  widget
-                                                                      .priceUnit!,
-                                                                  FFAppState()
-                                                                      .asCwOVServiceDiscountDouble),
+                                                          'priceTotal': 0.0,
                                                         });
-                                                        await action_blocks
-                                                            .abOrderVisitSelectedServices(
-                                                          context,
-                                                          abOrderVisitId:
-                                                              FFAppState()
-                                                                  .stOVSelected
-                                                                  .first
-                                                                  .id,
-                                                        );
+                                                        shouldSetState = true;
                                                         Navigator.pop(context);
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              content: Text(_model
+                                                                  .resOVServiceAdded!
+                                                                  .id
+                                                                  .toString()),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: const Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                        await action_blocks
+                                                            .abOVPricesUpdate(
+                                                          context,
+                                                          abPrice: 'services',
+                                                        );
                                                       } else {
                                                         await showDialog(
                                                           context: context,
@@ -391,6 +403,9 @@ class _MdOVContractServiceAddWidgetState
                                                             );
                                                           },
                                                         );
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
                                                         return;
                                                       }
                                                     } else {
@@ -415,7 +430,14 @@ class _MdOVContractServiceAddWidgetState
                                                           );
                                                         },
                                                       );
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
                                                       return;
+                                                    }
+
+                                                    if (shouldSetState) {
+                                                      setState(() {});
                                                     }
                                                   },
                                                   text: 'Confirmar',

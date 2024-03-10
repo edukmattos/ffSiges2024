@@ -251,12 +251,16 @@ dynamic deserializeParam<T>(
         switch (T) {
           case UnitsTypesRow:
             return UnitsTypesRow(data);
+          case OrdersVisitsVehiclesRow:
+            return OrdersVisitsVehiclesRow(data);
           case AppRow:
             return AppRow(data);
           case VOrdersFollowersRow:
             return VOrdersFollowersRow(data);
           case LogsRow:
             return LogsRow(data);
+          case VehiclesRow:
+            return VehiclesRow(data);
           case VOrdersVisitsSearchFiltersRow:
             return VOrdersVisitsSearchFiltersRow(data);
           case OrdersVisitsProcessingRow:
@@ -329,6 +333,8 @@ dynamic deserializeParam<T>(
             return VDashAdminOrdersFiltersOpenRow(data);
           case OrdersTypesActivitiesRow:
             return OrdersTypesActivitiesRow(data);
+          case VOrdersVisitsVehiclesRow:
+            return VOrdersVisitsVehiclesRow(data);
           case SystemsRow:
             return SystemsRow(data);
           case OrdersVisitsAssetsActivitiesRow:

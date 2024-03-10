@@ -133,11 +133,6 @@ final parametersBuilderMap =
           'unitId': getParameter<int>(data, 'unitId'),
         },
       ),
-  'XpgOrderParentUnitShow': (data) async => ParameterData(
-        allParams: {
-          'orderId': getParameter<int>(data, 'orderId'),
-        },
-      ),
   'pgMyTeam': (data) async => ParameterData(
         allParams: {
           'visitId': getParameter<int>(data, 'visitId'),

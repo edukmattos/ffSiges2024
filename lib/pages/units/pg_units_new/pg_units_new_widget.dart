@@ -370,7 +370,9 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
                                   'addressFull':
                                       '${_model.placePickerValue.address} ${_model.cpInputTextAddressCompModel.inputTextController.text}',
                                 });
-
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
                                 context.pushNamed(
                                   'pgUnitShow',
                                   queryParameters: {

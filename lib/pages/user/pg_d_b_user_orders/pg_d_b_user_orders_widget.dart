@@ -53,6 +53,26 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
         ),
       ],
     ),
+    'textOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0.0, 20.0),
+          end: const Offset(0.0, 0.0),
+        ),
+      ],
+    ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -73,7 +93,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation2': AnimationInfo(
+    'textOnPageLoadAnimation3': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 180.ms),
@@ -340,6 +360,12 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                             style: FlutterFlowTheme.of(context).titleLarge,
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation1']!),
+                          Text(
+                            FFAppState().asUserCurrent.vehicleId.toString(),
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context).titleLarge,
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation2']!),
                         ],
                       ),
                       if (FFAppState().stUserOOpen.isNotEmpty)
@@ -406,7 +432,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                                               .primaryText,
                                                         ),
                                                   ).animateOnPageLoad(animationsMap[
-                                                      'textOnPageLoadAnimation2']!),
+                                                      'textOnPageLoadAnimation3']!),
                                                 ],
                                               ),
                                               Padding(

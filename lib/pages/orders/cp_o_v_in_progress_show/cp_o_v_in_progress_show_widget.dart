@@ -476,160 +476,128 @@ class _CpOVInProgressShowWidgetState extends State<CpOVInProgressShowWidget>
                   animationsMap['containerOnPageLoadAnimation']!);
             },
           ),
-          FutureBuilder<List<VOrdersVisitsRow>>(
-            future: VOrdersVisitsTable().querySingleRow(
-              queryFn: (q) => q.eq(
-                'id',
-                widget.orderVisitId,
+          Container(
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(12.0),
+                bottomRight: Radius.circular(12.0),
+                topLeft: Radius.circular(0.0),
+                topRight: Radius.circular(0.0),
               ),
             ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  ),
-                );
-              }
-              List<VOrdersVisitsRow> containerVOrdersVisitsRowList =
-                  snapshot.data!;
-              final containerVOrdersVisitsRow =
-                  containerVOrdersVisitsRowList.isNotEmpty
-                      ? containerVOrdersVisitsRowList.first
-                      : null;
-              return Container(
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(12.0),
-                    bottomRight: Radius.circular(12.0),
-                    topLeft: Radius.circular(0.0),
-                    topRight: Radius.circular(0.0),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Equipe',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ),
+                            Row(
                               mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Equipe',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        width: 65.0,
-                                        height: 65.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                Expanded(
+                                  child: Container(
+                                    width: 65.0,
+                                    height: 65.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: FutureBuilder<
+                                        List<VOrdersVisitsTeamsRow>>(
+                                      future:
+                                          VOrdersVisitsTeamsTable().queryRows(
+                                        queryFn: (q) => q.eq(
+                                          'visitId',
+                                          widget.orderVisitId,
                                         ),
-                                        child: FutureBuilder<
-                                            List<VOrdersVisitsTeamsRow>>(
-                                          future: VOrdersVisitsTeamsTable()
-                                              .queryRows(
-                                            queryFn: (q) => q.eq(
-                                              'visitId',
-                                              widget.orderVisitId,
-                                            ),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
-                                                  ),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                                 ),
-                                              );
-                                            }
-                                            List<VOrdersVisitsTeamsRow>
-                                                listViewVOrdersVisitsTeamsRowList =
-                                                snapshot.data!;
-                                            return ListView.separated(
-                                              padding: EdgeInsets.zero,
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount:
-                                                  listViewVOrdersVisitsTeamsRowList
-                                                      .length,
-                                              separatorBuilder: (_, __) =>
-                                                  const SizedBox(width: 8.0),
-                                              itemBuilder:
-                                                  (context, listViewIndex) {
-                                                final listViewVOrdersVisitsTeamsRow =
-                                                    listViewVOrdersVisitsTeamsRowList[
-                                                        listViewIndex];
-                                                return CpUserPicProfileWidget(
-                                                  key: Key(
-                                                      'Keymdp_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
-                                                  size: 60,
-                                                  imgUrl:
-                                                      '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
-                                                );
-                                              },
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<VOrdersVisitsTeamsRow>
+                                            listViewVOrdersVisitsTeamsRowList =
+                                            snapshot.data!;
+                                        return ListView.separated(
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount:
+                                              listViewVOrdersVisitsTeamsRowList
+                                                  .length,
+                                          separatorBuilder: (_, __) =>
+                                              const SizedBox(width: 8.0),
+                                          itemBuilder:
+                                              (context, listViewIndex) {
+                                            final listViewVOrdersVisitsTeamsRow =
+                                                listViewVOrdersVisitsTeamsRowList[
+                                                    listViewIndex];
+                                            return CpUserPicProfileWidget(
+                                              key: Key(
+                                                  'Keymdp_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
+                                              size: 60,
+                                              imgUrl:
+                                                  '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
                                             );
                                           },
-                                        ),
-                                      ),
+                                        );
+                                      },
                                     ),
-                                  ],
-                                ),
-                                Text(
-                                  'Transporte',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                            Text(
+                              'Transporte',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-              );
-            },
+                ],
+              ),
+            ),
           ),
         ],
       ),

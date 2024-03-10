@@ -7,11 +7,11 @@ import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'cp_order_visit_services_list_model.dart';
-export 'cp_order_visit_services_list_model.dart';
+import 'cp_o_v_services_list_model.dart';
+export 'cp_o_v_services_list_model.dart';
 
-class CpOrderVisitServicesListWidget extends StatefulWidget {
-  const CpOrderVisitServicesListWidget({
+class CpOVServicesListWidget extends StatefulWidget {
+  const CpOVServicesListWidget({
     super.key,
     required this.orderVisitId,
   });
@@ -19,13 +19,11 @@ class CpOrderVisitServicesListWidget extends StatefulWidget {
   final int? orderVisitId;
 
   @override
-  State<CpOrderVisitServicesListWidget> createState() =>
-      _CpOrderVisitServicesListWidgetState();
+  State<CpOVServicesListWidget> createState() => _CpOVServicesListWidgetState();
 }
 
-class _CpOrderVisitServicesListWidgetState
-    extends State<CpOrderVisitServicesListWidget> {
-  late CpOrderVisitServicesListModel _model;
+class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
+  late CpOVServicesListModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +34,7 @@ class _CpOrderVisitServicesListWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CpOrderVisitServicesListModel());
+    _model = createModel(context, () => CpOVServicesListModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

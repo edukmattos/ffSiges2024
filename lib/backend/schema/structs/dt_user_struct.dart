@@ -41,6 +41,7 @@ class DtUserStruct extends FFFirebaseStruct {
     String? accessToken,
     String? refreshToken,
     int? profileId,
+    int? vehicleId,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _uid = uid,
@@ -73,6 +74,7 @@ class DtUserStruct extends FFFirebaseStruct {
         _accessToken = accessToken,
         _refreshToken = refreshToken,
         _profileId = profileId,
+        _vehicleId = vehicleId,
         super(firestoreUtilData);
 
   // "id" field.
@@ -282,6 +284,13 @@ class DtUserStruct extends FFFirebaseStruct {
   void incrementProfileId(int amount) => _profileId = profileId + amount;
   bool hasProfileId() => _profileId != null;
 
+  // "vehicleId" field.
+  int? _vehicleId;
+  int get vehicleId => _vehicleId ?? 0;
+  set vehicleId(int? val) => _vehicleId = val;
+  void incrementVehicleId(int amount) => _vehicleId = vehicleId + amount;
+  bool hasVehicleId() => _vehicleId != null;
+
   static DtUserStruct fromMap(Map<String, dynamic> data) => DtUserStruct(
         id: castToType<int>(data['id']),
         uid: data['uid'] as String?,
@@ -316,6 +325,7 @@ class DtUserStruct extends FFFirebaseStruct {
         accessToken: data['accessToken'] as String?,
         refreshToken: data['refreshToken'] as String?,
         profileId: castToType<int>(data['profileId']),
+        vehicleId: castToType<int>(data['vehicleId']),
       );
 
   static DtUserStruct? maybeFromMap(dynamic data) =>
@@ -353,6 +363,7 @@ class DtUserStruct extends FFFirebaseStruct {
         'accessToken': _accessToken,
         'refreshToken': _refreshToken,
         'profileId': _profileId,
+        'vehicleId': _vehicleId,
       }.withoutNulls;
 
   @override
@@ -479,6 +490,10 @@ class DtUserStruct extends FFFirebaseStruct {
         ),
         'profileId': serializeParam(
           _profileId,
+          ParamType.int,
+        ),
+        'vehicleId': serializeParam(
+          _vehicleId,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -640,6 +655,11 @@ class DtUserStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        vehicleId: deserializeParam(
+          data['vehicleId'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -679,7 +699,8 @@ class DtUserStruct extends FFFirebaseStruct {
         fcmToken == other.fcmToken &&
         accessToken == other.accessToken &&
         refreshToken == other.refreshToken &&
-        profileId == other.profileId;
+        profileId == other.profileId &&
+        vehicleId == other.vehicleId;
   }
 
   @override
@@ -714,7 +735,8 @@ class DtUserStruct extends FFFirebaseStruct {
         fcmToken,
         accessToken,
         refreshToken,
-        profileId
+        profileId,
+        vehicleId
       ]);
 }
 
@@ -750,6 +772,7 @@ DtUserStruct createDtUserStruct({
   String? accessToken,
   String? refreshToken,
   int? profileId,
+  int? vehicleId,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -787,6 +810,7 @@ DtUserStruct createDtUserStruct({
       accessToken: accessToken,
       refreshToken: refreshToken,
       profileId: profileId,
+      vehicleId: vehicleId,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

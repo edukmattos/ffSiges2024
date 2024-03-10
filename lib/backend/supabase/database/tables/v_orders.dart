@@ -204,4 +204,17 @@ class VOrdersRow extends SupabaseDataRow {
       getField<String>('cancelReasonDescription');
   set cancelReasonDescription(String? value) =>
       setField<String>('cancelReasonDescription', value);
+
+  double? get priceServices => getField<double>('priceServices');
+  set priceServices(double? value) => setField<double>('priceServices', value);
+
+  double? get priceMaterials => getField<double>('priceMaterials');
+  set priceMaterials(double? value) =>
+      setField<double>('priceMaterials', value);
+
+  double? get priceVehicles => getField<double>('priceVehicles');
+  set priceVehicles(double? value) => setField<double>('priceVehicles', value);
+
+  double? get priceTotal => getField<double>('priceTotal');
+  set priceTotal(double? value) => setField<double>('priceTotal', value);
 }

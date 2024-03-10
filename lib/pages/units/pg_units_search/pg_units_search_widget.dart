@@ -12,7 +12,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'pg_units_search_model.dart';
 export 'pg_units_search_model.dart';
 
@@ -129,8 +128,6 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -152,17 +149,28 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                var shouldSetState = false;
-                _model.gu = await action_blocks.abGuardian(context);
-                shouldSetState = true;
-                if (FFAppState().stIsPermission) {
+                _model.isAllowed = await action_blocks.abGuardian(
+                  context,
+                  abPgRequestedId: 8,
+                );
+                if (_model.isAllowed!) {
                   context.pushNamed('pgUnitsNew');
                 } else {
-                  if (shouldSetState) setState(() {});
-                  return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        FFAppConstants.msgNotAllowed,
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryBtnText,
+                        ),
+                      ),
+                      duration: const Duration(milliseconds: 4000),
+                      backgroundColor: FlutterFlowTheme.of(context).error,
+                    ),
+                  );
                 }
 
-                if (shouldSetState) setState(() {});
+                setState(() {});
               },
               child: Icon(
                 Icons.add,
@@ -257,125 +265,138 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
                         ),
                       ].divide(const SizedBox(width: 8.0)),
                     ),
-                    FutureBuilder<ApiCallResponse>(
-                      future: (_model.apiRequestCompleter ??=
-                              Completer<ApiCallResponse>()
-                                ..complete(ApiUnitsGroup.unitsSearchCall.call(
-                                  searchTerms: _model.cpInputTextSearchModel
-                                      .inputTextController.text,
-                                )))
-                          .future,
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                    Expanded(
+                      child: FutureBuilder<ApiCallResponse>(
+                        future: (_model.apiRequestCompleter ??=
+                                Completer<ApiCallResponse>()
+                                  ..complete(ApiUnitsGroup.unitsSearchCall.call(
+                                    searchTerms: _model.cpInputTextSearchModel
+                                        .inputTextController.text,
+                                  )))
+                            .future,
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                        final containerUnitsSearchResponse = snapshot.data!;
-                        return Container(
-                          decoration: const BoxDecoration(),
-                          child: Builder(
-                            builder: (context) {
-                              final unitsResult = getJsonField(
-                                containerUnitsSearchResponse.jsonBody,
-                                r'''$''',
-                              ).toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: unitsResult.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 12.0),
-                                itemBuilder: (context, unitsResultIndex) {
-                                  final unitsResultItem =
-                                      unitsResult[unitsResultIndex];
-                                  return Container(
-                                    width: double.infinity,
-                                    constraints: const BoxConstraints(
-                                      minHeight: 0.0,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          blurRadius: 4.0,
-                                          color: Color(0x1F000000),
-                                          offset: Offset(0.0, 2.0),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 12.0, 12.0, 12.0),
-                                            child: Column(
+                            );
+                          }
+                          final containerUnitsSearchResponse = snapshot.data!;
+                          return Container(
+                            decoration: const BoxDecoration(),
+                            child: Builder(
+                              builder: (context) {
+                                final unitsResult = getJsonField(
+                                  containerUnitsSearchResponse.jsonBody,
+                                  r'''$''',
+                                ).toList();
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: unitsResult.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 12.0),
+                                  itemBuilder: (context, unitsResultIndex) {
+                                    final unitsResultItem =
+                                        unitsResult[unitsResultIndex];
+                                    return Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x1F000000),
+                                            offset: Offset(0.0, 2.0),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 12.0, 12.0, 12.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
                                               children: [
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                      'pgUnitShow',
-                                                      queryParameters: {
-                                                        'unitId':
-                                                            serializeParam(
-                                                          valueOrDefault<int>(
-                                                            getJsonField(
-                                                              unitsResultItem,
-                                                              r'''$.id''',
-                                                            ),
-                                                            1,
-                                                          ),
-                                                          ParamType.int,
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'pgUnitShow',
+                                                            queryParameters: {
+                                                              'unitId':
+                                                                  serializeParam(
+                                                                valueOrDefault<
+                                                                    int>(
+                                                                  getJsonField(
+                                                                    unitsResultItem,
+                                                                    r'''$.id''',
+                                                                  ),
+                                                                  1,
+                                                                ),
+                                                                ParamType.int,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          getJsonField(
+                                                            unitsResultItem,
+                                                            r'''$.descriptionFull''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 20.0,
+                                                              ),
                                                         ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    getJsonField(
-                                                      unitsResultItem,
-                                                      r'''$.descriptionFull''',
-                                                    ).toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineMedium
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: Colors.white,
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                ).animateOnPageLoad(animationsMap[
-                                                    'textOnPageLoadAnimation1']!),
+                                                      ).animateOnPageLoad(
+                                                          animationsMap[
+                                                              'textOnPageLoadAnimation1']!),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
                                                 InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -502,20 +523,20 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
                                                     ],
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 8.0)),
+                                              ],
                                             ),
-                                          ),
+                                          ].divide(const SizedBox(height: 8.0)),
                                         ),
-                                      ],
-                                    ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'containerOnPageLoadAnimation']!);
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      },
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'containerOnPageLoadAnimation']!);
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ].divide(const SizedBox(height: 8.0)),
                 ),

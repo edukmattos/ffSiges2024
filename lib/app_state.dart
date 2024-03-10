@@ -1002,6 +1002,36 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInStUserOVOpen(int index, DtVOrderVisitStruct value) {
     _stUserOVOpen.insert(index, value);
   }
+
+  List<DtVOrderVisitVehicleStruct> _stOVVehicles = [];
+  List<DtVOrderVisitVehicleStruct> get stOVVehicles => _stOVVehicles;
+  set stOVVehicles(List<DtVOrderVisitVehicleStruct> value) {
+    _stOVVehicles = value;
+  }
+
+  void addToStOVVehicles(DtVOrderVisitVehicleStruct value) {
+    _stOVVehicles.add(value);
+  }
+
+  void removeFromStOVVehicles(DtVOrderVisitVehicleStruct value) {
+    _stOVVehicles.remove(value);
+  }
+
+  void removeAtIndexFromStOVVehicles(int index) {
+    _stOVVehicles.removeAt(index);
+  }
+
+  void updateStOVVehiclesAtIndex(
+    int index,
+    DtVOrderVisitVehicleStruct Function(DtVOrderVisitVehicleStruct) updateFn,
+  ) {
+    _stOVVehicles[index] = updateFn(_stOVVehicles[index]);
+  }
+
+  void insertAtIndexInStOVVehicles(
+      int index, DtVOrderVisitVehicleStruct value) {
+    _stOVVehicles.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

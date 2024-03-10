@@ -1,4 +1,3 @@
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -109,127 +108,97 @@ class _PgOrderShowWidgetState extends State<PgOrderShowWidget> {
           top: true,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: FutureBuilder<List<VOrdersRow>>(
-              future: VOrdersTable().querySingleRow(
-                queryFn: (q) => q.eq(
-                  'id',
-                  widget.orderId,
-                ),
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50.0,
-                      height: 50.0,
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          FlutterFlowTheme.of(context).primary,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-                List<VOrdersRow> containerVOrdersRowList = snapshot.data!;
-                final containerVOrdersRow = containerVOrdersRowList.isNotEmpty
-                    ? containerVOrdersRowList.first
-                    : null;
-                return Container(
-                  decoration: const BoxDecoration(),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            child: Container(
+              decoration: const BoxDecoration(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed(
-                                'pgOrderParentShow',
-                                queryParameters: {
-                                  'orderId': serializeParam(
-                                    FFAppState().stOSelected.first.parentId,
-                                    ParamType.int,
-                                  ),
-                                }.withoutNulls,
-                              );
-                            },
-                            text: 'SS',
-                            options: FFButtonOptions(
-                              width: 50.0,
-                              height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
+                      FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'pgOrderParentShow',
+                            queryParameters: {
+                              'orderId': serializeParam(
+                                FFAppState().stOSelected.first.parentId,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        text: 'SS',
+                        options: FFButtonOptions(
+                          width: 50.0,
+                          height: 50.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(24.0),
-                            ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 25.0,
-                              buttonSize: 50.0,
-                              icon: FaIcon(
-                                FontAwesomeIcons.ellipsisV,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 30.0,
-                              ),
-                              showLoadingIndicator: true,
-                              onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  useSafeArea: true,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 25.0,
+                          buttonSize: 50.0,
+                          icon: FaIcon(
+                            FontAwesomeIcons.ellipsisV,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          showLoadingIndicator: true,
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const MdOMenuOptionsWidget(),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: const MdOMenuOptionsWidget(),
+                                  ),
+                                );
                               },
-                            ),
-                          ),
-                        ],
-                      ),
-                      wrapWithModel(
-                        model: _model.cpOrderCardShowModel,
-                        updateCallback: () => setState(() {}),
-                        child: CpOrderCardShowWidget(
-                          orderId: widget.orderId!,
+                            ).then((value) => safeSetState(() {}));
+                          },
                         ),
                       ),
-                    ].divide(const SizedBox(height: 12.0)),
+                    ],
                   ),
-                );
-              },
+                  wrapWithModel(
+                    model: _model.cpOrderCardShowModel,
+                    updateCallback: () => setState(() {}),
+                    child: CpOrderCardShowWidget(
+                      orderId: widget.orderId!,
+                    ),
+                  ),
+                ].divide(const SizedBox(height: 12.0)),
+              ),
             ),
           ),
         ),

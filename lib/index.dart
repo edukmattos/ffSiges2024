@@ -28,8 +28,6 @@ export '/pages/user/pg_user_notifications/pg_user_notifications_widget.dart'
     show PgUserNotificationsWidget;
 export '/pages/units/pg_unit_show_ori/pg_unit_show_ori_widget.dart'
     show PgUnitShowOriWidget;
-export '/xpg_order_parent_unit_show/xpg_order_parent_unit_show_widget.dart'
-    show XpgOrderParentUnitShowWidget;
 export '/pages/user/pg_my_team/pg_my_team_widget.dart' show PgMyTeamWidget;
 export '/home13_productivity/home13_productivity_widget.dart'
     show Home13ProductivityWidget;

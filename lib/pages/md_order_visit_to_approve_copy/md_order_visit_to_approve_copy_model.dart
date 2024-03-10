@@ -12,20 +12,6 @@ import 'package:flutter/material.dart';
 
 class MdOrderVisitToApproveCopyModel
     extends FlutterFlowModel<MdOrderVisitToApproveCopyWidget> {
-  ///  Local state fields for this component.
-
-  DateTime? lcsvExpectedDateStart;
-
-  int? lcsvOrderChildCounter;
-
-  int lcsvCompanyId = 1;
-
-  int lcsvDepartmentId = 1;
-
-  int lcsvContractId = 1;
-
-  int lcsvStepForm = 1;
-
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

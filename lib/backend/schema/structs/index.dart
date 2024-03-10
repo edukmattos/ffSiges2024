@@ -22,4 +22,5 @@ export 'dt_v_order_visit_asset_activity_struct.dart';
 export 'dt_v_order_visit_assets_struct.dart';
 export 'dt_v_order_visit_prices_struct.dart';
 export 'dt_v_order_visit_services_struct.dart';
+export 'dt_v_order_visit_vehicle_struct.dart';
 export 'dt_v_unit_struct.dart';

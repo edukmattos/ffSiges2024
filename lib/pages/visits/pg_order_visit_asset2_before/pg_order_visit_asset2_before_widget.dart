@@ -114,38 +114,31 @@ class _PgOrderVisitAsset2BeforeWidgetState
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
-            leading: Visibility(
-              visible: valueOrDefault<int>(
-                    FFAppState().stOVSelected.first.processingId,
-                    1,
-                  ) ==
-                  4,
-              child: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: const Icon(
-                  Icons.arrow_back_rounded,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  context.pushNamed(
-                    'pgOVShow',
-                    queryParameters: {
-                      'visitId': serializeParam(
-                        FFAppState().stOVSelected.first.id,
-                        ParamType.int,
-                      ),
-                      'orderId': serializeParam(
-                        FFAppState().stOVSelected.first.orderId,
-                        ParamType.int,
-                      ),
-                    }.withoutNulls,
-                  );
-                },
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 30.0,
               ),
+              onPressed: () async {
+                context.pushNamed(
+                  'pgOVShow',
+                  queryParameters: {
+                    'visitId': serializeParam(
+                      FFAppState().stOVSelected.first.id,
+                      ParamType.int,
+                    ),
+                    'orderId': serializeParam(
+                      FFAppState().stOVSelected.first.orderId,
+                      ParamType.int,
+                    ),
+                  }.withoutNulls,
+                );
+              },
             ),
             title: Row(
               mainAxisSize: MainAxisSize.max,
@@ -1132,8 +1125,11 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         .id,
                                               );
                                               setState(() {});
-
-                                              context.goNamed(
+                                              if (Navigator.of(context)
+                                                  .canPop()) {
+                                                context.pop();
+                                              }
+                                              context.pushNamed(
                                                   'pgOVAsset3ActivitiesSearch');
                                             } else {
                                               await OrdersVisitsAssetsTable()
@@ -1298,7 +1294,10 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         .first
                                                         .orderVisitId,
                                                   );
-
+                                                  if (Navigator.of(context)
+                                                      .canPop()) {
+                                                    context.pop();
+                                                  }
                                                   context.pushNamed(
                                                     'pgOVShow',
                                                     queryParameters: {
@@ -1399,6 +1398,10 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                   );
                                                 }
 
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
                                                 context.pushNamed(
                                                   'pgOVShow',
                                                   queryParameters: {
@@ -1559,7 +1562,10 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                         1,
                                                       ),
                                                     );
-
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
                                                     context.pushNamed(
                                                       'pgOVShow',
                                                       queryParameters: {
@@ -1709,7 +1715,10 @@ class _PgOrderVisitAsset2BeforeWidgetState
                                                             .id,
                                                       ),
                                                     );
-
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
                                                     context.pushNamed(
                                                       'pgOVShow',
                                                       queryParameters: {

@@ -1,10 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'cp_order_visit_services_list_widget.dart'
-    show CpOrderVisitServicesListWidget;
+import 'cp_o_v_services_list_widget.dart' show CpOVServicesListWidget;
 import 'package:flutter/material.dart';
 
-class CpOrderVisitServicesListModel
-    extends FlutterFlowModel<CpOrderVisitServicesListWidget> {
+class CpOVServicesListModel extends FlutterFlowModel<CpOVServicesListWidget> {
   /// Initialization and disposal methods.
 
   @override

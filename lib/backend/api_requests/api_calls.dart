@@ -849,6 +849,10 @@ class UserByEmailCall {
         response,
         r'''$[:].profileId''',
       ));
+  int? vehicleId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].vehicleId''',
+      ));
 }
 
 class UserByIdCall {
@@ -1008,6 +1012,10 @@ class UserByIdCall {
   int? profileId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$[:].profileId''',
+      ));
+  int? vehicleId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].vehicleId''',
       ));
 }
 
@@ -1627,6 +1635,53 @@ class UnitsAllCall {
 }
 
 /// End apiUnits Group Code
+
+/// Start apiVehicles Group Code
+
+class ApiVehiclesGroup {
+  static String baseUrl = 'https://hssopxcprokinupxvrtw.supabase.co/rest/v1/';
+  static Map<String, String> headers = {
+    'apiKey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
+  };
+  static VehicleByIdCall vehicleByIdCall = VehicleByIdCall();
+}
+
+class VehicleByIdCall {
+  Future<ApiCallResponse> call({
+    int? vehicleId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'vehicleById',
+      apiUrl:
+          '${ApiVehiclesGroup.baseUrl}vehicles?id=eq.$vehicleId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  double? priceUnit(dynamic response) => castToType<double>(getJsonField(
+        response,
+        r'''$[:].priceUnit''',
+      ));
+}
+
+/// End apiVehicles Group Code
 
 /// Start apiContracts Group Code
 
@@ -3056,6 +3111,120 @@ class AssetsByUnitTagCall {
 }
 
 /// End apiOrdersVisitsAssets Group Code
+
+/// Start apiOrdersVisitsVehicles Group Code
+
+class ApiOrdersVisitsVehiclesGroup {
+  static String baseUrl = 'https://hssopxcprokinupxvrtw.supabase.co/rest/v1/';
+  static Map<String, String> headers = {
+    'apiKey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
+  };
+  static VehiclesByOrderVisitIdCall vehiclesByOrderVisitIdCall =
+      VehiclesByOrderVisitIdCall();
+  static VehiclesByOrderVVehicleIdCall vehiclesByOrderVVehicleIdCall =
+      VehiclesByOrderVVehicleIdCall();
+}
+
+class VehiclesByOrderVisitIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId = 1,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'vehiclesByOrderVisitId',
+      apiUrl:
+          '${ApiOrdersVisitsVehiclesGroup.baseUrl}v_orders_visits_vehicles?orderVisitId=eq.$orderVisitId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class VehiclesByOrderVVehicleIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVVehicleid = 1,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'vehiclesByOrderVVehicleId',
+      apiUrl:
+          '${ApiOrdersVisitsVehiclesGroup.baseUrl}v_orders_visits_vehicles?id=eq.$orderVVehicleid&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End apiOrdersVisitsVehicles Group Code
+
+/// Start apiOrdersVisitsServices Group Code
+
+class ApiOrdersVisitsServicesGroup {
+  static String baseUrl = 'https://hssopxcprokinupxvrtw.supabase.co/rest/v1/';
+  static Map<String, String> headers = {
+    'apiKey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
+  };
+  static ServicesByOrderVisitIdwwCall servicesByOrderVisitIdwwCall =
+      ServicesByOrderVisitIdwwCall();
+}
+
+class ServicesByOrderVisitIdwwCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId = 1,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'servicesByOrderVisitIdww',
+      apiUrl:
+          '${ApiOrdersVisitsServicesGroup.baseUrl}v_orders_visits_services?orderVisitId=eq.$orderVisitId',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End apiOrdersVisitsServices Group Code
 
 /// Start apiOrdersVisitsAssetsActivities Group Code
 

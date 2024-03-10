@@ -106,7 +106,7 @@ class _CpOrderPriorityWidgetState extends State<CpOrderPriorityWidget>
         triggerMode: TooltipTriggerMode.tap,
         child: Builder(
           builder: (context) {
-            if (widget.priorityId == 1) {
+            if (widget.priorityId == 3) {
               return Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: FaIcon(

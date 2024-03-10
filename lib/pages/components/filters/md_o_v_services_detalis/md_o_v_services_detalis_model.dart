@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/visits/cp_order_visit_services_list/cp_order_visit_services_list_widget.dart';
+import '/pages/visits/cp_o_v_services_list/cp_o_v_services_list_widget.dart';
 import 'md_o_v_services_detalis_widget.dart' show MdOVServicesDetalisWidget;
 import 'package:flutter/material.dart';
 
@@ -7,20 +7,19 @@ class MdOVServicesDetalisModel
     extends FlutterFlowModel<MdOVServicesDetalisWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // Model for cpOrderVisitServicesList component.
-  late CpOrderVisitServicesListModel cpOrderVisitServicesListModel;
+  // Model for cpOVServicesList component.
+  late CpOVServicesListModel cpOVServicesListModel;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    cpOrderVisitServicesListModel =
-        createModel(context, () => CpOrderVisitServicesListModel());
+    cpOVServicesListModel = createModel(context, () => CpOVServicesListModel());
   }
 
   @override
   void dispose() {
-    cpOrderVisitServicesListModel.dispose();
+    cpOVServicesListModel.dispose();
   }
 
   /// Action blocks are added here.

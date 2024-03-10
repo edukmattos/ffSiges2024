@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
 import '/pages/visits/cp_o_v_processing_card/cp_o_v_processing_card_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
@@ -148,7 +149,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -168,7 +169,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -391,7 +392,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                   children: [
                                     Text(
                                       '${valueOrDefault<String>(
-                                        dateTimeFormat('d/M H:mm',
+                                        dateTimeFormat('d/M/y H:mm',
                                             containerVOrdersRow?.statusDate),
                                         '.',
                                       )} h',
@@ -411,7 +412,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                         '.',
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                          .labelMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
@@ -419,6 +420,24 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           ),
                                     ).animateOnPageLoad(animationsMap[
                                         'textOnPageLoadAnimation4']!),
+                                    Align(
+                                      alignment: const AlignmentDirectional(1.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          containerVOrdersRow?.causeDescription,
+                                          '.',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'textOnPageLoadAnimation5']!),
+                                    ),
                                   ],
                                 ),
                                 wrapWithModel(
@@ -480,7 +499,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                         ),
                                   ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation5']!),
+                                    animationsMap['textOnPageLoadAnimation6']!),
                               ),
                               Text(
                                 valueOrDefault<String>(
@@ -495,7 +514,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation6']!),
+                                  animationsMap['textOnPageLoadAnimation7']!),
                               Text(
                                 valueOrDefault<String>(
                                   containerVOrdersRow.requestedServices,
@@ -509,24 +528,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation7']!),
-                              Align(
-                                alignment: const AlignmentDirectional(1.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    containerVOrdersRow.causeDescription,
-                                    '.',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation8']!),
-                              ),
+                                  animationsMap['textOnPageLoadAnimation8']!),
                             ],
                           ),
                         ),
@@ -639,7 +641,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                               ),
                                         ),
                                         Text(
-                                          '${dateTimeFormat('d/M/y h:mm', containerVOrdersVisitsRow?.dateStart)} h',
+                                          '${dateTimeFormat('d/M/y H:mm', containerVOrdersVisitsRow?.dateStart)} h',
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
@@ -651,7 +653,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                               ),
                                         ),
                                         Text(
-                                          '${dateTimeFormat('d/M/y h:mm', containerVOrdersVisitsRow?.dateEnd)} h',
+                                          '${dateTimeFormat('d/M/y H:mm', containerVOrdersVisitsRow?.dateEnd)} h',
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
@@ -749,12 +751,44 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                                 final listViewVOrdersVisitsTeamsRow =
                                                     listViewVOrdersVisitsTeamsRowList[
                                                         listViewIndex];
-                                                return CpUserPicProfileWidget(
-                                                  key: Key(
-                                                      'Keyxec_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
-                                                  size: 60,
-                                                  imgUrl:
-                                                      '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
+                                                return AlignedTooltip(
+                                                  content: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(4.0),
+                                                      child: Text(
+                                                        listViewVOrdersVisitsTeamsRow
+                                                            .nameShort!,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge,
+                                                      )),
+                                                  offset: 4.0,
+                                                  preferredDirection:
+                                                      AxisDirection.down,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  elevation: 4.0,
+                                                  tailBaseWidth: 24.0,
+                                                  tailLength: 12.0,
+                                                  waitDuration: const Duration(
+                                                      milliseconds: 100),
+                                                  showDuration: const Duration(
+                                                      milliseconds: 1500),
+                                                  triggerMode:
+                                                      TooltipTriggerMode.tap,
+                                                  child: CpUserPicProfileWidget(
+                                                    key: Key(
+                                                        'Keyxec_${listViewIndex}_of_${listViewVOrdersVisitsTeamsRowList.length}'),
+                                                    size: 60,
+                                                    imgUrl:
+                                                        '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
+                                                  ),
                                                 );
                                               },
                                             );

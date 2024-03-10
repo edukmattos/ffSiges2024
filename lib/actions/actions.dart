@@ -126,6 +126,9 @@ Future abUserUpdate(
     profileId: ApiUsersGroup.userByEmailCall.profileId(
       (resUserCurrent.jsonBody ?? ''),
     ),
+    vehicleId: ApiUsersGroup.userByEmailCall.vehicleId(
+      (resUserCurrent.jsonBody ?? ''),
+    ),
   );
   apiResultyjy = await ApiProfilesPermissionsGroup.permissionsCall.call(
     profileId: FFAppState().asUserCurrent.profileId,
@@ -1241,4 +1244,222 @@ Future<bool> abGuardian(
     FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
   }
   return false;
+}
+
+Future abOVPricesUpdate(
+  BuildContext context, {
+  required String? abPrice,
+}) async {
+  ApiCallResponse? resOrderVisitVehicles;
+  ApiCallResponse? apiResultnke;
+
+  if (abPrice == 'vehicles') {
+    FFAppState().updateStOVSelectedAtIndex(
+      0,
+      (e) => e
+        ..priceVehicles = 0.0
+        ..priceTotal = 0.0,
+    );
+    resOrderVisitVehicles =
+        await ApiOrdersVisitsVehiclesGroup.vehiclesByOrderVisitIdCall.call(
+      orderVisitId: FFAppState().stOVSelected.first.id,
+    );
+    if ((resOrderVisitVehicles.succeeded ?? true)) {
+      FFAppState().stOVVehicles = ((resOrderVisitVehicles.jsonBody ?? '')
+              .toList()
+              .map<DtVOrderVisitVehicleStruct?>(
+                  DtVOrderVisitVehicleStruct.maybeFromMap)
+              .toList() as Iterable<DtVOrderVisitVehicleStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DtVOrderVisitVehicleStruct>();
+      FFAppState().update(() {
+        FFAppState().stCounterLoop = 0;
+        FFAppState().stCounterLoopFinal = FFAppState().stOVVehicles.length;
+      });
+      while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+        await OrdersVisitsVehiclesTable().update(
+          data: {
+            'priceTotal': FFAppState()
+                    .stOVVehicles[FFAppState().stCounterLoop]
+                    .amountUnit
+                    .toDouble() *
+                FFAppState().stOVVehicles[FFAppState().stCounterLoop].discount *
+                FFAppState().stOVVehicles[FFAppState().stCounterLoop].priceUnit,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stOVVehicles[FFAppState().stCounterLoop].id,
+          ),
+        );
+        FFAppState().updateStOVSelectedAtIndex(
+          0,
+          (e) => e
+            ..incrementPriceVehicles(FFAppState()
+                    .stOVVehicles[FFAppState().stCounterLoop]
+                    .amountUnit
+                    .toDouble() *
+                FFAppState().stOVVehicles[FFAppState().stCounterLoop].discount *
+                FFAppState()
+                    .stOVVehicles[FFAppState().stCounterLoop]
+                    .priceUnit),
+        );
+        FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+      }
+      await OrdersVisitsTable().update(
+        data: {
+          'priceVehicles': FFAppState().stOVSelected.first.priceVehicles,
+        },
+        matchingRows: (rows) => rows.eq(
+          'id',
+          FFAppState().stOVSelected.first.id,
+        ),
+      );
+      await OrdersVisitsTable().update(
+        data: {
+          'priceTotal': FFAppState().stOVSelected.first.priceServices +
+              FFAppState().stOVSelected.first.priceMaterials +
+              FFAppState().stOVSelected.first.priceVehicles,
+        },
+        matchingRows: (rows) => rows.eq(
+          'id',
+          FFAppState().stOVSelected.first.id,
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 1000));
+      FFAppState().update(() {
+        FFAppState().updateStOVSelectedAtIndex(
+          0,
+          (e) => e
+            ..priceTotal = FFAppState().stOVSelected.first.priceServices +
+                FFAppState().stOVSelected.first.priceMaterials +
+                FFAppState().stOVSelected.first.priceVehicles,
+        );
+      });
+    } else {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: const Text('22'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: const Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  } else {
+    if (abPrice == 'services') {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text(abPrice!),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: const Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+      FFAppState().updateStOVSelectedAtIndex(
+        0,
+        (e) => e
+          ..priceTotal = 0.0
+          ..priceServices = 0.0,
+      );
+      apiResultnke =
+          await ApiOrdersVisitsServicesGroup.servicesByOrderVisitIdwwCall.call(
+        orderVisitId: FFAppState().stOVSelected.first.id,
+      );
+      if ((apiResultnke.succeeded ?? true)) {
+        FFAppState().asOVSelectedServices = ((apiResultnke.jsonBody ?? '')
+                .toList()
+                .map<DtVOrderVisitServicesStruct?>(
+                    DtVOrderVisitServicesStruct.maybeFromMap)
+                .toList() as Iterable<DtVOrderVisitServicesStruct?>)
+            .withoutNulls
+            .toList()
+            .cast<DtVOrderVisitServicesStruct>();
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text(FFAppState().asOVSelectedServices.length.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        FFAppState().update(() {
+          FFAppState().stCounterLoop = 0;
+          FFAppState().stCounterLoopFinal =
+              FFAppState().asOVSelectedServices.length;
+        });
+        while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+          await OrdersVisitsServicesTable().update(
+            data: {
+              'priceTotal': FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .amount *
+                  FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .discount *
+                  FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .priceUnit,
+            },
+            matchingRows: (rows) => rows.eq(
+              'id',
+              FFAppState().stOVVehicles[FFAppState().stCounterLoop].id,
+            ),
+          );
+          FFAppState().updateStOVSelectedAtIndex(
+            0,
+            (e) => e
+              ..priceServices = FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .amount *
+                  FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .discount *
+                  FFAppState()
+                      .asOVSelectedServices[FFAppState().stCounterLoop]
+                      .priceUnit,
+          );
+          FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+        }
+        await OrdersVisitsTable().update(
+          data: {
+            'priceServices': FFAppState().stOVSelected.first.priceServices,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stOVSelected.first.id,
+          ),
+        );
+        await OrdersVisitsTable().update(
+          data: {
+            'priceTotal': FFAppState().stOVSelected.first.priceServices +
+                FFAppState().stOVSelected.first.priceMaterials +
+                FFAppState().stOVSelected.first.priceVehicles,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stOVSelected.first.id,
+          ),
+        );
+      }
+    }
+  }
 }
