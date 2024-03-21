@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -190,25 +189,28 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
-            title: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Unidades',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Outfit',
-                        color: Colors.white,
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-                wrapWithModel(
-                  model: _model.cpNotificationsIconModel,
-                  updateCallback: () => setState(() {}),
-                  child: const CpNotificationsIconWidget(),
-                ),
-              ],
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
+            ),
+            title: Text(
+              'Unidades',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Outfit',
+                    color: Colors.white,
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             actions: const [],
             centerTitle: false,
@@ -301,7 +303,6 @@ class _PgUnitsSearchWidgetState extends State<PgUnitsSearchWidget>
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
-                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: unitsResult.length,
                                   separatorBuilder: (_, __) =>

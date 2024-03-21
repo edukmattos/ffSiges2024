@@ -15,8 +15,8 @@ class OrdersVisitsTeamsRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => OrdersVisitsTeamsTable();
 
-  int get visitId => getField<int>('visitId')!;
-  set visitId(int value) => setField<int>('visitId', value);
+  int get orderVisitId => getField<int>('orderVisitId')!;
+  set orderVisitId(int value) => setField<int>('orderVisitId', value);
 
   int get userId => getField<int>('userId')!;
   set userId(int value) => setField<int>('userId', value);

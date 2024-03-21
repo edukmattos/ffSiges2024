@@ -13,10 +13,13 @@ export 'cp_o_v_services_list_model.dart';
 class CpOVServicesListWidget extends StatefulWidget {
   const CpOVServicesListWidget({
     super.key,
-    required this.orderVisitId,
-  });
+    int? ppOVId,
+    int? ppProcessingId,
+  })  : ppOVId = ppOVId ?? 1,
+        ppProcessingId = ppProcessingId ?? 1;
 
-  final int? orderVisitId;
+  final int ppOVId;
+  final int ppProcessingId;
 
   @override
   State<CpOVServicesListWidget> createState() => _CpOVServicesListWidgetState();
@@ -54,7 +57,7 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
       future: VOrdersVisitsServicesTable().queryRows(
         queryFn: (q) => q.eq(
           'orderVisitId',
-          widget.orderVisitId,
+          widget.ppOVId,
         ),
       ),
       builder: (context, snapshot) {
@@ -90,7 +93,6 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
               child: Container(
                 width: double.infinity,
-                height: 70.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   boxShadow: const [
@@ -103,7 +105,7 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,13 +152,13 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
                                       currency: 'R\$ ',
                                       format: '#,###.00',
                                       locale: 'pt_BR',
-                                    )} | Desc:  ${formatNumber(
+                                    )} | A/D:  ${formatNumber(
                                       listViewServicesSelectedVOrdersVisitsServicesRow
                                           .discount,
                                       formatType: FormatType.custom,
                                       format: '###.00',
                                       locale: 'pt_BR',
-                                    )}%',
+                                    )}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -168,10 +170,10 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
                                   Text(
                                     formatNumber(
                                       listViewServicesSelectedVOrdersVisitsServicesRow
-                                          .total!,
+                                          .priceTotal!,
                                       formatType: FormatType.custom,
                                       currency: 'R\$ ',
-                                      format: '#,###.00',
+                                      format: '#,##0.00',
                                       locale: 'pt_BR',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -217,11 +219,7 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
                               showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Visibility(
-                                visible: FFAppState()
-                                        .stOVSelected
-                                        .first
-                                        .processingId !=
-                                    4,
+                                visible: widget.ppProcessingId != 4,
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
                                   borderRadius: 12.0,
@@ -271,13 +269,11 @@ class _CpOVServicesListWidgetState extends State<CpOVServicesListWidget> {
                                               .id,
                                         ),
                                       );
-                                      await action_blocks
-                                          .abOrderVisitSelectedServices(
+                                      await action_blocks.abOVPricesUpdate(
                                         context,
-                                        abOrderVisitId:
-                                            FFAppState().stOVSelected.first.id,
+                                        abPrice: 'services',
+                                        abOVId: widget.ppOVId,
                                       );
-                                      setState(() {});
                                     }
                                   },
                                 ),

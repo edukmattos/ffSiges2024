@@ -94,3 +94,13 @@ double? cfOrderVisitServiceOrVehicleTotal(
 ) {
   return amount * priceUnit * ((100 - discount) / 100);
 }
+
+double cfDatesDiffDecimal(
+  DateTime dateRef1,
+  DateTime dateRef2,
+) {
+  // Obter a diferenca entre as datas dateRef2 e dateRef1 e o resultados converter em horas decimais
+  final diff = dateRef2.difference(dateRef1);
+  final hours = diff.inSeconds / 3600;
+  return double.parse(hours.toStringAsFixed(2));
+}

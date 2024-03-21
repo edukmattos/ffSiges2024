@@ -1,13 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/units/cp_dropdown_systems/cp_dropdown_systems_widget.dart';
 import '/pages/units/cp_dropdown_systems_parent/cp_dropdown_systems_parent_widget.dart';
 import '/pages/units/cp_dropdown_units_types/cp_dropdown_units_types_widget.dart';
@@ -70,25 +70,28 @@ class _PgUnitsNewWidgetState extends State<PgUnitsNewWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Unidade',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: Colors.white,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-              ),
-              wrapWithModel(
-                model: _model.cpNotificationsIconModel,
-                updateCallback: () => setState(() {}),
-                child: const CpNotificationsIconWidget(),
-              ),
-            ],
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Unidade',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           actions: const [],
           centerTitle: false,

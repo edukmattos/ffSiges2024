@@ -166,6 +166,18 @@ class VOrdersVisitsRow extends SupabaseDataRow {
   set teamDescription(String? value) =>
       setField<String>('teamDescription', value);
 
+  int? get orderStatusId => getField<int>('orderStatusId');
+  set orderStatusId(int? value) => setField<int>('orderStatusId', value);
+
+  String? get orderStatusDescription =>
+      getField<String>('orderStatusDescription');
+  set orderStatusDescription(String? value) =>
+      setField<String>('orderStatusDescription', value);
+
+  DateTime? get orderStatusDate => getField<DateTime>('orderStatusDate');
+  set orderStatusDate(DateTime? value) =>
+      setField<DateTime>('orderStatusDate', value);
+
   DateTime? get dateStart => getField<DateTime>('dateStart');
   set dateStart(DateTime? value) => setField<DateTime>('dateStart', value);
 

@@ -1,16 +1,16 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/assets/cp_order_visit_asset_show_bottom_nav_bar/cp_order_visit_asset_show_bottom_nav_bar_widget.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
+import '/pages/orders/cp_o_card_show/cp_o_card_show_widget.dart';
 import '/pages/orders/cp_o_v_show/cp_o_v_show_widget.dart';
-import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
 import '/pages/visits/cp_o_v_asset_list_card/cp_o_v_asset_list_card_widget.dart';
 import '/pages/visits/cp_o_v_services_list/cp_o_v_services_list_widget.dart';
-import '/pages/visits/cp_o_v_vehicles_list/cp_o_v_vehicles_list_widget.dart';
+import '/pages/visits/cp_o_v_vehicles_list_item/cp_o_v_vehicles_list_item_widget.dart';
 import '/pages/visits/md_o_v_vehicle_new/md_o_v_vehicle_new_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -26,14 +26,22 @@ export 'pg_o_v_show_model.dart';
 class PgOVShowWidget extends StatefulWidget {
   const PgOVShowWidget({
     super.key,
-    required this.visitId,
-    required this.orderId,
-    int? appPageId009,
-  }) : appPageId009 = appPageId009 ?? 9;
+    int? ppOVId,
+    int? ppOId,
+    int? ppOPId,
+    int? ppProcessingId,
+    int? ppUnitId,
+  })  : ppOVId = ppOVId ?? 1,
+        ppOId = ppOId ?? 1,
+        ppOPId = ppOPId ?? 1,
+        ppProcessingId = ppProcessingId ?? 1,
+        ppUnitId = ppUnitId ?? 1;
 
-  final int? visitId;
-  final int? orderId;
-  final int appPageId009;
+  final int ppOVId;
+  final int ppOId;
+  final int ppOPId;
+  final int ppProcessingId;
+  final int ppUnitId;
 
   @override
   State<PgOVShowWidget> createState() => _PgOVShowWidgetState();
@@ -46,78 +54,22 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'containerOnPageLoadAnimation1': AnimationInfo(
+    'choiceChipsOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
+        VisibilityEffect(duration: 200.ms),
         FadeEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
+          delay: 200.ms,
+          duration: 400.ms,
           begin: 0.0,
           end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 90.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 90.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 90.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 90.0),
+          delay: 200.ms,
+          duration: 400.ms,
+          begin: const Offset(0.0, 110.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -161,18 +113,14 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
           await _model.waitForRequestCompleted1();
         },
       );
-      await action_blocks.abOrderVisitProcessingCheck(
-        context,
-        abOrderVisitId: FFAppState().stOVSelected.first.id,
-      );
+      if (widget.ppProcessingId != 4) {
+        await action_blocks.abOVProcessingCheck(
+          context,
+          abOVId: widget.ppOVId,
+        );
+        setState(() {});
+      }
     });
-
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -217,28 +165,17 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.pop();
             },
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Atendimento',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: Colors.white,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-              ),
-              wrapWithModel(
-                model: _model.cpNotificationsIconModel,
-                updateCallback: () => setState(() {}),
-                child: const CpNotificationsIconWidget(),
-              ),
-            ],
+          title: Text(
+            'Atendimento',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           actions: const [],
           centerTitle: false,
@@ -247,7 +184,7 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
+            padding: const EdgeInsets.all(12.0),
             child: Container(
               width: double.infinity,
               height: double.infinity,
@@ -257,311 +194,222 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
-                      model: _model.cpOrderCardShowModel,
+                      model: _model.cpOCardShowModel,
                       updateCallback: () => setState(() {}),
-                      child: CpOrderCardShowWidget(
-                        orderId: valueOrDefault<int>(
-                          FFAppState().stOVSelected.first.orderId,
-                          1,
-                        ),
+                      child: CpOCardShowWidget(
+                        ppOId: widget.ppOId,
                       ),
                     ),
                     wrapWithModel(
                       model: _model.cpOVShowModel,
                       updateCallback: () => setState(() {}),
                       child: CpOVShowWidget(
-                        visitId: FFAppState().stOVSelected.first.id,
+                        ppOVId: widget.ppOVId,
                       ),
                     ),
-                    if (responsiveVisibility(
-                      context: context,
-                      phone: false,
-                      tablet: false,
-                      tabletLandscape: false,
-                    ))
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Container(
-                              height: 160.0,
-                              constraints: const BoxConstraints(
-                                minWidth: 160.0,
-                                maxWidth: 200.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.tools,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Text(
-                                        formatNumber(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .priceServices,
-                                          formatType: FormatType.custom,
-                                          currency: 'R\$ ',
-                                          format: '#,##0.00',
-                                          locale: 'pt_BR',
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Serviços',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation1']!),
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.plus,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Flexible(
-                            child: Container(
-                              height: 160.0,
-                              constraints: const BoxConstraints(
-                                minWidth: 160.0,
-                                maxWidth: 200.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.dolly,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Text(
-                                        formatNumber(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .priceMaterials,
-                                          formatType: FormatType.custom,
-                                          currency: 'R\$ ',
-                                          format: '#,##0.00',
-                                          locale: 'pt_BR',
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Materiais',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation2']!),
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.plus,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Flexible(
-                            child: Container(
-                              height: 160.0,
-                              constraints: const BoxConstraints(
-                                minWidth: 160.0,
-                                maxWidth: 200.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.truck,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Text(
-                                        formatNumber(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .priceVehicles,
-                                          formatType: FormatType.custom,
-                                          currency: 'R\$ ',
-                                          format: '#,##0.00',
-                                          locale: 'pt_BR',
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Transporte',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation3']!),
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.equals,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Flexible(
-                            child: Container(
-                              height: 160.0,
-                              constraints: const BoxConstraints(
-                                minWidth: 160.0,
-                                maxWidth: 200.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.moneyBillAlt,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: Text(
-                                        formatNumber(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .priceTotal,
-                                          formatType: FormatType.custom,
-                                          currency: 'R\$ ',
-                                          format: '#,##0.00',
-                                          locale: 'pt_BR',
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Total',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation4']!),
-                          ),
-                        ].divide(const SizedBox(width: 8.0)),
-                      ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: wrapWithModel(
-                            model:
-                                _model.cpOrderVisitAssetShowBottomNavBarModel,
-                            updateCallback: () => setState(() {}),
-                            child: const CpOrderVisitAssetShowBottomNavBarWidget(),
-                          ),
+                    Align(
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      child: FlutterFlowChoiceChips(
+                        options: const [
+                          ChipData('Transporte', FontAwesomeIcons.truck),
+                          ChipData('Ativos', FontAwesomeIcons.hotel),
+                          ChipData('Serviços', FontAwesomeIcons.tools)
+                        ],
+                        onChanged: (val) async {
+                          setState(
+                              () => _model.choiceChipsValue = val?.firstOrNull);
+                          setState(() {
+                            FFAppState().stOVAssetMenuOption =
+                                _model.choiceChipsValue!;
+                          });
+                        },
+                        selectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          textStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                          iconColor: FlutterFlowTheme.of(context).primary,
+                          iconSize: 18.0,
+                          labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                              4.0, 4.0, 4.0, 4.0),
+                          elevation: 0.0,
+                          borderColor: FlutterFlowTheme.of(context).primary,
+                          borderWidth: 2.0,
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
-                      ],
+                        unselectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                          iconColor: FlutterFlowTheme.of(context).secondaryText,
+                          iconSize: 18.0,
+                          labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                              4.0, 4.0, 4.0, 4.0),
+                          elevation: 0.0,
+                          borderColor: FlutterFlowTheme.of(context).alternate,
+                          borderWidth: 2.0,
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        chipSpacing: 8.0,
+                        rowSpacing: 8.0,
+                        multiselect: false,
+                        alignment: WrapAlignment.start,
+                        controller: _model.choiceChipsValueController ??=
+                            FormFieldController<List<String>>(
+                          [],
+                        ),
+                        wrapped: false,
+                      ).animateOnPageLoad(
+                          animationsMap['choiceChipsOnPageLoadAnimation']!),
                     ),
                     Builder(
                       builder: (context) {
-                        if (FFAppState().stOVShowNavBarOption == 'assets') {
+                        if (FFAppState().stOVAssetMenuOption == 'Transporte') {
+                          return Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'Transporte',
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall,
+                                        ),
+                                      ),
+                                      if (widget.ppProcessingId != 4)
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 25.0,
+                                          buttonSize: 50.0,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          icon: Icon(
+                                            Icons.add,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            size: 24.0,
+                                          ),
+                                          showLoadingIndicator: true,
+                                          onPressed: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child: SizedBox(
+                                                      height: double.infinity,
+                                                      child:
+                                                          MdOVVehicleNewWidget(
+                                                        ppOVid: widget.ppOVId,
+                                                        ppOId: widget.ppOId,
+                                                        ppOPId: widget.ppOPId,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                        ),
+                                    ],
+                                  ),
+                                  FutureBuilder<List<VOrdersVisitsVehiclesRow>>(
+                                    future:
+                                        VOrdersVisitsVehiclesTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eq(
+                                            'orderVisitId',
+                                            widget.ppOVId,
+                                          )
+                                          .order('vehicleDescription',
+                                              ascending: true),
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<VOrdersVisitsVehiclesRow>
+                                          listViewVOrdersVisitsVehiclesRowList =
+                                          snapshot.data!;
+                                      return ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount:
+                                            listViewVOrdersVisitsVehiclesRowList
+                                                .length,
+                                        itemBuilder: (context, listViewIndex) {
+                                          final listViewVOrdersVisitsVehiclesRow =
+                                              listViewVOrdersVisitsVehiclesRowList[
+                                                  listViewIndex];
+                                          return CpOVVehiclesListItemWidget(
+                                            key: Key(
+                                                'Key5xg_${listViewIndex}_of_${listViewVOrdersVisitsVehiclesRowList.length}'),
+                                            ppOVVehicleId:
+                                                listViewVOrdersVisitsVehiclesRow
+                                                    .id!,
+                                            ppProcessingId:
+                                                widget.ppProcessingId,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ].divide(const SizedBox(height: 8.0)),
+                              ),
+                            ),
+                          );
+                        } else if (FFAppState().stOVAssetMenuOption ==
+                            'Ativos') {
                           return Align(
                             alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Column(
@@ -581,18 +429,10 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                             .headlineSmall,
                                       ),
                                     ),
-                                    if (valueOrDefault<int>(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .processingId,
-                                          1,
-                                        ) !=
-                                        4)
+                                    if (widget.ppProcessingId != 4)
                                       FlutterFlowIconButton(
                                         borderColor: Colors.transparent,
-                                        borderRadius: 12.0,
-                                        borderWidth: 1.0,
+                                        borderRadius: 25.0,
                                         buttonSize: 50.0,
                                         fillColor: FlutterFlowTheme.of(context)
                                             .primary,
@@ -615,8 +455,20 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                             context.pushNamed(
                                               'pgOVAsset1Search',
                                               queryParameters: {
-                                                'visitId': serializeParam(
-                                                  widget.visitId,
+                                                'oVId': serializeParam(
+                                                  widget.ppOVId,
+                                                  ParamType.int,
+                                                ),
+                                                'unitId': serializeParam(
+                                                  widget.ppUnitId,
+                                                  ParamType.int,
+                                                ),
+                                                'orderId': serializeParam(
+                                                  widget.ppOId,
+                                                  ParamType.int,
+                                                ),
+                                                'oPId': serializeParam(
+                                                  widget.ppOPId,
                                                   ParamType.int,
                                                 ),
                                               }.withoutNulls,
@@ -652,31 +504,19 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                   ],
                                 ),
                                 FutureBuilder<List<VOrdersVisitsAssetsRow>>(
-                                  future:
-                                      (_model.requestCompleter2 ??= Completer<
-                                              List<VOrdersVisitsAssetsRow>>()
-                                            ..complete(
-                                                VOrdersVisitsAssetsTable()
-                                                    .queryRows(
-                                              queryFn: (q) => q.eq(
-                                                'orderVisitId',
-                                                valueOrDefault<int>(
-                                                  FFAppState()
-                                                      .stOVSelected
-                                                      .first
-                                                      .id,
-                                                  1,
-                                                ),
-                                              ),
-                                            )))
-                                          .future,
+                                  future: VOrdersVisitsAssetsTable().queryRows(
+                                    queryFn: (q) => q.eq(
+                                      'orderVisitId',
+                                      widget.ppOVId,
+                                    ),
+                                  ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {
                                       return Center(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
+                                          width: 40.0,
+                                          height: 40.0,
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
@@ -713,56 +553,53 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              await action_blocks
-                                                  .abOrderVisitAssetSelected(
-                                                context,
-                                                abOrderVisitAssetId:
-                                                    listViewAssetsVOrdersVisitsAssetsRow
-                                                        .id,
-                                              );
-                                              await action_blocks
-                                                  .abOVAssetActivitiesUpdate(
-                                                context,
-                                                abOVAssetId: FFAppState()
-                                                    .stOVAssetSelected
-                                                    .first
-                                                    .id,
-                                              );
+                                              if (widget.ppProcessingId != 4) {
+                                                await action_blocks
+                                                    .abOVAssetSelected(
+                                                  context,
+                                                  abOVAssetId:
+                                                      listViewAssetsVOrdersVisitsAssetsRow
+                                                          .id,
+                                                );
+                                                await action_blocks
+                                                    .abOVAssetActivitiesUpdate(
+                                                  context,
+                                                  abOVAssetId: FFAppState()
+                                                      .stOVAssetSelected
+                                                      .first
+                                                      .id,
+                                                );
 
-                                              context.pushNamed(
-                                                'pgOrderVisitAsset2Before',
-                                                queryParameters: {
-                                                  'operation': serializeParam(
-                                                    'before',
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
+                                                context.pushNamed(
+                                                  'pgOVAsset2Before',
+                                                  queryParameters: {
+                                                    'ppOperation':
+                                                        serializeParam(
+                                                      'before',
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                context.pushNamed(
+                                                  'pgOVAssetApproved',
+                                                  queryParameters: {
+                                                    'ppOVAssetId':
+                                                        serializeParam(
+                                                      listViewAssetsVOrdersVisitsAssetsRow
+                                                          .id,
+                                                      ParamType.int,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              }
                                             },
                                             child: CpOVAssetListCardWidget(
                                               key: Key(
-                                                  'Keymi8_${listViewAssetsIndex}_of_${listViewAssetsVOrdersVisitsAssetsRowList.length}'),
-                                              assetDescription:
+                                                  'Keye3p_${listViewAssetsIndex}_of_${listViewAssetsVOrdersVisitsAssetsRowList.length}'),
+                                              oVAssetId:
                                                   listViewAssetsVOrdersVisitsAssetsRow
-                                                      .description!,
-                                              unitDescription:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .beforeUnitDescription!,
-                                              assetCode:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .code!,
-                                              assetStatusDescription:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .beforeStatusDescription!,
-                                              assetTagDescription:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .beforeTagDescription!,
-                                              assetTagSubDescription:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .beforeTagSubDescription!,
-                                              processingId:
-                                                  listViewAssetsVOrdersVisitsAssetsRow
-                                                      .processingId!,
+                                                      .id!,
                                             ),
                                           ),
                                         );
@@ -773,8 +610,7 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                               ].divide(const SizedBox(height: 12.0)),
                             ),
                           );
-                        } else if (FFAppState().stOVShowNavBarOption ==
-                            'services') {
+                        } else {
                           return Align(
                             alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Column(
@@ -794,11 +630,7 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                             .headlineSmall,
                                       ),
                                     ),
-                                    if (FFAppState()
-                                            .stOVSelected
-                                            .first
-                                            .processingId !=
-                                        4)
+                                    if (widget.ppProcessingId != 4)
                                       InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -822,7 +654,14 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                           showLoadingIndicator: true,
                                           onPressed: () async {
                                             context.pushNamed(
-                                                'pgOVServicesSearch');
+                                              'pgOVServicesSearch',
+                                              queryParameters: {
+                                                'ppOVId': serializeParam(
+                                                  widget.ppOVId,
+                                                  ParamType.int,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                         ),
                                       ),
@@ -832,169 +671,19 @@ class _PgOVShowWidgetState extends State<PgOVShowWidget>
                                   model: _model.cpOVServicesListModel,
                                   updateCallback: () => setState(() {}),
                                   child: CpOVServicesListWidget(
-                                    orderVisitId:
-                                        FFAppState().stOVSelected.first.id,
+                                    ppOVId: widget.ppOVId,
+                                    ppProcessingId: widget.ppProcessingId,
                                   ),
                                 ),
                               ].divide(const SizedBox(height: 12.0)),
                             ),
                           );
-                        } else if (FFAppState().stOVShowNavBarOption ==
-                            'vehicles') {
-                          return Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
-                                      child: Text(
-                                        'Transporte',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
-                                      ),
-                                    ),
-                                    if (valueOrDefault<int>(
-                                          FFAppState()
-                                              .stOVSelected
-                                              .first
-                                              .processingId,
-                                          1,
-                                        ) !=
-                                        4)
-                                      FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 12.0,
-                                        borderWidth: 1.0,
-                                        buttonSize: 50.0,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        icon: Icon(
-                                          Icons.add,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
-                                          size: 24.0,
-                                        ),
-                                        showLoadingIndicator: true,
-                                        onPressed: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Colors.transparent,
-                                            enableDrag: false,
-                                            context: context,
-                                            builder: (context) {
-                                              return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child: const SizedBox(
-                                                    height: double.infinity,
-                                                    child:
-                                                        MdOVVehicleNewWidget(),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ).then(
-                                              (value) => safeSetState(() {}));
-                                        },
-                                      ),
-                                  ],
-                                ),
-                                FutureBuilder<List<VOrdersVisitsVehiclesRow>>(
-                                  future:
-                                      (_model.requestCompleter1 ??= Completer<
-                                              List<VOrdersVisitsVehiclesRow>>()
-                                            ..complete(
-                                                VOrdersVisitsVehiclesTable()
-                                                    .queryRows(
-                                              queryFn: (q) => q
-                                                  .eq(
-                                                    'orderVisitId',
-                                                    valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .id,
-                                                      1,
-                                                    ),
-                                                  )
-                                                  .order('vehicleDescription',
-                                                      ascending: true),
-                                            )))
-                                          .future,
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    List<VOrdersVisitsVehiclesRow>
-                                        listViewVehiclesVOrdersVisitsVehiclesRowList =
-                                        snapshot.data!;
-                                    return ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      primary: false,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount:
-                                          listViewVehiclesVOrdersVisitsVehiclesRowList
-                                              .length,
-                                      itemBuilder:
-                                          (context, listViewVehiclesIndex) {
-                                        final listViewVehiclesVOrdersVisitsVehiclesRow =
-                                            listViewVehiclesVOrdersVisitsVehiclesRowList[
-                                                listViewVehiclesIndex];
-                                        return Container(
-                                          decoration: const BoxDecoration(),
-                                          child: CpOVVehiclesListWidget(
-                                            key: Key(
-                                                'Key6de_${listViewVehiclesIndex}_of_${listViewVehiclesVOrdersVisitsVehiclesRowList.length}'),
-                                            orderVisitVehicle:
-                                                listViewVehiclesVOrdersVisitsVehiclesRow,
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              ].divide(const SizedBox(height: 8.0)),
-                            ),
-                          );
-                        } else {
-                          return Text(
-                            'Hello World',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          );
                         }
                       },
                     ),
-                  ].divide(const SizedBox(height: 12.0)),
+                  ]
+                      .divide(const SizedBox(height: 12.0))
+                      .addToEnd(const SizedBox(height: 32.0)),
                 ),
               ),
             ),

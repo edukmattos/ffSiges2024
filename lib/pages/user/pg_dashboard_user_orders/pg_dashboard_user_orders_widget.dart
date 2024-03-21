@@ -152,7 +152,7 @@ class _PgDashboardUserOrdersWidgetState
                   _model.lpsvOrdersView = 'ordersAnalysis';
                 });
 
-                context.pushNamed('pgOrderParentNew');
+                context.pushNamed('pgOPNew');
               },
               child: Icon(
                 Icons.add,
@@ -211,8 +211,8 @@ class _PgDashboardUserOrdersWidgetState
                         model: _model.cpOVInProgressShowModel,
                         updateCallback: () => setState(() {}),
                         child: CpOVInProgressShowWidget(
-                          orderId: FFAppState().asUserCurrent.orderIdInProgress,
-                          orderVisitId:
+                          ppOId: FFAppState().asUserCurrent.orderIdInProgress,
+                          ppOVId:
                               FFAppState().asUserCurrent.orderVisitIdInProgress,
                         ),
                       ),

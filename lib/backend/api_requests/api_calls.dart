@@ -149,6 +149,8 @@ class ApiTeamsGroup {
   static TeamsAllCall teamsAllCall = TeamsAllCall();
   static TeamsByDeparmentCall teamsByDeparmentCall = TeamsByDeparmentCall();
   static TeamsByIdCall teamsByIdCall = TeamsByIdCall();
+  static UsersAmountByTeamIdCall usersAmountByTeamIdCall =
+      UsersAmountByTeamIdCall();
 }
 
 class TeamsAllCall {
@@ -253,30 +255,60 @@ class TeamsByIdCall {
     );
   }
 
-  dynamic id(dynamic response) => getJsonField(
+  int? id(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$[:].id''',
-      );
-  dynamic code(dynamic response) => getJsonField(
+      ));
+  String? code(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$[:].code''',
-      );
-  dynamic description(dynamic response) => getJsonField(
+      ));
+  String? description(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$[:].description''',
-      );
-  dynamic departmentId(dynamic response) => getJsonField(
+      ));
+  int? departmentId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$[:].departmentId''',
-      );
-  dynamic isAvailable(dynamic response) => getJsonField(
+      ));
+  bool? isAvailable(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$[:].isAvailable''',
-      );
-  dynamic companyId(dynamic response) => getJsonField(
+      ));
+  int? companyId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$[:].companyId''',
-      );
+      ));
+}
+
+class UsersAmountByTeamIdCall {
+  Future<ApiCallResponse> call({
+    int? teamId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'usersAmountByTeamId',
+      apiUrl:
+          '${ApiTeamsGroup.baseUrl}v_users_teams_amount?teamId=eq.$teamId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? teamAmount(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].teamAmount''',
+      ));
 }
 
 /// End ApiTeams Group Code
@@ -352,7 +384,7 @@ class StatusesOrderVisitCall {
     return ApiManager.instance.makeApiCall(
       callName: 'statusesOrderVisit',
       apiUrl:
-          '${ApiOrdersStatusesGroup.baseUrl}ordersStatusess?id=gte.5&id=lte.6&select=id,code,description',
+          '${ApiOrdersStatusesGroup.baseUrl}ordersStatusess?id=gte.6&id=lte.7&select=id,code,description',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -682,13 +714,18 @@ class ApiUsersGroup {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+    'Content-Type': 'application/json',
   };
   static UserByEmailCall userByEmailCall = UserByEmailCall();
   static UserByIdCall userByIdCall = UserByIdCall();
   static UsersLeaderByTeamIdCall usersLeaderByTeamIdCall =
       UsersLeaderByTeamIdCall();
   static UsersByTeamIdCall usersByTeamIdCall = UsersByTeamIdCall();
+  static UsersByOVIdInProgressCall usersByOVIdInProgressCall =
+      UsersByOVIdInProgressCall();
   static TeamLeaderByIdCall teamLeaderByIdCall = TeamLeaderByIdCall();
+  static FiltersLeadersByContractsCall filtersLeadersByContractsCall =
+      FiltersLeadersByContractsCall();
 }
 
 class UserByEmailCall {
@@ -704,6 +741,7 @@ class UserByEmailCall {
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
       },
       params: {},
       returnBody: true,
@@ -853,6 +891,23 @@ class UserByEmailCall {
         response,
         r'''$[:].vehicleId''',
       ));
+  bool? isAvailable(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$[:].isAvailable''',
+      ));
+  bool? isOrderVisitIdInProgress(dynamic response) =>
+      castToType<bool>(getJsonField(
+        response,
+        r'''$[:].isOrderVisitIdInProgress''',
+      ));
+  int? contractId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].contractId''',
+      ));
+  int? teamAmount(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].teamAmount''',
+      ));
 }
 
 class UserByIdCall {
@@ -868,6 +923,7 @@ class UserByIdCall {
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
       },
       params: {},
       returnBody: true,
@@ -1017,6 +1073,23 @@ class UserByIdCall {
         response,
         r'''$[:].vehicleId''',
       ));
+  bool? isAvailable(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$[:].isAvailable''',
+      ));
+  int? contractId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].contractId''',
+      ));
+  int? teamAmount(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].teamAmount''',
+      ));
+  bool? isOrderVisitIdInProgress(dynamic response) =>
+      castToType<bool>(getJsonField(
+        response,
+        r'''$[:].isOrderVisitIdInProgress''',
+      ));
 }
 
 class UsersLeaderByTeamIdCall {
@@ -1033,6 +1106,7 @@ class UsersLeaderByTeamIdCall {
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
       },
       params: {},
       returnBody: true,
@@ -1055,13 +1129,15 @@ class UsersByTeamIdCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'usersByTeamId',
-      apiUrl: '${ApiUsersGroup.baseUrl}/v_users?teamId=eq.$teamId&select=id',
+      apiUrl:
+          '${ApiUsersGroup.baseUrl}/v_users?teamId=eq.$teamId&select=\'*\'',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
       },
       params: {},
       returnBody: true,
@@ -1071,11 +1147,32 @@ class UsersByTeamIdCall {
       alwaysAllowBody: false,
     );
   }
+}
 
-  int? id(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].id''',
-      ));
+class UsersByOVIdInProgressCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitIdInProgress,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'usersByOVIdInProgress',
+      apiUrl:
+          '${ApiUsersGroup.baseUrl}/v_users?orderVisitIdInProgress=eq.$orderVisitIdInProgress&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class TeamLeaderByIdCall {
@@ -1092,6 +1189,7 @@ class TeamLeaderByIdCall {
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
       },
       params: {},
       returnBody: true,
@@ -1209,6 +1307,40 @@ class TeamLeaderByIdCall {
       );
 }
 
+class FiltersLeadersByContractsCall {
+  Future<ApiCallResponse> call({
+    List<int>? contractsIdsList,
+  }) async {
+    final contractsIds = _serializeList(contractsIdsList);
+
+    final ffApiRequestBody = '''
+{
+  "contracts_ids": $contractsIds
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'filtersLeadersByContracts',
+      apiUrl:
+          '${ApiUsersGroup.baseUrl}/rpc/fc_dash_admin_leaders_contracts_filters',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End apiUsers Group Code
 
 /// Start apiOrdersVisitsTeams Group Code
@@ -1223,18 +1355,16 @@ class ApiOrdersVisitsTeamsGroup {
   };
   static ApiDtUsersByVisitIdCall apiDtUsersByVisitIdCall =
       ApiDtUsersByVisitIdCall();
-  static CountUsersByVisitIdCall countUsersByVisitIdCall =
-      CountUsersByVisitIdCall();
 }
 
 class ApiDtUsersByVisitIdCall {
   Future<ApiCallResponse> call({
-    int? visitId,
+    int? orderVisitId,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'apiDtUsersByVisitId',
       apiUrl:
-          '${ApiOrdersVisitsTeamsGroup.baseUrl}/v_orders_visits_teams?visitId=eq.$visitId&select=userId',
+          '${ApiOrdersVisitsTeamsGroup.baseUrl}/v_orders_visits_teams?orderVisitId=eq.$orderVisitId&select=userId',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -1254,40 +1384,6 @@ class ApiDtUsersByVisitIdCall {
   int? userId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$[:].userId''',
-      ));
-}
-
-class CountUsersByVisitIdCall {
-  Future<ApiCallResponse> call({
-    int? visitId,
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'countUsersByVisitId',
-      apiUrl:
-          '${ApiOrdersVisitsTeamsGroup.baseUrl}/v_users_count_by_orders_visits?visitId=eq.$visitId&select=\'*\'',
-      callType: ApiCallType.GET,
-      headers: {
-        'apiKey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-
-  int? visitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].visitId''',
-      ));
-  int? countUsers(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].counterUsers''',
       ));
 }
 
@@ -1843,6 +1939,7 @@ class ApiAssetsGroup {
     'Content-Type': 'application/json',
   };
   static AssetsSearchCall assetsSearchCall = AssetsSearchCall();
+  static AssetsByUnitIdCall assetsByUnitIdCall = AssetsByUnitIdCall();
   static AssetsSearchCopyCall assetsSearchCopyCall = AssetsSearchCopyCall();
   static AssetByIdCall assetByIdCall = AssetByIdCall();
 }
@@ -1978,6 +2075,39 @@ class AssetsSearchCall {
           .toList();
 }
 
+class AssetsByUnitIdCall {
+  Future<ApiCallResponse> call({
+    String? searchTerms = '',
+    int? unitId,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "search_terms": "$searchTerms",
+  "unit_id": $unitId
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'assetsByUnitId',
+      apiUrl: '${ApiAssetsGroup.baseUrl}rpc/fc_assets_search_unit',
+      callType: ApiCallType.POST,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class AssetsSearchCopyCall {
   Future<ApiCallResponse> call({
     String? searchTerms = '',
@@ -2075,53 +2205,6 @@ class AssetByIdCall {
       alwaysAllowBody: false,
     );
   }
-
-  int? id(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].id''',
-      ));
-  int? unitId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].unitId''',
-      ));
-  String? code(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].code''',
-      ));
-  String? description(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].description''',
-      ));
-  int? tagId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].tagId''',
-      ));
-  int? tagSubId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].tagSubId''',
-      ));
-  int? statusId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].statusId''',
-      ));
-  String? tagDescription(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].tagDescription''',
-      ));
-  String? tagSubDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].tagSubDescription''',
-      ));
-  String? statusDescription(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$[:].statusDescription''',
-      ));
-  String? unitDescription(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].unitDescription''',
-      ));
 }
 
 /// End apiAssets Group Code
@@ -2463,6 +2546,7 @@ class ApiOrdersGroup {
       OrdersOpenByLeaderIdCall();
   static OrdersByStatusIdAndDateCall ordersByStatusIdAndDateCall =
       OrdersByStatusIdAndDateCall();
+  static OrdersByParentIdCall ordersByParentIdCall = OrdersByParentIdCall();
   static FiltersCall filtersCall = FiltersCall();
   static OrdersParentOpenDashboardFiltersCall
       ordersParentOpenDashboardFiltersCall =
@@ -2556,6 +2640,32 @@ class OrdersByStatusIdAndDateCall {
       callName: 'ordersByStatusIdAndDate',
       apiUrl:
           '${ApiOrdersGroup.baseUrl}v_orders?statusId=eq.$statusId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrdersByParentIdCall {
+  Future<ApiCallResponse> call({
+    int? parentId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ordersByParentId',
+      apiUrl:
+          '${ApiOrdersGroup.baseUrl}v_orders?parentId=eq.$parentId&select=\'*\'',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -3285,6 +3395,8 @@ class ApiOrdersVisitsGroup {
       OrderVisitsOpenByTeamLeaderIdCall();
   static ServicesByOrderVisitIdCall servicesByOrderVisitIdCall =
       ServicesByOrderVisitIdCall();
+  static OrderVisitsByOrderIdCall orderVisitsByOrderIdCall =
+      OrderVisitsByOrderIdCall();
   static PriceServicesByOrderVisitIdCall priceServicesByOrderVisitIdCall =
       PriceServicesByOrderVisitIdCall();
   static PriceServicesUpdateByOrderVisitIdCall
@@ -3293,6 +3405,8 @@ class ApiOrdersVisitsGroup {
   static OrderVisitAddTrackerCall orderVisitAddTrackerCall =
       OrderVisitAddTrackerCall();
   static SearchFiltersCall searchFiltersCall = SearchFiltersCall();
+  static TeamAmountByVisitIdCall teamAmountByVisitIdCall =
+      TeamAmountByVisitIdCall();
 }
 
 class OrderVisitByIdCall {
@@ -3355,6 +3469,32 @@ class ServicesByOrderVisitIdCall {
       callName: 'servicesByOrderVisitId',
       apiUrl:
           '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits_services?orderVisitId=eq.$orderVisitId',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrderVisitsByOrderIdCall {
+  Future<ApiCallResponse> call({
+    int? orderId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'orderVisitsByOrderId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}v_orders_visits?orderId=eq.$orderId',
       callType: ApiCallType.GET,
       headers: {
         'apiKey':
@@ -3523,6 +3663,37 @@ class SearchFiltersCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class TeamAmountByVisitIdCall {
+  Future<ApiCallResponse> call({
+    int? orderVisitId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'teamAmountByVisitId',
+      apiUrl:
+          '${ApiOrdersVisitsGroup.baseUrl}/v_orders_visits_teams_amount?orderVisitId=eq.$orderVisitId&select=\'*\'',
+      callType: ApiCallType.GET,
+      headers: {
+        'apiKey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzc29weGNwcm9raW51cHh2cnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzODQ2NTgsImV4cCI6MjAxNDk2MDY1OH0.8GYsJN0LgL8gnKVKtojALRfxteiqdYSJo2KJSJe27K0',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? teamAmount(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].teamAmount''',
+      ));
 }
 
 /// End apiOrdersVisits Group Code

@@ -69,11 +69,7 @@ class _PgOVAsset3ActivitiesSearchWidgetState
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
             leading: Visibility(
-              visible: valueOrDefault<int>(
-                    FFAppState().stOVSelected.first.processingId,
-                    1,
-                  ) ==
-                  4,
+              visible: false,
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
@@ -86,14 +82,26 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                 ),
                 onPressed: () async {
                   context.pushNamed(
-                    'pgOVShow',
+                    'pgOVShowOrig',
                     queryParameters: {
-                      'visitId': serializeParam(
-                        FFAppState().stOVSelected.first.id,
+                      'ppOVId': serializeParam(
+                        FFAppState().stOVAssetSelected.first.orderVisitId,
                         ParamType.int,
                       ),
-                      'orderId': serializeParam(
-                        FFAppState().stOVSelected.first.orderId,
+                      'ppOId': serializeParam(
+                        FFAppState().stOVAssetSelected.first.orderId,
+                        ParamType.int,
+                      ),
+                      'ppProcessingId': serializeParam(
+                        FFAppState().stOVAssetSelected.first.processingId,
+                        ParamType.int,
+                      ),
+                      'ppUnitId': serializeParam(
+                        FFAppState().stOVAssetSelected.first.beforeUnitId,
+                        ParamType.int,
+                      ),
+                      'ppOPId': serializeParam(
+                        FFAppState().stOVAssetSelected.first.orderParentId,
                         ParamType.int,
                       ),
                     }.withoutNulls,
@@ -148,34 +156,8 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                   model: _model.cpOVAssetListCardModel,
                                   updateCallback: () => setState(() {}),
                                   child: CpOVAssetListCardWidget(
-                                    assetDescription: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .description,
-                                    unitDescription: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .beforeUnitDescription,
-                                    assetCode: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .code,
-                                    assetStatusDescription: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .beforeStatusDescription,
-                                    assetTagDescription: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .beforeTagDescription,
-                                    assetTagSubDescription: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .beforeTagSubDescription,
-                                    processingId: FFAppState()
-                                        .stOVAssetSelected
-                                        .first
-                                        .processingId,
+                                    oVAssetId:
+                                        FFAppState().stOVAssetSelected.first.id,
                                   ),
                                 ),
                               ),
@@ -199,22 +181,21 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                   decoration: const BoxDecoration(),
                                   child: Builder(
                                     builder: (context) {
-                                      final gcActivitiesSeletected =
-                                          FFAppState()
-                                              .stOVAssetActivities
-                                              .toList();
+                                      final gcOVAssetAcitivities = FFAppState()
+                                          .stOVAssetActivities
+                                          .map((e) => e)
+                                          .toList();
                                       return ListView.builder(
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
-                                        itemCount:
-                                            gcActivitiesSeletected.length,
+                                        itemCount: gcOVAssetAcitivities.length,
                                         itemBuilder: (context,
-                                            gcActivitiesSeletectedIndex) {
-                                          final gcActivitiesSeletectedItem =
-                                              gcActivitiesSeletected[
-                                                  gcActivitiesSeletectedIndex];
+                                            gcOVAssetAcitivitiesIndex) {
+                                          final gcOVAssetAcitivitiesItem =
+                                              gcOVAssetAcitivities[
+                                                  gcOVAssetAcitivitiesIndex];
                                           return Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -276,7 +257,7 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                                                         .start,
                                                                 children: [
                                                                   Text(
-                                                                    gcActivitiesSeletectedItem
+                                                                    gcOVAssetAcitivitiesItem
                                                                         .activityDescription,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -353,7 +334,7 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                                                     .tap,
                                                             child: Visibility(
                                                               visible: FFAppState()
-                                                                      .stOVSelected
+                                                                      .stOVAssetSelected
                                                                       .first
                                                                       .processingId !=
                                                                   4,
@@ -387,7 +368,7 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                                                         (rows) =>
                                                                             rows.eq(
                                                                       'id',
-                                                                      gcActivitiesSeletectedItem
+                                                                      gcOVAssetAcitivitiesItem
                                                                           .id,
                                                                     ),
                                                                   );
@@ -427,79 +408,102 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              wrapWithModel(
-                                model:
-                                    _model.cpDropdownOrdersTypesActivitiesModel,
-                                updateCallback: () => setState(() {}),
-                                child: const CpDropdownOrdersTypesActivitiesWidget(
-                                  hintText: 'Selecione uma atividade',
+                              if (FFAppState()
+                                      .stOVAssetSelected
+                                      .first
+                                      .processingId !=
+                                  4)
+                                wrapWithModel(
+                                  model: _model
+                                      .cpDropdownOrdersTypesActivitiesModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const CpDropdownOrdersTypesActivitiesWidget(
+                                    hintText: 'Selecione uma atividade',
+                                  ),
                                 ),
-                              ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Expanded(
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 1.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          _model.resOrderVisitAssetActivityAdded =
-                                              await OrdersVisitsAssetsActivitiesTable()
-                                                  .insert({
-                                            'activityId': _model
-                                                .cpDropdownOrdersTypesActivitiesModel
-                                                .dropdownOrdersTypesActivitiesValue,
-                                            'amount': 1.0,
-                                            'orderVisitAssetId': FFAppState()
-                                                .stOVAssetSelected
-                                                .first
-                                                .id,
-                                          });
-                                          await action_blocks
-                                              .abOVAssetActivitiesUpdate(
-                                            context,
-                                            abOVAssetId: FFAppState()
-                                                .stOVAssetSelected
-                                                .first
-                                                .id,
-                                          );
+                                  if (FFAppState()
+                                          .stOVAssetSelected
+                                          .first
+                                          .processingId !=
+                                      4)
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 1.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            _model.resOrderVisitAssetActivityAdded =
+                                                await OrdersVisitsAssetsActivitiesTable()
+                                                    .insert({
+                                              'activityId': _model
+                                                  .cpDropdownOrdersTypesActivitiesModel
+                                                  .dropdownOrdersTypesActivitiesValue,
+                                              'amount': 1.0,
+                                              'orderVisitAssetId': FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .id,
+                                              'orderVisitId': FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .orderVisitId,
+                                              'orderId': FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .orderId,
+                                              'orderParentId': FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .orderParentId,
+                                            });
+                                            await action_blocks
+                                                .abOVAssetActivitiesUpdate(
+                                              context,
+                                              abOVAssetId: FFAppState()
+                                                  .stOVAssetSelected
+                                                  .first
+                                                  .id,
+                                            );
 
-                                          setState(() {});
-                                        },
-                                        text: 'INCLUIR\n',
-                                        icon: const Icon(
-                                          Icons.add_circle,
-                                          size: 30.0,
-                                        ),
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          height: 50.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                  ),
-                                          elevation: 3.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                            setState(() {});
+                                          },
+                                          text: 'INCLUIR\n',
+                                          icon: const Icon(
+                                            Icons.add_circle,
+                                            size: 30.0,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 50.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .success,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.white,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
                                   FlutterFlowIconButton(
                                     borderColor:
                                         FlutterFlowTheme.of(context).primary,
@@ -515,8 +519,29 @@ class _PgOVAsset3ActivitiesSearchWidgetState
                                       size: 30.0,
                                     ),
                                     onPressed: () async {
-                                      context
-                                          .pushNamed('pgOrderVisitAssetMoving');
+                                      if (FFAppState()
+                                              .stOVAssetActivities.isNotEmpty) {
+                                        context.pushNamed('pgOVAssetMoving');
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Ops ...'),
+                                              content: const Text(
+                                                  'Informar ao menos UMA atividade'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
                                     },
                                   ),
                                 ].divide(const SizedBox(width: 12.0)),

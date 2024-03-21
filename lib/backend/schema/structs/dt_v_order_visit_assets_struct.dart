@@ -11,6 +11,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   DtVOrderVisitAssetsStruct({
     int? id,
+    int? orderParentId,
+    int? orderId,
+    int? orderTypeId,
     int? orderVisitId,
     int? assetId,
     String? code,
@@ -66,6 +69,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
     DateTime? approvedDateDateTime,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
+        _orderParentId = orderParentId,
+        _orderId = orderId,
+        _orderTypeId = orderTypeId,
         _orderVisitId = orderVisitId,
         _assetId = assetId,
         _code = code,
@@ -127,6 +133,28 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   set id(int? val) => _id = val;
   void incrementId(int amount) => _id = id + amount;
   bool hasId() => _id != null;
+
+  // "orderParentId" field.
+  int? _orderParentId;
+  int get orderParentId => _orderParentId ?? 0;
+  set orderParentId(int? val) => _orderParentId = val;
+  void incrementOrderParentId(int amount) =>
+      _orderParentId = orderParentId + amount;
+  bool hasOrderParentId() => _orderParentId != null;
+
+  // "orderId" field.
+  int? _orderId;
+  int get orderId => _orderId ?? 0;
+  set orderId(int? val) => _orderId = val;
+  void incrementOrderId(int amount) => _orderId = orderId + amount;
+  bool hasOrderId() => _orderId != null;
+
+  // "orderTypeId" field.
+  int? _orderTypeId;
+  int get orderTypeId => _orderTypeId ?? 0;
+  set orderTypeId(int? val) => _orderTypeId = val;
+  void incrementOrderTypeId(int amount) => _orderTypeId = orderTypeId + amount;
+  bool hasOrderTypeId() => _orderTypeId != null;
 
   // "orderVisitId" field.
   int? _orderVisitId;
@@ -492,6 +520,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   static DtVOrderVisitAssetsStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitAssetsStruct(
         id: castToType<int>(data['id']),
+        orderParentId: castToType<int>(data['orderParentId']),
+        orderId: castToType<int>(data['orderId']),
+        orderTypeId: castToType<int>(data['orderTypeId']),
         orderVisitId: castToType<int>(data['orderVisitId']),
         assetId: castToType<int>(data['assetId']),
         code: data['code'] as String?,
@@ -553,6 +584,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'id': _id,
+        'orderParentId': _orderParentId,
+        'orderId': _orderId,
+        'orderTypeId': _orderTypeId,
         'orderVisitId': _orderVisitId,
         'assetId': _assetId,
         'code': _code,
@@ -612,6 +646,18 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   Map<String, dynamic> toSerializableMap() => {
         'id': serializeParam(
           _id,
+          ParamType.int,
+        ),
+        'orderParentId': serializeParam(
+          _orderParentId,
+          ParamType.int,
+        ),
+        'orderId': serializeParam(
+          _orderId,
+          ParamType.int,
+        ),
+        'orderTypeId': serializeParam(
+          _orderTypeId,
           ParamType.int,
         ),
         'orderVisitId': serializeParam(
@@ -833,6 +879,21 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
       DtVOrderVisitAssetsStruct(
         id: deserializeParam(
           data['id'],
+          ParamType.int,
+          false,
+        ),
+        orderParentId: deserializeParam(
+          data['orderParentId'],
+          ParamType.int,
+          false,
+        ),
+        orderId: deserializeParam(
+          data['orderId'],
+          ParamType.int,
+          false,
+        ),
+        orderTypeId: deserializeParam(
+          data['orderTypeId'],
           ParamType.int,
           false,
         ),
@@ -1110,6 +1171,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   bool operator ==(Object other) {
     return other is DtVOrderVisitAssetsStruct &&
         id == other.id &&
+        orderParentId == other.orderParentId &&
+        orderId == other.orderId &&
+        orderTypeId == other.orderTypeId &&
         orderVisitId == other.orderVisitId &&
         assetId == other.assetId &&
         code == other.code &&
@@ -1168,6 +1232,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
   @override
   int get hashCode => const ListEquality().hash([
         id,
+        orderParentId,
+        orderId,
+        orderTypeId,
         orderVisitId,
         assetId,
         code,
@@ -1226,6 +1293,9 @@ class DtVOrderVisitAssetsStruct extends FFFirebaseStruct {
 
 DtVOrderVisitAssetsStruct createDtVOrderVisitAssetsStruct({
   int? id,
+  int? orderParentId,
+  int? orderId,
+  int? orderTypeId,
   int? orderVisitId,
   int? assetId,
   String? code,
@@ -1286,6 +1356,9 @@ DtVOrderVisitAssetsStruct createDtVOrderVisitAssetsStruct({
 }) =>
     DtVOrderVisitAssetsStruct(
       id: id,
+      orderParentId: orderParentId,
+      orderId: orderId,
+      orderTypeId: orderTypeId,
       orderVisitId: orderVisitId,
       assetId: assetId,
       code: code,

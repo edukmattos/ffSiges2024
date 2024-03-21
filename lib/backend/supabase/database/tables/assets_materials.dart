@@ -42,11 +42,11 @@ class AssetsMaterialsRow extends SupabaseDataRow {
   DateTime? get dateOut => getField<DateTime>('dateOut');
   set dateOut(DateTime? value) => setField<DateTime>('dateOut', value);
 
-  int? get recordIn => getField<int>('recordIn');
-  set recordIn(int? value) => setField<int>('recordIn', value);
+  int? get recorderIn => getField<int>('recorderIn');
+  set recorderIn(int? value) => setField<int>('recorderIn', value);
 
-  int? get recordOut => getField<int>('recordOut');
-  set recordOut(int? value) => setField<int>('recordOut', value);
+  int? get recorderOut => getField<int>('recorderOut');
+  set recorderOut(int? value) => setField<int>('recorderOut', value);
 
   int? get orderVisitAssetId => getField<int>('orderVisitAssetId');
   set orderVisitAssetId(int? value) =>

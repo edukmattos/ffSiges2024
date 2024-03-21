@@ -201,7 +201,7 @@ class _CpUnitCardShowWidgetState extends State<CpUnitCardShowWidget>
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primary,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
@@ -230,13 +230,7 @@ class _CpUnitCardShowWidgetState extends State<CpUnitCardShowWidget>
                           containerVUnitsRow?.descriptionFull,
                           '.',
                         ),
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
+                        style: FlutterFlowTheme.of(context).titleLarge,
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation1']!),
                     ),
@@ -252,12 +246,7 @@ class _CpUnitCardShowWidgetState extends State<CpUnitCardShowWidget>
                           containerVUnitsRow?.unitsTypesParentDescription,
                           '.',
                         )}',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: const Color(0xD2FFFFFF),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        style: FlutterFlowTheme.of(context).labelMedium,
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation2']!),
                     ),
@@ -280,10 +269,7 @@ class _CpUnitCardShowWidgetState extends State<CpUnitCardShowWidget>
                           containerVUnitsRow?.addressFull,
                           '.',
                         ),
-                        style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Readex Pro',
-                              color: const Color(0x9AFFFFFF),
-                            ),
+                        style: FlutterFlowTheme.of(context).labelLarge,
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation3']!),
                     ),

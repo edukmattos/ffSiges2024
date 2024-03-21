@@ -15,7 +15,10 @@ class CpAssetListItemCardWidget extends StatefulWidget {
     required this.tagSubDescription,
     required this.statusDescription,
     required this.unitDescription,
-  });
+    int? id,
+    bool? isLinkToShow,
+  })  : id = id ?? 1,
+        isLinkToShow = isLinkToShow ?? true;
 
   final String? code;
   final String? description;
@@ -23,6 +26,8 @@ class CpAssetListItemCardWidget extends StatefulWidget {
   final String? tagSubDescription;
   final String? statusDescription;
   final String? unitDescription;
+  final int id;
+  final bool isLinkToShow;
 
   @override
   State<CpAssetListItemCardWidget> createState() =>
@@ -231,22 +236,32 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
               padding: const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    valueOrDefault<String>(
-                      widget.description,
-                      'description',
-                    ),
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Outfit',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation1']!),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.description,
+                            '.',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Outfit',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ).animateOnPageLoad(
+                            animationsMap['textOnPageLoadAnimation1']!),
+                      ),
+                    ].divide(const SizedBox(width: 8.0)),
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -255,7 +270,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                         child: Text(
                           valueOrDefault<String>(
                             widget.code,
-                            'code',
+                            '.',
                           ),
                           style: FlutterFlowTheme.of(context)
                               .titleSmall
@@ -272,7 +287,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                           child: Text(
                             valueOrDefault<String>(
                               widget.statusDescription,
-                              'statusDescription',
+                              '.',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -297,7 +312,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                           child: Text(
                             valueOrDefault<String>(
                               widget.unitDescription,
-                              'unitDescription',
+                              '.',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -322,7 +337,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                           child: Text(
                             valueOrDefault<String>(
                               widget.tagDescription,
-                              'tagDescription',
+                              '.',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -340,7 +355,7 @@ class _CpAssetListItemCardWidgetState extends State<CpAssetListItemCardWidget>
                             child: Text(
                               valueOrDefault<String>(
                                 widget.tagSubDescription,
-                                'tagSubDescription',
+                                '.',
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall

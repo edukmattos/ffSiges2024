@@ -18,8 +18,23 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);
 
+  int? get orderParentId => getField<int>('orderParentId');
+  set orderParentId(int? value) => setField<int>('orderParentId', value);
+
+  int? get orderId => getField<int>('orderId');
+  set orderId(int? value) => setField<int>('orderId', value);
+
+  int? get orderTypeId => getField<int>('orderTypeId');
+  set orderTypeId(int? value) => setField<int>('orderTypeId', value);
+
   int? get orderVisitId => getField<int>('orderVisitId');
   set orderVisitId(int? value) => setField<int>('orderVisitId', value);
+
+  DateTime? get dateStart => getField<DateTime>('dateStart');
+  set dateStart(DateTime? value) => setField<DateTime>('dateStart', value);
+
+  DateTime? get dateEnd => getField<DateTime>('dateEnd');
+  set dateEnd(DateTime? value) => setField<DateTime>('dateEnd', value);
 
   int? get assetId => getField<int>('assetId');
   set assetId(int? value) => setField<int>('assetId', value);
@@ -35,6 +50,10 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
 
   int? get beforeUnitId => getField<int>('beforeUnitId');
   set beforeUnitId(int? value) => setField<int>('beforeUnitId', value);
+
+  String? get beforeUnitCode => getField<String>('beforeUnitCode');
+  set beforeUnitCode(String? value) =>
+      setField<String>('beforeUnitCode', value);
 
   String? get beforeUnitDescription =>
       getField<String>('beforeUnitDescription');
@@ -72,6 +91,10 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
   set beforeStatusDescription(String? value) =>
       setField<String>('beforeStatusDescription', value);
 
+  String? get beforeStatusCode => getField<String>('beforeStatusCode');
+  set beforeStatusCode(String? value) =>
+      setField<String>('beforeStatusCode', value);
+
   String? get beforeComments => getField<String>('beforeComments');
   set beforeComments(String? value) =>
       setField<String>('beforeComments', value);
@@ -97,6 +120,9 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
 
   int? get afterUnitId => getField<int>('afterUnitId');
   set afterUnitId(int? value) => setField<int>('afterUnitId', value);
+
+  String? get afterUnitCode => getField<String>('afterUnitCode');
+  set afterUnitCode(String? value) => setField<String>('afterUnitCode', value);
 
   String? get afterUnitDescription => getField<String>('afterUnitDescription');
   set afterUnitDescription(String? value) =>
@@ -132,6 +158,10 @@ class VOrdersVisitsAssetsRow extends SupabaseDataRow {
       getField<String>('afterStatusDescription');
   set afterStatusDescription(String? value) =>
       setField<String>('afterStatusDescription', value);
+
+  String? get afterStatusCode => getField<String>('afterStatusCode');
+  set afterStatusCode(String? value) =>
+      setField<String>('afterStatusCode', value);
 
   String? get afterComments => getField<String>('afterComments');
   set afterComments(String? value) => setField<String>('afterComments', value);

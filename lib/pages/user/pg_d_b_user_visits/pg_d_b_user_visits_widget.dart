@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_o_v_in_progress_show/cp_o_v_in_progress_show_widget.dart';
+import '/pages/user/cp_d_b_user_available/cp_d_b_user_available_widget.dart';
 import '/pages/visits/cp_o_v_list_item/cp_o_v_list_item_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -32,26 +33,6 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 20.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -72,7 +53,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation2': AnimationInfo(
+    'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 180.ms),
@@ -247,7 +228,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Meus Atendimentos',
+                'Atendimentos',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Outfit',
                       color: Colors.white,
@@ -286,14 +267,18 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            FFAppState().asUserCurrent.teamCode,
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).titleLarge,
-                          ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation1']!),
-                        ],
+                          Expanded(
+                            child: wrapWithModel(
+                              model: _model.cpDBUserAvailableModel,
+                              updateCallback: () => setState(() {}),
+                              child: CpDBUserAvailableWidget(
+                                toolTip: FFAppState().asUserCurrent.nameShort,
+                              ),
+                            ),
+                          ),
+                        ].divide(const SizedBox(width: 8.0)),
                       ),
                       Container(
                         height: 130.0,
@@ -348,7 +333,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                         .primaryText,
                                               ),
                                         ).animateOnPageLoad(animationsMap[
-                                            'textOnPageLoadAnimation2']!),
+                                            'textOnPageLoadAnimation']!),
                                       ],
                                     ),
                                     Padding(
@@ -786,13 +771,13 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                             );
 
                             context.pushNamed(
-                              'pgOVShow',
+                              'pgOVShowOrig',
                               queryParameters: {
-                                'visitId': serializeParam(
+                                'ppOVId': serializeParam(
                                   FFAppState().stOVSelected.first.id,
                                   ParamType.int,
                                 ),
-                                'orderId': serializeParam(
+                                'ppOId': serializeParam(
                                   FFAppState().stOVSelected.first.orderId,
                                   ParamType.int,
                                 ),
@@ -803,9 +788,9 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                             model: _model.cpOVInProgressShowModel,
                             updateCallback: () => setState(() {}),
                             child: CpOVInProgressShowWidget(
-                              orderId:
+                              ppOId:
                                   FFAppState().asUserCurrent.orderIdInProgress,
-                              orderVisitId: FFAppState()
+                              ppOVId: FFAppState()
                                   .asUserCurrent
                                   .orderVisitIdInProgress,
                             ),
@@ -893,9 +878,9 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOVShow',
+                                                            'pgOVShowOrig',
                                                             queryParameters: {
-                                                              'visitId':
+                                                              'ppOVId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -903,7 +888,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                                     .id,
                                                                 ParamType.int,
                                                               ),
-                                                              'orderId':
+                                                              'ppOId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -918,10 +903,10 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             CpOVListItemWidget(
                                                           key: Key(
                                                               'Keycho_${gcOrdersVisitsProcessing1Index}_of_${gcOrdersVisitsProcessing1.length}'),
-                                                          orderId:
+                                                          ppOId:
                                                               gcOrdersVisitsProcessing1Item
                                                                   .orderId,
-                                                          orderVisitId:
+                                                          ppOVId:
                                                               gcOrdersVisitsProcessing1Item
                                                                   .id,
                                                         ),
@@ -1004,9 +989,9 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOVShow',
+                                                            'pgOVShowOrig',
                                                             queryParameters: {
-                                                              'visitId':
+                                                              'ppOVId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -1014,7 +999,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                                     .id,
                                                                 ParamType.int,
                                                               ),
-                                                              'orderId':
+                                                              'ppOId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -1029,10 +1014,10 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             CpOVListItemWidget(
                                                           key: Key(
                                                               'Keyhw0_${gcOrdersVisitsProcessing2Index}_of_${gcOrdersVisitsProcessing2.length}'),
-                                                          orderId:
+                                                          ppOId:
                                                               gcOrdersVisitsProcessing2Item
                                                                   .orderId,
-                                                          orderVisitId:
+                                                          ppOVId:
                                                               gcOrdersVisitsProcessing2Item
                                                                   .id,
                                                         ),
@@ -1113,9 +1098,9 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                           );
 
                                                           context.pushNamed(
-                                                            'pgOVShow',
+                                                            'pgOVShowOrig',
                                                             queryParameters: {
-                                                              'visitId':
+                                                              'ppOVId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -1123,7 +1108,7 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                                     .id,
                                                                 ParamType.int,
                                                               ),
-                                                              'orderId':
+                                                              'ppOId':
                                                                   serializeParam(
                                                                 FFAppState()
                                                                     .stOVSelected
@@ -1138,10 +1123,10 @@ class _PgDBUserVisitsWidgetState extends State<PgDBUserVisitsWidget>
                                                             CpOVListItemWidget(
                                                           key: Key(
                                                               'Keypnf_${gcOrdersVisitsProcessing3Index}_of_${gcOrdersVisitsProcessing3.length}'),
-                                                          orderId:
+                                                          ppOId:
                                                               gcOrdersVisitsProcessing3Item
                                                                   .orderId,
-                                                          orderVisitId:
+                                                          ppOVId:
                                                               gcOrdersVisitsProcessing3Item
                                                                   .id,
                                                         ),

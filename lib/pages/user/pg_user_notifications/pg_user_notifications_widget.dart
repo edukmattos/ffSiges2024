@@ -136,41 +136,7 @@ class _PgUserNotificationsWidgetState extends State<PgUserNotificationsWidget> {
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
-                        onTap: () async {
-                          if (listViewUsersNotificationsRow.type ==
-                              'orderScheduled') {
-                            context.pushNamed(
-                              'pgOrderShow',
-                              queryParameters: {
-                                'orderId': serializeParam(
-                                  listViewUsersNotificationsRow.orderId,
-                                  ParamType.int,
-                                ),
-                              }.withoutNulls,
-                            );
-
-                            await UsersNotificationsTable().delete(
-                              matchingRows: (rows) => rows.eq(
-                                'id',
-                                listViewUsersNotificationsRow.id,
-                              ),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Notificação excluída',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-                          }
-                        },
+                        onTap: () async {},
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -200,6 +166,9 @@ class _PgUserNotificationsWidgetState extends State<PgUserNotificationsWidget> {
                                     key: Key(
                                         'Keyfn5_${listViewIndex}_of_${listViewUsersNotificationsRowList.length}'),
                                     size: 50,
+                                    toolTip: 'User',
+                                    isAvailable: true,
+                                    isOrderVisitIdInProgress: true,
                                   ),
                                 Expanded(
                                   child: Padding(

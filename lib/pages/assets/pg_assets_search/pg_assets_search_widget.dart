@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/assets/cp_asset_list_item_card/cp_asset_list_item_card_widget.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
@@ -87,13 +86,6 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    valueOrDefault<String>(
-                      _model.assetQrBarCode,
-                      'scanCoded',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -101,8 +93,9 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                         child: wrapWithModel(
                           model: _model.cpInputTextSearchModel,
                           updateCallback: () => setState(() {}),
-                          child: const CpInputTextWidget(
-                            labelText: 'informe o código ou descrição',
+                          child: CpInputTextWidget(
+                            initialValue: _model.assetQrBarCode,
+                            labelText: 'Código',
                             isReadOnly: false,
                           ),
                         ),
@@ -186,74 +179,59 @@ class _PgAssetsSearchWidgetState extends State<PgAssetsSearchWidget> {
                       ),
                     ].divide(const SizedBox(width: 8.0)),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      if (_model.cpInputTextSearchModel.inputTextController
-                                  .text !=
-                              '')
-                        Builder(
-                          builder: (context) {
-                            final assets = FFAppState().stAssets.toList();
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: assets.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 8.0),
-                              itemBuilder: (context, assetsIndex) {
-                                final assetsItem = assets[assetsIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await action_blocks.abAssetSelected(
-                                      context,
-                                      abAssetId: valueOrDefault<int>(
-                                        assetsItem.id,
-                                        0,
-                                      ),
-                                    );
-
-                                    context.pushNamed('pgAssetShow');
-                                  },
-                                  child: CpAssetListItemCardWidget(
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if (_model.cpInputTextSearchModel.inputTextController
+                                    .text !=
+                                '')
+                          Builder(
+                            builder: (context) {
+                              final gcAssets = FFAppState().stAssets.toList();
+                              return ListView.separated(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: gcAssets.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 8.0),
+                                itemBuilder: (context, gcAssetsIndex) {
+                                  final gcAssetsItem = gcAssets[gcAssetsIndex];
+                                  return CpAssetListItemCardWidget(
                                     key: Key(
-                                        'Keyiiz_${assetsIndex}_of_${assets.length}'),
+                                        'Keyiiz_${gcAssetsIndex}_of_${gcAssets.length}'),
                                     code: valueOrDefault<String>(
-                                      assetsItem.code,
+                                      gcAssetsItem.code,
                                       'code',
                                     ),
                                     description: valueOrDefault<String>(
-                                      assetsItem.description,
+                                      gcAssetsItem.description,
                                       'description',
                                     ),
                                     tagDescription: valueOrDefault<String>(
-                                      assetsItem.tagDescription,
+                                      gcAssetsItem.tagDescription,
                                       'tagDescription',
                                     ),
                                     tagSubDescription: valueOrDefault<String>(
-                                      assetsItem.tagSubDescription,
+                                      gcAssetsItem.tagSubDescription,
                                       'tagSubDescription',
                                     ),
                                     statusDescription: valueOrDefault<String>(
-                                      assetsItem.statusDescription,
+                                      gcAssetsItem.statusDescription,
                                       'statusDescription',
                                     ),
                                     unitDescription: valueOrDefault<String>(
-                                      assetsItem.unitDescription,
+                                      gcAssetsItem.unitDescription,
                                       'unitDescription',
                                     ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
-                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                      ],
+                    ),
                   ),
                 ].divide(const SizedBox(height: 12.0)),
               ),

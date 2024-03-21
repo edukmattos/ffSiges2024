@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -9,8 +10,8 @@ import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import 'pg_o_v_asset1_search_model.dart';
 export 'pg_o_v_asset1_search_model.dart';
@@ -18,10 +19,19 @@ export 'pg_o_v_asset1_search_model.dart';
 class PgOVAsset1SearchWidget extends StatefulWidget {
   const PgOVAsset1SearchWidget({
     super.key,
-    required this.visitId,
-  });
+    int? oVId,
+    int? unitId,
+    int? orderId,
+    int? oPId,
+  })  : oVId = oVId ?? 1,
+        unitId = unitId ?? 1,
+        orderId = orderId ?? 1,
+        oPId = oPId ?? 1;
 
-  final int? visitId;
+  final int oVId;
+  final int unitId;
+  final int orderId;
+  final int oPId;
 
   @override
   State<PgOVAsset1SearchWidget> createState() => _PgOVAsset1SearchWidgetState();
@@ -123,7 +133,7 @@ class _PgOVAsset1SearchWidgetState extends State<PgOVAsset1SearchWidget> {
                       model: _model.cpDropdownUnitsModel,
                       updateCallback: () => setState(() {}),
                       child: CpDropdownUnitsWidget(
-                        initialValue: FFAppState().stOSelected.first.unitId,
+                        initialValue: widget.unitId,
                       ),
                     ),
                     Row(
@@ -133,8 +143,9 @@ class _PgOVAsset1SearchWidgetState extends State<PgOVAsset1SearchWidget> {
                           child: wrapWithModel(
                             model: _model.cpInputTextSearchModel,
                             updateCallback: () => setState(() {}),
-                            child: const CpInputTextWidget(
-                              labelText: 'informe o código ou descrição',
+                            child: CpInputTextWidget(
+                              initialValue: _model.assetQrBarCode,
+                              labelText: 'Código/Descrição',
                               isReadOnly: false,
                             ),
                           ),
@@ -153,13 +164,25 @@ class _PgOVAsset1SearchWidgetState extends State<PgOVAsset1SearchWidget> {
                           showLoadingIndicator: true,
                           onPressed: () async {
                             _model.resAssets =
-                                await ApiAssetsGroup.assetsSearchCall.call(
+                                await ApiAssetsGroup.assetsByUnitIdCall.call(
                               searchTerms: _model.cpInputTextSearchModel
                                   .inputTextController.text,
+                              unitId: _model
+                                  .cpDropdownUnitsModel.dropdownUnitsValue,
                             );
                             if ((_model.resAssets?.succeeded ?? true)) {
-                              setState(() => _model.apiRequestCompleter = null);
-                              await _model.waitForApiRequestCompleted();
+                              setState(() {
+                                FFAppState().stOVAssetsSearchResults =
+                                    ((_model.resAssets?.jsonBody ?? '')
+                                                .toList()
+                                                .map<DtVAssetStruct?>(
+                                                    DtVAssetStruct.maybeFromMap)
+                                                .toList()
+                                            as Iterable<DtVAssetStruct?>)
+                                        .withoutNulls
+                                        .toList()
+                                        .cast<DtVAssetStruct>();
+                              });
                             }
 
                             setState(() {});
@@ -176,230 +199,180 @@ class _PgOVAsset1SearchWidgetState extends State<PgOVAsset1SearchWidget> {
                             color: FlutterFlowTheme.of(context).primaryBtnText,
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
+                          onPressed: () async {
+                            _model.assetQrBarCode =
+                                await FlutterBarcodeScanner.scanBarcode(
+                              '#C62828', // scanning line color
+                              'Sair', // cancel button text
+                              true, // whether to show the flash icon
+                              ScanMode.QR,
+                            );
+
+                            setState(() {});
                           },
                         ),
                       ].divide(const SizedBox(width: 8.0)),
                     ),
-                    FutureBuilder<ApiCallResponse>(
-                      future: (_model.apiRequestCompleter ??=
-                              Completer<ApiCallResponse>()
-                                ..complete(ApiAssetsGroup.assetsSearchCall.call(
-                                  searchTerms: _model.cpInputTextSearchModel
-                                      .inputTextController.text,
-                                )))
-                          .future,
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        final containerAssetsSearchResponse = snapshot.data!;
-                        return Container(
-                          decoration: const BoxDecoration(),
-                          child: Builder(
-                            builder: (context) {
-                              final assetsResult = getJsonField(
-                                containerAssetsSearchResponse.jsonBody,
-                                r'''$''',
-                              ).toList();
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: assetsResult.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 12.0),
-                                itemBuilder: (context, assetsResultIndex) {
-                                  final assetsResultItem =
-                                      assetsResult[assetsResultIndex];
-                                  return InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await action_blocks.abAssetSelected(
-                                        context,
-                                        abAssetId: getJsonField(
-                                          assetsResultItem,
-                                          r'''$.id''',
-                                        ),
-                                      );
-                                      _model.resOrderVisitAssetIsExist =
-                                          await action_blocks
-                                              .abOrderVisitAssetIsExist(
-                                        context,
-                                        abOrderVisitId: valueOrDefault<int>(
-                                          FFAppState().stOVSelected.first.id,
-                                          1,
-                                        ),
-                                        abAssetId: FFAppState()
-                                            .stAssetSeleted
-                                            .first
-                                            .id,
-                                      );
-                                      if (_model.resOrderVisitAssetIsExist!) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'ATIVO já associado.',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
-                                              ),
+                    Container(
+                      decoration: const BoxDecoration(),
+                      child: Visibility(
+                        visible:
+                            FFAppState().stOVAssetsSearchResults.isNotEmpty,
+                        child: Builder(
+                          builder: (context) {
+                            final gcAssets = FFAppState()
+                                .stOVAssetsSearchResults
+                                .map((e) => e)
+                                .toList();
+                            return ListView.separated(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: gcAssets.length,
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(height: 12.0),
+                              itemBuilder: (context, gcAssetsIndex) {
+                                final gcAssetsItem = gcAssets[gcAssetsIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await action_blocks.abAssetSelected(
+                                      context,
+                                      abAssetId: gcAssetsItem.id,
+                                    );
+                                    _model.resOrderVisitAssetIsExist =
+                                        await action_blocks.abOVAssetIsExist(
+                                      context,
+                                      abOVId: widget.oVId,
+                                      abAssetId:
+                                          FFAppState().stAssetSeleted.first.id,
+                                    );
+                                    if (_model.resOrderVisitAssetIsExist!) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'ATIVO já associado.',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
                                           ),
-                                        );
-                                      } else {
-                                        _model.resOrderVisitAssetAdded =
-                                            await OrdersVisitsAssetsTable()
-                                                .insert({
-                                          'assetId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .id,
-                                          'orderVisitId': valueOrDefault<int>(
-                                            FFAppState().stOVSelected.first.id,
-                                            1,
-                                          ),
-                                          'beforeUnitId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .unitId,
-                                          'beforeTagId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .tagId,
-                                          'beforeTagSubId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .tagSubId,
-                                          'beforeStatusId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .statusId,
-                                          'afterUnitId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .unitId,
-                                          'afterTagId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .tagId,
-                                          'afterTagSubId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .tagSubId,
-                                          'afterStatusId': FFAppState()
-                                              .stAssetSeleted
-                                              .first
-                                              .statusId,
-                                          'processingId': 1,
-                                        });
-                                      }
-
-                                      _model.resOrderVisitAssetExist10 =
-                                          await ApiOrdersVisitsAssetsGroup
-                                              .idByvisitIdNassetIdCall
-                                              .call(
-                                        orderVisitId: valueOrDefault<int>(
-                                          FFAppState().stOVSelected.first.id,
-                                          1,
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
                                         ),
-                                        assetId: FFAppState()
+                                      );
+                                    } else {
+                                      _model.resOrderVisitAssetAdded =
+                                          await OrdersVisitsAssetsTable()
+                                              .insert({
+                                        'assetId': gcAssetsItem.id,
+                                        'orderVisitId': widget.oVId,
+                                        'beforeUnitId': FFAppState()
                                             .stAssetSeleted
                                             .first
-                                            .id,
-                                      );
-                                      await action_blocks
-                                          .abOrderVisitAssetSelected(
-                                        context,
-                                        abOrderVisitAssetId:
-                                            ApiOrdersVisitsAssetsGroup
-                                                .idByvisitIdNassetIdCall
-                                                .id(
-                                          (_model.resOrderVisitAssetExist10
-                                                  ?.jsonBody ??
-                                              ''),
+                                            .unitId,
+                                        'beforeTagId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .tagId,
+                                        'beforeTagSubId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .tagSubId,
+                                        'beforeStatusId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .statusId,
+                                        'afterUnitId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .unitId,
+                                        'afterTagId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .tagId,
+                                        'afterTagSubId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .tagSubId,
+                                        'afterStatusId': FFAppState()
+                                            .stAssetSeleted
+                                            .first
+                                            .statusId,
+                                        'processingId': 1,
+                                        'orderId': widget.orderId,
+                                        'orderParentId': widget.oPId,
+                                      });
+                                    }
+
+                                    _model.resOrderVisitAssetExist10 =
+                                        await ApiOrdersVisitsAssetsGroup
+                                            .idByvisitIdNassetIdCall
+                                            .call(
+                                      orderVisitId: widget.oVId,
+                                      assetId: gcAssetsItem.id,
+                                    );
+                                    await action_blocks.abOVAssetSelected(
+                                      context,
+                                      abOVAssetId: ApiOrdersVisitsAssetsGroup
+                                          .idByvisitIdNassetIdCall
+                                          .id(
+                                        (_model.resOrderVisitAssetExist10
+                                                ?.jsonBody ??
+                                            ''),
+                                      ),
+                                    );
+
+                                    context.pushNamed(
+                                      'pgOVAsset2Before',
+                                      queryParameters: {
+                                        'ppOperation': serializeParam(
+                                          'before',
+                                          ParamType.String,
                                         ),
-                                      );
+                                      }.withoutNulls,
+                                    );
 
-                                      context.pushNamed(
-                                        'pgOrderVisitAsset2Before',
-                                        queryParameters: {
-                                          'operation': serializeParam(
-                                            'before',
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                      );
+                                    await action_blocks.abOVProcessingCheck(
+                                      context,
+                                      abOVId: valueOrDefault<int>(
+                                        FFAppState().stOVSelected.first.id,
+                                        1,
+                                      ),
+                                    );
+                                    setState(() {});
 
-                                      await action_blocks
-                                          .abOrderVisitProcessingCheck(
-                                        context,
-                                        abOrderVisitId: valueOrDefault<int>(
-                                          FFAppState().stOVSelected.first.id,
-                                          1,
-                                        ),
-                                      );
-                                      setState(() {});
-
-                                      setState(() {});
-                                    },
-                                    child: CpAssetListItemCardWidget(
-                                      key: Key(
-                                          'Keyxu8_${assetsResultIndex}_of_${assetsResult.length}'),
-                                      code: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.code''',
-                                      ).toString(),
-                                      description: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.description''',
-                                      ).toString(),
-                                      tagDescription: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.tagDescription''',
-                                      ).toString(),
-                                      tagSubDescription: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.tagSubDescription''',
-                                      ).toString(),
-                                      statusDescription: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.statusDescription''',
-                                      ).toString(),
-                                      unitDescription: getJsonField(
-                                        assetsResultItem,
-                                        r'''$.unitDescription''',
-                                      ).toString(),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      },
+                                    setState(() {});
+                                  },
+                                  child: CpAssetListItemCardWidget(
+                                    key: Key(
+                                        'Keyxu8_${gcAssetsIndex}_of_${gcAssets.length}'),
+                                    code: gcAssetsItem.code,
+                                    description: gcAssetsItem.description,
+                                    tagDescription: gcAssetsItem.tagDescription,
+                                    tagSubDescription:
+                                        gcAssetsItem.tagSubDescription,
+                                    statusDescription:
+                                        gcAssetsItem.statusDescription,
+                                    unitDescription:
+                                        gcAssetsItem.unitDescription,
+                                    id: gcAssetsItem.id,
+                                    isLinkToShow: false,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ].divide(const SizedBox(height: 12.0)),
                 ),

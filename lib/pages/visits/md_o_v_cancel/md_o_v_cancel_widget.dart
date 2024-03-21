@@ -21,10 +21,10 @@ export 'md_o_v_cancel_model.dart';
 class MdOVCancelWidget extends StatefulWidget {
   const MdOVCancelWidget({
     super.key,
-    required this.visitId,
-  });
+    int? oVId,
+  }) : oVId = oVId ?? 1;
 
-  final int? visitId;
+  final int oVId;
 
   @override
   State<MdOVCancelWidget> createState() => _MdOVCancelWidgetState();
@@ -92,7 +92,7 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.resOrderVisitTeamCurrent =
           await ApiOrdersVisitsTeamsGroup.apiDtUsersByVisitIdCall.call(
-        visitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
+        orderVisitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
       );
       setState(() {
         _model.lcsvUsersByVisitId =
@@ -413,36 +413,9 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                     matchingRows: (rows) =>
                                                         rows.eq(
                                                       'id',
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .id,
+                                                      widget.oVId,
                                                     ),
                                                     returnRows: true,
-                                                  );
-                                                  await action_blocks
-                                                      .abOVSelected(
-                                                    context,
-                                                    abOrderVisitId:
-                                                        valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .id,
-                                                      1,
-                                                    ),
-                                                  );
-                                                  await action_blocks
-                                                      .abOSelected(
-                                                    context,
-                                                    abOrderId:
-                                                        valueOrDefault<int>(
-                                                      FFAppState()
-                                                          .stOVSelected
-                                                          .first
-                                                          .orderId,
-                                                      1,
-                                                    ),
                                                   );
                                                   setState(() {
                                                     FFAppState().stCounterLoop =
@@ -467,6 +440,9 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                             null,
                                                         'orderVisitInProgressTeamLeaderId':
                                                             null,
+                                                        'isAvailable': true,
+                                                        'isOrderVisitIdInProgress':
+                                                            false,
                                                       },
                                                       matchingRows: (rows) =>
                                                           rows.eq(
@@ -505,6 +481,9 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                       'statusDate': supaSerialize<
                                                               DateTime>(
                                                           getCurrentTimestamp),
+                                                      'cancelReasonId': _model
+                                                          .cpDropdownOrdersCancelReasonsModel
+                                                          .dropdownOrdersCancelReasonsValue,
                                                     },
                                                     matchingRows: (rows) =>
                                                         rows.eq(
@@ -532,9 +511,9 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                   });
 
                                                   context.pushNamed(
-                                                    'pgOVShow',
+                                                    'pgOVShowOrig',
                                                     queryParameters: {
-                                                      'visitId': serializeParam(
+                                                      'ppOVId': serializeParam(
                                                         valueOrDefault<int>(
                                                           FFAppState()
                                                               .stOVSelected
@@ -544,7 +523,7 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                         ),
                                                         ParamType.int,
                                                       ),
-                                                      'orderId': serializeParam(
+                                                      'ppOId': serializeParam(
                                                         valueOrDefault<int>(
                                                           FFAppState()
                                                               .stOVSelected
@@ -561,7 +540,7 @@ class _MdOVCancelWidgetState extends State<MdOVCancelWidget>
                                                       const Duration(
                                                           milliseconds: 5000));
                                                   await action_blocks
-                                                      .abOrderParentEvents(
+                                                      .abOPEvents(
                                                     context,
                                                     abOrderParentId:
                                                         valueOrDefault<int>(

@@ -13,6 +13,7 @@ export 'dt_user_struct.dart';
 export 'dt_user_leader_by_team_struct.dart';
 export 'dt_user_permission_struct.dart';
 export 'dt_v_asset_struct.dart';
+export 'dt_v_asset_materials_struct.dart';
 export 'dt_v_contract_struct.dart';
 export 'dt_v_contract_services_struct.dart';
 export 'dt_v_order_struct.dart';

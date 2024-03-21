@@ -1,25 +1,32 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/assets/cp_asset_datasheet1/cp_asset_datasheet1_widget.dart';
-import '/pages/assets/cp_asset_list_item_card/cp_asset_list_item_card_widget.dart';
-import '/pages/assets/cp_asset_materials/cp_asset_materials_widget.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/assets/cp_asset_show_bottom_nav_bar/cp_asset_show_bottom_nav_bar_widget.dart';
+import '/pages/assets/cp_asset_show_card/cp_asset_show_card_widget.dart';
+import '/pages/components/cp_menu/cp_menu_widget.dart';
+import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import 'pg_asset_show_widget.dart' show PgAssetShowWidget;
 import 'package:flutter/material.dart';
 
 class PgAssetShowModel extends FlutterFlowModel<PgAssetShowWidget> {
   ///  Local state fields for this page.
 
-  String lpsvNavBarOption = 'components';
+  String? lpsvAssetView;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for cpAssetListItemCard component.
-  late CpAssetListItemCardModel cpAssetListItemCardModel;
-  // Model for cpAssetMaterials component.
-  late CpAssetMaterialsModel cpAssetMaterialsModel;
-  // Model for cpAssetDatasheet1 component.
-  late CpAssetDatasheet1Model cpAssetDatasheet1Model;
+  // Model for cpNotificationsIcon component.
+  late CpNotificationsIconModel cpNotificationsIconModel;
+  // Model for cpMenu component.
+  late CpMenuModel cpMenuModel;
+  // Model for cpAssetShowCard component.
+  late CpAssetShowCardModel cpAssetShowCardModel;
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
   // Model for cpAssetShowBottomNavBar component.
   late CpAssetShowBottomNavBarModel cpAssetShowBottomNavBarModel;
 
@@ -27,11 +34,10 @@ class PgAssetShowModel extends FlutterFlowModel<PgAssetShowWidget> {
 
   @override
   void initState(BuildContext context) {
-    cpAssetListItemCardModel =
-        createModel(context, () => CpAssetListItemCardModel());
-    cpAssetMaterialsModel = createModel(context, () => CpAssetMaterialsModel());
-    cpAssetDatasheet1Model =
-        createModel(context, () => CpAssetDatasheet1Model());
+    cpNotificationsIconModel =
+        createModel(context, () => CpNotificationsIconModel());
+    cpMenuModel = createModel(context, () => CpMenuModel());
+    cpAssetShowCardModel = createModel(context, () => CpAssetShowCardModel());
     cpAssetShowBottomNavBarModel =
         createModel(context, () => CpAssetShowBottomNavBarModel());
   }
@@ -39,9 +45,9 @@ class PgAssetShowModel extends FlutterFlowModel<PgAssetShowWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpAssetListItemCardModel.dispose();
-    cpAssetMaterialsModel.dispose();
-    cpAssetDatasheet1Model.dispose();
+    cpNotificationsIconModel.dispose();
+    cpMenuModel.dispose();
+    cpAssetShowCardModel.dispose();
     cpAssetShowBottomNavBarModel.dispose();
   }
 

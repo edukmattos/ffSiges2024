@@ -27,4 +27,13 @@ class OrdersVisitsAssetsActivitiesRow extends SupabaseDataRow {
 
   double? get amount => getField<double>('amount');
   set amount(double? value) => setField<double>('amount', value);
+
+  int? get orderVisitId => getField<int>('orderVisitId');
+  set orderVisitId(int? value) => setField<int>('orderVisitId', value);
+
+  int? get orderId => getField<int>('orderId');
+  set orderId(int? value) => setField<int>('orderId', value);
+
+  int? get orderParentId => getField<int>('orderParentId');
+  set orderParentId(int? value) => setField<int>('orderParentId', value);
 }

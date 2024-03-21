@@ -24,12 +24,11 @@ class VAssetsMaterialsRow extends SupabaseDataRow {
   int? get materialId => getField<int>('materialId');
   set materialId(int? value) => setField<int>('materialId', value);
 
-  String? get materialCode => getField<String>('materialCode');
-  set materialCode(String? value) => setField<String>('materialCode', value);
+  String? get code => getField<String>('code');
+  set code(String? value) => setField<String>('code', value);
 
-  String? get materialDescription => getField<String>('materialDescription');
-  set materialDescription(String? value) =>
-      setField<String>('materialDescription', value);
+  String? get description => getField<String>('description');
+  set description(String? value) => setField<String>('description', value);
 
   String? get brand => getField<String>('brand');
   set brand(String? value) => setField<String>('brand', value);
@@ -45,4 +44,23 @@ class VAssetsMaterialsRow extends SupabaseDataRow {
 
   int? get amount => getField<int>('amount');
   set amount(int? value) => setField<int>('amount', value);
+
+  bool? get isOriginal => getField<bool>('isOriginal');
+  set isOriginal(bool? value) => setField<bool>('isOriginal', value);
+
+  DateTime? get dateIn => getField<DateTime>('dateIn');
+  set dateIn(DateTime? value) => setField<DateTime>('dateIn', value);
+
+  DateTime? get dateOut => getField<DateTime>('dateOut');
+  set dateOut(DateTime? value) => setField<DateTime>('dateOut', value);
+
+  int? get orderVisitAssetId => getField<int>('orderVisitAssetId');
+  set orderVisitAssetId(int? value) =>
+      setField<int>('orderVisitAssetId', value);
+
+  int? get recorderIn => getField<int>('recorderIn');
+  set recorderIn(int? value) => setField<int>('recorderIn', value);
+
+  int? get recorderOut => getField<int>('recorderOut');
+  set recorderOut(int? value) => setField<int>('recorderOut', value);
 }

@@ -1,10 +1,8 @@
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/orders/cp_order_parent_unit_show/cp_order_parent_unit_show_widget.dart';
 import '/pages/units/cp_unit_card_show/cp_unit_card_show_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
@@ -181,127 +179,23 @@ class _PgUnitShowOriWidgetState extends State<PgUnitShowOriWidget>
                                 builder: (context) {
                                   if (_model.lpsvOrdersView ==
                                       'ordersAnalysis') {
-                                    return FutureBuilder<
-                                        List<VOrdersParentRow>>(
-                                      future: VOrdersParentTable().queryRows(
-                                        queryFn: (q) => q
-                                            .eq(
-                                              'statusId',
-                                              1,
-                                            )
-                                            .eq(
-                                              'unitId',
-                                              widget.unitId,
-                                            )
-                                            .order('requesterDate'),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<VOrdersParentRow>
-                                            listViewVOrdersParentRowList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              listViewVOrdersParentRowList
-                                                  .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 12.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewVOrdersParentRow =
-                                                listViewVOrdersParentRowList[
-                                                    listViewIndex];
-                                            return CpOrderParentUnitShowWidget(
-                                              key: Key(
-                                                  'Keylfb_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
-                                              orderId:
-                                                  listViewVOrdersParentRow.id!,
-                                            );
-                                          },
-                                        );
-                                      },
+                                    return ListView(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      children: <Widget>[]
+                                          .divide(const SizedBox(height: 12.0)),
                                     );
                                   } else if (_model.lpsvOrdersView ==
                                       'ordersAuthorized') {
-                                    return FutureBuilder<
-                                        List<VOrdersParentRow>>(
-                                      future: VOrdersParentTable().queryRows(
-                                        queryFn: (q) => q
-                                            .eq(
-                                              'statusId',
-                                              2,
-                                            )
-                                            .eq(
-                                              'unitId',
-                                              widget.unitId,
-                                            )
-                                            .order('requesterDate'),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<VOrdersParentRow>
-                                            listViewVOrdersParentRowList =
-                                            snapshot.data!;
-                                        return ListView.separated(
-                                          padding: EdgeInsets.zero,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount:
-                                              listViewVOrdersParentRowList
-                                                  .length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 12.0),
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewVOrdersParentRow =
-                                                listViewVOrdersParentRowList[
-                                                    listViewIndex];
-                                            return CpOrderParentUnitShowWidget(
-                                              key: Key(
-                                                  'Keymul_${listViewIndex}_of_${listViewVOrdersParentRowList.length}'),
-                                              orderId:
-                                                  listViewVOrdersParentRow.id!,
-                                            );
-                                          },
-                                        );
-                                      },
+                                    return ListView(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      children: <Widget>[]
+                                          .divide(const SizedBox(height: 12.0)),
                                     );
                                   } else if (_model.lpsvOrdersView ==
                                       'ordersScheduled') {

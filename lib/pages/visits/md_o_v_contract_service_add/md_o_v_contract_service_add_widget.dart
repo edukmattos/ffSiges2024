@@ -16,14 +16,18 @@ export 'md_o_v_contract_service_add_model.dart';
 class MdOVContractServiceAddWidget extends StatefulWidget {
   const MdOVContractServiceAddWidget({
     super.key,
-    required this.serviceId,
+    int? ppServiceId,
     this.id,
-    required this.priceUnit,
-  });
+    double? ppPriceUnit,
+    int? ppOVId,
+  })  : ppServiceId = ppServiceId ?? 1,
+        ppPriceUnit = ppPriceUnit ?? 1.0,
+        ppOVId = ppOVId ?? 1;
 
-  final int? serviceId;
+  final int ppServiceId;
   final int? id;
-  final double? priceUnit;
+  final double ppPriceUnit;
+  final int ppOVId;
 
   @override
   State<MdOVContractServiceAddWidget> createState() =>
@@ -282,7 +286,7 @@ class _MdOVContractServiceAddWidgetState
                                                       .fromSTEB(
                                                           2.0, 0.0, 0.0, 4.0),
                                                   child: Text(
-                                                    'Desconto',
+                                                    'Acréscimo/Desconto',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelLarge
@@ -303,7 +307,7 @@ class _MdOVContractServiceAddWidgetState
                                                       .CwOVServiceDiscount(
                                                     width: double.infinity,
                                                     height: 50.0,
-                                                    value: '0,00',
+                                                    value: '1',
                                                     filledColor:
                                                         Colors.transparent,
                                                     fontSize: 16.0,
@@ -333,20 +337,21 @@ class _MdOVContractServiceAddWidgetState
                                                             .asCwOVServiceAmountDouble >
                                                         0.0) {
                                                       if (FFAppState()
-                                                              .asCwOVServiceDiscountDouble >=
+                                                              .asCwOVServiceDiscountDouble >
                                                           0.0) {
                                                         _model.resOVServiceAdded =
                                                             await OrdersVisitsServicesTable()
                                                                 .insert({
                                                           'orderVisitId':
-                                                              FFAppState()
-                                                                  .stOVSelected
-                                                                  .first
-                                                                  .id,
-                                                          'serviceId':
-                                                              widget.serviceId,
-                                                          'priceUnit':
-                                                              widget.priceUnit,
+                                                              valueOrDefault<
+                                                                  int>(
+                                                            widget.ppOVId,
+                                                            1,
+                                                          ),
+                                                          'serviceId': widget
+                                                              .ppServiceId,
+                                                          'priceUnit': widget
+                                                              .ppPriceUnit,
                                                           'amount': FFAppState()
                                                               .asCwOVServiceAmountDouble,
                                                           'discount': FFAppState()
@@ -355,31 +360,11 @@ class _MdOVContractServiceAddWidgetState
                                                         });
                                                         shouldSetState = true;
                                                         Navigator.pop(context);
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text(_model
-                                                                  .resOVServiceAdded!
-                                                                  .id
-                                                                  .toString()),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: const Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
                                                         await action_blocks
                                                             .abOVPricesUpdate(
                                                           context,
                                                           abPrice: 'services',
+                                                          abOVId: widget.ppOVId,
                                                         );
                                                       } else {
                                                         await showDialog(
@@ -390,7 +375,7 @@ class _MdOVContractServiceAddWidgetState
                                                               title: const Text(
                                                                   'Ops ...'),
                                                               content: const Text(
-                                                                  'Informe o valor do desconto'),
+                                                                  'Informe o valor do Acréscimo ou Desconto'),
                                                               actions: [
                                                                 TextButton(
                                                                   onPressed: () =>

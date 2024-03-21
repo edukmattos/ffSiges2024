@@ -1032,6 +1032,104 @@ class FFAppState extends ChangeNotifier {
       int index, DtVOrderVisitVehicleStruct value) {
     _stOVVehicles.insert(index, value);
   }
+
+  List<DtUserStruct> _asDashAdminUsersAvailable = [];
+  List<DtUserStruct> get asDashAdminUsersAvailable =>
+      _asDashAdminUsersAvailable;
+  set asDashAdminUsersAvailable(List<DtUserStruct> value) {
+    _asDashAdminUsersAvailable = value;
+  }
+
+  void addToAsDashAdminUsersAvailable(DtUserStruct value) {
+    _asDashAdminUsersAvailable.add(value);
+  }
+
+  void removeFromAsDashAdminUsersAvailable(DtUserStruct value) {
+    _asDashAdminUsersAvailable.remove(value);
+  }
+
+  void removeAtIndexFromAsDashAdminUsersAvailable(int index) {
+    _asDashAdminUsersAvailable.removeAt(index);
+  }
+
+  void updateAsDashAdminUsersAvailableAtIndex(
+    int index,
+    DtUserStruct Function(DtUserStruct) updateFn,
+  ) {
+    _asDashAdminUsersAvailable[index] =
+        updateFn(_asDashAdminUsersAvailable[index]);
+  }
+
+  void insertAtIndexInAsDashAdminUsersAvailable(
+      int index, DtUserStruct value) {
+    _asDashAdminUsersAvailable.insert(index, value);
+  }
+
+  List<DtUserStruct> _stUsersByTeam = [];
+  List<DtUserStruct> get stUsersByTeam => _stUsersByTeam;
+  set stUsersByTeam(List<DtUserStruct> value) {
+    _stUsersByTeam = value;
+  }
+
+  void addToStUsersByTeam(DtUserStruct value) {
+    _stUsersByTeam.add(value);
+  }
+
+  void removeFromStUsersByTeam(DtUserStruct value) {
+    _stUsersByTeam.remove(value);
+  }
+
+  void removeAtIndexFromStUsersByTeam(int index) {
+    _stUsersByTeam.removeAt(index);
+  }
+
+  void updateStUsersByTeamAtIndex(
+    int index,
+    DtUserStruct Function(DtUserStruct) updateFn,
+  ) {
+    _stUsersByTeam[index] = updateFn(_stUsersByTeam[index]);
+  }
+
+  void insertAtIndexInStUsersByTeam(int index, DtUserStruct value) {
+    _stUsersByTeam.insert(index, value);
+  }
+
+  List<DtVAssetStruct> _stOVAssetsSearchResults = [];
+  List<DtVAssetStruct> get stOVAssetsSearchResults => _stOVAssetsSearchResults;
+  set stOVAssetsSearchResults(List<DtVAssetStruct> value) {
+    _stOVAssetsSearchResults = value;
+  }
+
+  void addToStOVAssetsSearchResults(DtVAssetStruct value) {
+    _stOVAssetsSearchResults.add(value);
+  }
+
+  void removeFromStOVAssetsSearchResults(DtVAssetStruct value) {
+    _stOVAssetsSearchResults.remove(value);
+  }
+
+  void removeAtIndexFromStOVAssetsSearchResults(int index) {
+    _stOVAssetsSearchResults.removeAt(index);
+  }
+
+  void updateStOVAssetsSearchResultsAtIndex(
+    int index,
+    DtVAssetStruct Function(DtVAssetStruct) updateFn,
+  ) {
+    _stOVAssetsSearchResults[index] =
+        updateFn(_stOVAssetsSearchResults[index]);
+  }
+
+  void insertAtIndexInStOVAssetsSearchResults(
+      int index, DtVAssetStruct value) {
+    _stOVAssetsSearchResults.insert(index, value);
+  }
+
+  String _stOVAssetMenuOption = '';
+  String get stOVAssetMenuOption => _stOVAssetMenuOption;
+  set stOVAssetMenuOption(String value) {
+    _stOVAssetMenuOption = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

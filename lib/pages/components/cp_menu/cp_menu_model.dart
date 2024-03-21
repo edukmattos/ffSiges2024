@@ -15,6 +15,8 @@ class CpMenuModel extends FlutterFlowModel<CpMenuWidget> {
   bool? isAllowedOrdersVisitsSearch;
   // Stores action output result for [Action Block - abGuardian] action in Row widget.
   bool? isAllowedUnitSearch;
+  // Stores action output result for [Action Block - abGuardian] action in Row widget.
+  bool? isAllowedAssetsSearch;
   // Model for cpDarkLightSwitchSmall component.
   late CpDarkLightSwitchSmallModel cpDarkLightSwitchSmallModel;
 

@@ -10,7 +10,6 @@ import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -156,18 +155,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const PgDBUserVisitsWidget(),
         ),
         FFRoute(
-          name: 'pgOrderParentShow',
-          path: '/pgOrderParentShow',
+          name: 'pgOPShowOrig',
+          path: '/pgOPShowOrig',
           requireAuth: true,
-          builder: (context, params) => PgOrderParentShowWidget(
-            orderId: params.getParam('orderId', ParamType.int),
+          builder: (context, params) => PgOPShowOrigWidget(
+            orderParentId: params.getParam('orderParentId', ParamType.int),
           ),
         ),
         FFRoute(
-          name: 'pgOrderShow',
-          path: '/pgOrderShow',
+          name: 'pgOShow',
+          path: '/pgOShow',
           requireAuth: true,
-          builder: (context, params) => PgOrderShowWidget(
+          builder: (context, params) => PgOShowWidget(
             orderId: params.getParam('orderId', ParamType.int),
           ),
         ),
@@ -185,26 +184,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'pgMyTeam',
-          path: '/pgMyTeam',
-          requireAuth: true,
-          builder: (context, params) => PgMyTeamWidget(
-            visitId: params.getParam('visitId', ParamType.int),
-          ),
-        ),
-        FFRoute(
           name: 'Home13Productivity',
           path: '/home13Productivity',
           builder: (context, params) => const Home13ProductivityWidget(),
         ),
         FFRoute(
-          name: 'pgOVShow',
-          path: '/pgOVShow',
+          name: 'pgOVShowOrig',
+          path: '/pgOVShowOrig',
           requireAuth: true,
-          builder: (context, params) => PgOVShowWidget(
-            visitId: params.getParam('visitId', ParamType.int),
-            orderId: params.getParam('orderId', ParamType.int),
-            appPageId009: params.getParam('appPageId009', ParamType.int),
+          builder: (context, params) => PgOVShowOrigWidget(
+            ppOVId: params.getParam('ppOVId', ParamType.int),
+            ppOId: params.getParam('ppOId', ParamType.int),
+            ppProcessingId: params.getParam('ppProcessingId', ParamType.int),
+            ppUnitId: params.getParam('ppUnitId', ParamType.int),
+            ppOPId: params.getParam('ppOPId', ParamType.int),
           ),
         ),
         FFRoute(
@@ -212,7 +205,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/pgOVAsset1Search',
           requireAuth: true,
           builder: (context, params) => PgOVAsset1SearchWidget(
-            visitId: params.getParam('visitId', ParamType.int),
+            oVId: params.getParam('oVId', ParamType.int),
+            unitId: params.getParam('unitId', ParamType.int),
+            orderId: params.getParam('orderId', ParamType.int),
+            oPId: params.getParam('oPId', ParamType.int),
           ),
         ),
         FFRoute(
@@ -227,11 +223,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const PgOVAsset3ActivitiesSearchWidget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitAsset2Before',
-          path: '/pgOrderVisitAsset2Before',
+          name: 'pgOVAsset2Before',
+          path: '/pgOVAsset2Before',
           requireAuth: true,
-          builder: (context, params) => PgOrderVisitAsset2BeforeWidget(
-            operation: params.getParam('operation', ParamType.String),
+          builder: (context, params) => PgOVAsset2BeforeWidget(
+            ppOperation: params.getParam('ppOperation', ParamType.String),
           ),
         ),
         FFRoute(
@@ -240,10 +236,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Create3SupportTicketBugReportWidget(),
         ),
         FFRoute(
-          name: 'pgOrderVisitAssetMoving',
-          path: '/pgOrderVisitAssetMoving',
+          name: 'pgOVAssetMoving',
+          path: '/pgOVAssetMoving',
           requireAuth: true,
-          builder: (context, params) => const PgOrderVisitAssetMovingWidget(),
+          builder: (context, params) => const PgOVAssetMovingWidget(),
         ),
         FFRoute(
           name: 'Profile09',
@@ -265,12 +261,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/pgAssetsSearch',
           requireAuth: true,
           builder: (context, params) => const PgAssetsSearchWidget(),
-        ),
-        FFRoute(
-          name: 'pgAssetShow',
-          path: '/pgAssetShow',
-          requireAuth: true,
-          builder: (context, params) => const PgAssetShowWidget(),
         ),
         FFRoute(
           name: 'Home24BankFintechDashboard',
@@ -333,17 +323,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'pgOrderParentNew',
-          path: '/pgOrderParentNew',
+          name: 'pgOPNew',
+          path: '/pgOPNew',
           requireAuth: true,
-          builder: (context, params) => const PgOrderParentNewWidget(),
+          builder: (context, params) => const PgOPNewWidget(),
         ),
         FFRoute(
-          name: 'pgOrderProgramming',
-          path: '/pgOrderProgramming',
+          name: 'pgOProgramming',
+          path: '/pgOProgramming',
           requireAuth: true,
-          builder: (context, params) => PgOrderProgrammingWidget(
-            orderId: params.getParam('orderId', ParamType.int),
+          builder: (context, params) => PgOProgrammingWidget(
+            orderParentId: params.getParam('orderParentId', ParamType.int),
           ),
         ),
         FFRoute(
@@ -356,7 +346,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'pgOVServicesSearch',
           path: '/pgOrdersVisitsServicesSearch',
           requireAuth: true,
-          builder: (context, params) => const PgOVServicesSearchWidget(),
+          builder: (context, params) => PgOVServicesSearchWidget(
+            ppOVId: params.getParam('ppOVId', ParamType.int),
+          ),
         ),
         FFRoute(
           name: 'Details03TransactionsSummary',
@@ -396,6 +388,126 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Details19TransactionBudget',
           path: '/details19TransactionBudget',
           builder: (context, params) => const Details19TransactionBudgetWidget(),
+        ),
+        FFRoute(
+          name: 'pgAssetShow',
+          path: '/pgAssetShow',
+          requireAuth: true,
+          builder: (context, params) => PgAssetShowWidget(
+            ppView: params.getParam('ppView', ParamType.String),
+            ppAssetId: params.getParam('ppAssetId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'List17Notifications',
+          path: '/list17Notifications',
+          builder: (context, params) => const List17NotificationsWidget(),
+        ),
+        FFRoute(
+          name: 'List17Notificationsqq',
+          path: '/list17Notificationsqq',
+          builder: (context, params) => const List17NotificationsqqWidget(),
+        ),
+        FFRoute(
+          name: 'pgMyProfileVehicleList',
+          path: '/pgMyProfileVehicleList',
+          builder: (context, params) => const PgMyProfileVehicleListWidget(),
+        ),
+        FFRoute(
+          name: 'List06UserSearch',
+          path: '/list06UserSearch',
+          builder: (context, params) => const List06UserSearchWidget(),
+        ),
+        FFRoute(
+          name: 'pgMyTeamCopy',
+          path: '/pgMyTeamCopy',
+          requireAuth: true,
+          builder: (context, params) => PgMyTeamCopyWidget(
+            visitId: params.getParam('visitId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'pgMyTeam',
+          path: '/pgMyTeam',
+          requireAuth: true,
+          builder: (context, params) => const PgMyTeamWidget(),
+        ),
+        FFRoute(
+          name: 'Home07Invoices',
+          path: '/home07Invoices',
+          builder: (context, params) => const Home07InvoicesWidget(),
+        ),
+        FFRoute(
+          name: 'Home07Invoicesee',
+          path: '/home07Invoicesee',
+          builder: (context, params) => const Home07InvoiceseeWidget(),
+        ),
+        FFRoute(
+          name: 'pgOVMyTeam',
+          path: '/pgOVMyTeam',
+          requireAuth: true,
+          builder: (context, params) => const PgOVMyTeamWidget(),
+        ),
+        FFRoute(
+          name: 'pgOPSearch',
+          path: '/pgOPSearch',
+          requireAuth: true,
+          builder: (context, params) => PgOPSearchWidget(
+            orderParentId: params.getParam('orderParentId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'pgOPSearchCol',
+          path: '/pgOPSearchCol',
+          requireAuth: true,
+          builder: (context, params) => const PgOPSearchColWidget(),
+        ),
+        FFRoute(
+          name: 'pgOPShow',
+          path: '/pgOPShow',
+          requireAuth: true,
+          builder: (context, params) => PgOPShowWidget(
+            ppOPId: params.getParam('ppOPId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'pgOPShow1',
+          path: '/pgOPShow1',
+          requireAuth: true,
+          builder: (context, params) => const PgOPShow1Widget(),
+        ),
+        FFRoute(
+          name: 'pgONew',
+          path: '/pgONew',
+          requireAuth: true,
+          builder: (context, params) => PgONewWidget(
+            orderParentId: params.getParam('orderParentId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'djklasdj',
+          path: '/djklasdj',
+          builder: (context, params) => const DjklasdjWidget(),
+        ),
+        FFRoute(
+          name: 'pgOVAssetApproved',
+          path: '/pgOVAssetApproved',
+          requireAuth: true,
+          builder: (context, params) => PgOVAssetApprovedWidget(
+            ppOVAssetId: params.getParam('ppOVAssetId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'pgOVShow',
+          path: '/pgOVShow',
+          requireAuth: true,
+          builder: (context, params) => PgOVShowWidget(
+            ppOVId: params.getParam('ppOVId', ParamType.int),
+            ppOId: params.getParam('ppOId', ParamType.int),
+            ppOPId: params.getParam('ppOPId', ParamType.int),
+            ppProcessingId: params.getParam('ppProcessingId', ParamType.int),
+            ppUnitId: params.getParam('ppUnitId', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -577,7 +689,7 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: const Color(0xFF4744E1),
                   child: Center(
                     child: Image.asset(
                       'assets/images/67.jpeg',

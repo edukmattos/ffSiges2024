@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/orders/cp_o_v_in_progress_show/cp_o_v_in_progress_show_widget.dart';
+import '/pages/user/cp_d_b_user_available/cp_d_b_user_available_widget.dart';
 import 'pg_d_b_user_visits_widget.dart' show PgDBUserVisitsWidget;
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,8 @@ class PgDBUserVisitsModel extends FlutterFlowModel<PgDBUserVisitsWidget> {
   late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
+  // Model for cpDBUserAvailable component.
+  late CpDBUserAvailableModel cpDBUserAvailableModel;
   // Model for cpOVInProgressShow component.
   late CpOVInProgressShowModel cpOVInProgressShowModel;
 
@@ -32,6 +35,8 @@ class PgDBUserVisitsModel extends FlutterFlowModel<PgDBUserVisitsWidget> {
     cpNotificationsIconModel =
         createModel(context, () => CpNotificationsIconModel());
     cpMenuModel = createModel(context, () => CpMenuModel());
+    cpDBUserAvailableModel =
+        createModel(context, () => CpDBUserAvailableModel());
     cpOVInProgressShowModel =
         createModel(context, () => CpOVInProgressShowModel());
   }
@@ -41,6 +46,7 @@ class PgDBUserVisitsModel extends FlutterFlowModel<PgDBUserVisitsWidget> {
     unfocusNode.dispose();
     cpNotificationsIconModel.dispose();
     cpMenuModel.dispose();
+    cpDBUserAvailableModel.dispose();
     cpOVInProgressShowModel.dispose();
   }
 

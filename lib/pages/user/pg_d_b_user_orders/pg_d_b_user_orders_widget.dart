@@ -1,14 +1,18 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
+import '/pages/orders/cp_o_card_show/cp_o_card_show_widget.dart';
 import '/pages/orders/cp_o_v_in_progress_show/cp_o_v_in_progress_show_widget.dart';
-import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
+import '/pages/user/cp_d_b_user_available/cp_d_b_user_available_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
@@ -31,48 +35,9 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
   late PgDBUserOrdersModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   final animationsMap = {
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 20.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 20.0),
-          end: const Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -93,7 +58,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
         ),
       ],
     ),
-    'textOnPageLoadAnimation3': AnimationInfo(
+    'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         VisibilityEffect(duration: 180.ms),
@@ -182,6 +147,8 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      currentUserLocationValue =
+          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
       await action_blocks.abUserUpdate(
         context,
         abEmail: FFAppState().asUserCurrent.email,
@@ -253,20 +220,95 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
 
         return;
       }
-      if (FFAppState().asUserCurrent.orderVisitIdInProgress > 0) {
-        await action_blocks.abOVSelected(
-          context,
-          abOrderVisitId: FFAppState().asUserCurrent.orderVisitIdInProgress,
-        );
-        setState(() {});
-        await action_blocks.abOSelected(
-          context,
-          abOrderId: valueOrDefault<int>(
-            FFAppState().stOVSelected.first.id,
-            1,
-          ),
-        );
-        setState(() {});
+      if (isWeb) {
+      } else {
+        if (FFAppState().asUserCurrent.isTeamLeader) {
+          if (!FFAppState().asUserCurrent.isAvailable &&
+              !FFAppState().asUserCurrent.isOrderVisitIdInProgress) {
+            _model.instantTimerTracker?.cancel();
+          } else {
+            await showDialog(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: Text(FFAppState()
+                      .asUserCurrent
+                      .orderVisitIdInProgress
+                      .toString()),
+                  content: Text(
+                      FFAppState().asUserCurrent.orderIdInProgress.toString()),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text(FFAppState()
+                          .asUserCurrent
+                          .orderParentIdInProgress
+                          .toString()),
+                    ),
+                  ],
+                );
+              },
+            );
+            _model.instantTimerTracker = InstantTimer.periodic(
+              duration: const Duration(milliseconds: 60000),
+              callback: (timer) async {
+                currentUserLocationValue = await getCurrentUserLocation(
+                    defaultLocation: const LatLng(0.0, 0.0));
+                await showDialog(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text(FFAppState()
+                          .asUserCurrent
+                          .orderVisitIdInProgress
+                          .toString()),
+                      content: Text(FFAppState()
+                          .asUserCurrent
+                          .orderIdInProgress
+                          .toString()),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(alertDialogContext),
+                          child: Text(FFAppState()
+                              .asUserCurrent
+                              .orderParentIdInProgress
+                              .toString()),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                if (FFAppState().asUserCurrent.orderVisitIdInProgress > 0) {
+                  await OrdersVisitsTrackerTable().insert({
+                    'userId': FFAppState().asUserCurrent.id,
+                    'latitude':
+                        functions.cfGetLatFromLatLng(currentUserLocationValue!),
+                    'longitude':
+                        functions.cfGetLngFromLatLng(currentUserLocationValue!),
+                    'createdDate': supaSerialize<DateTime>(getCurrentTimestamp),
+                    'device': '',
+                  });
+                } else {
+                  await OrdersVisitsTrackerTable().insert({
+                    'userId': FFAppState().asUserCurrent.id,
+                    'orderVisitId':
+                        FFAppState().asUserCurrent.orderVisitIdInProgress,
+                    'latitude':
+                        functions.cfGetLatFromLatLng(currentUserLocationValue!),
+                    'longitude':
+                        functions.cfGetLngFromLatLng(currentUserLocationValue!),
+                    'createdDate': supaSerialize<DateTime>(getCurrentTimestamp),
+                    'device': '',
+                    'orderId': FFAppState().asUserCurrent.orderIdInProgress,
+                    'orderParentId':
+                        FFAppState().asUserCurrent.orderParentIdInProgress,
+                  });
+                }
+              },
+              startImmediately: true,
+            );
+          }
+        }
       }
     });
 
@@ -314,7 +356,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Meus Serviços',
+                'Serviços',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Outfit',
                       color: Colors.white,
@@ -352,20 +394,16 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            FFAppState().asUserCurrent.teamCode,
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).titleLarge,
-                          ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation1']!),
-                          Text(
-                            FFAppState().asUserCurrent.vehicleId.toString(),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).titleLarge,
-                          ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation2']!),
+                          Expanded(
+                            child: wrapWithModel(
+                              model: _model.cpDBUserAvailableModel,
+                              updateCallback: () => setState(() {}),
+                              child: CpDBUserAvailableWidget(
+                                toolTip: FFAppState().asUserCurrent.nameShort,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       if (FFAppState().stUserOOpen.isNotEmpty)
@@ -432,7 +470,7 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                                               .primaryText,
                                                         ),
                                                   ).animateOnPageLoad(animationsMap[
-                                                      'textOnPageLoadAnimation3']!),
+                                                      'textOnPageLoadAnimation']!),
                                                 ],
                                               ),
                                               Padding(
@@ -921,52 +959,16 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 30.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await action_blocks.abOVSelected(
-                                              context,
-                                              abOrderVisitId: FFAppState()
-                                                  .asUserCurrent
-                                                  .orderVisitIdInProgress,
-                                            );
-
-                                            context.pushNamed(
-                                              'pgOVShow',
-                                              queryParameters: {
-                                                'visitId': serializeParam(
-                                                  FFAppState()
-                                                      .stOVSelected
-                                                      .first
-                                                      .id,
-                                                  ParamType.int,
-                                                ),
-                                                'orderId': serializeParam(
-                                                  FFAppState()
-                                                      .stOVSelected
-                                                      .first
-                                                      .orderId,
-                                                  ParamType.int,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          child: wrapWithModel(
-                                            model:
-                                                _model.cpOVInProgressShowModel,
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: CpOVInProgressShowWidget(
-                                              orderId: FFAppState()
-                                                  .asUserCurrent
-                                                  .orderIdInProgress,
-                                              orderVisitId: FFAppState()
-                                                  .asUserCurrent
-                                                  .orderVisitIdInProgress,
-                                            ),
+                                        child: wrapWithModel(
+                                          model: _model.cpOVInProgressShowModel,
+                                          updateCallback: () => setState(() {}),
+                                          child: CpOVInProgressShowWidget(
+                                            ppOId: FFAppState()
+                                                .asUserCurrent
+                                                .orderIdInProgress,
+                                            ppOVId: FFAppState()
+                                                .asUserCurrent
+                                                .orderVisitIdInProgress,
                                           ),
                                         ),
                                       ),
@@ -995,10 +997,10 @@ class _PgDBUserOrdersWidgetState extends State<PgDBUserOrdersWidget>
                                                     gcOrdersOpenByStatusIndex];
                                             return Container(
                                               decoration: const BoxDecoration(),
-                                              child: CpOrderCardShowWidget(
+                                              child: CpOCardShowWidget(
                                                 key: Key(
                                                     'Keyzgq_${gcOrdersOpenByStatusIndex}_of_${gcOrdersOpenByStatus.length}'),
-                                                orderId:
+                                                ppOId:
                                                     gcOrdersOpenByStatusItem.id,
                                               ),
                                             );

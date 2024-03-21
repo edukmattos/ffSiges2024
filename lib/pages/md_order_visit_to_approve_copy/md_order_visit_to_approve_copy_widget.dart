@@ -914,9 +914,9 @@ class _MdOrderVisitToApproveCopyWidgetState
                                                     Navigator.pop(context);
 
                                                     context.pushNamed(
-                                                      'pgOVShow',
+                                                      'pgOVShowOrig',
                                                       queryParameters: {
-                                                        'visitId':
+                                                        'ppOVId':
                                                             serializeParam(
                                                           FFAppState()
                                                               .stOVSelected
@@ -924,8 +924,7 @@ class _MdOrderVisitToApproveCopyWidgetState
                                                               .id,
                                                           ParamType.int,
                                                         ),
-                                                        'orderId':
-                                                            serializeParam(
+                                                        'ppOId': serializeParam(
                                                           FFAppState()
                                                               .stOVSelected
                                                               .first

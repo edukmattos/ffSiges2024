@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'cp_asset_materials_model.dart';
 export 'cp_asset_materials_model.dart';
 
@@ -47,16 +46,12 @@ class _CpAssetMaterialsWidgetState extends State<CpAssetMaterialsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<VAssetsMaterialsRow>>(
       future: VAssetsMaterialsTable().queryRows(
-        queryFn: (q) => q
-            .eq(
-              'assetId',
-              FFAppState().stAssetSeleted.first.id,
-            )
-            .order('materialDescription', ascending: true),
+        queryFn: (q) => q.eq(
+          'assetId',
+          widget.assetId,
+        ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -206,104 +201,107 @@ class _CpAssetMaterialsWidgetState extends State<CpAssetMaterialsWidget> {
                   thickness: 1.0,
                   color: FlutterFlowTheme.of(context).alternate,
                 ),
-                Builder(
-                  builder: (context) {
-                    final components =
-                        card39TransactionhistoryVAssetsMaterialsRowList
-                            .map((e) => e)
-                            .toList();
-                    return ListView.separated(
-                      padding: const EdgeInsets.fromLTRB(
-                        0,
-                        8.0,
-                        0,
-                        8.0,
-                      ),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: components.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-                      itemBuilder: (context, componentsIndex) {
-                        final componentsItem = components[componentsIndex];
-                        return Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 8.0, 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        valueOrDefault<String>(
-                                          componentsItem.materialDescription,
-                                          'materialDescription',
-                                        ),
-                                        textAlign: TextAlign.end,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                            ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Paid with: Visa **** 2192',
+                if (_model.lcsvAssetMaterials.isNotEmpty)
+                  Builder(
+                    builder: (context) {
+                      final gcAssetMaterials =
+                          card39TransactionhistoryVAssetsMaterialsRowList
+                              .toList();
+                      return ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(
+                          0,
+                          8.0,
+                          0,
+                          8.0,
+                        ),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: gcAssetMaterials.length,
+                        separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                        itemBuilder: (context, gcAssetMaterialsIndex) {
+                          final gcAssetMaterialsItem =
+                              gcAssetMaterials[gcAssetMaterialsIndex];
+                          return Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 8.0, 8.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          valueOrDefault<String>(
+                                            gcAssetMaterialsItem.description,
+                                            'materialDescription',
+                                          ),
+                                          textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
-                                              .labelMedium
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .primaryBtnText,
                                               ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 4.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Paid with: Visa **** 2192',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .alternate,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                FlutterFlowIconButton(
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).tertiary,
-                                  icon: Icon(
-                                    Icons.autorenew,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                  FlutterFlowIconButton(
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    icon: Icon(
+                                      Icons.autorenew,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                    showLoadingIndicator: true,
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
                                   ),
-                                  showLoadingIndicator: true,
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
-                                  },
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                          );
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
           ),

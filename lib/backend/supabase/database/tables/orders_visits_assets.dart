@@ -143,9 +143,6 @@ class OrdersVisitsAssetsRow extends SupabaseDataRow {
   set afterUnitLongitude(double? value) =>
       setField<double>('afterUnitLongitude', value);
 
-  int? get reportedDateUnix => getField<int>('reportedDateUnix');
-  set reportedDateUnix(int? value) => setField<int>('reportedDateUnix', value);
-
   int? get beforeRecorder => getField<int>('beforeRecorder');
   set beforeRecorder(int? value) => setField<int>('beforeRecorder', value);
 
@@ -162,4 +159,10 @@ class OrdersVisitsAssetsRow extends SupabaseDataRow {
   double? get createdLongitude => getField<double>('createdLongitude');
   set createdLongitude(double? value) =>
       setField<double>('createdLongitude', value);
+
+  int? get orderId => getField<int>('orderId');
+  set orderId(int? value) => setField<int>('orderId', value);
+
+  int? get orderParentId => getField<int>('orderParentId');
+  set orderParentId(int? value) => setField<int>('orderParentId', value);
 }

@@ -19,6 +19,8 @@ class MdOAuthorizationModel extends FlutterFlowModel<MdOAuthorizationWidget> {
   late CpDropdownLeaderTeamsSelectedModel cpDropdownLeaderTeamsSelectedModel;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<OrdersRow>? resOrderAuthorized;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<VOrdersRow>? resOCurrent;
 
   /// Initialization and disposal methods.
 

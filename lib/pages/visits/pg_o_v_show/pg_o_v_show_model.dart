@@ -1,60 +1,58 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/assets/cp_order_visit_asset_show_bottom_nav_bar/cp_order_visit_asset_show_bottom_nav_bar_widget.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
+import '/pages/orders/cp_o_card_show/cp_o_card_show_widget.dart';
 import '/pages/orders/cp_o_v_show/cp_o_v_show_widget.dart';
-import '/pages/orders/cp_order_card_show/cp_order_card_show_widget.dart';
 import '/pages/visits/cp_o_v_services_list/cp_o_v_services_list_widget.dart';
 import 'dart:async';
 import 'pg_o_v_show_widget.dart' show PgOVShowWidget;
 import 'package:flutter/material.dart';
 
 class PgOVShowModel extends FlutterFlowModel<PgOVShowWidget> {
+  ///  Local state fields for this page.
+
+  String? lpsvMenuOption;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   Completer<List<VOrdersVisitsAssetsRow>>? requestCompleter2;
   Completer<List<VOrdersVisitsVehiclesRow>>? requestCompleter1;
-  // Model for cpNotificationsIcon component.
-  late CpNotificationsIconModel cpNotificationsIconModel;
-  // Model for cpMenu component.
-  late CpMenuModel cpMenuModel;
-  // Model for cpOrderCardShow component.
-  late CpOrderCardShowModel cpOrderCardShowModel;
+  // Model for cpOCardShow component.
+  late CpOCardShowModel cpOCardShowModel;
   // Model for cpOVShow component.
   late CpOVShowModel cpOVShowModel;
-  // Model for cpOrderVisitAssetShowBottomNavBar component.
-  late CpOrderVisitAssetShowBottomNavBarModel
-      cpOrderVisitAssetShowBottomNavBarModel;
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
   // Stores action output result for [Action Block - abGuardian] action in IconButton widget.
   bool? isAllowed;
   // Model for cpOVServicesList component.
   late CpOVServicesListModel cpOVServicesListModel;
+  // Model for cpMenu component.
+  late CpMenuModel cpMenuModel;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    cpNotificationsIconModel =
-        createModel(context, () => CpNotificationsIconModel());
-    cpMenuModel = createModel(context, () => CpMenuModel());
-    cpOrderCardShowModel = createModel(context, () => CpOrderCardShowModel());
+    cpOCardShowModel = createModel(context, () => CpOCardShowModel());
     cpOVShowModel = createModel(context, () => CpOVShowModel());
-    cpOrderVisitAssetShowBottomNavBarModel =
-        createModel(context, () => CpOrderVisitAssetShowBottomNavBarModel());
     cpOVServicesListModel = createModel(context, () => CpOVServicesListModel());
+    cpMenuModel = createModel(context, () => CpMenuModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpNotificationsIconModel.dispose();
-    cpMenuModel.dispose();
-    cpOrderCardShowModel.dispose();
+    cpOCardShowModel.dispose();
     cpOVShowModel.dispose();
-    cpOrderVisitAssetShowBottomNavBarModel.dispose();
     cpOVServicesListModel.dispose();
+    cpMenuModel.dispose();
   }
 
   /// Action blocks are added here.

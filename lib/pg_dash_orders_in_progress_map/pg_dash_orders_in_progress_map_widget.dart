@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/cp_menu_services_filters/cp_menu_services_filters_widget.dart';
-import '/pages/orders/cp_order_card_map_list_item/cp_order_card_map_list_item_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
@@ -147,24 +146,10 @@ class _PgDashOrdersInProgressMapWidgetState
                                           const SizedBox(height: 12.0),
                                       itemBuilder: (context, ordersIndex) {
                                         final ordersItem = orders[ordersIndex];
-                                        return InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            setState(() {
-                                              FFAppState()
-                                                      .stMapOrdersCenterSelected =
-                                                  ordersItem.unitLatlng;
-                                            });
-                                          },
-                                          child: CpOrderCardMapListItemWidget(
-                                            key: Key(
-                                                'Keycpe_${ordersIndex}_of_${orders.length}'),
-                                            orderId: ordersItem.id,
-                                          ),
-                                        );
+                                        return Container(
+                                            width: 100,
+                                            height: 100,
+                                            color: Colors.green);
                                       },
                                     );
                                   },

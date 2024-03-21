@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,10 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
 import '/pages/components/filters/md_o_v_services_detalis/md_o_v_services_detalis_widget.dart';
+import '/pages/user/cp_d_b_user_available/cp_d_b_user_available_widget.dart';
 import '/pages/visits/cp_o_v_processing_card/cp_o_v_processing_card_widget.dart';
 import '/pages/visits/md_o_v_search_filters/md_o_v_search_filters_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -124,7 +127,7 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
       await actions.caSupabaseConnect(
         'ordersVisits',
         () async {
-          await action_blocks.abOrdersVisitsSearchFilters(
+          await action_blocks.abOVSearchFilters(
             context,
             abSystemsParent: FFAppState().asFiltersServices.systemsParents,
             abSystems: FFAppState().asFiltersServices.systems,
@@ -203,336 +206,322 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: wrapWithModel(
+                          model: _model.cpDBUserAvailableModel,
+                          updateCallback: () => setState(() {}),
+                          child: CpDBUserAvailableWidget(
+                            toolTip: FFAppState().asUserCurrent.nameShort,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor: FlutterFlowTheme.of(context).primary,
+                          borderRadius: 25.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          fillColor: FlutterFlowTheme.of(context).primary,
+                          icon: FaIcon(
+                            FontAwesomeIcons.slidersH,
+                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                            size: 24.0,
+                          ),
+                          showLoadingIndicator: true,
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: const MdOVSearchFiltersWidget(),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   Container(
+                    width: double.infinity,
                     height: 90.0,
                     decoration: const BoxDecoration(),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 10.0),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      height: 70.0,
-                                      constraints: const BoxConstraints(
-                                        minWidth: 160.0,
-                                        maxWidth: 200.0,
-                                      ),
-                                      decoration: BoxDecoration(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Container(
+                                height: 70.0,
+                                constraints: const BoxConstraints(
+                                  minWidth: 160.0,
+                                  maxWidth: 200.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 12.0, 16.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.tools,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0.0, 2.0),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
+                                            .primaryText,
+                                        size: 24.0,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.tools,
+                                      Text(
+                                        formatNumber(
+                                          FFAppState()
+                                              .stTmpOVFiltersSumPrices
+                                              .sumPriceServices,
+                                          formatType: FormatType.custom,
+                                          currency: 'R\$ ',
+                                          format: '#,##0.00',
+                                          locale: 'pt_BR',
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              size: 24.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
-                                            Text(
-                                              formatNumber(
-                                                FFAppState()
-                                                    .stTmpOVFiltersSumPrices
-                                                    .sumPriceServices,
-                                                formatType: FormatType.custom,
-                                                currency: 'R\$ ',
-                                                format: '#,##0.00',
-                                                locale: 'pt_BR',
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ].divide(const SizedBox(width: 4.0)),
-                                        ),
                                       ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation1']!),
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
-                                  FaIcon(
-                                    FontAwesomeIcons.plus,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      height: 70.0,
-                                      constraints: const BoxConstraints(
-                                        minWidth: 160.0,
-                                        maxWidth: 200.0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0.0, 2.0),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.dolly,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            Text(
-                                              formatNumber(
-                                                FFAppState()
-                                                    .stTmpOVFiltersSumPrices
-                                                    .sumPriceMaterials,
-                                                formatType: FormatType.custom,
-                                                currency: 'R\$ ',
-                                                format: '#,##0.00',
-                                                locale: 'pt_BR',
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ),
-                                          ].divide(const SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation2']!),
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.plus,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      height: 70.0,
-                                      constraints: const BoxConstraints(
-                                        minWidth: 160.0,
-                                        maxWidth: 200.0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0.0, 2.0),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.truckMoving,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            Text(
-                                              formatNumber(
-                                                FFAppState()
-                                                    .stTmpOVFiltersSumPrices
-                                                    .sumPriceVehicles,
-                                                formatType: FormatType.custom,
-                                                currency: 'R\$ ',
-                                                format: '#,##0.00',
-                                                locale: 'pt_BR',
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ),
-                                          ].divide(const SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation3']!),
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.equals,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      height: 70.0,
-                                      constraints: const BoxConstraints(
-                                        minWidth: 160.0,
-                                        maxWidth: 200.0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            blurRadius: 4.0,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0.0, 2.0),
-                                          )
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.moneyBillAlt,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            Text(
-                                              formatNumber(
-                                                FFAppState()
-                                                    .stTmpOVFiltersSumPrices
-                                                    .sumPriceTotal,
-                                                formatType: FormatType.custom,
-                                                currency: 'R\$ ',
-                                                format: '#,##0.00',
-                                                locale: 'pt_BR',
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                            ),
-                                          ].divide(const SizedBox(width: 8.0)),
-                                        ),
-                                      ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation4']!),
-                                  ),
-                                ].divide(const SizedBox(width: 18.0)),
-                              ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation1']!),
                             ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 0.0),
-                          child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 25.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: FaIcon(
-                              FontAwesomeIcons.slidersH,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                            FaIcon(
+                              FontAwesomeIcons.plus,
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24.0,
                             ),
-                            showLoadingIndicator: true,
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                useSafeArea: true,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: const MdOVSearchFiltersWidget(),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                          ),
+                            Flexible(
+                              child: Container(
+                                height: 70.0,
+                                constraints: const BoxConstraints(
+                                  minWidth: 160.0,
+                                  maxWidth: 200.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 12.0, 16.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.dolly,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          FFAppState()
+                                              .stTmpOVFiltersSumPrices
+                                              .sumPriceMaterials,
+                                          formatType: FormatType.custom,
+                                          currency: 'R\$ ',
+                                          format: '#,##0.00',
+                                          locale: 'pt_BR',
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation2']!),
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.plus,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            Flexible(
+                              child: Container(
+                                height: 70.0,
+                                constraints: const BoxConstraints(
+                                  minWidth: 160.0,
+                                  maxWidth: 200.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 12.0, 16.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.truckMoving,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          FFAppState()
+                                              .stTmpOVFiltersSumPrices
+                                              .sumPriceVehicles,
+                                          formatType: FormatType.custom,
+                                          currency: 'R\$ ',
+                                          format: '#,##0.00',
+                                          locale: 'pt_BR',
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation3']!),
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.equals,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            Flexible(
+                              child: Container(
+                                height: 70.0,
+                                constraints: const BoxConstraints(
+                                  minWidth: 160.0,
+                                  maxWidth: 200.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 12.0, 16.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.moneyBillAlt,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          FFAppState()
+                                              .stTmpOVFiltersSumPrices
+                                              .sumPriceTotal,
+                                          formatType: FormatType.custom,
+                                          currency: 'R\$ ',
+                                          format: '#,##0.00',
+                                          locale: 'pt_BR',
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
+                                  ),
+                                ),
+                              ).animateOnPageLoad(animationsMap[
+                                  'containerOnPageLoadAnimation4']!),
+                            ),
+                          ].divide(const SizedBox(width: 18.0)),
                         ),
-                      ].divide(const SizedBox(width: 8.0)),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -730,16 +719,16 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                             );
 
                                             context.pushNamed(
-                                              'pgOVShow',
+                                              'pgOVShowOrig',
                                               queryParameters: {
-                                                'visitId': serializeParam(
+                                                'ppOVId': serializeParam(
                                                   FFAppState()
                                                       .stOVSelected
                                                       .first
                                                       .id,
                                                   ParamType.int,
                                                 ),
-                                                'orderId': serializeParam(
+                                                'ppOId': serializeParam(
                                                   FFAppState()
                                                       .stOVSelected
                                                       .first
@@ -750,9 +739,9 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                             );
                                           },
                                           child: Text(
-                                            gcOVItem.id.toString(),
+                                            '# ${gcOVItem.id.toString()}',
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .bodyLarge
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   fontWeight: FontWeight.w600,
@@ -779,6 +768,19 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
+                                        if (gcOVItem.statusId == 2)
+                                          Text(
+                                            '${formatNumber(
+                                              functions.cfDatesDiffDecimal(
+                                                  gcOVItem.dateStartDatetime!,
+                                                  gcOVItem.dateEndDatetime!),
+                                              formatType: FormatType.custom,
+                                              format: '#0.00',
+                                              locale: 'pt_BR',
+                                            )}h',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
                                       ].divide(const SizedBox(height: 2.0)),
                                     ),
                                   ),
@@ -849,13 +851,70 @@ class _PgOVSearchWidgetState extends State<PgOVSearchWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
-                                        Text(
-                                          valueOrDefault<String>(
-                                            gcOVItem.teamLeaderNameShort,
-                                            'teamLeaderNameShort',
+                                        FutureBuilder<
+                                            List<VOrdersVisitsTeamsRow>>(
+                                          future: VOrdersVisitsTeamsTable()
+                                              .queryRows(
+                                            queryFn: (q) => q
+                                                .eq(
+                                                  'isLeader',
+                                                  false,
+                                                )
+                                                .eq(
+                                                  'orderVisitId',
+                                                  gcOVItem.id,
+                                                )
+                                                .order('nameShort',
+                                                    ascending: true),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<VOrdersVisitsTeamsRow>
+                                                listViewVOrdersVisitsTeamsRowList =
+                                                snapshot.data!;
+                                            return ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewVOrdersVisitsTeamsRowList
+                                                      .length,
+                                              itemBuilder:
+                                                  (context, listViewIndex) {
+                                                final listViewVOrdersVisitsTeamsRow =
+                                                    listViewVOrdersVisitsTeamsRowList[
+                                                        listViewIndex];
+                                                return Text(
+                                                  valueOrDefault<String>(
+                                                    listViewVOrdersVisitsTeamsRow
+                                                        .nameShort,
+                                                    '.',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium,
+                                                );
+                                              },
+                                            );
+                                          },
                                         ),
                                       ].divide(const SizedBox(height: 2.0)),
                                     ),

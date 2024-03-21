@@ -149,8 +149,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 60.0,
-                height: 60.0,
+                width: 50.0,
+                height: 50.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
@@ -195,8 +195,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
+                      child: const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Icon(
                           Icons.draw,
                           color: Colors.white,
@@ -215,8 +215,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 60.0,
-                height: 60.0,
+                width: 50.0,
+                height: 50.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
@@ -261,8 +261,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
+                      child: const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Icon(
                           Icons.report_problem,
                           color: Colors.white,
@@ -281,8 +281,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 60.0,
-                height: 60.0,
+                width: 50.0,
+                height: 50.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
@@ -327,8 +327,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
+                      child: const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: FaIcon(
                           FontAwesomeIcons.solidThumbsDown,
                           color: Colors.white,
@@ -347,8 +347,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 60.0,
-                height: 60.0,
+                width: 50.0,
+                height: 50.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
@@ -393,8 +393,8 @@ class _CpOVProcessingCardWidgetState extends State<CpOVProcessingCardWidget>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
+                      child: const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: FaIcon(
                           FontAwesomeIcons.solidThumbsUp,
                           color: Colors.white,

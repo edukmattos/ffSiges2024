@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import '/pages/units/cp_dropdown_systems/cp_dropdown_systems_widget.dart';
 import '/pages/units/cp_dropdown_systems_parent/cp_dropdown_systems_parent_widget.dart';
 import '/pages/units/cp_dropdown_units_types/cp_dropdown_units_types_widget.dart';
@@ -17,8 +16,6 @@ class PgUnitsNewModel extends FlutterFlowModel<PgUnitsNewWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Model for cpNotificationsIcon component.
-  late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpDropdownSystemsParent component.
   late CpDropdownSystemsParentModel cpDropdownSystemsParentModel;
   // Model for cpDropdownSystems component.
@@ -49,8 +46,6 @@ class PgUnitsNewModel extends FlutterFlowModel<PgUnitsNewWidget> {
 
   @override
   void initState(BuildContext context) {
-    cpNotificationsIconModel =
-        createModel(context, () => CpNotificationsIconModel());
     cpDropdownSystemsParentModel =
         createModel(context, () => CpDropdownSystemsParentModel());
     cpDropdownSystemsModel =
@@ -70,7 +65,6 @@ class PgUnitsNewModel extends FlutterFlowModel<PgUnitsNewWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    cpNotificationsIconModel.dispose();
     cpDropdownSystemsParentModel.dispose();
     cpDropdownSystemsModel.dispose();
     cpDropdownUnitsTypesParentModel.dispose();

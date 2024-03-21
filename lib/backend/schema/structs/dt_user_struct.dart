@@ -42,6 +42,10 @@ class DtUserStruct extends FFFirebaseStruct {
     String? refreshToken,
     int? profileId,
     int? vehicleId,
+    bool? isAvailable,
+    bool? isOrderVisitIdInProgress,
+    int? contractId,
+    int? teamAmount,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _uid = uid,
@@ -75,6 +79,10 @@ class DtUserStruct extends FFFirebaseStruct {
         _refreshToken = refreshToken,
         _profileId = profileId,
         _vehicleId = vehicleId,
+        _isAvailable = isAvailable,
+        _isOrderVisitIdInProgress = isOrderVisitIdInProgress,
+        _contractId = contractId,
+        _teamAmount = teamAmount,
         super(firestoreUtilData);
 
   // "id" field.
@@ -291,6 +299,32 @@ class DtUserStruct extends FFFirebaseStruct {
   void incrementVehicleId(int amount) => _vehicleId = vehicleId + amount;
   bool hasVehicleId() => _vehicleId != null;
 
+  // "isAvailable" field.
+  bool? _isAvailable;
+  bool get isAvailable => _isAvailable ?? false;
+  set isAvailable(bool? val) => _isAvailable = val;
+  bool hasIsAvailable() => _isAvailable != null;
+
+  // "isOrderVisitIdInProgress" field.
+  bool? _isOrderVisitIdInProgress;
+  bool get isOrderVisitIdInProgress => _isOrderVisitIdInProgress ?? false;
+  set isOrderVisitIdInProgress(bool? val) => _isOrderVisitIdInProgress = val;
+  bool hasIsOrderVisitIdInProgress() => _isOrderVisitIdInProgress != null;
+
+  // "contractId" field.
+  int? _contractId;
+  int get contractId => _contractId ?? 0;
+  set contractId(int? val) => _contractId = val;
+  void incrementContractId(int amount) => _contractId = contractId + amount;
+  bool hasContractId() => _contractId != null;
+
+  // "teamAmount" field.
+  int? _teamAmount;
+  int get teamAmount => _teamAmount ?? 0;
+  set teamAmount(int? val) => _teamAmount = val;
+  void incrementTeamAmount(int amount) => _teamAmount = teamAmount + amount;
+  bool hasTeamAmount() => _teamAmount != null;
+
   static DtUserStruct fromMap(Map<String, dynamic> data) => DtUserStruct(
         id: castToType<int>(data['id']),
         uid: data['uid'] as String?,
@@ -326,6 +360,10 @@ class DtUserStruct extends FFFirebaseStruct {
         refreshToken: data['refreshToken'] as String?,
         profileId: castToType<int>(data['profileId']),
         vehicleId: castToType<int>(data['vehicleId']),
+        isAvailable: data['isAvailable'] as bool?,
+        isOrderVisitIdInProgress: data['isOrderVisitIdInProgress'] as bool?,
+        contractId: castToType<int>(data['contractId']),
+        teamAmount: castToType<int>(data['teamAmount']),
       );
 
   static DtUserStruct? maybeFromMap(dynamic data) =>
@@ -364,6 +402,10 @@ class DtUserStruct extends FFFirebaseStruct {
         'refreshToken': _refreshToken,
         'profileId': _profileId,
         'vehicleId': _vehicleId,
+        'isAvailable': _isAvailable,
+        'isOrderVisitIdInProgress': _isOrderVisitIdInProgress,
+        'contractId': _contractId,
+        'teamAmount': _teamAmount,
       }.withoutNulls;
 
   @override
@@ -494,6 +536,22 @@ class DtUserStruct extends FFFirebaseStruct {
         ),
         'vehicleId': serializeParam(
           _vehicleId,
+          ParamType.int,
+        ),
+        'isAvailable': serializeParam(
+          _isAvailable,
+          ParamType.bool,
+        ),
+        'isOrderVisitIdInProgress': serializeParam(
+          _isOrderVisitIdInProgress,
+          ParamType.bool,
+        ),
+        'contractId': serializeParam(
+          _contractId,
+          ParamType.int,
+        ),
+        'teamAmount': serializeParam(
+          _teamAmount,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -660,6 +718,26 @@ class DtUserStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        isAvailable: deserializeParam(
+          data['isAvailable'],
+          ParamType.bool,
+          false,
+        ),
+        isOrderVisitIdInProgress: deserializeParam(
+          data['isOrderVisitIdInProgress'],
+          ParamType.bool,
+          false,
+        ),
+        contractId: deserializeParam(
+          data['contractId'],
+          ParamType.int,
+          false,
+        ),
+        teamAmount: deserializeParam(
+          data['teamAmount'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -700,7 +778,11 @@ class DtUserStruct extends FFFirebaseStruct {
         accessToken == other.accessToken &&
         refreshToken == other.refreshToken &&
         profileId == other.profileId &&
-        vehicleId == other.vehicleId;
+        vehicleId == other.vehicleId &&
+        isAvailable == other.isAvailable &&
+        isOrderVisitIdInProgress == other.isOrderVisitIdInProgress &&
+        contractId == other.contractId &&
+        teamAmount == other.teamAmount;
   }
 
   @override
@@ -736,7 +818,11 @@ class DtUserStruct extends FFFirebaseStruct {
         accessToken,
         refreshToken,
         profileId,
-        vehicleId
+        vehicleId,
+        isAvailable,
+        isOrderVisitIdInProgress,
+        contractId,
+        teamAmount
       ]);
 }
 
@@ -773,6 +859,10 @@ DtUserStruct createDtUserStruct({
   String? refreshToken,
   int? profileId,
   int? vehicleId,
+  bool? isAvailable,
+  bool? isOrderVisitIdInProgress,
+  int? contractId,
+  int? teamAmount,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -811,6 +901,10 @@ DtUserStruct createDtUserStruct({
       refreshToken: refreshToken,
       profileId: profileId,
       vehicleId: vehicleId,
+      isAvailable: isAvailable,
+      isOrderVisitIdInProgress: isOrderVisitIdInProgress,
+      contractId: contractId,
+      teamAmount: teamAmount,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

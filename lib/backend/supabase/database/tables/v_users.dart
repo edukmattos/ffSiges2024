@@ -14,6 +14,9 @@ class VUsersRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => VUsersTable();
 
+  int? get contractId => getField<int>('contractId');
+  set contractId(int? value) => setField<int>('contractId', value);
+
   int? get id => getField<int>('id');
   set id(int? value) => setField<int>('id', value);
 
@@ -68,6 +71,9 @@ class VUsersRow extends SupabaseDataRow {
   String? get teamDescription => getField<String>('teamDescription');
   set teamDescription(String? value) =>
       setField<String>('teamDescription', value);
+
+  int? get teamAmount => getField<int>('teamAmount');
+  set teamAmount(int? value) => setField<int>('teamAmount', value);
 
   int? get teamIdPrevious => getField<int>('teamIdPrevious');
   set teamIdPrevious(int? value) => setField<int>('teamIdPrevious', value);
@@ -125,4 +131,12 @@ class VUsersRow extends SupabaseDataRow {
 
   int? get vehicleId => getField<int>('vehicleId');
   set vehicleId(int? value) => setField<int>('vehicleId', value);
+
+  bool? get isAvailable => getField<bool>('isAvailable');
+  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
+
+  bool? get isOrderVisitIdInProgress =>
+      getField<bool>('isOrderVisitIdInProgress');
+  set isOrderVisitIdInProgress(bool? value) =>
+      setField<bool>('isOrderVisitIdInProgress', value);
 }

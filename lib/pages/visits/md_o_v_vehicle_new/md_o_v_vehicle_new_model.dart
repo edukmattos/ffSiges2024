@@ -12,10 +12,10 @@ class MdOVVehicleNewModel extends FlutterFlowModel<MdOVVehicleNewWidget> {
   final formKey = GlobalKey<FormState>();
   // Model for cpDropdownVehicles component.
   late CpDropdownVehiclesModel cpDropdownVehiclesModel;
-  // Model for cpInputInteger component.
-  late CpInputIntegerModel cpInputIntegerModel1;
-  // Model for cpInputInteger component.
-  late CpInputIntegerModel cpInputIntegerModel2;
+  // Model for cpInputRecorderStart.
+  late CpInputIntegerModel cpInputRecorderStartModel;
+  // Model for cpInputRecorderEnd.
+  late CpInputIntegerModel cpInputRecorderEndModel;
   // Stores action output result for [Backend Call - API (vehicleById)] action in Button widget.
   ApiCallResponse? resVehicleSelected;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
@@ -27,15 +27,16 @@ class MdOVVehicleNewModel extends FlutterFlowModel<MdOVVehicleNewWidget> {
   void initState(BuildContext context) {
     cpDropdownVehiclesModel =
         createModel(context, () => CpDropdownVehiclesModel());
-    cpInputIntegerModel1 = createModel(context, () => CpInputIntegerModel());
-    cpInputIntegerModel2 = createModel(context, () => CpInputIntegerModel());
+    cpInputRecorderStartModel =
+        createModel(context, () => CpInputIntegerModel());
+    cpInputRecorderEndModel = createModel(context, () => CpInputIntegerModel());
   }
 
   @override
   void dispose() {
     cpDropdownVehiclesModel.dispose();
-    cpInputIntegerModel1.dispose();
-    cpInputIntegerModel2.dispose();
+    cpInputRecorderStartModel.dispose();
+    cpInputRecorderEndModel.dispose();
   }
 
   /// Action blocks are added here.

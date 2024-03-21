@@ -173,6 +173,10 @@ class _CpMenuServicesFiltersWidgetState
                         size: 60,
                         imgUrl:
                             '${FFAppConstants.appServerUrlStorage}${FFAppState().asUserCurrent.imgFilePath}${FFAppState().asUserCurrent.imgFileName}',
+                        toolTip: FFAppState().asUserCurrent.nameShort,
+                        isAvailable: FFAppState().asUserCurrent.isAvailable,
+                        isOrderVisitIdInProgress:
+                            FFAppState().asUserCurrent.isOrderVisitIdInProgress,
                       ),
                     ),
                     Expanded(

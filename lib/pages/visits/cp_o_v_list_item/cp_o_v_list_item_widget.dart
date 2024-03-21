@@ -1,12 +1,11 @@
 import '/backend/supabase/supabase.dart';
-import '/components/cp_order_priority_widget.dart';
-import '/components/cp_orders_statuses_widget.dart';
+import '/components/cp_o_priority_widget.dart';
+import '/components/cp_o_statuses_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_user_pic_profile/cp_user_pic_profile_widget.dart';
 import '/pages/visits/cp_o_v_processing_card/cp_o_v_processing_card_widget.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -17,13 +16,13 @@ export 'cp_o_v_list_item_model.dart';
 class CpOVListItemWidget extends StatefulWidget {
   const CpOVListItemWidget({
     super.key,
-    int? orderId,
-    int? orderVisitId,
-  })  : orderId = orderId ?? 1,
-        orderVisitId = orderVisitId ?? 1;
+    int? ppOId,
+    int? ppOVId,
+  })  : ppOId = ppOId ?? 1,
+        ppOVId = ppOVId ?? 1;
 
-  final int orderId;
-  final int orderVisitId;
+  final int ppOId;
+  final int ppOVId;
 
   @override
   State<CpOVListItemWidget> createState() => _CpOVListItemWidgetState();
@@ -109,7 +108,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 50.0),
+          begin: const Offset(0.0, 30.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -169,7 +168,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           curve: Curves.easeInOut,
           delay: 1600.ms,
           duration: 600.ms,
-          begin: const Offset(0.0, 30.0),
+          begin: const Offset(0.0, 50.0),
           end: const Offset(0.0, 0.0),
         ),
       ],
@@ -255,7 +254,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           future: VOrdersTable().querySingleRow(
             queryFn: (q) => q.eq(
               'id',
-              widget.orderId,
+              widget.ppOId,
             ),
           ),
           builder: (context, snapshot) {
@@ -307,149 +306,68 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'pgOShow',
+                                  queryParameters: {
+                                    'orderId': serializeParam(
+                                      containerVOrdersRow?.id,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerVOrdersRow?.orderMask,
+                                  '.',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
+                            Text(
+                              '${valueOrDefault<String>(
+                                containerVOrdersRow?.typeCode,
+                                '.',
+                              )}/${valueOrDefault<String>(
+                                containerVOrdersRow?.typeSubCode,
+                                '.',
+                              )}',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation2']!),
+                          ],
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await action_blocks.abOSelected(
-                                      context,
-                                      abOrderId: widget.orderId,
-                                    );
-
-                                    context.pushNamed(
-                                      'pgOrderShow',
-                                      queryParameters: {
-                                        'orderId': serializeParam(
-                                          widget.orderId,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      containerVOrdersRow?.orderMask,
-                                      '.',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!),
-                                Text(
-                                  '${valueOrDefault<String>(
-                                    containerVOrdersRow?.typeCode,
-                                    '.',
-                                  )}/${valueOrDefault<String>(
-                                    containerVOrdersRow?.typeSubCode,
-                                    '.',
-                                  )}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation2']!),
-                              ],
-                            ),
                             wrapWithModel(
-                              model: _model.cpOrderPriorityModel,
+                              model: _model.cpOPriorityModel,
                               updateCallback: () => setState(() {}),
-                              child: const CpOrderPriorityWidget(),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      '${valueOrDefault<String>(
-                                        dateTimeFormat('d/M/y H:mm',
-                                            containerVOrdersRow?.statusDate),
-                                        '.',
-                                      )} h',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation3']!),
-                                    Text(
-                                      valueOrDefault<String>(
-                                        containerVOrdersRow
-                                            ?.cancelReasonDescription,
-                                        '.',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation4']!),
-                                    Align(
-                                      alignment: const AlignmentDirectional(1.0, 0.0),
-                                      child: Text(
-                                        valueOrDefault<String>(
-                                          containerVOrdersRow?.causeDescription,
-                                          '.',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'textOnPageLoadAnimation5']!),
-                                    ),
-                                  ],
-                                ),
-                                wrapWithModel(
-                                  model: _model.cpOrdersStatusesModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: CpOrdersStatusesWidget(
-                                    cpStatusId: containerVOrdersRow!.statusId!,
-                                    cpStatusDescription:
-                                        containerVOrdersRow.statusDescription!,
-                                  ),
-                                ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              child: const CpOPriorityWidget(),
                             ),
                           ],
                         ),
@@ -477,7 +395,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                       'pgUnitShowOri',
                                       queryParameters: {
                                         'unitId': serializeParam(
-                                          containerVOrdersRow.unitId,
+                                          containerVOrdersRow?.unitId,
                                           ParamType.int,
                                         ),
                                       }.withoutNulls,
@@ -485,7 +403,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                   },
                                   child: Text(
                                     valueOrDefault<String>(
-                                      containerVOrdersRow.unitDescription,
+                                      containerVOrdersRow?.unitDescription,
                                       '.',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -499,11 +417,11 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                         ),
                                   ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation6']!),
+                                    animationsMap['textOnPageLoadAnimation3']!),
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersRow.assetTagDescription,
+                                  containerVOrdersRow?.assetTagDescription,
                                   'assetTagDescription',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -514,10 +432,10 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation7']!),
+                                  animationsMap['textOnPageLoadAnimation4']!),
                               Text(
                                 valueOrDefault<String>(
-                                  containerVOrdersRow.requestedServices,
+                                  containerVOrdersRow?.requestedServices,
                                   'team',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -528,11 +446,78 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           .primaryText,
                                     ),
                               ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation8']!),
+                                  animationsMap['textOnPageLoadAnimation5']!),
+                              Align(
+                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    containerVOrdersRow?.causeDescription,
+                                    '.',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation6']!),
+                              ),
                             ],
                           ),
                         ),
                       ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        wrapWithModel(
+                          model: _model.cpOStatusesModel,
+                          updateCallback: () => setState(() {}),
+                          child: CpOStatusesWidget(
+                            cpStatusId: containerVOrdersRow!.statusId!,
+                            cpStatusDescription:
+                                containerVOrdersRow.statusDescription!,
+                          ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${valueOrDefault<String>(
+                                dateTimeFormat('d/M/y H:mm',
+                                    containerVOrdersRow.statusDate),
+                                '.',
+                              )} h',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation7']!),
+                            Text(
+                              valueOrDefault<String>(
+                                containerVOrdersRow.cancelReasonDescription,
+                                '.',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation8']!),
+                          ],
+                        ),
+                      ].divide(const SizedBox(width: 8.0)),
                     ),
                   ].divide(const SizedBox(height: 8.0)),
                 ),
@@ -544,7 +529,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
           future: VOrdersVisitsTable().querySingleRow(
             queryFn: (q) => q.eq(
               'id',
-              widget.orderVisitId,
+              widget.ppOVId,
             ),
           ),
           builder: (context, snapshot) {
@@ -574,20 +559,27 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                await action_blocks.abOVSelected(
-                  context,
-                  abOrderVisitId: widget.orderVisitId,
-                );
-
                 context.pushNamed(
                   'pgOVShow',
                   queryParameters: {
-                    'visitId': serializeParam(
-                      FFAppState().stOVSelected.first.id,
+                    'ppOVId': serializeParam(
+                      widget.ppOVId,
                       ParamType.int,
                     ),
-                    'orderId': serializeParam(
-                      FFAppState().stOVSelected.first.orderId,
+                    'ppOPId': serializeParam(
+                      containerVOrdersVisitsRow.parentId,
+                      ParamType.int,
+                    ),
+                    'ppProcessingId': serializeParam(
+                      containerVOrdersVisitsRow.processingId,
+                      ParamType.int,
+                    ),
+                    'ppUnitId': serializeParam(
+                      containerVOrdersVisitsRow.unitId,
+                      ParamType.int,
+                    ),
+                    'ppOId': serializeParam(
+                      widget.ppOId,
                       ParamType.int,
                     ),
                   }.withoutNulls,
@@ -629,7 +621,7 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.orderVisitId.toString(),
+                                          '# ${widget.ppOVId.toString()}',
                                           style: FlutterFlowTheme.of(context)
                                               .titleMedium
                                               .override(
@@ -670,7 +662,8 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         wrapWithModel(
-                                          model: _model.cpOVProcessingCardModel,
+                                          model:
+                                              _model.cpOVProcessingCardModel1,
                                           updateCallback: () => setState(() {}),
                                           child: CpOVProcessingCardWidget(
                                             processingDescription:
@@ -684,16 +677,6 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                       ],
                                     ),
                                   ],
-                                ),
-                                Text(
-                                  'Equipe',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -711,8 +694,8 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                           future: VOrdersVisitsTeamsTable()
                                               .queryRows(
                                             queryFn: (q) => q.eq(
-                                              'visitId',
-                                              widget.orderVisitId,
+                                              'orderVisitId',
+                                              widget.ppOVId,
                                             ),
                                           ),
                                           builder: (context, snapshot) {
@@ -788,6 +771,15 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                                     size: 60,
                                                     imgUrl:
                                                         '${FFAppConstants.appServerUrlStorage}${listViewVOrdersVisitsTeamsRow.imgFilePath}${listViewVOrdersVisitsTeamsRow.imgFileName}',
+                                                    toolTip:
+                                                        listViewVOrdersVisitsTeamsRow
+                                                            .nameShort!,
+                                                    isAvailable:
+                                                        listViewVOrdersVisitsTeamsRow
+                                                            .isAvailable!,
+                                                    isOrderVisitIdInProgress:
+                                                        listViewVOrdersVisitsTeamsRow
+                                                            .isOrderVisitIdInProgress!,
                                                   ),
                                                 );
                                               },
@@ -798,16 +790,61 @@ class _CpOVListItemWidgetState extends State<CpOVListItemWidget>
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  'Transporte',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
+                                if (containerVOrdersVisitsRow.isCanceled ??
+                                    true)
+                                  Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  containerVOrdersVisitsRow
+                                                      .orderCancelReasonDescription,
+                                                  '.',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 0.0),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    containerVOrdersVisitsRow
+                                                        .comments,
+                                                    '.',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        wrapWithModel(
+                                          model:
+                                              _model.cpOVProcessingCardModel2,
+                                          updateCallback: () => setState(() {}),
+                                          child: const CpOVProcessingCardWidget(
+                                            processingDescription: 'Cancelada',
+                                            processingId: 3,
+                                          ),
+                                        ),
+                                      ].divide(const SizedBox(width: 8.0)),
+                                    ),
+                                  ),
                               ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),

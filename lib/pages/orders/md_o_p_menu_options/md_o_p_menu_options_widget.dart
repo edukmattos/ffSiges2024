@@ -123,9 +123,9 @@ class _MdOPMenuOptionsWidgetState extends State<MdOPMenuOptionsWidget> {
                           Navigator.pop(context);
 
                           context.pushNamed(
-                            'pgOrderProgramming',
+                            'pgOProgramming',
                             queryParameters: {
-                              'orderId': serializeParam(
+                              'orderParentId': serializeParam(
                                 widget.orderId,
                                 ParamType.int,
                               ),

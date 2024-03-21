@@ -35,4 +35,10 @@ class OrdersVisitsTrackerRow extends SupabaseDataRow {
 
   String? get device => getField<String>('device');
   set device(String? value) => setField<String>('device', value);
+
+  int? get orderId => getField<int>('orderId');
+  set orderId(int? value) => setField<int>('orderId', value);
+
+  int? get orderParentId => getField<int>('orderParentId');
+  set orderParentId(int? value) => setField<int>('orderParentId', value);
 }

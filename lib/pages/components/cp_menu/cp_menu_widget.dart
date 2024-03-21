@@ -146,6 +146,10 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         size: 60,
                         imgUrl:
                             '${FFAppConstants.appServerUrlStorage}${FFAppState().asUserCurrent.imgFilePath}${FFAppState().asUserCurrent.imgFileName}',
+                        toolTip: FFAppState().asUserCurrent.nameShort,
+                        isAvailable: FFAppState().asUserCurrent.isAvailable,
+                        isOrderVisitIdInProgress:
+                            FFAppState().asUserCurrent.isOrderVisitIdInProgress,
                       ),
                     ),
                     Expanded(
@@ -439,10 +443,6 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                       ),
                     ),
                   ),
-                  Text(
-                    'Settings',
-                    style: FlutterFlowTheme.of(context).labelMedium,
-                  ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     curve: Curves.easeInOut,
@@ -462,14 +462,28 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('pgAssetsSearch');
+                          var shouldSetState = false;
+                          _model.isAllowedAssetsSearch =
+                              await action_blocks.abGuardian(
+                            context,
+                            abPgRequestedId: 5,
+                          );
+                          shouldSetState = true;
+                          if (_model.isAllowedAssetsSearch!) {
+                            context.pushNamed('pgAssetsSearch');
+                          } else {
+                            if (shouldSetState) setState(() {});
+                            return;
+                          }
+
+                          if (shouldSetState) setState(() {});
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.settings_outlined,
+                              Icons.forum_rounded,
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
@@ -488,6 +502,10 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                         ),
                       ),
                     ),
+                  ),
+                  Text(
+                    'Settings',
+                    style: FlutterFlowTheme.of(context).labelMedium,
                   ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -532,42 +550,6 @@ class _CpMenuWidgetState extends State<CpMenuWidget> {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                    width: double.infinity,
-                    height: 44.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.circular(12.0),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.settings_sharp,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Meus Ajustes',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ),

@@ -120,6 +120,10 @@ class _CpUsersListItemWidgetState extends State<CpUsersListItemWidget> {
                                 size: 60,
                                 imgUrl:
                                     '${FFAppConstants.appServerUrlStorage}${containerVUsersRow?.imgFilePath}${containerVUsersRow?.imgFileName}',
+                                toolTip: containerVUsersRow!.nameShort!,
+                                isAvailable: containerVUsersRow.isAvailable!,
+                                isOrderVisitIdInProgress: containerVUsersRow
+                                    .isOrderVisitIdInProgress!,
                               ),
                             ),
                           ),
@@ -136,13 +140,13 @@ class _CpUsersListItemWidgetState extends State<CpUsersListItemWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  containerVUsersRow?.nameFull,
+                                  containerVUsersRow.nameFull,
                                   'mane_full',
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyLarge,
                               ),
                               Text(
-                                containerVUsersRow!.email!,
+                                containerVUsersRow.email!,
                                 style: FlutterFlowTheme.of(context).labelMedium,
                               ),
                               Text(

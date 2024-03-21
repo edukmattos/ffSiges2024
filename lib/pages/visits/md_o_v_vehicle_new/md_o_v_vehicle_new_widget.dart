@@ -14,7 +14,18 @@ import 'md_o_v_vehicle_new_model.dart';
 export 'md_o_v_vehicle_new_model.dart';
 
 class MdOVVehicleNewWidget extends StatefulWidget {
-  const MdOVVehicleNewWidget({super.key});
+  const MdOVVehicleNewWidget({
+    super.key,
+    int? ppOVid,
+    int? ppOId,
+    int? ppOPId,
+  })  : ppOVid = ppOVid ?? 1,
+        ppOId = ppOId ?? 1,
+        ppOPId = ppOPId ?? 1;
+
+  final int ppOVid;
+  final int ppOId;
+  final int ppOPId;
 
   @override
   State<MdOVVehicleNewWidget> createState() => _MdOVVehicleNewWidgetState();
@@ -187,7 +198,7 @@ class _MdOVVehicleNewWidgetState extends State<MdOVVehicleNewWidget> {
                                                 ),
                                                 wrapWithModel(
                                                   model: _model
-                                                      .cpInputIntegerModel1,
+                                                      .cpInputRecorderStartModel,
                                                   updateCallback: () =>
                                                       setState(() {}),
                                                   child: const CpInputIntegerWidget(
@@ -199,7 +210,7 @@ class _MdOVVehicleNewWidgetState extends State<MdOVVehicleNewWidget> {
                                                 ),
                                                 wrapWithModel(
                                                   model: _model
-                                                      .cpInputIntegerModel2,
+                                                      .cpInputRecorderEndModel,
                                                   updateCallback: () =>
                                                       setState(() {}),
                                                   child: const CpInputIntegerWidget(
@@ -241,21 +252,18 @@ class _MdOVVehicleNewWidgetState extends State<MdOVVehicleNewWidget> {
                                                               await OrdersVisitsVehiclesTable()
                                                                   .insert({
                                                             'orderVisitId':
-                                                                FFAppState()
-                                                                    .stOVSelected
-                                                                    .first
-                                                                    .id,
+                                                                widget.ppOVid,
                                                             'vehicleId': _model
                                                                 .cpDropdownVehiclesModel
                                                                 .dropdownVehiclesValue,
                                                             'recorderStart': int
                                                                 .tryParse(_model
-                                                                    .cpInputIntegerModel1
+                                                                    .cpInputRecorderStartModel
                                                                     .inputIntegerController
                                                                     .text),
                                                             'recorderEnd': int
                                                                 .tryParse(_model
-                                                                    .cpInputIntegerModel2
+                                                                    .cpInputRecorderEndModel
                                                                     .inputIntegerController
                                                                     .text),
                                                             'discount':
@@ -282,14 +290,18 @@ class _MdOVVehicleNewWidgetState extends State<MdOVVehicleNewWidget> {
                                                             ),
                                                             'amountUnit': int
                                                                     .parse(_model
-                                                                        .cpInputIntegerModel2
+                                                                        .cpInputRecorderEndModel
                                                                         .inputIntegerController
                                                                         .text) -
                                                                 int.parse(_model
-                                                                    .cpInputIntegerModel1
+                                                                    .cpInputRecorderStartModel
                                                                     .inputIntegerController
                                                                     .text),
                                                             'priceTotal': 0.0,
+                                                            'orderId':
+                                                                widget.ppOId,
+                                                            'orderParentId':
+                                                                widget.ppOPId,
                                                           });
                                                           Navigator.pop(
                                                               context);
@@ -297,6 +309,8 @@ class _MdOVVehicleNewWidgetState extends State<MdOVVehicleNewWidget> {
                                                               .abOVPricesUpdate(
                                                             context,
                                                             abPrice: 'vehicles',
+                                                            abOVId:
+                                                                widget.ppOVid,
                                                           );
                                                         } else {
                                                           Navigator.pop(

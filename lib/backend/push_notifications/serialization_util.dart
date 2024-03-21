@@ -179,6 +179,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VProfilesPermissionsRow:
         return VProfilesPermissionsRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VDashAdminUsersTeamsContractsFiltersRow:
+        return VDashAdminUsersTeamsContractsFiltersRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case UsersStatusesRow:
         return UsersStatusesRow(json.decode(param) as Map<String, dynamic>)
             as T;
@@ -261,6 +264,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
       case VOrdersVisitsVehiclesRow:
         return VOrdersVisitsVehiclesRow(
             json.decode(param) as Map<String, dynamic>) as T;
+      case VUsersTeamsAmountRow:
+        return VUsersTeamsAmountRow(json.decode(param) as Map<String, dynamic>)
+            as T;
       case SystemsRow:
         return SystemsRow(json.decode(param) as Map<String, dynamic>) as T;
       case OrdersVisitsAssetsActivitiesRow:
@@ -316,6 +322,8 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return OrdersVisitsRow(json.decode(param) as Map<String, dynamic>) as T;
       case MaterialsRow:
         return MaterialsRow(json.decode(param) as Map<String, dynamic>) as T;
+      case UsersTrackerRow:
+        return UsersTrackerRow(json.decode(param) as Map<String, dynamic>) as T;
       case TeamsRow:
         return TeamsRow(json.decode(param) as Map<String, dynamic>) as T;
       case AppPagesRow:
@@ -324,6 +332,9 @@ T? getParameter<T>(Map<String, dynamic> data, String paramName) {
         return AssetsTypesRow(json.decode(param) as Map<String, dynamic>) as T;
       case OrdersRow:
         return OrdersRow(json.decode(param) as Map<String, dynamic>) as T;
+      case VOrdersVisitsTeamsAmountRow:
+        return VOrdersVisitsTeamsAmountRow(
+            json.decode(param) as Map<String, dynamic>) as T;
       case VOrdersParentRow:
         return VOrdersParentRow(json.decode(param) as Map<String, dynamic>)
             as T;

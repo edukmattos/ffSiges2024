@@ -15,6 +15,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
     String? orderMask,
     String? orderTypeCode,
     String? orderTypeSubCode,
+    int? orderStatusId,
+    String? orderStatusDescription,
     int? orderParentId,
     double? durationHours,
     int? statusId,
@@ -62,6 +64,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         _orderMask = orderMask,
         _orderTypeCode = orderTypeCode,
         _orderTypeSubCode = orderTypeSubCode,
+        _orderStatusId = orderStatusId,
+        _orderStatusDescription = orderStatusDescription,
         _orderParentId = orderParentId,
         _durationHours = durationHours,
         _statusId = statusId,
@@ -136,6 +140,20 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
   String get orderTypeSubCode => _orderTypeSubCode ?? '';
   set orderTypeSubCode(String? val) => _orderTypeSubCode = val;
   bool hasOrderTypeSubCode() => _orderTypeSubCode != null;
+
+  // "orderStatusId" field.
+  int? _orderStatusId;
+  int get orderStatusId => _orderStatusId ?? 0;
+  set orderStatusId(int? val) => _orderStatusId = val;
+  void incrementOrderStatusId(int amount) =>
+      _orderStatusId = orderStatusId + amount;
+  bool hasOrderStatusId() => _orderStatusId != null;
+
+  // "orderStatusDescription" field.
+  String? _orderStatusDescription;
+  String get orderStatusDescription => _orderStatusDescription ?? '';
+  set orderStatusDescription(String? val) => _orderStatusDescription = val;
+  bool hasOrderStatusDescription() => _orderStatusDescription != null;
 
   // "orderParentId" field.
   int? _orderParentId;
@@ -419,6 +437,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         orderMask: data['orderMask'] as String?,
         orderTypeCode: data['orderTypeCode'] as String?,
         orderTypeSubCode: data['orderTypeSubCode'] as String?,
+        orderStatusId: castToType<int>(data['orderStatusId']),
+        orderStatusDescription: data['orderStatusDescription'] as String?,
         orderParentId: castToType<int>(data['orderParentId']),
         durationHours: castToType<double>(data['durationHours']),
         statusId: castToType<int>(data['statusId']),
@@ -473,6 +493,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         'orderMask': _orderMask,
         'orderTypeCode': _orderTypeCode,
         'orderTypeSubCode': _orderTypeSubCode,
+        'orderStatusId': _orderStatusId,
+        'orderStatusDescription': _orderStatusDescription,
         'orderParentId': _orderParentId,
         'durationHours': _durationHours,
         'statusId': _statusId,
@@ -536,6 +558,14 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         ),
         'orderTypeSubCode': serializeParam(
           _orderTypeSubCode,
+          ParamType.String,
+        ),
+        'orderStatusId': serializeParam(
+          _orderStatusId,
+          ParamType.int,
+        ),
+        'orderStatusDescription': serializeParam(
+          _orderStatusDescription,
           ParamType.String,
         ),
         'orderParentId': serializeParam(
@@ -728,6 +758,16 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         ),
         orderTypeSubCode: deserializeParam(
           data['orderTypeSubCode'],
+          ParamType.String,
+          false,
+        ),
+        orderStatusId: deserializeParam(
+          data['orderStatusId'],
+          ParamType.int,
+          false,
+        ),
+        orderStatusDescription: deserializeParam(
+          data['orderStatusDescription'],
           ParamType.String,
           false,
         ),
@@ -949,6 +989,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         orderMask == other.orderMask &&
         orderTypeCode == other.orderTypeCode &&
         orderTypeSubCode == other.orderTypeSubCode &&
+        orderStatusId == other.orderStatusId &&
+        orderStatusDescription == other.orderStatusDescription &&
         orderParentId == other.orderParentId &&
         durationHours == other.durationHours &&
         statusId == other.statusId &&
@@ -999,6 +1041,8 @@ class DtVOrderVisitStruct extends FFFirebaseStruct {
         orderMask,
         orderTypeCode,
         orderTypeSubCode,
+        orderStatusId,
+        orderStatusDescription,
         orderParentId,
         durationHours,
         statusId,
@@ -1049,6 +1093,8 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
   String? orderMask,
   String? orderTypeCode,
   String? orderTypeSubCode,
+  int? orderStatusId,
+  String? orderStatusDescription,
   int? orderParentId,
   double? durationHours,
   int? statusId,
@@ -1101,6 +1147,8 @@ DtVOrderVisitStruct createDtVOrderVisitStruct({
       orderMask: orderMask,
       orderTypeCode: orderTypeCode,
       orderTypeSubCode: orderTypeSubCode,
+      orderStatusId: orderStatusId,
+      orderStatusDescription: orderStatusDescription,
       orderParentId: orderParentId,
       durationHours: durationHours,
       statusId: statusId,

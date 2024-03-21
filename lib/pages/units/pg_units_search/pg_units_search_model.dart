@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/cp_input_text/cp_input_text_widget.dart';
 import '/pages/components/cp_menu/cp_menu_widget.dart';
-import '/pages/components/cp_notifications_icon/cp_notifications_icon_widget.dart';
 import 'dart:async';
 import 'pg_units_search_widget.dart' show PgUnitsSearchWidget;
 import 'package:flutter/material.dart';
@@ -16,8 +15,6 @@ class PgUnitsSearchModel extends FlutterFlowModel<PgUnitsSearchWidget> {
   // Stores action output result for [Backend Call - API (unitsSearch)] action in IconButton widget.
   ApiCallResponse? resUnits;
   Completer<ApiCallResponse>? apiRequestCompleter;
-  // Model for cpNotificationsIcon component.
-  late CpNotificationsIconModel cpNotificationsIconModel;
   // Model for cpMenu component.
   late CpMenuModel cpMenuModel;
   // Stores action output result for [Action Block - abGuardian] action in Icon widget.
@@ -28,8 +25,6 @@ class PgUnitsSearchModel extends FlutterFlowModel<PgUnitsSearchWidget> {
   @override
   void initState(BuildContext context) {
     cpInputTextSearchModel = createModel(context, () => CpInputTextModel());
-    cpNotificationsIconModel =
-        createModel(context, () => CpNotificationsIconModel());
     cpMenuModel = createModel(context, () => CpMenuModel());
   }
 
@@ -37,7 +32,6 @@ class PgUnitsSearchModel extends FlutterFlowModel<PgUnitsSearchWidget> {
   void dispose() {
     unfocusNode.dispose();
     cpInputTextSearchModel.dispose();
-    cpNotificationsIconModel.dispose();
     cpMenuModel.dispose();
   }
 

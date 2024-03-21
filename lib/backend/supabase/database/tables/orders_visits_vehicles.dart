@@ -62,4 +62,10 @@ class OrdersVisitsVehiclesRow extends SupabaseDataRow {
 
   bool? get isDeleted => getField<bool>('isDeleted');
   set isDeleted(bool? value) => setField<bool>('isDeleted', value);
+
+  int? get orderId => getField<int>('orderId');
+  set orderId(int? value) => setField<int>('orderId', value);
+
+  int? get orderParentId => getField<int>('orderParentId');
+  set orderParentId(int? value) => setField<int>('orderParentId', value);
 }

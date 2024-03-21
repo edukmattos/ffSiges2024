@@ -38,98 +38,108 @@ Future abUserUpdate(
   resUserCurrent = await ApiUsersGroup.userByEmailCall.call(
     email: abEmail,
   );
-  FFAppState().asUserCurrent = DtUserStruct(
-    id: ApiUsersGroup.userByEmailCall.id(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    uid: ApiUsersGroup.userByEmailCall.uid(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    nameFull: ApiUsersGroup.userByEmailCall.nameFull(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    nameShort: ApiUsersGroup.userByEmailCall.nameShort(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    email: abEmail,
-    statusId: ApiUsersGroup.userByEmailCall.statusId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    companyId: ApiUsersGroup.userByEmailCall.companyId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    companyCode: ApiUsersGroup.userByEmailCall.companyCode(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    companyDescription: ApiUsersGroup.userByEmailCall.companyDescription(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    departmentId: ApiUsersGroup.userByEmailCall.departmentId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    departmentCode: ApiUsersGroup.userByEmailCall.departmentCode(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    departmentDescription: ApiUsersGroup.userByEmailCall.departmentDescription(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    teamId: ApiUsersGroup.userByEmailCall.teamId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    teamCode: ApiUsersGroup.userByEmailCall.teamCode(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    isAdmin: ApiUsersGroup.userByEmailCall.isAdmin(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    isAdminSuper: ApiUsersGroup.userByEmailCall.isAdminSuper(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    appVersion: ApiUsersGroup.userByEmailCall
-        .appVersion(
-          (resUserCurrent.jsonBody ?? ''),
-        )
-        .toString(),
-    imgFilePath: ApiUsersGroup.userByEmailCall.imgFilePath(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    imgFileName: ApiUsersGroup.userByEmailCall.imgFileName(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    companyImgFilePath: ApiUsersGroup.userByEmailCall.companyImgFilePath(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    companyImgFileName: ApiUsersGroup.userByEmailCall.companyImgFileName(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    orderVisitIdInProgress:
-        ApiUsersGroup.userByEmailCall.orderVisitIdInProgress(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    orderIdInProgress: ApiUsersGroup.userByEmailCall.orderIdInProgress(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    orderParentIdInProgress:
-        ApiUsersGroup.userByEmailCall.orderParentIdInProgress(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    teamIdPrevious: ApiUsersGroup.userByEmailCall.teamIdPrevious(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    isTeamLeader: ApiUsersGroup.userByEmailCall.isTeamLeader(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    orderVisitInProgressTeamLeaderId:
-        ApiUsersGroup.userByEmailCall.orderVisitInProgressTeamLeaderId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    profileId: ApiUsersGroup.userByEmailCall.profileId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-    vehicleId: ApiUsersGroup.userByEmailCall.vehicleId(
-      (resUserCurrent.jsonBody ?? ''),
-    ),
-  );
+  FFAppState().update(() {
+    FFAppState().asUserCurrent = DtUserStruct(
+      id: ApiUsersGroup.userByEmailCall.id(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      uid: ApiUsersGroup.userByEmailCall.uid(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      nameFull: ApiUsersGroup.userByEmailCall.nameFull(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      nameShort: ApiUsersGroup.userByEmailCall.nameShort(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      email: abEmail,
+      statusId: ApiUsersGroup.userByEmailCall.statusId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      companyId: ApiUsersGroup.userByEmailCall.companyId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      companyCode: ApiUsersGroup.userByEmailCall.companyCode(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      companyDescription: ApiUsersGroup.userByEmailCall.companyDescription(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      departmentId: ApiUsersGroup.userByEmailCall.departmentId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      departmentCode: ApiUsersGroup.userByEmailCall.departmentCode(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      departmentDescription:
+          ApiUsersGroup.userByEmailCall.departmentDescription(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      teamId: ApiUsersGroup.userByEmailCall.teamId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      teamCode: ApiUsersGroup.userByEmailCall.teamCode(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      isAdmin: ApiUsersGroup.userByEmailCall.isAdmin(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      isAdminSuper: ApiUsersGroup.userByEmailCall.isAdminSuper(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      appVersion: ApiUsersGroup.userByEmailCall
+          .appVersion(
+            (resUserCurrent?.jsonBody ?? ''),
+          )
+          .toString(),
+      imgFilePath: ApiUsersGroup.userByEmailCall.imgFilePath(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      imgFileName: ApiUsersGroup.userByEmailCall.imgFileName(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      companyImgFilePath: ApiUsersGroup.userByEmailCall.companyImgFilePath(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      companyImgFileName: ApiUsersGroup.userByEmailCall.companyImgFileName(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      orderVisitIdInProgress:
+          ApiUsersGroup.userByEmailCall.orderVisitIdInProgress(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      orderIdInProgress: ApiUsersGroup.userByEmailCall.orderIdInProgress(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      orderParentIdInProgress:
+          ApiUsersGroup.userByEmailCall.orderParentIdInProgress(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      teamIdPrevious: ApiUsersGroup.userByEmailCall.teamIdPrevious(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      isTeamLeader: ApiUsersGroup.userByEmailCall.isTeamLeader(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      orderVisitInProgressTeamLeaderId:
+          ApiUsersGroup.userByEmailCall.orderVisitInProgressTeamLeaderId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      profileId: ApiUsersGroup.userByEmailCall.profileId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      vehicleId: ApiUsersGroup.userByEmailCall.vehicleId(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      isAvailable: ApiUsersGroup.userByEmailCall.isAvailable(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+      isOrderVisitIdInProgress:
+          ApiUsersGroup.userByEmailCall.isOrderVisitIdInProgress(
+        (resUserCurrent?.jsonBody ?? ''),
+      ),
+    );
+  });
   apiResultyjy = await ApiProfilesPermissionsGroup.permissionsCall.call(
     profileId: FFAppState().asUserCurrent.profileId,
   );
@@ -266,12 +276,14 @@ Future<int> abChoicesOrdersPrioritiesId(
 
 Future abTeamUsersUpdate(
   BuildContext context, {
-  int? abVisitId,
+  int? abOrderVisitId,
   required int? abUserSelected,
   required String? abOperation,
 }) async {
   ApiCallResponse? resUserSelected;
   OrdersVisitsTeamsRow? resOrderTeamAdded;
+  ApiCallResponse? resTeamAmount;
+  ApiCallResponse? resUsersAmount;
 
   resUserSelected = await ApiUsersGroup.userByIdCall.call(
     userId: abUserSelected,
@@ -286,10 +298,10 @@ Future abTeamUsersUpdate(
         (resUserSelected.jsonBody ?? ''),
       ),
     );
-    if (abVisitId != null) {
+    if (abOrderVisitId != null) {
       if (abOperation == 'add') {
         resOrderTeamAdded = await OrdersVisitsTeamsTable().insert({
-          'visitId': abVisitId,
+          'orderVisitId': abOrderVisitId,
           'userId': FFAppState().stTeamUserSelected.id,
           'isLeader': false,
           'orderParentId': FFAppState().asUserCurrent.orderParentIdInProgress,
@@ -303,6 +315,22 @@ Future abTeamUsersUpdate(
             'orderVisitIdInProgress':
                 FFAppState().asUserCurrent.orderVisitIdInProgress,
             'orderVisitInProgressTeamLeaderId': FFAppState().asUserCurrent.id,
+            'isAvailable': FFAppState().asUserCurrent.isAvailable,
+            'isOrderVisitIdInProgress':
+                FFAppState().asUserCurrent.isOrderVisitIdInProgress,
+            'teamIdPrevious': getJsonField(
+              (resUserSelected.jsonBody ?? ''),
+              r'''$[0].teamId''',
+            ),
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stTeamUserSelected.id,
+          ),
+        );
+        await UsersTable().update(
+          data: {
+            'teamId': FFAppState().asUserCurrent.teamId,
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -313,8 +341,8 @@ Future abTeamUsersUpdate(
         await OrdersVisitsTeamsTable().delete(
           matchingRows: (rows) => rows
               .eq(
-                'visitId',
-                FFAppState().asUserCurrent.orderVisitIdInProgress,
+                'orderVisitId',
+                abOrderVisitId,
               )
               .eq(
                 'userId',
@@ -327,6 +355,21 @@ Future abTeamUsersUpdate(
             'orderIdInProgress': null,
             'orderVisitIdInProgress': null,
             'orderVisitInProgressTeamLeaderId': null,
+            'isAvailable': true,
+            'isOrderVisitIdInProgress': false,
+            'teamId': getJsonField(
+              (resUserSelected.jsonBody ?? ''),
+              r'''$[0].teamIdPrevious''',
+            ),
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stTeamUserSelected.id,
+          ),
+        );
+        await UsersTable().update(
+          data: {
+            'teamIdPrevious': FFAppState().asUserCurrent.teamId,
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -334,11 +377,42 @@ Future abTeamUsersUpdate(
           ),
         );
       }
+
+      resTeamAmount = await ApiOrdersVisitsGroup.teamAmountByVisitIdCall.call(
+        orderVisitId: abOrderVisitId,
+      );
+      await UsersTable().update(
+        data: {
+          'teamAmount': getJsonField(
+            (resTeamAmount.jsonBody ?? ''),
+            r'''$[0].teamAmount''',
+          ),
+        },
+        matchingRows: (rows) => rows.eq(
+          'id',
+          FFAppState().asUserCurrent.id,
+        ),
+      );
     } else {
       if (abOperation == 'add') {
         await UsersTable().update(
           data: {
             'teamIdPrevious': FFAppState().stTeamUserSelected.teamId,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stTeamUserSelected.id,
+          ),
+        );
+        await UsersTable().update(
+          data: {
+            'isAvailable': FFAppState().asUserCurrent.isAvailable,
+            'isOrderVisitIdInProgress':
+                FFAppState().asUserCurrent.isOrderVisitIdInProgress,
+            'teamIdPrevious': getJsonField(
+              (resUserSelected.jsonBody ?? ''),
+              r'''$[0].teamId''',
+            ),
           },
           matchingRows: (rows) => rows.eq(
             'id',
@@ -366,6 +440,20 @@ Future abTeamUsersUpdate(
         );
         await UsersTable().update(
           data: {
+            'isAvailable': true,
+            'isOrderVisitIdInProgress': false,
+            'teamId': getJsonField(
+              (resUserSelected.jsonBody ?? ''),
+              r'''$[0].teamIdPrevious''',
+            ),
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            FFAppState().stTeamUserSelected.id,
+          ),
+        );
+        await UsersTable().update(
+          data: {
             'teamIdPrevious': FFAppState().asUserCurrent.teamId,
           },
           matchingRows: (rows) => rows.eq(
@@ -374,6 +462,22 @@ Future abTeamUsersUpdate(
           ),
         );
       }
+
+      resUsersAmount = await ApiTeamsGroup.usersAmountByTeamIdCall.call(
+        teamId: FFAppState().asUserCurrent.teamId,
+      );
+      await UsersTable().update(
+        data: {
+          'teamAmount': getJsonField(
+            (resUsersAmount.jsonBody ?? ''),
+            r'''$[0].teamAmount''',
+          ),
+        },
+        matchingRows: (rows) => rows.eq(
+          'id',
+          FFAppState().asUserCurrent.id,
+        ),
+      );
     }
 
     FFAppState().stTeamUserSelected = DtUserStruct();
@@ -494,15 +598,15 @@ Future abAssetSelected(
   }
 }
 
-Future abOrderVisitAssetSelected(
+Future abOVAssetSelected(
   BuildContext context, {
-  required int? abOrderVisitAssetId,
+  required int? abOVAssetId,
 }) async {
   ApiCallResponse? resOrderVisitAssetSelected;
 
   resOrderVisitAssetSelected =
       await ApiOrdersVisitsAssetsGroup.orderVisitAssetByIdCall.call(
-    orderVisitAssetId: abOrderVisitAssetId,
+    orderVisitAssetId: abOVAssetId,
   );
   if ((resOrderVisitAssetSelected.succeeded ?? true)) {
     FFAppState().stOVAssetSelected =
@@ -514,10 +618,6 @@ Future abOrderVisitAssetSelected(
             .withoutNulls
             .toList()
             .cast<DtVOrderVisitAssetsStruct>();
-    await action_blocks.abOVSelected(
-      context,
-      abOrderVisitId: FFAppState().stOVAssetSelected.first.orderVisitId,
-    );
   } else {
     await showDialog(
       context: context,
@@ -572,7 +672,7 @@ Future abOPSelected(
   }
 }
 
-Future abOrderParentEvents(
+Future abOPEvents(
   BuildContext context, {
   required int? abOrderParentId,
   required String? abTitle,
@@ -610,14 +710,14 @@ Future abOrderParentEvents(
   }
 }
 
-Future abOrderVisitProcessingCheck(
+Future abOVProcessingCheck(
   BuildContext context, {
-  required int? abOrderVisitId,
+  required int? abOVId,
 }) async {
   ApiCallResponse? apiResultojo;
 
   apiResultojo = await ApiOrdersVisitsAssetsGroup.assetsByOrderVisitIdCall.call(
-    orderVisitId: abOrderVisitId,
+    orderVisitId: abOVId,
   );
   if ((apiResultojo.succeeded ?? true)) {
     FFAppState().stOVAssets = ((apiResultojo.jsonBody ?? '')
@@ -679,11 +779,12 @@ Future abOrderVisitProcessingCheck(
       },
       matchingRows: (rows) => rows.eq(
         'id',
-        valueOrDefault<int>(
-          FFAppState().stOVSelected.first.id,
-          1,
-        ),
+        FFAppState().stOVAssetSelected.first.orderVisitId,
       ),
+    );
+    await action_blocks.abOVSelected(
+      context,
+      abOrderVisitId: abOVId,
     );
     if (FFAppState().stOVSelected.first.statusId == 2) {
       if ((FFAppState().stCounterLoopFinal ==
@@ -801,20 +902,17 @@ Future abOrderVisitProcessingCheck(
   }
 }
 
-Future<bool> abOrderVisitAssetIsExist(
+Future<bool> abOVAssetIsExist(
   BuildContext context, {
-  required int? abOrderVisitId,
+  required int? abOVId,
   required int? abAssetId,
 }) async {
   ApiCallResponse? resOrderVisitAssetCheck;
 
   resOrderVisitAssetCheck =
       await ApiOrdersVisitsAssetsGroup.idByvisitIdNassetIdCall.call(
-    orderVisitId: valueOrDefault<int>(
-      FFAppState().stOVSelected.first.id,
-      1,
-    ),
-    assetId: FFAppState().stAssetSeleted.first.id,
+    orderVisitId: abOVId,
+    assetId: abAssetId,
   );
   if (ApiOrdersVisitsAssetsGroup.idByvisitIdNassetIdCall.id(
         (resOrderVisitAssetCheck.jsonBody ?? ''),
@@ -922,7 +1020,7 @@ Future abMapOrdersUpdate(
   }
 }
 
-Future abOrderVisitSelectedServices(
+Future abOVSelectedServices(
   BuildContext context, {
   required int? abOrderVisitId,
 }) async {
@@ -986,7 +1084,7 @@ Future abOrderVisitSelectedServices(
   });
 }
 
-Future abDashAdminOrdersFilters(
+Future abDBAdminOrdersFilters(
   BuildContext context, {
   List<int>? abOrdersTypes,
   List<int>? abSystemsParent,
@@ -1077,7 +1175,7 @@ Future abDashAdminOrdersFilters(
   );
 }
 
-Future abOrdersVisitsSearchFilters(
+Future abOVSearchFilters(
   BuildContext context, {
   List<int>? abSystemsParent,
   List<int>? abSystems,
@@ -1249,10 +1347,15 @@ Future<bool> abGuardian(
 Future abOVPricesUpdate(
   BuildContext context, {
   required String? abPrice,
+  required int? abOVId,
 }) async {
   ApiCallResponse? resOrderVisitVehicles;
   ApiCallResponse? apiResultnke;
 
+  await action_blocks.abOVSelected(
+    context,
+    abOrderVisitId: abOVId,
+  );
   if (abPrice == 'vehicles') {
     FFAppState().updateStOVSelectedAtIndex(
       0,
@@ -1354,20 +1457,6 @@ Future abOVPricesUpdate(
     }
   } else {
     if (abPrice == 'services') {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text(abPrice!),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: const Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
       FFAppState().updateStOVSelectedAtIndex(
         0,
         (e) => e
@@ -1387,20 +1476,6 @@ Future abOVPricesUpdate(
             .withoutNulls
             .toList()
             .cast<DtVOrderVisitServicesStruct>();
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text(FFAppState().asOVSelectedServices.length.toString()),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: const Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
         FFAppState().update(() {
           FFAppState().stCounterLoop = 0;
           FFAppState().stCounterLoopFinal =
@@ -1421,22 +1496,24 @@ Future abOVPricesUpdate(
             },
             matchingRows: (rows) => rows.eq(
               'id',
-              FFAppState().stOVVehicles[FFAppState().stCounterLoop].id,
+              FFAppState().asOVSelectedServices[FFAppState().stCounterLoop].id,
             ),
           );
-          FFAppState().updateStOVSelectedAtIndex(
-            0,
-            (e) => e
-              ..priceServices = FFAppState()
-                      .asOVSelectedServices[FFAppState().stCounterLoop]
-                      .amount *
-                  FFAppState()
-                      .asOVSelectedServices[FFAppState().stCounterLoop]
-                      .discount *
-                  FFAppState()
-                      .asOVSelectedServices[FFAppState().stCounterLoop]
-                      .priceUnit,
-          );
+          FFAppState().update(() {
+            FFAppState().updateStOVSelectedAtIndex(
+              0,
+              (e) => e
+                ..incrementPriceServices(FFAppState()
+                        .asOVSelectedServices[FFAppState().stCounterLoop]
+                        .amount *
+                    FFAppState()
+                        .asOVSelectedServices[FFAppState().stCounterLoop]
+                        .discount *
+                    FFAppState()
+                        .asOVSelectedServices[FFAppState().stCounterLoop]
+                        .priceUnit),
+            );
+          });
           FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
         }
         await OrdersVisitsTable().update(
@@ -1459,7 +1536,93 @@ Future abOVPricesUpdate(
             FFAppState().stOVSelected.first.id,
           ),
         );
+        await Future.delayed(const Duration(milliseconds: 1000));
+        FFAppState().update(() {
+          FFAppState().updateStOVSelectedAtIndex(
+            0,
+            (e) => e
+              ..priceTotal = FFAppState().stOVSelected.first.priceServices +
+                  FFAppState().stOVSelected.first.priceMaterials +
+                  FFAppState().stOVSelected.first.priceVehicles,
+          );
+        });
       }
     }
+  }
+}
+
+Future abDBAdminUsersAvailable(
+  BuildContext context, {
+  List<int>? abContracts,
+}) async {
+  ApiCallResponse? resUsersAvailable;
+
+  resUsersAvailable = await ApiUsersGroup.filtersLeadersByContractsCall.call(
+    contractsIdsList: abContracts,
+  );
+  if ((resUsersAvailable.succeeded ?? true)) {
+    FFAppState().update(() {
+      FFAppState().asDashAdminUsersAvailable =
+          ((resUsersAvailable?.jsonBody ?? '')
+                  .toList()
+                  .map<DtUserStruct?>(DtUserStruct.maybeFromMap)
+                  .toList() as Iterable<DtUserStruct?>)
+              .withoutNulls
+              .toList()
+              .cast<DtUserStruct>();
+    });
+  }
+}
+
+Future<bool> abOVVehiclesCheck(
+  BuildContext context, {
+  required int? abOVId,
+}) async {
+  ApiCallResponse? resOrderVisitVehicles;
+
+  resOrderVisitVehicles =
+      await ApiOrdersVisitsVehiclesGroup.vehiclesByOrderVisitIdCall.call(
+    orderVisitId: abOVId,
+  );
+  if ((resOrderVisitVehicles.succeeded ?? true)) {
+    FFAppState().stOVVehicles = ((resOrderVisitVehicles.jsonBody ?? '')
+            .toList()
+            .map<DtVOrderVisitVehicleStruct?>(
+                DtVOrderVisitVehicleStruct.maybeFromMap)
+            .toList() as Iterable<DtVOrderVisitVehicleStruct?>)
+        .withoutNulls
+        .toList()
+        .cast<DtVOrderVisitVehicleStruct>();
+    FFAppState().stCounterLoop = 0;
+    FFAppState().stCounterLoopFinal = valueOrDefault<int>(
+      FFAppState().stOVVehicles.length,
+      0,
+    );
+    while (FFAppState().stCounterLoop < FFAppState().stCounterLoopFinal) {
+      if (FFAppState().stOVVehicles[FFAppState().stCounterLoop].recorderStart >=
+          FFAppState().stOVVehicles[FFAppState().stCounterLoop].recorderEnd) {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: const Text('Ops ...'),
+              content: const Text(
+                  'Verificar os registros iniciais e finais dos tranportes utilizados.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        return false;
+      }
+      FFAppState().stCounterLoop = FFAppState().stCounterLoop + 1;
+    }
+    return true;
+  } else {
+    return false;
   }
 }

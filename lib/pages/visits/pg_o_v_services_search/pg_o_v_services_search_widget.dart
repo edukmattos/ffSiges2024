@@ -17,7 +17,12 @@ import 'pg_o_v_services_search_model.dart';
 export 'pg_o_v_services_search_model.dart';
 
 class PgOVServicesSearchWidget extends StatefulWidget {
-  const PgOVServicesSearchWidget({super.key});
+  const PgOVServicesSearchWidget({
+    super.key,
+    int? ppOVId,
+  }) : ppOVId = ppOVId ?? 1;
+
+  final int ppOVId;
 
   @override
   State<PgOVServicesSearchWidget> createState() =>
@@ -394,12 +399,14 @@ class _PgOVServicesSearchWidgetState extends State<PgOVServicesSearchWidget>
                                                                   context),
                                                           child:
                                                               MdOVContractServiceAddWidget(
-                                                            serviceId:
+                                                            ppServiceId:
                                                                 gcContractServicesItem
                                                                     .serviceId,
-                                                            priceUnit:
+                                                            ppPriceUnit:
                                                                 gcContractServicesItem
                                                                     .servicePriceUnit,
+                                                            ppOVId:
+                                                                widget.ppOVId,
                                                           ),
                                                         ),
                                                       );
@@ -431,7 +438,7 @@ class _PgOVServicesSearchWidgetState extends State<PgOVServicesSearchWidget>
                             model: _model.cpOVServicesListModel,
                             updateCallback: () => setState(() {}),
                             child: CpOVServicesListWidget(
-                              orderVisitId: FFAppState().stOVSelected.first.id,
+                              ppOVId: FFAppState().stOVSelected.first.id,
                             ),
                           ),
                           Row(

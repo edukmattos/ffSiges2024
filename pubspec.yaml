@@ -140,19 +140,19 @@ dependencies:
   supabase_flutter: 1.10.24
   timeago: 3.2.2
   universal_io: 2.2.2
-  url_launcher: 6.1.10
-  url_launcher_android: 6.0.27
-  url_launcher_ios: 6.1.4
-  url_launcher_platform_interface: 2.1.2
+  url_launcher: 6.2.5
+  url_launcher_android: 6.3.0
+  url_launcher_ios: 6.2.5
+  url_launcher_platform_interface: 2.3.2
   video_player: 2.8.1
   video_player_android: 2.4.10
   video_player_avfoundation: 2.5.1
   video_player_platform_interface: 6.2.1
   video_player_web: 2.1.2
-  webview_flutter: 4.4.4
-  webview_flutter_android: 3.13.2
-  webview_flutter_platform_interface: 2.9.1
-  webview_flutter_wkwebview: 3.10.2
+  webview_flutter: 4.7.0
+  webview_flutter_android: 3.15.0
+  webview_flutter_platform_interface: 2.10.0
+  webview_flutter_wkwebview: 3.12.0
   xml: 6.3.0
 
 

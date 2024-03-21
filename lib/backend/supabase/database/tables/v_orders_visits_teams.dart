@@ -15,8 +15,8 @@ class VOrdersVisitsTeamsRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => VOrdersVisitsTeamsTable();
 
-  int? get visitId => getField<int>('visitId');
-  set visitId(int? value) => setField<int>('visitId', value);
+  int? get orderVisitId => getField<int>('orderVisitId');
+  set orderVisitId(int? value) => setField<int>('orderVisitId', value);
 
   bool? get isLeader => getField<bool>('isLeader');
   set isLeader(bool? value) => setField<bool>('isLeader', value);
@@ -38,4 +38,12 @@ class VOrdersVisitsTeamsRow extends SupabaseDataRow {
 
   DateTime? get dateEnd => getField<DateTime>('dateEnd');
   set dateEnd(DateTime? value) => setField<DateTime>('dateEnd', value);
+
+  bool? get isAvailable => getField<bool>('isAvailable');
+  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
+
+  bool? get isOrderVisitIdInProgress =>
+      getField<bool>('isOrderVisitIdInProgress');
+  set isOrderVisitIdInProgress(bool? value) =>
+      setField<bool>('isOrderVisitIdInProgress', value);
 }

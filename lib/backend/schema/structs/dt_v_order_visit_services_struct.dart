@@ -18,7 +18,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
     double? priceUnit,
     double? amount,
     double? discount,
-    double? total,
+    double? priceTotal,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _id = id,
         _orderVisitId = orderVisitId,
@@ -28,7 +28,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
         _priceUnit = priceUnit,
         _amount = amount,
         _discount = discount,
-        _total = total,
+        _priceTotal = priceTotal,
         super(firestoreUtilData);
 
   // "id" field.
@@ -86,12 +86,12 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
   void incrementDiscount(double amount) => _discount = discount + amount;
   bool hasDiscount() => _discount != null;
 
-  // "total" field.
-  double? _total;
-  double get total => _total ?? 0.0;
-  set total(double? val) => _total = val;
-  void incrementTotal(double amount) => _total = total + amount;
-  bool hasTotal() => _total != null;
+  // "priceTotal" field.
+  double? _priceTotal;
+  double get priceTotal => _priceTotal ?? 0.0;
+  set priceTotal(double? val) => _priceTotal = val;
+  void incrementPriceTotal(double amount) => _priceTotal = priceTotal + amount;
+  bool hasPriceTotal() => _priceTotal != null;
 
   static DtVOrderVisitServicesStruct fromMap(Map<String, dynamic> data) =>
       DtVOrderVisitServicesStruct(
@@ -103,7 +103,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
         priceUnit: castToType<double>(data['priceUnit']),
         amount: castToType<double>(data['amount']),
         discount: castToType<double>(data['discount']),
-        total: castToType<double>(data['total']),
+        priceTotal: castToType<double>(data['priceTotal']),
       );
 
   static DtVOrderVisitServicesStruct? maybeFromMap(dynamic data) => data is Map
@@ -119,7 +119,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
         'priceUnit': _priceUnit,
         'amount': _amount,
         'discount': _discount,
-        'total': _total,
+        'priceTotal': _priceTotal,
       }.withoutNulls;
 
   @override
@@ -156,8 +156,8 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
           _discount,
           ParamType.double,
         ),
-        'total': serializeParam(
-          _total,
+        'priceTotal': serializeParam(
+          _priceTotal,
           ParamType.double,
         ),
       }.withoutNulls;
@@ -205,8 +205,8 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
           ParamType.double,
           false,
         ),
-        total: deserializeParam(
-          data['total'],
+        priceTotal: deserializeParam(
+          data['priceTotal'],
           ParamType.double,
           false,
         ),
@@ -226,7 +226,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
         priceUnit == other.priceUnit &&
         amount == other.amount &&
         discount == other.discount &&
-        total == other.total;
+        priceTotal == other.priceTotal;
   }
 
   @override
@@ -239,7 +239,7 @@ class DtVOrderVisitServicesStruct extends FFFirebaseStruct {
         priceUnit,
         amount,
         discount,
-        total
+        priceTotal
       ]);
 }
 
@@ -252,7 +252,7 @@ DtVOrderVisitServicesStruct createDtVOrderVisitServicesStruct({
   double? priceUnit,
   double? amount,
   double? discount,
-  double? total,
+  double? priceTotal,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -267,7 +267,7 @@ DtVOrderVisitServicesStruct createDtVOrderVisitServicesStruct({
       priceUnit: priceUnit,
       amount: amount,
       discount: discount,
-      total: total,
+      priceTotal: priceTotal,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

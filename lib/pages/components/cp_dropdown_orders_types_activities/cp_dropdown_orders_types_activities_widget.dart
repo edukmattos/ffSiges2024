@@ -52,10 +52,7 @@ class _CpDropdownOrdersTypesActivitiesWidgetState
 
     return FutureBuilder<ApiCallResponse>(
       future: ApiOrdersTypesActivitiesGroup.activitiesByOrderTypeIdCall.call(
-        orderTypeId: valueOrDefault<int>(
-          FFAppState().stOSelected.first.typeId,
-          1,
-        ),
+        orderTypeId: FFAppState().stOVAssetSelected.first.orderTypeId,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

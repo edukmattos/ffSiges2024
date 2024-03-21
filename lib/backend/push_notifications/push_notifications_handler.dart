@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +72,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.of(context).primary,
+          color: const Color(0xFF4744E1),
           child: Center(
             child: Image.asset(
               'assets/images/67.jpeg',
@@ -117,12 +116,12 @@ final parametersBuilderMap =
   'pgSettingsDepartment': ParameterData.none(),
   'pgSettingUsers': ParameterData.none(),
   'pgDBUserVisits': ParameterData.none(),
-  'pgOrderParentShow': (data) async => ParameterData(
+  'pgOPShowOrig': (data) async => ParameterData(
         allParams: {
-          'orderId': getParameter<int>(data, 'orderId'),
+          'orderParentId': getParameter<int>(data, 'orderParentId'),
         },
       ),
-  'pgOrderShow': (data) async => ParameterData(
+  'pgOShow': (data) async => ParameterData(
         allParams: {
           'orderId': getParameter<int>(data, 'orderId'),
         },
@@ -133,38 +132,37 @@ final parametersBuilderMap =
           'unitId': getParameter<int>(data, 'unitId'),
         },
       ),
-  'pgMyTeam': (data) async => ParameterData(
-        allParams: {
-          'visitId': getParameter<int>(data, 'visitId'),
-        },
-      ),
   'Home13Productivity': ParameterData.none(),
-  'pgOVShow': (data) async => ParameterData(
+  'pgOVShowOrig': (data) async => ParameterData(
         allParams: {
-          'visitId': getParameter<int>(data, 'visitId'),
-          'orderId': getParameter<int>(data, 'orderId'),
-          'appPageId009': getParameter<int>(data, 'appPageId009'),
+          'ppOVId': getParameter<int>(data, 'ppOVId'),
+          'ppOId': getParameter<int>(data, 'ppOId'),
+          'ppProcessingId': getParameter<int>(data, 'ppProcessingId'),
+          'ppUnitId': getParameter<int>(data, 'ppUnitId'),
+          'ppOPId': getParameter<int>(data, 'ppOPId'),
         },
       ),
   'pgOVAsset1Search': (data) async => ParameterData(
         allParams: {
-          'visitId': getParameter<int>(data, 'visitId'),
+          'oVId': getParameter<int>(data, 'oVId'),
+          'unitId': getParameter<int>(data, 'unitId'),
+          'orderId': getParameter<int>(data, 'orderId'),
+          'oPId': getParameter<int>(data, 'oPId'),
         },
       ),
   'List11Messages': ParameterData.none(),
   'pgOVAsset3ActivitiesSearch': ParameterData.none(),
-  'pgOrderVisitAsset2Before': (data) async => ParameterData(
+  'pgOVAsset2Before': (data) async => ParameterData(
         allParams: {
-          'operation': getParameter<String>(data, 'operation'),
+          'ppOperation': getParameter<String>(data, 'ppOperation'),
         },
       ),
   'Create3SupportTicketBugReport': ParameterData.none(),
-  'pgOrderVisitAssetMoving': ParameterData.none(),
+  'pgOVAssetMoving': ParameterData.none(),
   'Profile09': ParameterData.none(),
   'Home12Activity': ParameterData.none(),
   'Home09Dashboard': ParameterData.none(),
   'pgAssetsSearch': ParameterData.none(),
-  'pgAssetShow': ParameterData.none(),
   'Home24BankFintechDashboard': ParameterData.none(),
   'Details38TransactionHistoryResponsive': ParameterData.none(),
   'Details37Transaction': ParameterData.none(),
@@ -180,14 +178,18 @@ final parametersBuilderMap =
           'unitId': getParameter<int>(data, 'unitId'),
         },
       ),
-  'pgOrderParentNew': ParameterData.none(),
-  'pgOrderProgramming': (data) async => ParameterData(
+  'pgOPNew': ParameterData.none(),
+  'pgOProgramming': (data) async => ParameterData(
         allParams: {
-          'orderId': getParameter<int>(data, 'orderId'),
+          'orderParentId': getParameter<int>(data, 'orderParentId'),
         },
       ),
   'pgDashboardUserOrders': ParameterData.none(),
-  'pgOVServicesSearch': ParameterData.none(),
+  'pgOVServicesSearch': (data) async => ParameterData(
+        allParams: {
+          'ppOVId': getParameter<int>(data, 'ppOVId'),
+        },
+      ),
   'Details03TransactionsSummary': ParameterData.none(),
   'Details43WorkoutSummary': ParameterData.none(),
   'pgOVSearch': ParameterData.none(),
@@ -195,6 +197,57 @@ final parametersBuilderMap =
   'qwerty': ParameterData.none(),
   'pgDBUserOrders': ParameterData.none(),
   'Details19TransactionBudget': ParameterData.none(),
+  'pgAssetShow': (data) async => ParameterData(
+        allParams: {
+          'ppView': getParameter<String>(data, 'ppView'),
+          'ppAssetId': getParameter<int>(data, 'ppAssetId'),
+        },
+      ),
+  'List17Notifications': ParameterData.none(),
+  'List17Notificationsqq': ParameterData.none(),
+  'pgMyProfileVehicleList': ParameterData.none(),
+  'List06UserSearch': ParameterData.none(),
+  'pgMyTeamCopy': (data) async => ParameterData(
+        allParams: {
+          'visitId': getParameter<int>(data, 'visitId'),
+        },
+      ),
+  'pgMyTeam': ParameterData.none(),
+  'Home07Invoices': ParameterData.none(),
+  'Home07Invoicesee': ParameterData.none(),
+  'pgOVMyTeam': ParameterData.none(),
+  'pgOPSearch': (data) async => ParameterData(
+        allParams: {
+          'orderParentId': getParameter<int>(data, 'orderParentId'),
+        },
+      ),
+  'pgOPSearchCol': ParameterData.none(),
+  'pgOPShow': (data) async => ParameterData(
+        allParams: {
+          'ppOPId': getParameter<int>(data, 'ppOPId'),
+        },
+      ),
+  'pgOPShow1': ParameterData.none(),
+  'pgONew': (data) async => ParameterData(
+        allParams: {
+          'orderParentId': getParameter<int>(data, 'orderParentId'),
+        },
+      ),
+  'djklasdj': ParameterData.none(),
+  'pgOVAssetApproved': (data) async => ParameterData(
+        allParams: {
+          'ppOVAssetId': getParameter<int>(data, 'ppOVAssetId'),
+        },
+      ),
+  'pgOVShow': (data) async => ParameterData(
+        allParams: {
+          'ppOVId': getParameter<int>(data, 'ppOVId'),
+          'ppOId': getParameter<int>(data, 'ppOId'),
+          'ppOPId': getParameter<int>(data, 'ppOPId'),
+          'ppProcessingId': getParameter<int>(data, 'ppProcessingId'),
+          'ppUnitId': getParameter<int>(data, 'ppUnitId'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

@@ -105,4 +105,15 @@ class UsersRow extends SupabaseDataRow {
 
   int? get vehicleId => getField<int>('vehicleId');
   set vehicleId(int? value) => setField<int>('vehicleId', value);
+
+  bool? get isAvailable => getField<bool>('isAvailable');
+  set isAvailable(bool? value) => setField<bool>('isAvailable', value);
+
+  bool? get isOrderVisitIdInProgress =>
+      getField<bool>('isOrderVisitIdInProgress');
+  set isOrderVisitIdInProgress(bool? value) =>
+      setField<bool>('isOrderVisitIdInProgress', value);
+
+  int? get teamAmount => getField<int>('teamAmount');
+  set teamAmount(int? value) => setField<int>('teamAmount', value);
 }

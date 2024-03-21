@@ -125,7 +125,7 @@ class _MdOVServicesDetalisWidgetState extends State<MdOVServicesDetalisWidget> {
                                 model: _model.cpOVServicesListModel,
                                 updateCallback: () => setState(() {}),
                                 child: CpOVServicesListWidget(
-                                  orderVisitId: widget.orderVisitId,
+                                  ppOVId: widget.orderVisitId,
                                 ),
                               ),
                             ],
